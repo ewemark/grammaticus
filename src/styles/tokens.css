@@ -1,0 +1,134 @@
+/* ============================================================
+   Grammaticus — Design Tokens
+   SpaceX 灵感暗黑工业风
+   ============================================================ */
+
+:root {
+  /* ── 画布 ── */
+  --color-canvas: #000000;
+  --color-canvas-soft: #0a0a0a;
+  --color-canvas-light: #ffffff;
+  --color-canvas-cool: #f0f0fa;
+
+  /* ── 选中文字高亮 ── */
+  --color-selection-bg: #ffffff;
+  --color-selection-text: #000000;
+
+  /* ── 文字 ── */
+  --color-text: #ffffff;
+  --color-text-mute: #f0f0fa;
+  --color-text-secondary: #5a5a5f;
+  --color-text-on-light: #000000;
+  --color-text-on-light-mute: #5a5a5f;
+
+  /* ── 边框 ── */
+  --color-border: #3a3a3f;
+  --color-border-light: #e0e0e8;
+
+  /* ── 主色（少量点缀） ── */
+  --color-accent: #ffffff;
+  --color-link: #ffffff;
+
+  /* ── 品牌色扩展（词性色彩，仅在 badge 上使用） ── */
+  --color-noun: #a78bfa;
+  --color-verb: #34d399;
+  --color-adjective: #f472b6;
+  --color-pronoun: #60a5fa;
+  --color-adverb: #fbbf24;
+  --color-preposition: #fb923c;
+  --color-conjunction: #94a3b8;
+  --color-interjection: #e879f9;
+  --color-numeral: #38bdf8;
+
+  /* ── 字体 ── */
+  --font-display: 'Inter', 'Arial Narrow', Arial, Verdana, sans-serif;
+  --font-body: 'Inter', Arial, Verdana, sans-serif;
+
+  /* ── 字号（SpaceX 层级） ── */
+  --text-display-xxl: 80px;
+  --text-display-xl: 60px;
+  --text-display-lg: 48px;
+  --text-heading: 28px;
+  --text-heading-sm: 20px;
+  --text-body-lg: 16px;
+  --text-body: 16px;
+  --text-body-sm: 14px;
+  --text-button: 13px;
+  --text-micro: 12px;
+  --text-caption: 13px;
+
+  /* ── 字重 ── */
+  --weight-normal: 400;
+  --weight-bold: 700;
+
+  /* ── 行高 ── */
+  --leading-display: 0.95;
+  --leading-heading: 1.2;
+  --leading-body: 1.7;
+  --leading-ui: 1.5;
+
+  /* ── 字距（宽字距是 SpaceX 签名） ── */
+  --tracking-display: 1.6px;
+  --tracking-heading: 0.96px;
+  --tracking-button: 1.17px;
+  --tracking-micro: 0.96px;
+
+  /* ── 圆角 ── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 32px;
+  --radius-full: 9999px;
+
+  /* ── 间距 ── */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 18px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-huge: 48px;
+  --space-section: 80px;
+
+  /* ── 阴影：不用 ── */
+  --shadow-none: none;
+
+  /* ── 布局 ── */
+  --sidebar-width: 260px;
+  --header-height: 64px;
+  --content-max-width: 960px;
+
+  /* ── 过渡 ── */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+}
+
+/* ── 全局选中文字高亮 ── */
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+::-moz-selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+/* ── 移动端响应式 ── */
+@media (max-width: 768px) {
+  :root {
+    --text-display-xxl: 42px;
+    --text-display-xl: 32px;
+    --text-display-lg: 28px;
+    --text-heading: 22px;
+    --text-heading-sm: 18px;
+    --text-body-lg: 15px;
+    --text-body: 15px;
+    --text-body-sm: 13px;
+    --sidebar-width: 0px;
+    --header-height: 52px;
+    --content-max-width: 100%;
+    --space-section: 48px;
+    --space-huge: 32px;
+  }
+}

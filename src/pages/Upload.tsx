@@ -1,0 +1,196 @@
+import { useState, useRef, useEffect } from 'react'
+import Card from '../components/ui/Card'
+import Button from '../components/ui/Button'
+
+interface PastDoc { id: number; filename: string; created_at: string }
+
+export default function Upload() {
+  const [dragOver, setDragOver] = useState(false)
+  const [text, setText] = useState('')
+  const [filename, setFilename] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [fullscreen, setFullscreen] = useState(false)
+  const [fontSize, setFontSize] = useState(18)
+  const [pastDocs, setPastDocs] = useState<PastDoc[]>([])
+  const fileRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    fetch('/api/upload/list').then(r => r.json()).then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
+  }, [])
+
+  const loadPastDoc = async (id: number) => {
+    setLoading(true)
+    const d = await fetch(`/api/upload/${id}`).then(r => r.json())
+    setFilename(d.filename)
+    setText(d.content)
+    setLoading(false)
+  }
+  const refreshPast = () => {
+    fetch('/api/upload/list').then(r => r.json()).then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
+  }
+  const deleteDoc = async (id: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    await fetch(`/api/upload/${id}`, { method: 'DELETE' })
+    refreshPast()
+  }
+
+  const uploadFile = (file: File) => {
+    setLoading(true)
+    setFilename(file.name)
+    const form = new FormData()
+    form.append('file', file)
+    fetch('/api/upload', { method: 'POST', body: form })
+      .then((r) => r.json())
+      .then((d) => { setText(d.text); setLoading(false); refreshPast() })
+      .catch(() => setLoading(false))
+  }
+
+  const onDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    const file = e.dataTransfer.files[0]
+    if (file) uploadFile(file)
+  }
+
+  const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) uploadFile(file)
+  }
+
+  return (
+    <div>
+      <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-md)' }}>
+        UPLOAD
+      </p>
+      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-display-xl)', fontWeight: 700, lineHeight: 'var(--leading-heading)', letterSpacing: 'var(--tracking-heading)', textTransform: 'uppercase', color: 'var(--color-text)', margin: '0 0 var(--space-md)' }}>
+        Document Upload
+      </h2>
+      <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xxl)', maxWidth: 520 }}>
+        上传你的文章对应的文档，我们提供单词的查找和语法分析。
+      </p>
+
+      {/* Drop zone */}
+      <Card>
+        <div
+          style={{
+            border: `2px dashed ${dragOver ? 'var(--color-text)' : 'var(--color-border)'}`,
+            borderRadius: 'var(--radius-sm)',
+            padding: 'var(--space-huge) var(--space-xxl)',
+            textAlign: 'center',
+            transition: 'border-color var(--transition-fast)',
+            cursor: 'pointer',
+          }}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={onDrop}
+          onClick={() => fileRef.current?.click()}
+        >
+          <input
+            ref={fileRef}
+            type="file"
+            accept=".txt,.pdf,.docx"
+            style={{ display: 'none' }}
+            onChange={onSelect}
+          />
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-md)' }}>
+            {loading ? '解析中…' : '点击选择文件或拖拽到此处'}
+          </p>
+          <p style={{ fontSize: 'var(--text-body-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xl)' }}>
+            TXT, PDF, DOCX — 不超过 10 MB
+          </p>
+          <Button variant="ghost" onClick={(e) => { e.stopPropagation(); fileRef.current?.click() }}>选择文件</Button>
+        </div>
+      </Card>
+
+      {/* Result */}
+      {text && (
+        <div style={{ marginTop: 'var(--space-xxl)' }}>
+          <Card>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', margin: 0 }}>
+                {filename}
+              </h4>
+              <button
+                onClick={() => setFullscreen(true)}
+                style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '4px 12px', cursor: 'pointer' }}
+              >
+                放大阅读
+              </button>
+            </div>
+            <div
+              onClick={() => setFullscreen(true)}
+              style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line', maxHeight: 300, overflow: 'hidden', cursor: 'pointer', position: 'relative' }}
+            >
+              {text}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(transparent, var(--color-canvas-soft))' }} />
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Past uploads */}
+      {pastDocs.length > 0 && (
+        <div style={{ marginTop: 'var(--space-xxl)' }}>
+          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-md)' }}>历史记录</h4>
+          <div style={{ display: 'grid', gap: 'var(--space-xs)' }}>
+            {pastDocs.map((d) => (
+              <div
+                key={d.id}
+                onClick={() => loadPastDoc(d.id)}
+                style={{
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  padding: 'var(--space-sm) var(--space-md)',
+                  border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)',
+                  cursor: 'pointer',
+                }}
+              >
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--color-text)' }}>{d.filename}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+                  <span style={{ fontSize: 10, color: 'var(--color-text-secondary)' }}>{d.created_at?.slice(0, 10)}</span>
+                  <button
+                    onClick={(e) => deleteDoc(d.id, e)}
+                    style={{ fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', opacity: 0.4 }}
+                    onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.color = '#ef4444' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; e.currentTarget.style.color = 'var(--color-text-secondary)' }}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Fullscreen reading overlay */}
+      {fullscreen && (
+        <div
+          style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#000000', display: 'flex', flexDirection: 'column' }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)' }}>
+              {filename}
+            </span>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
+                <button onClick={() => setFontSize((s) => Math.max(12, s - 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRight: '1px solid var(--color-border)' }}>A⁻</button>
+                <button onClick={() => setFontSize((s) => Math.min(28, s + 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px' }}>A⁺</button>
+              </div>
+              <button
+                onClick={() => setFullscreen(false)}
+                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
+              >
+                ✕ 关闭
+              </button>
+            </div>
+          </div>
+          <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-xxl)', maxWidth: 800, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+            <p style={{ fontSize, lineHeight: 1.9, color: '#d8d8d8', whiteSpace: 'pre-line', margin: 0, fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif', letterSpacing: '0.3px' }}>
+              {text}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

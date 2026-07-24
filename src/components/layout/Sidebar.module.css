@@ -1,0 +1,94 @@
+.overlay { display: none; }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--color-canvas);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  padding: var(--space-xl) var(--space-xl);
+  height: var(--header-height);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-button);
+  color: var(--color-text);
+}
+
+.nav {
+  flex: 1;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-micro);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.navItem:hover {
+  background: var(--color-canvas-soft);
+  color: var(--color-text);
+}
+
+.active {
+  color: var(--color-text) !important;
+  background: var(--color-canvas-soft);
+}
+
+.footer {
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.version {
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-micro);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+  }
+}

@@ -1,0 +1,93 @@
+import Database from 'better-sqlite3'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const DB_PATH = path.resolve(__dirname, '..', 'data', 'grammaticus.db')
+
+const db = new Database(DB_PATH)
+
+// Performance
+db.pragma('journal_mode = WAL')
+db.pragma('foreign_keys = ON')
+
+// Schema
+db.exec(`
+  CREATE TABLE IF NOT EXISTS words (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word TEXT UNIQUE NOT NULL COLLATE NOCASE,
+    meaning TEXT NOT NULL,
+    pos TEXT NOT NULL,
+    example TEXT NOT NULL DEFAULT ''
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_words_word ON words(word COLLATE NOCASE);
+  CREATE INDEX IF NOT EXISTS idx_words_pos ON words(pos);
+
+  CREATE TABLE IF NOT EXISTS rich_words (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word TEXT UNIQUE NOT NULL COLLATE NOCASE,
+    pronunciation TEXT NOT NULL DEFAULT '',
+    pos TEXT NOT NULL,
+    pos_note TEXT NOT NULL DEFAULT '',
+    core_image TEXT NOT NULL DEFAULT '',
+    atomic_core TEXT NOT NULL DEFAULT '',
+    one_line_penetration TEXT NOT NULL DEFAULT '',
+    forms TEXT NOT NULL DEFAULT '[]',
+    semantic_radii TEXT NOT NULL DEFAULT '[]',
+    grammar_rules TEXT NOT NULL DEFAULT '[]',
+    example_diagnoses TEXT NOT NULL DEFAULT '[]',
+    synonym_comparisons TEXT NOT NULL DEFAULT '[]'
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_rich_words_word ON rich_words(word COLLATE NOCASE);
+
+  CREATE TABLE IF NOT EXISTS articles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book TEXT NOT NULL,
+    lesson INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    title_cn TEXT NOT NULL DEFAULT '',
+    content TEXT NOT NULL,
+    level TEXT NOT NULL DEFAULT 'BEGINNER',
+    UNIQUE(book, lesson)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_articles_book ON articles(book, lesson);
+
+  CREATE TABLE IF NOT EXISTS word_learning (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word TEXT UNIQUE NOT NULL COLLATE NOCASE,
+    stability REAL DEFAULT 0.5,
+    interval_hours REAL DEFAULT 0,
+    next_review_at TEXT,
+    error_count INTEGER DEFAULT 0,
+    total_reviews INTEGER DEFAULT 0,
+    meaning TEXT DEFAULT '',
+    memory_anchor TEXT DEFAULT '',
+    credit_violations INTEGER DEFAULT 0,
+    state TEXT DEFAULT 'new'
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_word_learning_next ON word_learning(next_review_at);
+
+  CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL DEFAULT '',
+    email TEXT NOT NULL DEFAULT '',
+    content TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+
+  CREATE TABLE IF NOT EXISTS documents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    filename TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now'))
+  );
+`)
+
+// Migration: add meaning column if missing
+try { db.exec('ALTER TABLE word_learning ADD COLUMN meaning TEXT DEFAULT \'\'') } catch {}
+
+export default db

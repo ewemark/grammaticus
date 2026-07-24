@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "edge-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "edge-devtools-mcp"
+      ]
+    }
+  }
+}
