@@ -5,6 +5,7 @@ import Badge from '../../components/ui/Badge'
 import { fetchArticles, fetchArticle, fetchBooks, type ArticleListItem, type ArticleFull } from '../../api/articles'
 import { tabPill } from '../../styles/typography'
 import { isRead, toggleRead, getReadArticles } from '../../utils/readingProgress'
+import { getSavedArticles, removeSavedArticle, type SavedArticle } from '../../utils/savedArticles'
 
 /* ── hard-coded articles for non-NCE categories ─────────────── */
 
@@ -71,9 +72,12 @@ export default function ArticleLibrary() {
   const [fullscreen, setFullscreen] = useState<{ title: string; content: string; subtitle: string; articleId: number | string } | null>(null)
   const [readArticles, setReadArticles] = useState(getReadArticles())
   const [fontSize, setFontSize] = useState(18)
+  const [savedArticles, setSavedArticles] = useState<SavedArticle[]>(() => getSavedArticles())
+  const [selectedSaved, setSelectedSaved] = useState<SavedArticle | null>(null)
   const refreshRead = useCallback(() => setReadArticles(getReadArticles()), [])
+  const refreshSaved = useCallback(() => setSavedArticles(getSavedArticles()), [])
 
-  const categories = ['新概念英语', '经典演讲', '经典文学', '每日短文']
+  const categories = ['新概念英语', '经典演讲', '经典文学', '每日短文', '语境记忆']
 
   // Book 1 groups of 10, others groups of 5
   const groupSize = book === 'Book 1' ? 10 : 5
@@ -169,6 +173,30 @@ export default function ArticleLibrary() {
         <Card><div style={{ padding: 'var(--space-lg) 0' }}><p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>{selectedOther.content}</p></div></Card>
       </div>
     )
+  } else if (selectedSaved) {
+    content = (
+      <div>
+        <button onClick={() => { setSelectedSaved(null); refreshSaved() }} style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, marginBottom: 'var(--space-md)' }}>
+          ← 返回 语境记忆
+        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-xs)' }}>
+          <Badge color="green">CONTEXT</Badge>
+          <span style={{ fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>{selectedSaved.words.length} 个目标词汇</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-display-lg)', fontWeight: 700, lineHeight: 'var(--leading-heading)', letterSpacing: 'var(--tracking-heading)', color: 'var(--color-text)', margin: '0 0 var(--space-xs)' }}>{selectedSaved.title}</h3>
+          </div>
+          <button
+            onClick={() => setFullscreen({ title: selectedSaved.title, content: selectedSaved.content, subtitle: `语境记忆 · ${selectedSaved.words.length}词`, articleId: selectedSaved.id })}
+            style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '4px 12px', cursor: 'pointer', flexShrink: 0, marginLeft: 'var(--space-md)' }}
+          >
+            放大阅读
+          </button>
+        </div>
+        <Card><div style={{ padding: 'var(--space-lg) 0' }}><p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>{selectedSaved.content}</p></div></Card>
+      </div>
+    )
   } else {
     /* ── Main list ──────────────────────────────────────────── */
     content = (
@@ -239,8 +267,46 @@ export default function ArticleLibrary() {
         </>
       )}
 
+      {/* 语境记忆：saved articles from localStorage */}
+      {category === '语境记忆' && (
+        <div>
+          {savedArticles.length > 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 'var(--space-md)' }}>
+              {savedArticles.map((a) => {
+                const articleRead = readArticles.has(String(a.id))
+                return (
+                <Card key={a.id}>
+                  <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: 'var(--space-sm)', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+                      <Badge color="green">CONTEXT</Badge>
+                      <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)', color: 'var(--color-text-secondary)' }}>{a.words.length} 词</span>
+                    </div>
+                    {articleRead && <span style={{ fontSize: 10, color: '#22c55e' }}>已读 ✓</span>}
+                  </div>
+                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? '#22c55e' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
+                  <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>
+                    {a.words.slice(0, 6).join(' · ')}{a.words.length > 6 ? ` …共 ${a.words.length} 词` : ''}
+                  </p>
+                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+                    <Button variant="ghost" onClick={() => setSelectedSaved(a)}>阅读全文</Button>
+                    <Button variant="ghost" onClick={() => { removeSavedArticle(a.id); refreshSaved() }}>删除</Button>
+                  </div>
+                </Card>
+                )
+              })}
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', padding: 'var(--space-huge) 0' }}>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-body-sm)', marginBottom: 'var(--space-md)' }}>
+                还没有收藏语境文章。在「语境记忆」生成文章后，点击放大阅读中的「☆ 收藏」即可保存到这里。
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Other categories: local data */}
-      {category !== '新概念英语' && (
+      {category !== '新概念英语' && category !== '语境记忆' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))', gap: 'var(--space-md)' }}>
           {OTHER_ARTICLES.filter((a) => a.category === category).map((a) => {
             const articleRead = readArticles.has(String(a.id))

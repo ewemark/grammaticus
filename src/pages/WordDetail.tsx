@@ -249,22 +249,9 @@ export default function WordDetail() {
         <section style={{ marginBottom: 'var(--space-section)' }}>
           <h3 style={sectionTitle}>语法与强制搭配</h3>
           <Card>
-            <div style={{ display: 'grid', gap: 'var(--space-xl)' }}>
-              {rich.grammarRules.map((rule, i) => (
-                <div key={i}>
-                  <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>
-                    {rule.title}
-                  </p>
-                  <ul style={{ margin: 0, padding: '0 0 0 var(--space-lg)', display: 'grid', gap: 'var(--space-xs)' }}>
-                    {rule.items.map((item, j) => (
-                      <li key={j} style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)' }}>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+              {rich.grammarRules}
+            </p>
           </Card>
         </section>
 

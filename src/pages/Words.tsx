@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
-import { getRecent, formatTime, type RecentWord } from '../utils/recent'
+import { getRecent, removeRecent, formatTime, type RecentWord } from '../utils/recent'
 import { getBookmarks, removeBookmark, type BookmarkedWord } from '../utils/bookmarks'
 import { tabPill, microLabel, pageTitle } from '../styles/typography'
-import LearnTab from './words/LearnTab'
+import ContextLearning from './read/ContextLearning'
 
-const TABS = ['RECENT', 'BOOKMARKS', 'LEARN'] as const
+const TABS = ['RECENT', 'BOOKMARKS', 'CONTEXT'] as const
+
+const TAB_LABELS: Record<string, string> = {
+  RECENT: '最近搜索',
+  BOOKMARKS: '我的收藏',
+  CONTEXT: '语境记忆',
+}
 
 export const POS_COLORS: Record<string, 'purple' | 'green' | 'pink' | 'orange' | 'blue' | 'yellow' | 'gray'> = {
   NOUN: 'purple',
@@ -57,7 +63,7 @@ export default function Words() {
       <div style={{ display: 'flex', gap: 'var(--space-xs)', marginBottom: 'var(--space-xxl)', flexWrap: 'wrap' }}>
         {TABS.map((t) => (
           <button key={t} style={tabPill(tab === t)} onClick={() => setTab(t)}>
-            {t}
+            {TAB_LABELS[t]}
           </button>
         ))}
       </div>
@@ -92,13 +98,39 @@ export default function Words() {
                           {w.meaning || '—'}
                         </p>
                       </div>
-                      <span style={{
-                        fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)',
-                        fontFamily: 'var(--font-display)', textTransform: 'uppercase',
-                        letterSpacing: 'var(--tracking-micro)',
-                      }}>
-                        {formatTime(w.timestamp)}
-                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+                        <span style={{
+                          fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)',
+                          fontFamily: 'var(--font-display)', textTransform: 'uppercase',
+                          letterSpacing: 'var(--tracking-micro)',
+                        }}>
+                          {formatTime(w.timestamp)}
+                        </span>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            removeRecent(w.word)
+                            setRecent(getRecent())
+                          }}
+                          title="删除记录"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--color-text-secondary)',
+                            fontSize: 16,
+                            padding: '2px 4px',
+                            lineHeight: 1,
+                            opacity: 0.4,
+                            transition: 'opacity 0.15s',
+                          }}
+                          onMouseEnter={(e) => { (e.target as HTMLElement).style.opacity = '1' }}
+                          onMouseLeave={(e) => { (e.target as HTMLElement).style.opacity = '0.4' }}
+                        >
+                          ✕
+                        </button>
+                      </div>
                     </div>
                   </Card>
                 </Link>
@@ -143,13 +175,39 @@ export default function Words() {
                           {b.meaning || '—'}
                         </p>
                       </div>
-                      <span style={{
-                        fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)',
-                        fontFamily: 'var(--font-display)', textTransform: 'uppercase',
-                        letterSpacing: 'var(--tracking-micro)',
-                      }}>
-                        {formatTime(b.timestamp)}
-                      </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+                        <span style={{
+                          fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)',
+                          fontFamily: 'var(--font-display)', textTransform: 'uppercase',
+                          letterSpacing: 'var(--tracking-micro)',
+                        }}>
+                          {formatTime(b.timestamp)}
+                        </span>
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            removeBookmark(b.word)
+                            setBookmarks(getBookmarks())
+                          }}
+                          title="取消收藏"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--color-text-secondary)',
+                            fontSize: 16,
+                            padding: '2px 4px',
+                            lineHeight: 1,
+                            opacity: 0.4,
+                            transition: 'opacity 0.15s',
+                          }}
+                          onMouseEnter={(e) => { (e.target as HTMLElement).style.opacity = '1' }}
+                          onMouseLeave={(e) => { (e.target as HTMLElement).style.opacity = '0.4' }}
+                        >
+                          ✕
+                        </button>
+                      </div>
                     </div>
                   </Card>
                 </Link>
@@ -161,8 +219,8 @@ export default function Words() {
         </div>
       )}
 
-      {/* Tab 3: LEARN */}
-      {tab === 'LEARN' && <LearnTab />}
+      {/* Tab 3: CONTEXT */}
+      {tab === 'CONTEXT' && <ContextLearning />}
     </div>
   )
 }

@@ -29,6 +29,13 @@ export function addRecent(word: string, meaning: string): RecentWord[] {
   return trimmed
 }
 
+/** 删除单个单词 */
+export function removeRecent(word: string): RecentWord[] {
+  const list = getRecent().filter((w) => w.word.toLowerCase() !== word.toLowerCase())
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+  return list
+}
+
 /** 清空 */
 export function clearRecent(): void {
   localStorage.removeItem(STORAGE_KEY)

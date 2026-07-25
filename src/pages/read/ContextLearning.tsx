@@ -4,22 +4,28 @@ import Button from '../../components/ui/Button'
 import { getBookmarks } from '../../utils/bookmarks'
 import { getRecent } from '../../utils/recent'
 import { sectionTitle } from '../../styles/typography'
+import { generateArticle } from '../../api/context'
+import { saveArticle, isArticleSaved } from '../../utils/savedArticles'
 
 const NOW = Date.now()
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 export default function ContextLearning() {
   const [selected, setSelected] = useState<Set<string>>(new Set())
-  const [generated, setGenerated] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [article, setArticle] = useState('')
+  const [articleTitle, setArticleTitle] = useState('')
   const [usedWords, setUsedWords] = useState<string[]>([])
+  const [articleId, setArticleId] = useState('')
+  const [saved, setSaved] = useState(false)
+  const [fullscreen, setFullscreen] = useState(false)
+  const [fontSize, setFontSize] = useState(18)
 
   const { recentWords, bookmarkWords } = useMemo(() => {
     const recent = getRecent()
       .filter((r) => NOW - r.timestamp < WEEK_MS)
       .map((r) => r.word)
     const bookmarks = getBookmarks().map((b) => b.word)
-    // Dedupe across lists
     const bookmarkSet = new Set(bookmarks.map((w) => w.toLowerCase()))
     const uniqueRecent = recent.filter((w) => !bookmarkSet.has(w.toLowerCase()))
     return {
@@ -47,69 +53,42 @@ export default function ContextLearning() {
 
   const clearAll = () => setSelected(new Set())
 
-  const generate = () => {
+  const generate = async () => {
     const picked = [...selected]
     if (picked.length === 0) return
 
-    // Shuffle to vary word usage
-    const shuffle = (arr: string[]) => [...arr].sort(() => Math.random() - 0.5)
-    const w = shuffle(picked)
-    const [a,b,c,d,e,f,g,h] = [...w, ...w, ...w] // ensure enough words
+    setLoading(true)
+    try {
+      const result = await generateArticle(picked)
+      setArticle(result.article)
+      setArticleTitle(result.title)
+      setUsedWords(picked)
+      const id = String(Date.now())
+      setArticleId(id)
+      setSaved(false)
+    } catch {
+      // Fallback: use local template
+      const [a, b, c, d, e, f] = [...picked, ...picked]
+      const fallback = `I decided to improve my English today. The first thing I wanted to do was to "${a}" in a real conversation. My friend suggested that I should also try to "${b}" while reading an article.\n\nIt wasn't easy at first. I needed to "${c}" carefully and "${d}" whenever I had free time. But after a while, things started to make sense. I could "${e}" without thinking too much, and I even started to "${f}" with more confidence.\n\nLearning a language is a journey, not a destination. Every small step counts.`
+      setArticle(fallback)
+      setArticleTitle('学习英语的每一天')
+      setUsedWords(picked)
+      setArticleId(String(Date.now()))
+      setSaved(false)
+    }
+    setLoading(false)
+  }
 
-    const templates = [
-      // Narrative story
-      `It was a quiet Tuesday morning when Maria decided to ${a}. She had been thinking about it for weeks. Her friend had told her that if she wanted to ${b}, she needed to take action. "You can't just wait for things to happen," he said. "Sometimes you have to ${c} first, and the results will follow."
-
-So Maria started. At first, it was difficult. She didn't know how to ${d} properly, and she made mistakes. But she remembered what her grandmother used to say: "Life is about learning to ${e} even when things are hard."
-
-After a few weeks, something changed. Maria noticed she could ${f} more naturally now. The effort was paying off. She called her friend and said, "You were right. I just needed to ${g}." Her friend laughed. "That's the secret. Keep going, and one day you'll ${h} better than you ever imagined."
-
-The lesson was clear: growth comes from action, not from waiting. Whether you want to ${a}, ${b}, or ${c}, the first step is always the hardest — but it's also the most important.`,
-
-      // Opinion essay
-      `In recent years, there has been much discussion about what it means to ${a} in modern society. Some people believe that to ${b} is a natural human instinct, while others argue that we must learn to ${c} through education and practice.
-
-Consider the example of a young professional named Alex. When Alex started his career, he found it challenging to ${d} in a competitive environment. His mentor advised him: "Instead of trying to ${e} perfectly, focus on learning how to ${f} consistently. Excellence comes from habit, not from talent."
-
-Alex took this advice seriously. He began to ${g} every day, even for just a few minutes. Slowly, he noticed improvement. He could ${h} with greater confidence, and his colleagues began to notice the change.
-
-What this shows is that the ability to ${a} is not something we are born with — it is something we develop. The question is not whether you can ${b}, but whether you are willing to ${c} enough to make it happen.`,
-
-      // Dialogue-based story
-      `"I don't think I can do it," said Jamie, staring at the challenge ahead.
-"Of course you can," replied Taylor. "You've been preparing to ${a} for months now."
-"But what if I fail? What if I can't ${b} the way I'm supposed to?"
-Taylor put a hand on Jamie's shoulder. "Listen. Everyone struggles to ${c} at first. The important thing is that you ${d} with intention. Don't worry about being perfect."
-
-Jamie took a deep breath. "Okay. I'll try."
-"You'll do more than try. You'll ${e} like you've never done before."
-
-And Jamie did. It wasn't perfect. There were moments when Jamie wanted to give up, moments when the desire to ${f} seemed impossible. But each time, Taylor was there, reminding Jamie: "Remember why you started. Remember that every expert was once a beginner who refused to ${g}."
-
-Months later, someone asked Jamie what made the difference. Jamie smiled and said: "Someone believed I could ${h}. And then I started to believe it too."`,
-
-      // Daily life reflection
-      `Every morning, I wake up with one goal: to ${a}. It sounds simple, but anyone who has tried to ${b} knows that simple doesn't mean easy. There are distractions everywhere — notifications buzzing, emails piling up, a hundred reasons to ${c} instead of focus.
-
-I used to think that successful people were just naturally good at ${d}. But then I read about a study that changed my perspective. The researchers found that the key difference wasn't talent or intelligence — it was consistency. People who ${e} a little every day achieved far more than those who tried to ${f} intensely but sporadically.
-
-So I started small. Five minutes of ${g} before breakfast. Then ten. Then twenty. It felt strange at first — I wasn't used to ${h} without immediate results. But over time, the small efforts accumulated.
-
-Now I understand: mastery isn't about big moments. It's about small, daily choices. It's about choosing to ${a} when no one is watching. It's about trusting that ${b} today will lead to ${c} tomorrow. That's the power of persistence.`,
-
-      // Travel/adventure narrative
-      `When I arrived in the small coastal town, I had no idea what to expect. I had come to ${a}, or at least to learn how. The locals were friendly. An old fisherman told me, "If you want to ${b} here, you need to understand the sea. The sea will teach you to ${c} in ways you never imagined."
-
-I spent my days watching the waves, trying to ${d} like the fishermen did. In the evenings, I would sit at the harbour and ${e} while the sun set. It was during one of those evenings that I met a young woman who had also come to ${f}. She told me about her journey, how she had left everything behind to ${g}. "The hardest part," she said, "was not learning to ${h}, but learning to let go of who I thought I was supposed to be."
-
-Her words stayed with me. I realized that I hadn't just come to ${a}. I had come to become someone new. And in learning to ${b}, I had found something more valuable: the courage to ${c} on my own terms.`,
-
-    ]
-
-    const template = templates[Math.floor(Math.random() * templates.length)]
-    setArticle(template)
-    setUsedWords(picked)
-    setGenerated(true)
+  const handleSave = () => {
+    if (!articleId || saved) return
+    saveArticle({
+      id: articleId,
+      title: articleTitle,
+      content: article,
+      words: usedWords,
+      createdAt: Date.now(),
+    })
+    setSaved(true)
   }
 
   const chipStyle = (word: string): React.CSSProperties => ({
@@ -130,7 +109,7 @@ Her words stayed with me. I realized that I hadn't just come to ${a}. I had come
   return (
     <div>
       <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xxl)' }}>
-        点击下方单词选择要记忆的词汇，然后生成包含这些单词的短文，在真实语境中理解和记忆单词。
+        点击下方单词选择要记忆的词汇，由 AI 生成包含这些单词的短文，在真实语境中理解和记忆单词。
       </p>
 
       {/* Recent words */}
@@ -193,8 +172,8 @@ Her words stayed with me. I realized that I hadn't just come to ${a}. I had come
 
       {/* Action bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', marginBottom: 'var(--space-xxl)' }}>
-        <Button onClick={generate} disabled={selected.size === 0}>
-          生成文章 ({selected.size} 词)
+        <Button onClick={generate} disabled={selected.size === 0 || loading}>
+          {loading ? 'AI 生成中…' : `生成文章 (${selected.size} 词)`}
         </Button>
         {selected.size > 0 && (
           <span
@@ -210,9 +189,38 @@ Her words stayed with me. I realized that I hadn't just come to ${a}. I had come
         )}
       </div>
 
+      {/* Loading state */}
+      {loading && (
+        <div style={{ textAlign: 'center', padding: 'var(--space-huge) 0' }}>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-body-sm)', marginBottom: 'var(--space-md)' }}>
+            AI 正在生成语境文章…
+          </p>
+          <div style={{ width: 40, height: 40, border: '3px solid var(--color-border)', borderTop: '3px solid var(--color-text)', borderRadius: '50%', margin: '0 auto', animation: 'spin 1s linear infinite' }} />
+          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
+
       {/* Generated article */}
-      {generated && article && (
+      {!loading && article && (
         <div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
+            <div>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: 'var(--color-text)', margin: '0 0 var(--space-xxs)' }}>{articleTitle}</h4>
+              <span style={{ fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)' }}>{usedWords.length} 个目标词汇</span>
+            </div>
+            <button
+              onClick={() => setFullscreen(true)}
+              style={{
+                fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
+                letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
+                color: 'var(--color-text-secondary)', background: 'none',
+                border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)',
+                padding: '4px 12px', cursor: 'pointer',
+              }}
+            >
+              放大阅读
+            </button>
+          </div>
           <Card>
             <div style={{ padding: 'var(--space-md) 0' }}>
               <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text)', whiteSpace: 'pre-line' }}>
@@ -240,6 +248,60 @@ Her words stayed with me. I realized that I hadn't just come to ${a}. I had come
           <p style={{ fontSize: 'var(--text-micro)', color: 'var(--color-text-secondary)', marginTop: 'var(--space-sm)', textAlign: 'center' }}>
             高亮单词为你选择的目标词汇
           </p>
+        </div>
+      )}
+
+      {/* Fullscreen reading overlay */}
+      {fullscreen && article && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#000000', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
+            <div>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>语境记忆 · {articleTitle}</span>
+              <span style={{ fontSize: 10, color: 'var(--color-text-secondary)', marginLeft: 12, fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>{usedWords.length} 个目标词汇</span>
+            </div>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
+                <button onClick={() => setFontSize((s) => Math.max(12, s - 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRight: '1px solid var(--color-border)' }}>A⁻</button>
+                <button onClick={() => setFontSize((s) => Math.min(28, s + 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px' }}>A⁺</button>
+              </div>
+              <button
+                onClick={handleSave}
+                disabled={saved}
+                style={{
+                  fontFamily: 'var(--font-display)', fontSize: 12,
+                  color: saved ? '#22c55e' : 'var(--color-text-secondary)',
+                  background: 'none',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-xs)',
+                  padding: '6px 16px', cursor: saved ? 'default' : 'pointer',
+                }}
+              >
+                {saved ? '已收藏 ✓' : '☆ 收藏'}
+              </button>
+              <button
+                onClick={() => setFullscreen(false)}
+                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
+              >
+                ✕ 关闭
+              </button>
+            </div>
+          </div>
+          <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-xxl)', maxWidth: 800, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+            <p style={{ fontSize, lineHeight: 1.9, color: '#d8d8d8', whiteSpace: 'pre-line', margin: 0, fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif', letterSpacing: '0.3px' }}>
+              {article.split(' ').map((word, i) => {
+                const clean = word.replace(/[.,;:!?"']/g, '')
+                const isUsed = usedWords.some((h) => h.toLowerCase() === clean.toLowerCase())
+                return (
+                  <span key={i}>
+                    {i > 0 && ' '}
+                    {isUsed ? (
+                      <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--color-canvas)', background: 'var(--color-text)', padding: '1px 4px', borderRadius: 2 }}>{word}</span>
+                    ) : word}
+                  </span>
+                )
+              })}
+            </p>
+          </div>
         </div>
       )}
     </div>

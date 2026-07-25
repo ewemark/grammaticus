@@ -13,12 +13,6 @@ export interface SemanticRadius {
   example: string
 }
 
-/** 语法规则组 */
-export interface GrammarRule {
-  title: string
-  items: string[]
-}
-
 /** 深度例句诊断 */
 export interface ExampleDiagnosis {
   example: string
@@ -42,7 +36,7 @@ export interface RichWordData {
   coreImage: string
   atomicCore: string
   semanticRadii: SemanticRadius[]
-  grammarRules: GrammarRule[]
+  grammarRules: string
   exampleDiagnoses: ExampleDiagnosis[]
   synonymComparisons: SynonymComparison[]
   oneLinePenetration: string

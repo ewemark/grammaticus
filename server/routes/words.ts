@@ -129,7 +129,7 @@ router.get('/:word', (_req, res, next) => {
         oneLinePenetration: richRow.one_line_penetration as string,
         forms: JSON.parse(richRow.forms as string),
         semanticRadii: JSON.parse(richRow.semantic_radii as string),
-        grammarRules: JSON.parse(richRow.grammar_rules as string),
+        grammarRules: richRow.grammar_rules as string,
         exampleDiagnoses: JSON.parse(richRow.example_diagnoses as string),
         synonymComparisons: JSON.parse(richRow.synonym_comparisons as string),
       }

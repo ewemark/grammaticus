@@ -7,6 +7,7 @@ import analyzeRouter from './routes/analyze.js'
 import uploadRouter from './routes/upload.js'
 import learnRouter from './routes/learn.js'
 import messagesRouter from './routes/messages.js'
+import contextRouter from './routes/context.js'
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3001
@@ -21,6 +22,7 @@ app.use('/api/analyze', analyzeRouter)
 app.use('/api/upload', uploadRouter)
 app.use('/api/learn', learnRouter)
 app.use('/api/messages', messagesRouter)
+app.use('/api/context', contextRouter)
 
 // Health check
 app.get('/api/health', (_req, res) => {
