@@ -14,6 +14,13 @@ import Guestbook from './pages/Guestbook'
 import NotFound from './pages/NotFound'
 import './styles/tokens.css'
 
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch((err) => {
+    console.warn('[SW] Registration failed:', err.message)
+  })
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

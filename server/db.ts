@@ -55,22 +55,6 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_articles_book ON articles(book, lesson);
 
-  CREATE TABLE IF NOT EXISTS word_learning (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    word TEXT UNIQUE NOT NULL COLLATE NOCASE,
-    stability REAL DEFAULT 0.5,
-    interval_hours REAL DEFAULT 0,
-    next_review_at TEXT,
-    error_count INTEGER DEFAULT 0,
-    total_reviews INTEGER DEFAULT 0,
-    meaning TEXT DEFAULT '',
-    memory_anchor TEXT DEFAULT '',
-    credit_violations INTEGER DEFAULT 0,
-    state TEXT DEFAULT 'new'
-  );
-
-  CREATE INDEX IF NOT EXISTS idx_word_learning_next ON word_learning(next_review_at);
-
   CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL DEFAULT '',
@@ -86,8 +70,5 @@ db.exec(`
     created_at TEXT DEFAULT (datetime('now'))
   );
 `)
-
-// Migration: add meaning column if missing
-try { db.exec('ALTER TABLE word_learning ADD COLUMN meaning TEXT DEFAULT \'\'') } catch {}
 
 export default db

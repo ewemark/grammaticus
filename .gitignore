@@ -28,6 +28,7 @@ dist-ssr
 data/grammaticus.db
 data/grammaticus.db-*
 data/uploads/
+data/videos/
 
 # Secrets
 .env

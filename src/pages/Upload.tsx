@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
-
-interface PastDoc { id: number; filename: string; created_at: string }
+import { uploadFile, fetchPastDocs, fetchDoc, deleteDoc, type PastDoc } from '../api/upload'
 
 export default function Upload() {
   const [dragOver, setDragOver] = useState(false)
@@ -15,32 +14,39 @@ export default function Upload() {
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    fetch('/api/upload/list').then(r => r.json()).then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
+    fetchPastDocs().then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
   }, [])
 
   const loadPastDoc = async (id: number) => {
     setLoading(true)
-    const d = await fetch(`/api/upload/${id}`).then(r => r.json())
-    setFilename(d.filename)
-    setText(d.content)
+    try {
+      const d = await fetchDoc(id)
+      setFilename(d.filename)
+      setText(d.content)
+    } catch (e) {
+      console.error('[Upload]', e)
+    }
     setLoading(false)
   }
+
   const refreshPast = () => {
-    fetch('/api/upload/list').then(r => r.json()).then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
-  }
-  const deleteDoc = async (id: number, e: React.MouseEvent) => {
-    e.stopPropagation()
-    await fetch(`/api/upload/${id}`, { method: 'DELETE' })
-    refreshPast()
+    fetchPastDocs().then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
   }
 
-  const uploadFile = (file: File) => {
+  const handleDeleteDoc = async (id: number, e: React.MouseEvent) => {
+    e.stopPropagation()
+    try {
+      await deleteDoc(id)
+      refreshPast()
+    } catch (err) {
+      console.error('[Upload]', err)
+    }
+  }
+
+  const handleUpload = (file: File) => {
     setLoading(true)
     setFilename(file.name)
-    const form = new FormData()
-    form.append('file', file)
-    fetch('/api/upload', { method: 'POST', body: form })
-      .then((r) => r.json())
+    uploadFile(file)
       .then((d) => { setText(d.text); setLoading(false); refreshPast() })
       .catch(() => setLoading(false))
   }
@@ -49,12 +55,12 @@ export default function Upload() {
     e.preventDefault()
     setDragOver(false)
     const file = e.dataTransfer.files[0]
-    if (file) uploadFile(file)
+    if (file) handleUpload(file)
   }
 
   const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) uploadFile(file)
+    if (file) handleUpload(file)
   }
 
   return (
@@ -148,7 +154,7 @@ export default function Upload() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
                   <span style={{ fontSize: 10, color: 'var(--color-text-secondary)' }}>{d.created_at?.slice(0, 10)}</span>
                   <button
-                    onClick={(e) => deleteDoc(d.id, e)}
+                    onClick={(e) => handleDeleteDoc(d.id, e)}
                     style={{ fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', opacity: 0.4 }}
                     onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.color = '#ef4444' }}
                     onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; e.currentTarget.style.color = 'var(--color-text-secondary)' }}

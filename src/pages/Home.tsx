@@ -230,7 +230,7 @@ export default function Home() {
               WORDS
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              单词记忆是"提取"的残留物，而不是"重复"的产物。
+              单词记忆是"提取"的残留物，而不是"重复"的产物
             </p>
             <Link to="/words">
               <Button>VIEW WORDS</Button>
@@ -252,7 +252,7 @@ export default function Home() {
               GRAMMAR
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              这里有语法讲解的视频和基础的语法练习。
+              这里有语法讲解的视频和基础的语法练习
             </p>
             <Link to="/grammar">
               <Button>VIEW GRAMMAR</Button>
@@ -274,7 +274,7 @@ export default function Home() {
               READING
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              阅读是你提高语法能力和认识单词最好的方法。
+              阅读是你提高语法能力和认识单词最好的方法
             </p>
             <Link to="/read">
               <Button>START READING</Button>
@@ -296,7 +296,7 @@ export default function Home() {
               SCAN
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              拍照即可翻译英语文本，并提供语法分析。
+              拍照即可翻译英语文本，并提供语法分析
             </p>
             <Link to="/scan">
               <Button>OPEN CAMERA</Button>
@@ -318,7 +318,7 @@ export default function Home() {
               UPLOAD
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              上传你的文章对应的文档，我们提供单词的查找和语法分析。
+              上传你的文章对应的文档，我们提供单词的查找和语法分析
             </p>
             <Link to="/upload">
               <Button>UPLOAD FILE</Button>
@@ -340,7 +340,7 @@ export default function Home() {
               GUESTBOOK
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
-              给作者留言。问题、反馈，或者只是打个招呼。
+              给作者留言。问题、反馈，或者只是打个招呼
             </p>
             <Link to="/guestbook">
               <Button>VIEW MESSAGES</Button>

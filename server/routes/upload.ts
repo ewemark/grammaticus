@@ -38,7 +38,9 @@ router.post('/', upload.single('file'), async (req, res, next) => {
       text = fs.readFileSync(file.path, 'utf-8')
     }
 
-    fs.unlink(file.path, () => {})
+    fs.unlink(file.path, (err) => {
+      if (err) console.error('[Upload] Failed to clean up temp file:', err.message)
+    })
 
     if (!text.trim()) {
       res.json({ text: '(文档为空或无法解析)', filename: file.originalname, id: 0 })
