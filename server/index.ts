@@ -57,7 +57,7 @@ app.use('/api/words', wordsRouter)
 app.use('/api/articles', articlesRouter)
 app.use('/api/analyze', aiRateLimiter, analyzeRouter)
 app.use('/api/upload', uploadRouter)
-app.use('/api/messages', messagesRouter)
+app.use('/api/messages', aiRateLimiter, messagesRouter)
 app.use('/api/context', aiRateLimiter, contextRouter)
 app.use('/api/video', videoRouter)
 
@@ -69,7 +69,7 @@ app.get('/api/health', (_req, res) => {
 // Global error handler
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('[API Error]', err.message)
-  res.status(500).json({ error: err.message || 'Internal server error' })
+  res.status(500).json({ error: isDev ? err.message : 'Internal server error' })
 })
 
 app.listen(PORT, () => {

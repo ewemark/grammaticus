@@ -19,10 +19,12 @@ function getTransporter() {
 
 router.post('/', (req, res, next) => {
   try {
-    const { name, email, content } = req.body
-    if (!content || !content.trim()) { res.status(400).json({ error: '请输入留言内容' }); return }
+    const name = String(req.body.name || '').slice(0, 100)
+    const email = String(req.body.email || '').slice(0, 200)
+    const content = String(req.body.content || '').slice(0, 3000)
+    if (!content.trim()) { res.status(400).json({ error: '请输入留言内容' }); return }
 
-    db.prepare('INSERT INTO messages (name, email, content) VALUES (?, ?, ?)').run(name || '', email || '', content.trim())
+    db.prepare('INSERT INTO messages (name, email, content) VALUES (?, ?, ?)').run(name, email, content.trim())
 
     // Try email notification
     const mail = getTransporter()

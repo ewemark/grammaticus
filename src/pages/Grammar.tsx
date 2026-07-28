@@ -3,6 +3,7 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { tabPill, microLabel, pageTitle } from '../styles/typography'
 import { fetchVideos, getVideoUrl, type VideoItem } from '../api/video'
+import { GRAMMAR_CHAPTERS, type GrammarChapter } from '../data/grammarDocs'
 
 const TABS = ['视频', '文档解释'] as const
 type Tab = (typeof TABS)[number]
@@ -11,6 +12,7 @@ export default function Grammar() {
   const [tab, setTab] = useState<Tab>('视频')
   const [videos, setVideos] = useState<VideoItem[]>([])
   const [playing, setPlaying] = useState<VideoItem | null>(null)
+  const [docTopic, setDocTopic] = useState<GrammarChapter | null>(null)
 
   useEffect(() => {
     refreshVideos()
@@ -30,7 +32,10 @@ export default function Grammar() {
   // Parse category and title from filename (e.g. "词性 - 名词 形容词 副词.mp4")
   const parseVideo = (v: VideoItem) => {
     const parts = v.filename.replace(/\.mp4$/i, '').split(' - ')
-    return { cat: parts.length > 1 ? parts[0] : '其他', title: parts.length > 1 ? parts.slice(1).join(' - ') : parts[0] }
+    return {
+      cat: parts.length > 1 ? parts[0] : '其他',
+      title: (parts.length > 1 ? parts.slice(1).join(' - ') : parts[0]).replace(/^\d{2}\s+/, ''),
+    }
   }
 
   return (
@@ -79,7 +84,6 @@ export default function Grammar() {
                 const CAT_ORDER = ['导学', '词性', '简单句', '从句', '非谓语动词', '时态', '虚拟语气', '词法']
                 const groups: Record<string, VideoItem[]> = {}
                 for (const v of videos) {
-                  // Parse category from filename (not displayName, which has dash replaced with space)
                   const cat = v.filename.includes(' - ') ? v.filename.split(' - ')[0] : '其他'
                   if (!groups[cat]) groups[cat] = []
                   groups[cat].push(v)
@@ -140,24 +144,237 @@ export default function Grammar() {
       {/* Tab 2: 文档解释 */}
       {tab === '文档解释' && (
         <div>
-          <p
-            style={{
-              fontSize: 'var(--text-body)',
-              lineHeight: 'var(--leading-body)',
-              color: 'var(--color-text-secondary)',
-              marginBottom: 'var(--space-xxl)',
-              maxWidth: 520,
-            }}
-          >
-            英语语法知识点的文字版讲解，涵盖时态、从句、非谓语、虚拟语气等核心语法专题。
-          </p>
-          <Card>
-            <div style={{ padding: 'var(--space-huge) 0', textAlign: 'center' }}>
-              <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-body-sm)' }}>
-                语法文档正在编写中，敬请期待。
+          {docTopic ? (
+            <div>
+              <button
+                onClick={() => setDocTopic(null)}
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-micro)',
+                  fontWeight: 700,
+                  letterSpacing: 'var(--tracking-micro)',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-text-secondary)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  marginBottom: 'var(--space-lg)',
+                }}
+              >
+                ← 返回列表
+              </button>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-display-lg)',
+                  fontWeight: 700,
+                  lineHeight: 'var(--leading-heading)',
+                  letterSpacing: 'var(--tracking-heading)',
+                  color: 'var(--color-text)',
+                  margin: '0 0 var(--space-xs)',
+                }}
+              >
+                {docTopic.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-micro)',
+                  textTransform: 'uppercase',
+                  letterSpacing: 'var(--tracking-micro)',
+                  color: 'var(--color-text-secondary)',
+                  margin: '0 0 var(--space-xxl)',
+                }}
+              >
+                {docTopic.subtitle}
               </p>
+              <div style={{ maxWidth: 720 }}>
+                {docTopic.blocks.map((block, i) => {
+                  switch (block.type) {
+                    case 'h3':
+                      return (
+                        <h3 key={i} style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: '#f5a97f', margin: 'var(--space-xxl) 0 var(--space-md)', paddingLeft: 12, borderLeft: '3px solid #f5a97f' }}>
+                          {block.text}
+                        </h3>
+                      )
+                    case 'h4':
+                      return (
+                        <h4 key={i} style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 700, color: 'var(--color-text)', margin: 'var(--space-xl) 0 var(--space-sm)' }}>
+                          {block.text}
+                        </h4>
+                      )
+                    case 'p':
+                      return (
+                        <p key={i} style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-md)', whiteSpace: 'pre-line' }}>
+                          {block.text!}
+                        </p>
+                      )
+                    case 'larry':
+                      return (
+                        <div key={i} style={{ borderLeft: '3px solid #f5a97f', padding: '12px 18px', margin: 'var(--space-md) 0', background: 'rgba(245,169,127,0.06)', borderRadius: '0 8px 8px 0' }}>
+                          <span style={{ color: '#f5a97f', fontWeight: 700, fontSize: 13 }}>💬 Larry：</span>
+                          <span style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: '#eed49f', fontStyle: 'italic', whiteSpace: 'pre-line' }}>
+                            {block.text}
+                          </span>
+                        </div>
+                      )
+                    case 'tip':
+                      return (
+                        <div key={i} style={{ borderLeft: '3px solid #f5a97f', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'rgba(245,169,127,0.06)', borderRadius: '0 6px 6px 0' }}>
+                          <span style={{ color: '#f5a97f', fontWeight: 700, fontSize: 13 }}>🔑 关键理解：</span>
+                          <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+                            {block.text}
+                          </span>
+                        </div>
+                      )
+                    case 'warn':
+                      return (
+                        <div key={i} style={{ borderLeft: '3px solid #ed8796', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'rgba(237,135,150,0.06)', borderRadius: '0 6px 6px 0' }}>
+                          <span style={{ color: '#ed8796', fontWeight: 700, fontSize: 13 }}>⚠️ 常见错误：</span>
+                          <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+                            {block.text}
+                          </span>
+                        </div>
+                      )
+                    case 'point':
+                      return (
+                        <div key={i} style={{ background: '#0d0d0d', borderRadius: 8, padding: '14px 18px', margin: 'var(--space-md) 0', border: '1px solid var(--color-border)' }}>
+                          <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+                            {block.text!}
+                          </span>
+                        </div>
+                      )
+                    case 'summary':
+                      return (
+                        <div key={i} style={{ background: 'rgba(166,218,149,0.04)', border: '1px solid rgba(166,218,149,0.25)', borderRadius: 10, padding: 18, margin: 'var(--space-lg) 0' }}>
+                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#a6da95', margin: '0 0 8px' }}>总结</h4>
+                          <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+                            {block.text!}
+                          </span>
+                        </div>
+                      )
+                    case 'exercise':
+                      return (
+                        <div key={i} style={{ border: '1px dashed var(--color-border)', borderRadius: 10, padding: 18, margin: 'var(--space-lg) 0' }}>
+                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#a6da95', margin: '0 0 8px' }}>练习</h4>
+                          <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
+                            {block.text}
+                          </span>
+                        </div>
+                      )
+                    case 'example':
+                      return (
+                        <div key={i} style={{ padding: '10px 16px', margin: 'var(--space-sm) 0 var(--space-sm) 16px', background: 'rgba(124,159,245,0.06)', borderRadius: 6 }}>
+                          <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: '#a6da95', fontFamily: 'Georgia, serif', margin: '0 0 4px' }}>
+                            {block.en}
+                          </p>
+                          {block.cn && (
+                            <p style={{ fontSize: 'var(--text-body-sm)', color: 'var(--color-text-secondary)', margin: 0 }}>
+                              {block.cn}
+                            </p>
+                          )}
+                        </div>
+                      )
+                    case 'table':
+                      return (
+                        <div key={i} style={{ overflowX: 'auto', margin: 'var(--space-md) 0' }}>
+                          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--text-body-sm)' }}>
+                            {block.headers!.length > 0 && (
+                              <thead>
+                                <tr>
+                                  {block.headers!.map((h, j) => (
+                                    <th key={j} style={{ border: '1px solid var(--color-border)', padding: '8px 12px', textAlign: 'left', background: '#0d0d0d', color: '#7c9ff5', fontWeight: 700, fontFamily: 'var(--font-display)', fontSize: 12, textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>
+                                      {h}
+                                    </th>
+                                  ))}
+                                </tr>
+                              </thead>
+                            )}
+                            <tbody>
+                              {block.rows!.map((row, j) => (
+                                <tr key={j}>
+                                  {row.map((cell, k) => (
+                                    <td key={k} style={{ border: '1px solid var(--color-border)', padding: '8px 12px', verticalAlign: 'top', color: 'var(--color-text-secondary)' }}>
+                                      {cell}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )
+                    case 'list':
+                      return (
+                        <ol key={i} style={{ margin: 'var(--space-sm) 0 var(--space-md) 20px', padding: 0 }}>
+                          {block.items!.map((item, j) => (
+                            <li key={j} style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 4 }}>
+                              {item}
+                            </li>
+                          ))}
+                        </ol>
+                      )
+                    default:
+                      return null
+                  }
+                })}
+              </div>
             </div>
-          </Card>
+          ) : (
+            <div>
+              <p
+                style={{
+                  fontSize: 'var(--text-body)',
+                  lineHeight: 'var(--leading-body)',
+                  color: 'var(--color-text-secondary)',
+                  marginBottom: 'var(--space-xxl)',
+                  maxWidth: 520,
+                }}
+              >
+                英语语法体系完全指南，共 7 章，配套 Larry 老师视频课程。从词性理解到从句、非谓语、时态、虚拟语气，逐章深入。
+              </p>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
+                  gap: 'var(--space-md)',
+                }}
+              >
+                {GRAMMAR_CHAPTERS.map((ch) => (
+                  <Card key={ch.id}>
+                    <h4
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'var(--text-heading-sm)',
+                        fontWeight: 700,
+                        letterSpacing: 'var(--tracking-heading)',
+                        color: 'var(--color-text)',
+                        margin: '0 0 var(--space-xs)',
+                      }}
+                    >
+                      第{ch.order}章 {ch.title}
+                    </h4>
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'var(--text-micro)',
+                        textTransform: 'uppercase',
+                        letterSpacing: 'var(--tracking-micro)',
+                        color: 'var(--color-text-secondary)',
+                        margin: '0 0 var(--space-md)',
+                      }}
+                    >
+                      {ch.subtitle}
+                    </p>
+                    <Button variant="ghost" onClick={() => setDocTopic(ch)}>
+                      阅读全文
+                    </Button>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -166,7 +383,7 @@ export default function Grammar() {
         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: '#000000', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>
-              {playing.displayName.includes(' - ') ? playing.displayName.split(' - ').slice(1).join(' - ') : playing.displayName}
+              {parseVideo(playing).title}
             </span>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <a

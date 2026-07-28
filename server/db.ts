@@ -10,6 +10,7 @@ const db = new Database(DB_PATH)
 // Performance
 db.pragma('journal_mode = WAL')
 db.pragma('foreign_keys = ON')
+db.pragma('busy_timeout = 5000')
 
 // Schema
 db.exec(`

@@ -35,7 +35,8 @@ router.post('/', upload.single('file'), async (req, res, next) => {
       const result = await mammoth.extractRawText({ path: file.path })
       text = result.value
     } else {
-      text = fs.readFileSync(file.path, 'utf-8')
+      res.status(400).json({ error: '不支持的文件格式，请上传 TXT、PDF 或 DOCX 文件' })
+      return
     }
 
     fs.unlink(file.path, (err) => {

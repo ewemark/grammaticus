@@ -28,7 +28,7 @@ router.get('/list', (_req, res) => {
       return
     }
 
-    const files = fs.readdirSync(VIDEO_DIR)
+    const files = fs.readdirSync(VIDEO_DIR).sort((a, b) => a.localeCompare(b, 'zh'))
     const videos: VideoItem[] = []
 
     for (const file of files) {
@@ -40,6 +40,7 @@ router.get('/list', (_req, res) => {
         const displayName = file
           .replace(/\.mp4$/i, '')
           .replace(/[_\-]/g, ' ')
+          .replace(/\b\d{2}\s+/g, '')  // strip leading order numbers like "01 "
           .replace(/\b\w/g, (c) => c.toUpperCase())
         videos.push({ filename: file, displayName, size: stat.size })
       }
@@ -56,13 +57,14 @@ router.get('/list', (_req, res) => {
 router.get('/:filename', (req, res) => {
   const { filename } = req.params
 
-  // 安全检查：只允许 .mp4
-  if (!filename.endsWith('.mp4')) {
+  // 安全检查：只允许 .mp4，且防路径穿越
+  const safeName = path.basename(filename)
+  if (!safeName.endsWith('.mp4')) {
     res.status(400).json({ error: '仅支持 mp4 文件' })
     return
   }
 
-  const filePath = path.join(VIDEO_DIR, filename)
+  const filePath = path.join(VIDEO_DIR, safeName)
 
   if (!fs.existsSync(filePath)) {
     res.status(404).json({ error: '视频未找到' })

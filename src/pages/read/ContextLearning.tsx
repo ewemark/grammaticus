@@ -20,6 +20,8 @@ export default function ContextLearning() {
   const [saved, setSaved] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
   const [fontSize, setFontSize] = useState(18)
+  const [customWords, setCustomWords] = useState<string[]>([])
+  const [inputWord, setInputWord] = useState('')
 
   const { recentWords, bookmarkWords } = useMemo(() => {
     const recent = getRecent()
@@ -52,6 +54,26 @@ export default function ContextLearning() {
   }
 
   const clearAll = () => setSelected(new Set())
+
+  const addCustomWord = () => {
+    const w = inputWord.trim()
+    if (!w) return
+    if (!customWords.some((c) => c.toLowerCase() === w.toLowerCase())) {
+      setCustomWords((prev) => [...prev, w])
+      toggle(w)
+      setSelected((prev) => new Set(prev).add(w))
+    }
+    setInputWord('')
+  }
+
+  const removeCustomWord = (w: string) => {
+    setCustomWords((prev) => prev.filter((c) => c !== w))
+    setSelected((prev) => {
+      const next = new Set(prev)
+      next.delete(w)
+      return next
+    })
+  }
 
   const generate = async () => {
     const picked = [...selected]
@@ -109,8 +131,46 @@ export default function ContextLearning() {
   return (
     <div>
       <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xxl)' }}>
-        点击下方单词选择要记忆的词汇，由 AI 生成包含这些单词的短文，在真实语境中理解和记忆单词。
+        选择或手动输入要记忆的词汇，由 AI 生成包含这些单词的短文，在真实语境中理解和记忆单词。
       </p>
+
+      {/* Manual word input */}
+      <div style={{ marginBottom: 'var(--space-xxl)' }}>
+        <h4 style={{ ...sectionTitle, margin: '0 0 var(--space-md)' }}>自选单词</h4>
+        <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: customWords.length > 0 ? 'var(--space-md)' : 0 }}>
+          <input
+            value={inputWord}
+            onChange={(e) => setInputWord(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') addCustomWord() }}
+            placeholder="输入单词，按回车添加…"
+            style={{
+              flex: 1,
+              maxWidth: 300,
+              padding: '8px 14px',
+              fontFamily: 'var(--font-display)',
+              fontSize: 13,
+              color: 'var(--color-text)',
+              background: 'transparent',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-xs)',
+              outline: 'none',
+              boxSizing: 'border-box',
+            }}
+          />
+          <Button variant="ghost" onClick={addCustomWord} disabled={!inputWord.trim()}>
+            添加
+          </Button>
+        </div>
+        {customWords.length > 0 && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xs)' }}>
+            {customWords.map((w) => (
+              <button key={w} onClick={() => removeCustomWord(w)} style={chipStyle(w)}>
+                {w} ✕
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Recent words */}
       {recentWords.length > 0 && (
