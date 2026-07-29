@@ -13,23 +13,23 @@ router.get('/', (_req, res, next) => {
     const limit = Math.min(Number(_req.query.limit) || 20, 200)
     const offset = Math.max(Number(_req.query.offset) || 0, 0)
 
-    let sql = 'SELECT word, meaning, pos, example FROM words WHERE 1=1'
+    const conditions: string[] = ['1=1']
     const params: (string | number)[] = []
 
     if (q) {
-      sql += ' AND word LIKE ?'
+      conditions.push('word LIKE ?')
       params.push(`${q}%`)
     }
     if (pos) {
-      sql += ' AND pos = ?'
+      conditions.push('pos = ?')
       params.push(pos.toUpperCase())
     }
 
-    // Get total count first (before adding limit/offset params)
-    const countSql = sql.replace(/SELECT .+ FROM words/, 'SELECT COUNT(*) as total FROM words')
-    const { total } = db.prepare(countSql).get(...params) as { total: number }
+    const where = conditions.join(' AND ')
 
-    sql += ' ORDER BY word ASC LIMIT ? OFFSET ?'
+    const { total } = db.prepare(`SELECT COUNT(*) as total FROM words WHERE ${where}`).get(...params) as { total: number }
+
+    const sql = `SELECT word, meaning, pos, example FROM words WHERE ${where} ORDER BY word ASC LIMIT ? OFFSET ?`
     params.push(limit, offset)
 
     const words = db.prepare(sql).all(...params)

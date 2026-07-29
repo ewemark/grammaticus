@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { uploadFile, fetchPastDocs, fetchDoc, deleteDoc, type PastDoc } from '../api/upload'
+import FullscreenReader from '../components/ui/FullscreenReader'
 
 export default function Upload() {
   const [dragOver, setDragOver] = useState(false)
@@ -170,32 +171,13 @@ export default function Upload() {
 
       {/* Fullscreen reading overlay */}
       {fullscreen && (
-        <div
-          style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#000000', display: 'flex', flexDirection: 'column' }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)' }}>
-              {filename}
-            </span>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
-                <button onClick={() => setFontSize((s) => Math.max(12, s - 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRight: '1px solid var(--color-border)' }}>A⁻</button>
-                <button onClick={() => setFontSize((s) => Math.min(28, s + 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px' }}>A⁺</button>
-              </div>
-              <button
-                onClick={() => setFullscreen(false)}
-                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-              >
-                ✕ 关闭
-              </button>
-            </div>
-          </div>
-          <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-xxl)', maxWidth: 800, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
-            <p style={{ fontSize, lineHeight: 1.9, color: '#d8d8d8', whiteSpace: 'pre-line', margin: 0, fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif', letterSpacing: '0.3px' }}>
-              {text}
-            </p>
-          </div>
-        </div>
+        <FullscreenReader
+          title={filename}
+          content={text}
+          fontSize={fontSize}
+          onFontSizeChange={setFontSize}
+          onClose={() => setFullscreen(false)}
+        />
       )}
     </div>
   )

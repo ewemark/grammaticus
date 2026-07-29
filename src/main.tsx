@@ -11,6 +11,7 @@ import Scan from './pages/Scan'
 import About from './pages/About'
 import Read from './pages/Read'
 import Guestbook from './pages/Guestbook'
+import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import './styles/tokens.css'
 
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="login" element={<Login />} />
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="words" element={<Words />} />

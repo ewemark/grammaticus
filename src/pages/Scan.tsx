@@ -3,6 +3,7 @@ import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { createWorker } from 'tesseract.js'
 import { saveArticle, isArticleSaved } from '../utils/savedArticles'
+import FullscreenReader from '../components/ui/FullscreenReader'
 
 export default function Scan() {
   const [image, setImage] = useState<string | null>(null)
@@ -237,96 +238,31 @@ export default function Scan() {
 
       {/* Fullscreen reading overlay */}
       {fullscreen && text && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: '#000000', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
-            <div>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>拍照识别</span>
-              <span style={{ fontSize: 10, color: 'var(--color-text-secondary)', marginLeft: 12, fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>OCR 提取</span>
-            </div>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              {!editing && (
-                <>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
-                    <button onClick={() => setFontSize((s) => Math.max(12, s - 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRight: '1px solid var(--color-border)' }}>A⁻</button>
-                    <button onClick={() => setFontSize((s) => Math.min(28, s + 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px' }}>A⁺</button>
-                  </div>
-                  <button
-                    onClick={startEdit}
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-                  >
-                    编辑
-                  </button>
-                  <button
-                    onClick={handleSave}
-                    disabled={saved}
-                    style={{
-                      fontFamily: 'var(--font-display)', fontSize: 12,
-                      color: saved ? '#22c55e' : 'var(--color-text-secondary)',
-                      background: 'none',
-                      border: '1px solid var(--color-border)',
-                      borderRadius: 'var(--radius-xs)',
-                      padding: '6px 16px', cursor: saved ? 'default' : 'pointer',
-                    }}
-                  >
-                    {saved ? '已收藏 ✓' : '☆ 收藏'}
-                  </button>
-                </>
-              )}
-              {editing && (
-                <>
-                  <span style={{ fontSize: 12, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-display)' }}>编辑模式</span>
-                  <button
-                    onClick={confirmEdit}
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#22c55e', background: 'none', border: '1px solid #22c55e', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-                  >
-                    确认修改
-                  </button>
-                  <button
-                    onClick={cancelEdit}
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#ef4444', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-                  >
-                    取消
-                  </button>
-                </>
-              )}
-              <button
-                onClick={() => { setFullscreen(false); setEditing(false) }}
-                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-              >
-                ✕ 关闭
-              </button>
-            </div>
-          </div>
-          <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-xxl)', maxWidth: 800, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
-            {editing ? (
-              <textarea
-                value={editDraft}
-                onChange={(e) => setEditDraft(e.target.value)}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  minHeight: 300,
-                  fontSize,
-                  lineHeight: 1.9,
-                  color: '#d8d8d8',
-                  background: '#0a0a0a',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-xs)',
-                  padding: 'var(--space-lg)',
-                  fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif',
-                  letterSpacing: '0.3px',
-                  resize: 'vertical',
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                }}
-              />
-            ) : (
-              <p style={{ fontSize, lineHeight: 1.9, color: '#d8d8d8', whiteSpace: 'pre-line', margin: 0, fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif', letterSpacing: '0.3px' }}>
-                {text}
-              </p>
-            )}
-          </div>
-        </div>
+        <FullscreenReader
+          title="拍照识别"
+          subtitle="OCR 提取"
+          content={text}
+          fontSize={fontSize}
+          onFontSizeChange={setFontSize}
+          onClose={() => { setFullscreen(false); setEditing(false) }}
+          zIndex={1000}
+          editing={editing}
+          editValue={editDraft}
+          onEditChange={setEditDraft}
+          actions={
+            <>
+              <button onClick={startEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>编辑</button>
+              <button onClick={handleSave} disabled={saved} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: saved ? '#22c55e' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: saved ? 'default' : 'pointer' }}>{saved ? '已收藏 ✓' : '☆ 收藏'}</button>
+            </>
+          }
+          editActions={
+            <>
+              <span style={{ fontSize: 12, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-display)' }}>编辑模式</span>
+              <button onClick={confirmEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#22c55e', background: 'none', border: '1px solid #22c55e', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>确认修改</button>
+              <button onClick={cancelEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#ef4444', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>取消</button>
+            </>
+          }
+        />
       )}
     </div>
   )

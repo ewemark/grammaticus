@@ -14,8 +14,14 @@ export function isRead(id: number | string): boolean {
 export function toggleRead(id: number | string): boolean {
   const set = getReadArticles()
   const key = String(id)
-  if (set.has(key)) set.delete(key)
-  else set.add(key)
+  const nowRead: boolean = !set.has(key)
+  if (nowRead) {
+    set.add(key)
+    import('../api/userData').then(m => m.markRead(key).catch(() => {}))
+  } else {
+    set.delete(key)
+    import('../api/userData').then(m => m.unmarkRead(key).catch(() => {}))
+  }
   localStorage.setItem(KEY, JSON.stringify([...set]))
-  return set.has(key)
+  return nowRead
 }

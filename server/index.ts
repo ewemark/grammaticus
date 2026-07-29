@@ -8,6 +8,8 @@ import uploadRouter from './routes/upload.js'
 import messagesRouter from './routes/messages.js'
 import contextRouter from './routes/context.js'
 import videoRouter from './routes/video.js'
+import authRouter from './routes/auth.js'
+import userDataRouter from './routes/userData.js'
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3001
@@ -60,6 +62,8 @@ app.use('/api/upload', uploadRouter)
 app.use('/api/messages', aiRateLimiter, messagesRouter)
 app.use('/api/context', aiRateLimiter, contextRouter)
 app.use('/api/video', videoRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/user', userDataRouter)
 
 // Health check
 app.get('/api/health', (_req, res) => {

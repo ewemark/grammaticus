@@ -26,12 +26,15 @@ export function saveArticle(article: SavedArticle): void {
   const list = getSavedArticles().filter((a) => a.id !== article.id)
   list.unshift(article)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+  // Sync to server if logged in
+  import('../api/userData').then(m => m.saveArticle({ article_id: article.id, title: article.title, content: article.content, words: article.words }).catch(() => {}))
 }
 
 /** 删除一篇已收藏的文章 */
 export function removeSavedArticle(id: string): void {
   const list = getSavedArticles().filter((a) => a.id !== id)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+  import('../api/userData').then(m => m.deleteSavedArticle(id).catch(() => {}))
 }
 
 /** 判断是否已收藏 */

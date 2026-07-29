@@ -17,13 +17,14 @@ export class ApiError extends Error {
   }
 }
 
-/** 通用请求函数 */
+/** 通用请求函数 — 自动附带 JWT token */
 export async function request<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${BASE_URL}${endpoint}`
-  const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  })
+  const token = localStorage.getItem('grammaticus_token')
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (token) headers['Authorization'] = `Bearer ${token}`
+
+  const res = await fetch(url, { headers, ...options })
 
   if (!res.ok) {
     const body = await res.text()

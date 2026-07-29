@@ -6,6 +6,7 @@ import { getRecent } from '../../utils/recent'
 import { sectionTitle } from '../../styles/typography'
 import { generateArticle } from '../../api/context'
 import { saveArticle, isArticleSaved } from '../../utils/savedArticles'
+import FullscreenReader from '../../components/ui/FullscreenReader'
 
 const NOW = Date.now()
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
@@ -313,41 +314,12 @@ export default function ContextLearning() {
 
       {/* Fullscreen reading overlay */}
       {fullscreen && article && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#000000', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
-            <div>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>语境记忆 · {articleTitle}</span>
-              <span style={{ fontSize: 10, color: 'var(--color-text-secondary)', marginLeft: 12, fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>{usedWords.length} 个目标词汇</span>
-            </div>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
-                <button onClick={() => setFontSize((s) => Math.max(12, s - 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px', borderRight: '1px solid var(--color-border)' }}>A⁻</button>
-                <button onClick={() => setFontSize((s) => Math.min(28, s + 2))} style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '6px 10px' }}>A⁺</button>
-              </div>
-              <button
-                onClick={handleSave}
-                disabled={saved}
-                style={{
-                  fontFamily: 'var(--font-display)', fontSize: 12,
-                  color: saved ? '#22c55e' : 'var(--color-text-secondary)',
-                  background: 'none',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-xs)',
-                  padding: '6px 16px', cursor: saved ? 'default' : 'pointer',
-                }}
-              >
-                {saved ? '已收藏 ✓' : '☆ 收藏'}
-              </button>
-              <button
-                onClick={() => setFullscreen(false)}
-                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
-              >
-                ✕ 关闭
-              </button>
-            </div>
-          </div>
-          <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-xxl)', maxWidth: 800, margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
-            <p style={{ fontSize, lineHeight: 1.9, color: '#d8d8d8', whiteSpace: 'pre-line', margin: 0, fontFamily: 'Georgia, "Noto Serif", "Times New Roman", serif', letterSpacing: '0.3px' }}>
+        <FullscreenReader
+          title={`语境记忆 · ${articleTitle}`}
+          subtitle={`${usedWords.length} 个目标词汇`}
+          content={article}
+          contentElement={
+            <p style={{ whiteSpace: 'pre-line', margin: 0 }}>
               {article.split(' ').map((word, i) => {
                 const clean = word.replace(/[.,;:!?"']/g, '')
                 const isUsed = usedWords.some((h) => h.toLowerCase() === clean.toLowerCase())
@@ -361,8 +333,14 @@ export default function ContextLearning() {
                 )
               })}
             </p>
-          </div>
-        </div>
+          }
+          fontSize={fontSize}
+          onFontSizeChange={setFontSize}
+          onClose={() => setFullscreen(false)}
+          actions={
+            <button onClick={handleSave} disabled={saved} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: saved ? '#22c55e' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: saved ? 'default' : 'pointer' }}>{saved ? '已收藏 ✓' : '☆ 收藏'}</button>
+          }
+        />
       )}
     </div>
   )

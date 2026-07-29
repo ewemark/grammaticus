@@ -32,10 +32,13 @@ export function toggleBookmark(word: string, meaning: string, pos: string): bool
   if (idx >= 0) {
     list.splice(idx, 1)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+    // Sync to server if logged in
+    import('../api/userData').then(m => m.removeBookmark(word).catch(() => {}))
     return false
   } else {
     list.unshift({ word, meaning, pos, timestamp: Date.now() })
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+    import('../api/userData').then(m => m.addBookmarks([{ word, meaning, pos }]).catch(() => {}))
     return true
   }
 }
@@ -44,4 +47,5 @@ export function toggleBookmark(word: string, meaning: string, pos: string): bool
 export function removeBookmark(word: string): void {
   const list = getBookmarks().filter((b) => b.word.toLowerCase() !== word.toLowerCase())
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+  import('../api/userData').then(m => m.removeBookmark(word).catch(() => {}))
 }

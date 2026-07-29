@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { callLLM } from '../llm.js'
 
 const router = Router()
 
@@ -42,52 +43,10 @@ router.post('/generate', async (req, res, next) => {
 /* ── AI caller ──────────────────────────────────────────────── */
 
 async function generateArticle(words: string[]): Promise<{ article: string; title: string }> {
-  const apiKey = process.env.LLM_API_KEY
-  const baseUrl = process.env.LLM_BASE_URL || 'https://api.openai.com/v1'
-  const model = process.env.LLM_MODEL || 'gpt-3.5-turbo'
-
-  if (!apiKey) {
-    return fallbackGenerate(words)
-  }
-
   const wordList = words.join('、')
-
-  try {
-    const resp = await fetch(`${baseUrl}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: 'system', content: CONTEXT_PROMPT },
-          { role: 'user', content: `请使用以下单词创作一篇英语短文：${wordList}` },
-        ],
-        temperature: 0.8,
-        max_tokens: 1200,
-      }),
-      signal: AbortSignal.timeout(30000),
-    })
-
-    if (!resp.ok) {
-      const errText = await resp.text().catch(() => '')
-      console.error(`[Context Gen] HTTP ${resp.status}: ${errText.slice(0, 200)}`)
-      return fallbackGenerate(words)
-    }
-
-    const data = await resp.json() as { choices?: { message?: { content?: string } }[] }
-    const content = data.choices?.[0]?.message?.content
-    if (!content) {
-      return fallbackGenerate(words)
-    }
-
-    return parseResponse(content)
-  } catch (err) {
-    console.error('[Context Gen] Request failed:', (err as Error).message)
-    return fallbackGenerate(words)
-  }
+  const result = await callLLM(CONTEXT_PROMPT, `请使用以下单词创作一篇英语短文：${wordList}`, { temperature: 0.8, maxTokens: 1200 })
+  if (!result) return fallbackGenerate(words)
+  return parseResponse(result)
 }
 
 /* ── Parse AI response into title + article ─────────────────── */
