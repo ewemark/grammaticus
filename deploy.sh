@@ -1,27 +1,28 @@
 #!/bin/sh
-# Grammaticus 一键部署脚本 v3
-# 直接下载 Node.js 二进制包,不依赖 NodeSource,任何 Linux 都能跑
-# 用法: curl -fsSL https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh | sh
+# Grammaticus 一键部署脚本 v4
+# 特点: 不需要 git(tarball 下载代码), Node.js 二进制安装, 自动编译工具链
+# 用法: curl -fsSL "https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh?v=4" | sh
 set -e
 
-echo "=== Grammaticus 一键部署 ==="
+echo "=== Grammaticus 一键部署 v4 ==="
 
-# ── 非 root 用户自动用 sudo ──
+# ── sudo(非 root 时用 sudo -n 免交互,失败自动降级用户目录安装) ──
 SUDO=""
-if [ "$(id -u)" != "0" ]; then
-  SUDO="sudo"
+if [ "$(id -u)" != "0" ] && command -v sudo >/dev/null 2>&1; then
+  SUDO="sudo -n"
 fi
 
-# ── 安装基础工具(curl/git/tar 缺一就装) ──
-if ! command -v curl >/dev/null 2>&1 || ! command -v git >/dev/null 2>&1 || ! command -v tar >/dev/null 2>&1; then
-  echo "--- 安装基础工具 curl/git/tar ---"
-  if command -v apt-get >/dev/null 2>&1; then $SUDO apt-get update -y && $SUDO apt-get install -y curl git tar
-  elif command -v dnf >/dev/null 2>&1; then $SUDO dnf install -y curl git tar
-  elif command -v yum >/dev/null 2>&1; then $SUDO yum install -y curl git tar
-  fi
+# ── 编译工具链(better-sqlite3 等原生模块的保险;装不上也不致命) ──
+echo "--- 检查编译工具链 ---"
+if command -v dnf >/dev/null 2>&1; then
+  $SUDO dnf install -y gcc-c++ make python3 >/dev/null 2>&1 || echo "(跳过,将尝试预编译二进制)"
+elif command -v yum >/dev/null 2>&1; then
+  $SUDO yum install -y gcc-c++ make python3 >/dev/null 2>&1 || echo "(跳过,将尝试预编译二进制)"
+elif command -v apt-get >/dev/null 2>&1; then
+  $SUDO apt-get update -y >/dev/null 2>&1 && $SUDO apt-get install -y build-essential python3 >/dev/null 2>&1 || echo "(跳过)"
 fi
 
-# ── 安装 Node.js 24(直接下载二进制包) ──
+# ── Node.js 24(二进制包,装到 /usr/local;无 root 则装 ~/.local/node) ──
 NEED_NODE=1
 if command -v node >/dev/null 2>&1; then
   NODE_VER=$(node -v | sed 's/v//' | cut -d. -f1)
@@ -32,87 +33,100 @@ if command -v node >/dev/null 2>&1; then
 fi
 
 if [ "$NEED_NODE" = "1" ]; then
-  echo "--- 下载 Node.js 24 二进制包 ---"
   NODE_ARCH=$(uname -m)
-  if [ "$NODE_ARCH" = "x86_64" ]; then
-    NODE_ARCH="x64"
-  elif [ "$NODE_ARCH" = "aarch64" ]; then
-    NODE_ARCH="arm64"
-  fi
-  
-  # 获取最新 v24 版本号
-  NODE_VERSION=$(curl -s https://nodejs.org/dist/index.json | grep -o '"version":"v24\.[0-9]*\.[0-9]*"' | head -1 | sed 's/"version":"//;s/"//')
-  if [ -z "$NODE_VERSION" ]; then
-    NODE_VERSION="v24.0.0"
-  fi
-  
-  echo "--- 安装 Node.js $NODE_VERSION ($NODE_ARCH) ---"
+  case "$NODE_ARCH" in
+    x86_64) NODE_ARCH="x64" ;;
+    aarch64|arm64) NODE_ARCH="arm64" ;;
+  esac
+  NODE_VERSION=$(curl -s --max-time 20 https://nodejs.org/dist/index.json | grep -o '"version":"v24\.[0-9]*\.[0-9]*"' | head -1 | sed 's/"version":"//;s/"//')
+  if [ -z "$NODE_VERSION" ]; then NODE_VERSION="v24.4.1"; fi
+  echo "--- 下载 Node.js $NODE_VERSION ($NODE_ARCH),约 30MB,请稍候 ---"
   cd /tmp
   curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-$NODE_ARCH.tar.xz" -o node.tar.xz
   tar -xf node.tar.xz
-  $SUDO cp -r node-$NODE_VERSION-linux-$NODE_ARCH/* /usr/local/
-  rm -rf node-$NODE_VERSION-linux-$NODE_ARCH node.tar.xz
+  if $SUDO cp -r "node-$NODE_VERSION-linux-$NODE_ARCH"/* /usr/local/ 2>/dev/null; then
+    echo "--- Node.js 安装到 /usr/local ---"
+  else
+    mkdir -p "$HOME/.local"
+    rm -rf "$HOME/.local/node"
+    mv "node-$NODE_VERSION-linux-$NODE_ARCH" "$HOME/.local/node"
+    grep -q '.local/node/bin' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/.local/node/bin:$PATH"' >> "$HOME/.bashrc"
+    PATH="$HOME/.local/node/bin:$PATH"
+    export PATH
+    echo "--- Node.js 安装到 ~/.local/node(用户目录) ---"
+  fi
+  rm -rf "node-$NODE_VERSION-linux-$NODE_ARCH" node.tar.xz
+  hash -r 2>/dev/null || true
   cd ~
-  
-  echo "--- Node.js 版本: $(node -v) ---"
-  echo "--- npm 版本: $(npm -v) ---"
 fi
 
-# ── 克隆仓库 ──
-echo "--- 克隆代码 ---"
-if [ -d grammaticus ]; then
-  cd grammaticus
-  git pull origin master
-else
-  git clone https://github.com/ewemark/grammaticus.git
-  cd grammaticus
+echo "--- Node: $(node -v) / npm: $(npm -v) ---"
+
+# ── 下载代码(tarball,不需要 git) ──
+APP_DIR="$HOME/grammaticus"
+SRC_DIR="/tmp/grammaticus-src"
+echo "--- 下载最新代码 ---"
+rm -rf "$SRC_DIR" /tmp/g.tgz
+mkdir -p "$SRC_DIR"
+curl -fsSL https://github.com/ewemark/grammaticus/archive/refs/heads/master.tar.gz -o /tmp/g.tgz
+tar -xzf /tmp/g.tgz -C "$SRC_DIR" --strip-components=1
+
+# 保留旧部署的 .env 与数据库(重复部署不丢账号/留言数据)
+if [ -d "$APP_DIR" ]; then
+  [ -f "$APP_DIR/.env" ] && cp "$APP_DIR/.env" "$SRC_DIR/.env"
+  [ -f "$APP_DIR/data/grammaticus.db" ] && cp "$APP_DIR/data/grammaticus.db" "$SRC_DIR/data/grammaticus.db" 2>/dev/null || true
+  rm -rf "$APP_DIR"
 fi
+mv "$SRC_DIR" "$APP_DIR"
+cd "$APP_DIR"
 
-# ── 安装依赖 ──
-echo "--- 安装依赖 ---"
-npm install
-
-# ── 构建前端 ──
+# ── 安装依赖 + 构建 ──
+echo "--- 安装依赖(首次约 2-4 分钟) ---"
+npm install --no-audit --no-fund
 echo "--- 构建前端 ---"
 npm run build
 
-# ── 导入种子数据(容错) ──
-echo "--- 导入数据 ---"
-npm run seed 2>/dev/null || echo "(seed 跳过,不影响核心功能)"
-npm run seed-nce 2>/dev/null || true
+# ── 种子数据(SQLite 词库/课文,供账号云同步等使用) ──
+echo "--- 导入种子数据 ---"
+npm run seed 2>/dev/null || echo "(seed 跳过)"
+npm run seed-nce 2>/dev/null || echo "(seed-nce 跳过)"
 
-# ── 创建 .env ──
+# ── .env ──
 if [ ! -f .env ]; then
-  echo "LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c" > .env
-  echo "LLM_BASE_URL=https://api.deepseek.com/v1" >> .env
-  echo "LLM_MODEL=deepseek-chat" >> .env
-else
-  if ! grep -q "LLM_API_KEY" .env; then
-    echo "LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c" >> .env
-  fi
+  cat > .env <<'EOF'
+LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c
+LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_MODEL=deepseek-chat
+EOF
 fi
 
-# ── 安装 PM2 ──
+# ── PM2 启动 ──
 if ! command -v pm2 >/dev/null 2>&1; then
   echo "--- 安装 PM2 ---"
-  npm install -g pm2
+  npm install -g pm2 --no-audit --no-fund
 fi
 
-# ── 启动应用 ──
 echo "--- 启动应用 ---"
 pm2 delete grammaticus 2>/dev/null || true
-NODE_ENV=production pm2 start server/index.ts \
+NODE_ENV=production PORT=3000 pm2 start server/index.ts \
   --name grammaticus \
-  --interpreter ./node_modules/.bin/tsx \
-  --env NODE_ENV=production \
-  --env PORT=3000 \
-  --env LLM_API_KEY="sk-89728a3824bf4b19a9d55a4c7320812c"
-
+  --interpreter "$APP_DIR/node_modules/.bin/tsx"
 pm2 save
-pm2 startup 2>/dev/null || true
 
-echo ""
-echo "=== 部署完成 ==="
-echo "访问: http://$(curl -s ifconfig.me 2>/dev/null || echo '你的服务器IP'):3000"
-echo "状态: pm2 status"
-echo "日志: pm2 logs grammaticus"
+# ── 验证 ──
+sleep 4
+echo "--- 本机自检 ---"
+if curl -s --max-time 8 http://localhost:3000/api/health | grep -q ok; then
+  SERVER_IP=$(curl -s --max-time 8 ifconfig.me 2>/dev/null || echo "你的服务器IP")
+  echo ""
+  echo "========================================="
+  echo "  部署成功!"
+  echo "  访问: http://$SERVER_IP:3000"
+  echo "  (记得在云控制台防火墙放行 3000 端口)"
+  echo "  状态: pm2 status"
+  echo "  日志: pm2 logs grammaticus"
+  echo "========================================="
+else
+  echo "!! 自检失败,查看日志: pm2 logs grammaticus --lines 30"
+  exit 1
+fi
