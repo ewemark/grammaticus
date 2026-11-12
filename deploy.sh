@@ -1,15 +1,29 @@
 #!/bin/sh
-# Grammaticus 一键部署脚本 v4
-# 特点: 不需要 git(tarball 下载代码), Node.js 二进制安装, 自动编译工具链
-# 用法: curl -fsSL "https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh?v=4" | sh
+# Grammaticus 一键部署脚本 v5
+# 特点: 不需要 git(tarball 下载代码), Node.js 二进制安装, 小内存自动加 swap
+# 用法: curl -fsSL "https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh?v=5" | sh
 set -e
 
-echo "=== Grammaticus 一键部署 v4 ==="
+echo "=== Grammaticus 一键部署 v5 ==="
 
 # ── sudo(非 root 时用 sudo -n 免交互,失败自动降级用户目录安装) ──
 SUDO=""
 if [ "$(id -u)" != "0" ] && command -v sudo >/dev/null 2>&1; then
   SUDO="sudo -n"
+fi
+
+# ── 小内存服务器自动创建 2GB swap(防 npm install 被 OOM 杀掉) ──
+HAS_SWAP=$(swapon --show 2>/dev/null | wc -l)
+MEM_KB=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+if [ "$HAS_SWAP" = "0" ] && [ "$MEM_KB" -lt 3500000 ]; then
+  echo "--- 检测到内存 $((MEM_KB/1024))MB 且无 swap,创建 2GB swap(约 1 分钟) ---"
+  $SUDO dd if=/dev/zero of=/swapfile bs=1M count=2048 status=none
+  $SUDO chmod 600 /swapfile
+  $SUDO mkswap /swapfile >/dev/null
+  $SUDO swapon /swapfile
+  # 开机自动挂载
+  grep -q '/swapfile' /etc/fstab 2>/dev/null || echo '/swapfile none swap sw 0 0' | $SUDO tee -a /etc/fstab >/dev/null
+  echo "--- swap 已启用: $(free -h | awk '/Swap/ {print $2}') ---"
 fi
 
 # ── 编译工具链(better-sqlite3 等原生模块的保险;装不上也不致命) ──
@@ -81,10 +95,10 @@ mv "$SRC_DIR" "$APP_DIR"
 cd "$APP_DIR"
 
 # ── 安装依赖 + 构建 ──
-echo "--- 安装依赖(首次约 2-4 分钟) ---"
-npm install --no-audit --no-fund
+echo "--- 安装依赖(首次约 3-6 分钟,小内存机器更慢,耐心等) ---"
+npm install --no-audit --no-fund --maxsockets=4
 echo "--- 构建前端 ---"
-npm run build
+NODE_OPTIONS="--max-old-space-size=1024" npm run build
 
 # ── 种子数据(SQLite 词库/课文,供账号云同步等使用) ──
 echo "--- 导入种子数据 ---"
