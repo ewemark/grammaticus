@@ -212,19 +212,23 @@ router.get('/:word', async (_req, res, next) => {
 
     let rich: RichWordData | undefined
     if (richRow) {
+      // dataStore 从 JSON 文件加载,字段已是对象/数组(旧 SQLite 时代是字符串,勿再 JSON.parse)
+      const asString = (v: unknown): string =>
+        typeof v === 'string' ? v : JSON.stringify(v)
       rich = {
         word: richRow.word,
-        pronunciation: richRow.pronunciation as string,
-        pos: richRow.pos as string,
-        posNote: richRow.posNote as string,
-        coreImage: richRow.coreImage as string,
-        atomicCore: richRow.atomicCore as string,
-        oneLinePenetration: richRow.oneLinePenetration as string,
-        forms: JSON.parse(richRow.forms as string),
-        semanticRadii: JSON.parse(richRow.semanticRadii as string),
-        grammarRules: richRow.grammarRules as string,
-        exampleDiagnoses: JSON.parse(richRow.exampleDiagnoses as string),
-        synonymComparisons: JSON.parse(richRow.synonymComparisons as string),
+        pronunciation: asString(richRow.pronunciation),
+        pos: asString(richRow.pos),
+        posNote: asString(richRow.posNote),
+        coreImage: asString(richRow.coreImage),
+        atomicCore: asString(richRow.atomicCore),
+        oneLinePenetration: asString(richRow.oneLinePenetration),
+        forms: richRow.forms as RichWordData['forms'],
+        semanticRadii: richRow.semanticRadii as RichWordData['semanticRadii'],
+        // 前端 RichWordData.grammarRules 是 string,旧 SQLite 返回 JSON 字符串 — 保持一致
+        grammarRules: asString(richRow.grammarRules),
+        exampleDiagnoses: richRow.exampleDiagnoses as RichWordData['exampleDiagnoses'],
+        synonymComparisons: richRow.synonymComparisons as RichWordData['synonymComparisons'],
       }
     }
 

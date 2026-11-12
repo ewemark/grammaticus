@@ -1,16 +1,20 @@
 /**
  * 内存数据层 — 词库与文章直接从 data/*.json 打包加载,不再依赖 SQLite。
  *
- * 本地 dev 与 Vercel serverless 共用同一份代码:
- * Vercel 构建时这些 JSON 会被打进函数包(esbuild 内联),冷启动即用,无需 seed。
+ * 本地 dev(tsx) 与 Vercel serverless(esbuild) 共用同一份代码:
+ * 使用 fs.readFileSync 读 JSON(兼容所有运行时),模块级一次性加载。
  * 数据语义与旧的 server/seed.ts + seed-nce.ts 完全一致。
  */
-import simpleRaw from '../data/words.json' with { type: 'json' }
-import richRaw from '../data/words-rich.json' with { type: 'json' }
-import nce1 from '../data/nce-book1.json' with { type: 'json' }
-import nce2 from '../data/nce-book2.json' with { type: 'json' }
-import nce3 from '../data/nce-book3.json' with { type: 'json' }
-import nce4 from '../data/nce-book4.json' with { type: 'json' }
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+function loadJson<T>(filename: string): T {
+  const fp = path.resolve(__dirname, '..', 'data', filename)
+  return JSON.parse(fs.readFileSync(fp, 'utf-8')) as T
+}
 
 /* ── 类型 ───────────────────────────────────────────────────── */
 
@@ -54,16 +58,17 @@ interface RawNce { lesson: number; title: string; title_cn?: string; content: st
 const hasCJK = (s: string) => /[\u4e00-\u9fff]/.test(s)
 
 const simpleMap = new Map<string, SimpleRow>()
-for (const r of simpleRaw as RawSimple[]) {
+const rawSimple = loadJson<RawSimple[]>('words.json')
+for (const r of rawSimple) {
   if (!r.w) continue
   simpleMap.set(r.w.toLowerCase(), { word: r.w, meaning: r.m ?? '', pos: r.p ?? '', example: r.e ?? '' })
 }
 
 const richMap = new Map<string, RichRow>()
-for (const r of richRaw as RichRow[]) {
+const rawRich = loadJson<RichRow[]>('words-rich.json')
+for (const r of rawRich) {
   if (!r.word) continue
   richMap.set(r.word.toLowerCase(), r)
-  // 与旧 seed 的 INSERT OR IGNORE 一致:words.json 优先,富词条仅在缺位且释义含中文时同步基础行
   const key = r.word.toLowerCase()
   if (!simpleMap.has(key) && hasCJK(r.posNote)) {
     simpleMap.set(key, { word: r.word, meaning: r.posNote, pos: r.pos, example: '' })
@@ -71,10 +76,10 @@ for (const r of richRaw as RichRow[]) {
 }
 
 const NCE_BOOKS: { book: string; level: string; data: RawNce[] }[] = [
-  { book: 'Book 1', level: 'BEGINNER', data: nce1 as RawNce[] },
-  { book: 'Book 2', level: 'INTERMEDIATE', data: nce2 as RawNce[] },
-  { book: 'Book 3', level: 'ADVANCED', data: nce3 as RawNce[] },
-  { book: 'Book 4', level: 'ADVANCED', data: nce4 as RawNce[] },
+  { book: 'Book 1', level: 'BEGINNER', data: loadJson<RawNce[]>('nce-book1.json') },
+  { book: 'Book 2', level: 'INTERMEDIATE', data: loadJson<RawNce[]>('nce-book2.json') },
+  { book: 'Book 3', level: 'ADVANCED', data: loadJson<RawNce[]>('nce-book3.json') },
+  { book: 'Book 4', level: 'ADVANCED', data: loadJson<RawNce[]>('nce-book4.json') },
 ]
 
 const articleStore: ArticleRow[] = []
@@ -93,7 +98,7 @@ for (const b of NCE_BOOKS) {
   }
 }
 
-/** 基础词条列表快照(搜索/列表共用;AI 缓存词会追加,查询结果另行排序) */
+/** 基础词条列表快照(搜索/列表共用;AI 缓存词会追加) */
 const simpleList: SimpleRow[] = [...simpleMap.values()]
 
 /* ── 访问器 ─────────────────────────────────────────────────── */
