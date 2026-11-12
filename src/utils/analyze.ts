@@ -1,4 +1,4 @@
-import { request } from '../api/client'
+import { request, BASE_URL } from '../api/client'
 
 /* ── API-based grammar analysis ───────────────────────────── */
 
@@ -18,6 +18,110 @@ export async function analyzePrepositionAPI(sentence: string): Promise<string> {
     headers: { 'Content-Type': 'application/json' },
   })
   return result
+}
+
+/* ── Streaming (SSE) analysis ─────────────────────────────── */
+
+export interface StreamHandle {
+  /** 终止本次流式请求 */
+  abort: () => void
+  /** 等待完成,返回最终文本 */
+  done: Promise<string>
+}
+
+/** 读取 SSE 流,每收到一段调用 onDelta;返回最终完整文本(通用,供各流式接口复用) */
+export async function readSSE(
+  endpoint: string,
+  body: unknown,
+  onDelta: (text: string) => void,
+  signal: AbortSignal,
+): Promise<string> {
+  const token = localStorage.getItem('grammaticus_token')
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (token) headers['Authorization'] = `Bearer ${token}`
+
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+    signal,
+  })
+  if (!res.ok || !res.body) throw new Error(`stream failed: ${res.status}`)
+
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let full = ''
+  let finalText = ''
+  let streamError = ''
+
+  for (;;) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    const events = buffer.split('\n\n')
+    buffer = events.pop() ?? ''
+    for (const evt of events) {
+      let name = 'message'
+      let data = ''
+      for (const line of evt.split('\n')) {
+        if (line.startsWith('event:')) name = line.slice(6).trim()
+        else if (line.startsWith('data:')) data += line.slice(5).trim()
+      }
+      if (!data) continue
+      let parsed: { text?: string; full?: string; error?: string }
+      try { parsed = JSON.parse(data) } catch { continue }
+      if (name === 'delta' && parsed.text) {
+        full += parsed.text
+        onDelta(parsed.text)
+      } else if (name === 'done' && parsed.full) {
+        finalText = parsed.full
+      } else if (name === 'fallback' && parsed.text) {
+        finalText = parsed.text
+      } else if (name === 'error') {
+        streamError = parsed.error || 'AI 分析失败'
+      }
+    }
+  }
+
+  if (streamError) throw new Error(streamError)
+  return finalText || full
+}
+
+/** 流式语法分析 */
+export function analyzeGrammarStream(sentence: string, onDelta: (t: string) => void): StreamHandle {
+  const ctrl = new AbortController()
+  return {
+    abort: () => ctrl.abort(),
+    done: readSSE('/analyze/grammar/stream', { sentence }, onDelta, ctrl.signal),
+  }
+}
+
+/** 流式介词分析 */
+export function analyzePrepositionStream(sentence: string, onDelta: (t: string) => void): StreamHandle {
+  const ctrl = new AbortController()
+  return {
+    abort: () => ctrl.abort(),
+    done: readSSE('/analyze/preposition/stream', { sentence }, onDelta, ctrl.signal),
+  }
+}
+
+/** 追问对话(流式) — AI 带着原句+此前分析+对话历史回答 */
+export function chatAboutSentenceStream(
+  data: {
+    sentence: string
+    analysis: string
+    question: string
+    mode: 'grammar' | 'preposition'
+    history: { role: 'user' | 'assistant'; content: string }[]
+  },
+  onDelta: (t: string) => void,
+): StreamHandle {
+  const ctrl = new AbortController()
+  return {
+    abort: () => ctrl.abort(),
+    done: readSSE('/analyze/chat/stream', data, onDelta, ctrl.signal),
+  }
 }
 
 /* ── Local fallback analyzers ─────────────────────────────── */

@@ -87,7 +87,7 @@
     "word": "abolish",
     "pronunciation": "/əˈbɒlɪʃ/",
     "pos": "VERB",
-    "posNote": "核心词性：以法律或制度权威彻底废除制度、法律、习俗、机构",
+    "posNote": "以法律或制度权威彻底废除制度、法律、习俗、机构",
     "forms": [
       {
         "form": "abolish",
@@ -171,7 +171,7 @@
     "word": "abrupt",
     "pronunciation": "/əˈbrʌpt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：突然的；唐突的；生硬的",
+    "posNote": "突然的；唐突的；生硬的",
     "forms": [
       {
         "form": "abrupt",
@@ -611,7 +611,7 @@
     "word": "abundant",
     "pronunciation": "/əˈbʌn.dənt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：丰富的、充裕的、大量的",
+    "posNote": "丰富的、充裕的、大量的",
     "forms": [
       {
         "form": "abundant",
@@ -974,7 +974,7 @@
     "word": "accommodate",
     "pronunciation": "/əˈkɑːmədeɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：容纳、提供住宿；迁就、适应",
+    "posNote": "容纳、提供住宿；迁就、适应",
     "forms": [
       {
         "form": "accommodate",
@@ -1149,7 +1149,7 @@
     "word": "accomplish",
     "pronunciation": "/əˈkʌm.plɪʃ/",
     "pos": "VERB",
-    "posNote": "核心词性：成功完成、实现（任务、使命、目标）",
+    "posNote": "成功完成、实现（任务、使命、目标）",
     "forms": [
       {
         "form": "accomplish",
@@ -1414,7 +1414,7 @@
     "word": "accurate",
     "pronunciation": "/ˈæk.jə.rət/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：准确的、精确的、正确无误的",
+    "posNote": "准确的、精确的、正确无误的",
     "forms": [
       {
         "form": "accurate",
@@ -1696,7 +1696,7 @@
     "word": "achieve",
     "pronunciation": "/əˈtʃiːv/",
     "pos": "VERB",
-    "posNote": "核心词性：经过持续努力而达成、实现（目标、结果）",
+    "posNote": "经过持续努力而达成、实现（目标、结果）",
     "forms": [
       {
         "form": "achieve",
@@ -1877,7 +1877,7 @@
     "word": "acquire",
     "pronunciation": "/əˈkwaɪər/",
     "pos": "VERB",
-    "posNote": "核心词性：获得、习得、购得",
+    "posNote": "获得、习得、购得",
     "forms": [
       {
         "form": "acquire",
@@ -2435,7 +2435,7 @@
     "word": "adequate",
     "pronunciation": "/ˈæd.ə.kwət/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：足够的、适当的、符合要求的",
+    "posNote": "足够的、适当的、符合要求的",
     "forms": [
       {
         "form": "adequate",
@@ -2616,7 +2616,7 @@
     "word": "adjust",
     "pronunciation": "/əˈdʒʌst/",
     "pos": "VERB",
-    "posNote": "核心词性：调整、适应、校准（及物+不及物）",
+    "posNote": "调整、适应、校准（及物+不及物）",
     "forms": [
       {
         "form": "adjust",
@@ -2802,7 +2802,7 @@
     "word": "admire",
     "pronunciation": "/ədˈmaɪər/",
     "pos": "VERB",
-    "posNote": "核心词性：钦佩、赞赏、欣赏",
+    "posNote": "钦佩、赞赏、欣赏",
     "forms": [
       {
         "form": "admire",
@@ -3429,7 +3429,7 @@
     "word": "aesthetic",
     "pronunciation": "/iːsˈθetɪk/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：审美的；美学的",
+    "posNote": "审美的；美学的",
     "forms": [
       {
         "form": "aesthetic",
@@ -3612,7 +3612,7 @@
   {
     "word": "affection",
     "pronunciation": "/əˈfekʃn/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "show affection, deep affection, mutual affection 不可数为主，复数 affections 表示\"钟爱之情\"",
     "forms": [
       {
@@ -3683,7 +3683,7 @@
   {
     "word": "affiliate",
     "pronunciation": "/əˈfɪlieɪt/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "be affiliated with/to 常用被动语态",
     "forms": [
       {
@@ -3754,7 +3754,7 @@
   {
     "word": "affirm",
     "pronunciation": "/əˈfɜːrm/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "affirm that, affirm one's commitment 正式用语",
     "forms": [
       {
@@ -3825,7 +3825,7 @@
   {
     "word": "afflict",
     "pronunciation": "/əˈflɪkt/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "be afflicted with/by 常用被动语态",
     "forms": [
       {
@@ -3896,7 +3896,7 @@
   {
     "word": "aftermath",
     "pronunciation": "/ˈæftərmæθ/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "in the aftermath of 通常与 the 连用",
     "forms": [
       {
@@ -4051,7 +4051,7 @@
   {
     "word": "aggregate",
     "pronunciation": "/ˈæɡrɪɡət/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "in aggregate, an aggregate of 经济/统计常用",
     "forms": [
       {
@@ -4122,7 +4122,7 @@
   {
     "word": "agitation",
     "pronunciation": "/ˌædʒɪˈteɪʃn/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "in a state of agitation 心理状态",
     "forms": [
       {
@@ -4194,7 +4194,7 @@
     "word": "alert",
     "pronunciation": "/əˈlɜːrt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：adj. 警觉的；v. 向……报警；n. 警报",
+    "posNote": "adj. 警觉的；v. 向……报警；n. 警报",
     "forms": [
       {
         "form": "alert",
@@ -4284,7 +4284,7 @@
     "word": "allege",
     "pronunciation": "/əˈledʒ/",
     "pos": "VERB",
-    "posNote": "核心词性：在缺乏确凿证据的情况下正式声称/指控",
+    "posNote": "在缺乏确凿证据的情况下正式声称/指控",
     "forms": [
       {
         "form": "allege",
@@ -4372,7 +4372,7 @@
   {
     "word": "allegiance",
     "pronunciation": "/əˈliːdʒəns/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "swear/pledge allegiance, owe allegiance to 正式用语",
     "forms": [
       {
@@ -4522,7 +4522,7 @@
   {
     "word": "alliance",
     "pronunciation": "/əˈlaɪəns/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "form/forge an alliance, in alliance with 政治/商业/军事语境",
     "forms": [
       {
@@ -4589,7 +4589,7 @@
     "word": "allocate",
     "pronunciation": "/ˈæləkeɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：在有限资源内做计划性分配、拨出给特定用途",
+    "posNote": "在有限资源内做计划性分配、拨出给特定用途",
     "forms": [
       {
         "form": "allocate",
@@ -4761,7 +4761,7 @@
   {
     "word": "allowance",
     "pronunciation": "/əˈlaʊəns/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "monthly allowance, make allowance(s) for 日常生活常用",
     "forms": [
       {
@@ -4832,7 +4832,7 @@
   {
     "word": "ally",
     "pronunciation": "/ˈælaɪ/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "a close ally, political allies 可指国家或个人",
     "forms": [
       {
@@ -4903,7 +4903,7 @@
   {
     "word": "alter",
     "pronunciation": "/ˈɔːltər/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "alter the course, alter clothes 高频核心动词",
     "forms": [
       {
@@ -4974,7 +4974,7 @@
   {
     "word": "alternate",
     "pronunciation": "/ˈɔːltərnət/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "on alternate days, alternate route 形容词读 /ˈɔːltərnət/",
     "forms": [
       {
@@ -5045,7 +5045,7 @@
   {
     "word": "amateur",
     "pronunciation": "/ˈæmətər/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "an amateur in, amateur photographer 与 professional 对立",
     "forms": [
       {
@@ -5111,7 +5111,7 @@
   {
     "word": "ambient",
     "pronunciation": "/ˈæmbiənt/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "ambient temperature/light/music 科学/艺术语境",
     "forms": [
       {
@@ -5178,7 +5178,7 @@
     "word": "ambiguous",
     "pronunciation": "/æmˈbɪɡ.ju.əs/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：模棱两可的、有歧义的（客观上存在多种解释可能）",
+    "posNote": "模棱两可的、有歧义的（客观上存在多种解释可能）",
     "forms": [
       {
         "form": "ambiguous",
@@ -5351,7 +5351,7 @@
     "word": "amend",
     "pronunciation": "/əˈmend/",
     "pos": "VERB",
-    "posNote": "核心词性：对正式文本（法律、合同、提案等）局部精准修正其措辞或条款",
+    "posNote": "对正式文本（法律、合同、提案等）局部精准修正其措辞或条款",
     "forms": [
       {
         "form": "amend",
@@ -5439,7 +5439,7 @@
   {
     "word": "amid",
     "pronunciation": "/əˈmɪd/",
-    "pos": "OTHER",
+    "pos": "PREPOSITION",
     "posNote": "amid the chaos, amid concerns 正式/书面语",
     "forms": [
       {
@@ -5505,7 +5505,7 @@
   {
     "word": "amplify",
     "pronunciation": "/ˈæmplɪfaɪ/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "amplify sound, amplify a signal 物理/技术语境",
     "forms": [
       {
@@ -5660,7 +5660,7 @@
   {
     "word": "ancestor",
     "pronunciation": "/ˈænsestər/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "direct ancestor, distant ancestor 血 缘",
     "forms": [
       {
@@ -5731,7 +5731,7 @@
   {
     "word": "anguish",
     "pronunciation": "/ˈæŋɡwɪʃ/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "in anguish, mental anguish 程度深",
     "forms": [
       {
@@ -5802,7 +5802,7 @@
   {
     "word": "animate",
     "pronunciation": "/ˈænɪmeɪt/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "animate a character, animate a crowd 动词读 /ˈænɪmeɪt/",
     "forms": [
       {
@@ -5873,7 +5873,7 @@
   {
     "word": "annex",
     "pronunciation": "/əˈneks/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "annex territory 动词读 /əˈneks/",
     "forms": [
       {
@@ -5939,7 +5939,7 @@
   {
     "word": "anniversary",
     "pronunciation": "/ˌænɪˈvɜːrsəri/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "wedding anniversary, celebrate an anniversary 词根 ann- = 年，vers- = 转",
     "forms": [
       {
@@ -6005,7 +6005,7 @@
   {
     "word": "annotate",
     "pronunciation": "/ˈænəteɪt/",
-    "pos": "OTHER",
+    "pos": "VERB",
     "posNote": "annotate a text, heavily annotated 学术/编辑语境",
     "forms": [
       {
@@ -6077,7 +6077,7 @@
     "word": "anonymous",
     "pronunciation": "/əˈnɒnɪməs/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：匿名的；无名的",
+    "posNote": "匿名的；无名的",
     "forms": [
       {
         "form": "anonymous",
@@ -6165,7 +6165,7 @@
   {
     "word": "antagonist",
     "pronunciation": "/ænˈtæɡənɪst/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "main antagonist, political antagonist 文学/叙事常用",
     "forms": [
       {
@@ -6237,7 +6237,7 @@
     "word": "anticipate",
     "pronunciation": "/ænˈtɪs.ɪ.peɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：预期、预料 + 提前做准备以应对 + 先于……行动",
+    "posNote": "预期、预料 + 提前做准备以应对 + 先于……行动",
     "forms": [
       {
         "form": "anticipate",
@@ -6320,7 +6320,7 @@
   {
     "word": "antidote",
     "pronunciation": "/ˈæntidoʊt/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "an antidote to, administer an antidote 医学/毒素",
     "forms": [
       {
@@ -6387,7 +6387,7 @@
     "word": "anxiety",
     "pronunciation": "/æŋˈzaɪ.ə.ti/",
     "pos": "NOUN",
-    "posNote": "核心词性：焦虑、忧虑——对未来不确定事件的持续担忧，伴随生理唤醒",
+    "posNote": "焦虑、忧虑——对未来不确定事件的持续担忧，伴随生理唤醒",
     "forms": [
       {
         "form": "anxiety",
@@ -6480,8 +6480,8 @@
   {
     "word": "apparatus",
     "pronunciation": "/ˌæpəˈreɪtəs/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "器械;装置;(政治)机构",
     "forms": [],
     "coreImage": "一套精密组合的器械或机构系统——就像实验室里那条串联的玻璃导管，或者一台巨型救火车上密密麻麻的仪表、阀门与水带：任何\"apparatus\"都是由多个部件精密配合而成的功能整体，缺一不可。抽象用法同理，政党的\"apparatus\"是其决策与执行机器。",
     "atomicCore": "",
@@ -6544,8 +6544,8 @@
   {
     "word": "applaud",
     "pronunciation": "/əˈplɔːd/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "鼓掌;喝彩;赞许",
     "forms": [],
     "coreImage": "双手合击、掌声如潮——物理场景是观众为台上的表演者热烈鼓掌；抽象到认知层面，是\"拍案叫好\"式的认可与赞许。无论是剧院里的掌声，还是董事会对 CEO 决策的\"applaud\"，本质都是用\"击掌\"的原始动作表达肯定。",
     "atomicCore": "",
@@ -6608,8 +6608,8 @@
   {
     "word": "appraisal",
     "pronunciation": "/əˈpreɪzl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "评价;评估;鉴定",
     "forms": [],
     "coreImage": "手里拿着一件古董，翻来覆去、掂量鉴定——这就是\"appraisal\"的原始画面。无论是对员工绩效的季度评估，还是对房产的市场估价，本质都是\"用专业眼光给出判断值\"的过程。它比 evaluation 多了\"定价/定级\"的意味。",
     "atomicCore": "",
@@ -6756,8 +6756,8 @@
   {
     "word": "apprentice",
     "pronunciation": "/əˈprentɪs/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "学徒;徒弟",
     "forms": [],
     "coreImage": "中世纪作坊里，一个少年跟在老师傅身后，看他如何捏陶、打铁、刨木——这就是\"apprentice\"。它不是课堂里的学生，而是\"在师傅手底下边干边学\"的实践型学习者。核心关系：师傅的技艺通过模仿与实操传递给徒弟。",
     "atomicCore": "",
@@ -6820,8 +6820,8 @@
   {
     "word": "approximate",
     "pronunciation": "/əˈprɒksɪmət/ (adj.) /əˈprɒksɪmeɪt/ (v.)/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "大约的;近似的;接近",
     "forms": [],
     "coreImage": "\"差不多就这儿\"——你指着地图上某个区域，用手指画了一个圈，说\"大约在这个位置\"。approximate 的灵魂就是\"逼近而不等于\"。数学家用它说\"近似值\"，工程师用它说\"约莫如此\"，社会学家用它说\"大致接近\"。核心张力：永远在走向精确的路上，但始终差一点。",
     "atomicCore": "",
@@ -6884,8 +6884,8 @@
   {
     "word": "arbitrary",
     "pronunciation": "/ˈɑːrbɪtreri/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "任意的;武断的;随心所欲的",
     "forms": [],
     "coreImage": "某个掌权者一拍脑袋就定了规矩，没有道理、没有标准，全凭个人好恶——这就是 arbitrary。它的核心画面是\"一根手指随便指向某个选项，不需要任何理由\"。从国王的独断专行到数学课上老师随意分组，arbitrary 强调的都是\"缺乏客观依据的选择\"。",
     "atomicCore": "",
@@ -6948,8 +6948,8 @@
   {
     "word": "archive",
     "pronunciation": "/ˈɑːrkaɪv/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "档案;档案馆;存档",
     "forms": [],
     "coreImage": "一间落满灰尘的地下室里，成排的铁柜锁着古老卷宗——这就是 archive。它的本质是\"把不再频繁使用但可能还有价值的信息封存起来，供未来查阅\"。在数字时代，一张老照片被拖进云端的 archive 文件夹，也是同一种动作：告别日常界面，但不告别存在。",
     "atomicCore": "",
@@ -7102,8 +7102,8 @@
   {
     "word": "arithmetic",
     "pronunciation": "/əˈrɪθmətɪk/ (n.) /ˌærɪθˈmetɪk/ (adj.)/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "算术;四则运算",
     "forms": [],
     "coreImage": "小学课堂的黑板上，粉笔写着 7+8=15 和 9×6=54——这就是 arithmetic 的纯粹世界。它不关心 x 和 y 的未知数（那是 algebra），不关心三角形面积（那是 geometry），它只处理赤裸裸的数字和加减乘除。它是数学这座大厦的地基。",
     "atomicCore": "",
@@ -7166,8 +7166,8 @@
   {
     "word": "arouse",
     "pronunciation": "/əˈraʊz/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "唤起;激起;唤醒",
     "forms": [],
     "coreImage": "你在昏暗的剧院里昏昏欲睡，突然台上传来一声尖叫——你蹭地坐直了。这就是 arouse：\"把睡着的弄醒，把平静的搅动\"。情绪层面，arouse 是让潜伏的兴趣、愤怒、怀疑从零到有的过程；生理层面，它可以指性唤起。意象核心：从\"静默/沉睡状态\"到\"被激活\"。",
     "atomicCore": "",
@@ -7230,8 +7230,8 @@
   {
     "word": "array",
     "pronunciation": "/əˈreɪ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "一系列;陈列;数组",
     "forms": [],
     "coreImage": "走进一家珠宝店，柜台里一排排戒指在灯光下闪耀——那就是 array。它的核心画面是\"精心排列以供展示或选择的整齐阵列\"。从计算机的数组（data array）到超市货架上一排排的零食，array 强调\"有序排列\"和\"数量可观\"。数学/编程中，array 是同类数据的有序集合。",
     "atomicCore": "",
@@ -7295,7 +7295,7 @@
     "word": "articulate",
     "pronunciation": "/ɑːrˈtɪkjuleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：清晰表达；清楚发音",
+    "posNote": "清晰表达；清楚发音",
     "forms": [
       {
         "form": "articulate",
@@ -7824,7 +7824,7 @@
     "word": "assimilate",
     "pronunciation": "/əˈsɪmɪleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：吸收知识；同化文化",
+    "posNote": "吸收知识；同化文化",
     "forms": [
       {
         "form": "assimilate",
@@ -8175,7 +8175,7 @@
     "word": "augment",
     "pronunciation": "/ɔːɡˈment/",
     "pos": "VERB",
-    "posNote": "核心词性：增大；增强；补充",
+    "posNote": "增大；增强；补充",
     "forms": [
       {
         "form": "augment",
@@ -8353,7 +8353,7 @@
     "word": "avert",
     "pronunciation": "/əˈvɜːrt/",
     "pos": "VERB",
-    "posNote": "核心词性：以主动介入方式避免/防止灾难性事件发生；转移目光/视线",
+    "posNote": "以主动介入方式避免/防止灾难性事件发生；转移目光/视线",
     "forms": [
       {
         "form": "avert",
@@ -8442,7 +8442,7 @@
     "word": "beckon",
     "pronunciation": "/ˈbek.ən/",
     "pos": "VERB",
-    "posNote": "核心词性：以手势/点头等视觉信号温和召唤某人靠近；抽象前景安静有力地吸引人前往",
+    "posNote": "以手势/点头等视觉信号温和召唤某人靠近；抽象前景安静有力地吸引人前往",
     "forms": [
       {
         "form": "beckon",
@@ -8616,7 +8616,7 @@
     "word": "bestow",
     "pronunciation": "/bɪˈstoʊ/",
     "pos": "VERB",
-    "posNote": "核心词性：以上对下、正式庄重地授予/赐予（荣誉、头衔、信任、赞美等抽象恩惠）",
+    "posNote": "以上对下、正式庄重地授予/赐予（荣誉、头衔、信任、赞美等抽象恩惠）",
     "forms": [
       {
         "form": "bestow",
@@ -8700,7 +8700,7 @@
     "word": "bias",
     "pronunciation": "/ˈbaɪəs/",
     "pos": "NOUN",
-    "posNote": "核心词性：偏见；偏爱；倾向",
+    "posNote": "偏见；偏爱；倾向",
     "forms": [
       {
         "form": "bias",
@@ -8789,7 +8789,7 @@
     "word": "bizarre",
     "pronunciation": "/bɪˈzɑːr/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：怪诞的；奇异的；荒诞的",
+    "posNote": "怪诞的；奇异的；荒诞的",
     "forms": [
       {
         "form": "bizarre",
@@ -8873,7 +8873,7 @@
     "word": "blunt",
     "pronunciation": "/blʌnt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：钝的；直率的",
+    "posNote": "钝的；直率的",
     "forms": [
       {
         "form": "blunt",
@@ -9278,8 +9278,8 @@
   {
     "word": "catalyst",
     "pronunciation": "/ˈkætəlɪst/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "催化剂;促进因素",
     "forms": [],
     "coreImage": "v.\tcatalyze/catalyse\n\nn. (过程)\tcatalysis\n\nadj.\tcatalytic\n\nn. (人/物)\tcatalyzer\n\n干燥的火药堆旁落下一粒火星——瞬间引爆，但火星本身不燃烧\n\n第一个在舞池里起舞的人，带动全场跟进\n\n化学反应里的铂金网，加速反应而自身毫发无损",
     "atomicCore": "",
@@ -9303,7 +9303,7 @@
     "word": "chronic",
     "pronunciation": "/ˈkrɑː.nɪk/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：慢性的；长期的；积习难改的",
+    "posNote": "慢性的；长期的；积习难改的",
     "forms": [
       {
         "form": "chronic",
@@ -9386,8 +9386,8 @@
   {
     "word": "circumvent",
     "pronunciation": "/ˌsɜːrkəmˈvent/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "绕过;规避;绕行",
     "forms": [],
     "coreImage": "circumvention\tn. 规避；绕行\n\ncircumventive\tadj. 规避的\n\n前方路障，司机从田间小路绕过去 → 不正面冲撞但达到同样目的\n\n巧妙钻法律空子 → 名义上不违法，实际上规避了所有限制\n\n太极推手化解攻势 → 以柔克刚地绕过障碍",
     "atomicCore": "",
@@ -9411,7 +9411,7 @@
     "word": "cite",
     "pronunciation": "/saɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：引用；举例；传唤",
+    "posNote": "引用；举例；传唤",
     "forms": [
       {
         "form": "cite",
@@ -9500,7 +9500,7 @@
     "word": "clarify",
     "pronunciation": "/ˈklærɪfaɪ/",
     "pos": "VERB",
-    "posNote": "核心词性：澄清；阐明；使清晰",
+    "posNote": "澄清；阐明；使清晰",
     "forms": [
       {
         "form": "clarify",
@@ -9589,7 +9589,7 @@
     "word": "cling",
     "pronunciation": "/klɪŋ/",
     "pos": "VERB",
-    "posNote": "核心词性：紧抓；粘附；依附；坚持不放——多由恐惧/不安全感驱动",
+    "posNote": "紧抓；粘附；依附；坚持不放——多由恐惧/不安全感驱动",
     "forms": [
       {
         "form": "cling",
@@ -9678,7 +9678,7 @@
     "word": "cognitive",
     "pronunciation": "/ˈkɑːɡ.nə.t̬ɪv/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：认知的；感知的",
+    "posNote": "认知的；感知的",
     "forms": [
       {
         "form": "cognitive",
@@ -9861,8 +9861,8 @@
   {
     "word": "cohesion",
     "pronunciation": "/koʊˈhiːʒən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "凝聚力;团结;黏合",
     "forms": [],
     "coreImage": "v.\tcohere\n\nadj.\tcohesive\n\nadv.\tcohesively\n\nn. (品质)\tcohesiveness\n\n强力胶水把碎片黏合成完整的一块——掰都掰不开\n\n一个团队传球行云流水，仿佛所有人共享同一个大脑\n\n砖块之间不用水泥就是一堆碎石，有了水泥就是一面墙",
     "atomicCore": "",
@@ -9891,7 +9891,7 @@
     "word": "coincide",
     "pronunciation": "/ˌkoʊɪnˈsaɪd/",
     "pos": "VERB",
-    "posNote": "核心词性：同时发生；巧合；一致；重叠",
+    "posNote": "同时发生；巧合；一致；重叠",
     "forms": [
       {
         "form": "coincide",
@@ -9979,8 +9979,8 @@
   {
     "word": "collaborate",
     "pronunciation": "/kəˈlæbəreɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "合作;协作;勾结",
     "forms": [],
     "coreImage": "collaboration\tn. 合作；协作\n\ncollaborative\tadj. 合作的\n\ncollaborator\tn. 合作者；通敌者\n\n两个人各出材料一起揉面 → 各自贡献资源共创作品\n\n乐队成员各司其职合奏一曲 → 团队配合产生1+1>2的效果\n\n黑暗中有人给敌人递钥匙 → 与敌方勾结（贬义用法）",
     "atomicCore": "",
@@ -10004,7 +10004,7 @@
     "word": "commemorate",
     "pronunciation": "/kəˈmeməreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：纪念；庆祝；作为……的纪念标志",
+    "posNote": "纪念；庆祝；作为……的纪念标志",
     "forms": [
       {
         "form": "commemorate",
@@ -10088,7 +10088,7 @@
     "word": "commence",
     "pronunciation": "/kəˈmens/",
     "pos": "VERB",
-    "posNote": "核心词性：开始、着手（正式语境）",
+    "posNote": "开始、着手（正式语境）",
     "forms": [
       {
         "form": "commence",
@@ -10173,7 +10173,7 @@
     "word": "commission",
     "pronunciation": "/kəˈmɪʃn/",
     "pos": "NOUN",
-    "posNote": "核心词性：委员会；佣金；委托；使服役",
+    "posNote": "委员会；佣金；委托；使服役",
     "forms": [
       {
         "form": "commission",
@@ -10315,7 +10315,7 @@
     "word": "compatible",
     "pronunciation": "/kəmˈpætəbl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：兼容的；可共存的；志趣相投的",
+    "posNote": "兼容的；可共存的；志趣相投的",
     "forms": [
       {
         "form": "compatible",
@@ -10404,7 +10404,7 @@
     "word": "compel",
     "pronunciation": "/kəmˈpel/",
     "pos": "VERB",
-    "posNote": "核心词性：强迫；迫使——由外部力量/情势/道义将选择压缩至唯一出口",
+    "posNote": "强迫；迫使——由外部力量/情势/道义将选择压缩至唯一出口",
     "forms": [
       {
         "form": "compel",
@@ -10492,8 +10492,8 @@
   {
     "word": "compensate",
     "pronunciation": "/ˈkɒmpenseɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "补偿;赔偿;弥补",
     "forms": [],
     "coreImage": "compensation\tn. 补偿金；赔偿\n\ncompensatory\tadj. 补偿性的\n\n打碎邻居花瓶后用零花钱全额赔付 → 对损失的物质补偿\n\n个子不高但速度快得惊人 → 一个短板被另一个长板填平\n\n加班太久老板补你三天假 → 用另一种资源平衡此前的透支",
     "atomicCore": "",
@@ -10601,8 +10601,8 @@
   {
     "word": "complement",
     "pronunciation": "/ˈkɒmplɪment/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "补充物;补足;与…相配",
     "forms": [],
     "coreImage": "派生词\t释义\n\ncomplementary\tadj. 互补的\n\ncomplementarity\tn. 互补性\n\n拼图缺的那一块刚好塞进去 → 让整体变得完整无缺\n\n红裙配黑色高跟鞋 → 两个元素互衬使对方更出彩\n\n甜粽子配咸汤 → 对立口感相互成就而非冲突",
     "atomicCore": "",
@@ -10715,8 +10715,8 @@
   {
     "word": "component",
     "pronunciation": "/kəmˈpoʊnənt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "成分;组件;零部件",
     "forms": [],
     "coreImage": "adj.\tcomponent (构成整体的)\n\nadj.\tcomponential\n\nn. (集合)\tcomponents\n\nv.\tcompose (构成)\n\n乐高积木里的一块砖——单独看无意义，插上去就构成了城堡的一角\n\n一辆汽车的发动机、轮子、方向盘——缺了哪个都开不走\n\n一句话里的主语和谓语：拆开是单词，合起来才是句子",
     "atomicCore": "",
@@ -10740,7 +10740,7 @@
     "word": "comprehend",
     "pronunciation": "/ˌkɑːm.prɪˈhend/",
     "pos": "VERB",
-    "posNote": "核心词性：理解、领悟、包含（对整体有深度把握）",
+    "posNote": "理解、领悟、包含（对整体有深度把握）",
     "forms": [
       {
         "form": "comprehend",
@@ -10920,7 +10920,7 @@
     "word": "compromise",
     "pronunciation": "/ˈkɒm.prə.maɪz /（英） / ˈkɑːm.prə.maɪz /（美）/",
     "pos": "NOUN",
-    "posNote": "核心词性：妥协折中（名词）；妥协让步/损害危及（动词）",
+    "posNote": "妥协折中（名词）；妥协让步/损害危及（动词）",
     "forms": [
       {
         "form": "compromise",
@@ -10999,7 +10999,7 @@
     "word": "conceal",
     "pronunciation": "/kənˈsiːl/",
     "pos": "VERB",
-    "posNote": "核心词性：隐藏、隐瞒、掩盖（有意识地不让他人看见或知晓）",
+    "posNote": "隐藏、隐瞒、掩盖（有意识地不让他人看见或知晓）",
     "forms": [
       {
         "form": "conceal",
@@ -11084,7 +11084,7 @@
     "word": "concede",
     "pronunciation": "/kənˈsiːd/",
     "pos": "VERB",
-    "posNote": "核心词性：承认；让步；认输；允许",
+    "posNote": "承认；让步；认输；允许",
     "forms": [
       {
         "form": "concede",
@@ -11173,7 +11173,7 @@
     "word": "conceive",
     "pronunciation": "/kənˈsiːv/",
     "pos": "VERB",
-    "posNote": "核心词性：及物/不及物。构思想法；想象可能性；怀孕",
+    "posNote": "及物/不及物。构思想法；想象可能性；怀孕",
     "forms": [
       {
         "form": "conceive",
@@ -11261,8 +11261,8 @@
   {
     "word": "conception",
     "pronunciation": "/kənˈsepʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "概念;观念;构想;怀孕",
     "forms": [],
     "coreImage": "v.\tconceive\n\nadj.\tconceptual\n\nadv.\tconceptually\n\nn. (概念化)\tconceptualization\n\n建筑师脑中最初浮现的那张草图——还不是图纸，但形状已经有了\n\n母亲腹中受精卵着床的那一刻，一个新生命从\"无\"到\"有\"\n\n哲学家脑中一个观念的成形，如同雾气凝聚成水滴",
     "atomicCore": "",
@@ -11461,7 +11461,7 @@
     "word": "condemn",
     "pronunciation": "/kənˈdem/",
     "pos": "VERB",
-    "posNote": "核心词性：谴责；判刑；宣判建筑不宜使用；使注定",
+    "posNote": "谴责；判刑；宣判建筑不宜使用；使注定",
     "forms": [
       {
         "form": "condemn",
@@ -11625,7 +11625,7 @@
     "word": "confer",
     "pronunciation": "/kənˈfɜːr/",
     "pos": "VERB",
-    "posNote": "核心词性：授予（荣誉/头衔）、商讨（交换意见）",
+    "posNote": "授予（荣誉/头衔）、商讨（交换意见）",
     "forms": [
       {
         "form": "confer",
@@ -11714,8 +11714,8 @@
   {
     "word": "configuration",
     "pronunciation": "/kənˌfɪɡjəˈreɪʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "配置;布局;构造",
     "forms": [],
     "coreImage": "v.\tconfigure\n\nadj.\tconfigurational\n\nadj.\tconfigurable\n\nn. (缩写)\tconfig\n\n棋局开局时每一颗棋子摆放的位置——同样的棋子，不同的布局就是不同的策略\n\n电脑装机时BIOS里那一页密密麻麻的设置项，每改一项系统就换个性格\n\n分子中原子在空间里的排布方式——左手性和右手性，镜像却不可重叠",
     "atomicCore": "",
@@ -11919,7 +11919,7 @@
     "word": "confront",
     "pronunciation": "/kənˈfrʌnt/",
     "pos": "VERB",
-    "posNote": "核心词性：面对；对抗；直面；与……对质——走到恐惧/问题正面，回避距离归零",
+    "posNote": "面对；对抗；直面；与……对质——走到恐惧/问题正面，回避距离归零",
     "forms": [
       {
         "form": "confront",
@@ -12007,8 +12007,8 @@
   {
     "word": "confrontation",
     "pronunciation": "/ˌkɑːnfrənˈteɪʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "对抗;对峙;正面冲突",
     "forms": [],
     "coreImage": "v.\tconfront\n\nadj.\tconfrontational\n\nadv.\tconfrontationally\n\nn. (人)\tconfrontationalist\n\n两个人额头几乎顶到一起，目光如刀，空气紧绷到可以割裂\n\n西部片里正午的决斗——双方站在街上，手按枪柄，谁先眨眼谁输\n\n法庭上被告与原告第一次当面对质，真话和谎言正面交锋",
     "atomicCore": "",
@@ -12031,8 +12031,8 @@
   {
     "word": "congregation",
     "pronunciation": "/ˌkɑːŋɡrɪˈɡeɪʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "集会;(教堂的)会众",
     "forms": [],
     "coreImage": "v.\tcongregate\n\nadj.\tcongregational\n\nn. (人)\tcongregant\n\nadj.\tcongregative\n\n周日早晨钟声响起，信徒从四面八方朝教堂汇聚——散落的水珠聚成湖泊\n\n广场上人群自发围成一个大圈，中间有人在演讲\n\n候鸟在电线杆上停成一排，叽叽喳喳交流着南飞的信息",
     "atomicCore": "",
@@ -12056,7 +12056,7 @@
     "word": "conscience",
     "pronunciation": "/ˈkɒn.ʃəns /（英） / ˈkɑːn.ʃəns /（美）/",
     "pos": "NOUN",
-    "posNote": "核心词性：良心、良知——内在道德判断机制",
+    "posNote": "良心、良知——内在道德判断机制",
     "forms": [
       {
         "form": "conscience",
@@ -12288,7 +12288,7 @@
     "word": "consist",
     "pronunciation": "/kənˈsɪst/",
     "pos": "VERB",
-    "posNote": "核心词性：由…组成、在于、符合（涉及构成或本质）",
+    "posNote": "由…组成、在于、符合（涉及构成或本质）",
     "forms": [
       {
         "form": "consist",
@@ -12377,8 +12377,8 @@
   {
     "word": "consistency",
     "pronunciation": "/kənˈsɪstənsi/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "一致性;连贯性;浓稠度",
     "forms": [],
     "coreImage": "adj.\tconsistent\n\nadv.\tconsistently\n\nn. (反)\tinconsistency\n\nadj. (反)\tinconsistent\n\n每天早上六点起床跑步，风雨无阻——这不是毅力，是 consistency\n\n同一道菜每次端出来味道一模一样，客人永远不失望\n\n打篮球时投篮手型每一球都相同——进不进是概率，手型不变是 consistency",
     "atomicCore": "",
@@ -12486,8 +12486,8 @@
   {
     "word": "consolidation",
     "pronunciation": "/kənˌsɑːlɪˈdeɪʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "巩固;合并;整合",
     "forms": [],
     "coreImage": "v.\tconsolidate\n\nadj.\tconsolidated\n\nn. (人/物)\tconsolidator\n\nadj.\tconsolidatory\n\n把一堆松散的沙子压成一块砖——力量和压力把零散变成坚实\n\n公司合并：两条溪流汇成一条大河，河床更深，水流更猛\n\n学习新知识后的\"消化吸收\"阶段：零散信息被压进长期记忆的底层",
     "atomicCore": "",
@@ -12601,7 +12601,7 @@
     "word": "constitute",
     "pronunciation": "/ˈkɒnstɪtjuːt /（英） / ˈkɑːnstɪtuːt /（美）/",
     "pos": "VERB",
-    "posNote": "核心词性：构成（部分→整体）；设立；等同于；任命",
+    "posNote": "构成（部分→整体）；设立；等同于；任命",
     "forms": [
       {
         "form": "constitute",
@@ -12694,8 +12694,8 @@
   {
     "word": "constitution",
     "pronunciation": "/ˌkɑːnstɪˈtuːʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "宪法;体质;构成",
     "forms": [],
     "coreImage": "v.\tconstitute\n\nadj.\tconstitutional\n\nadv.\tconstitutionally\n\nn. (主义)\tconstitutionalism\n\n一栋大楼的地基和钢架结构——它不决定装修风格，但规定了楼能建多高、怎么承重\n\n一个人天生就有的体质：有人铜筋铁骨，有人弱不禁风，这是基因写的\"宪法\"\n\n国家的出生证明和身份证——它宣告\"我们是这样一个国家\"",
     "atomicCore": "",
@@ -12772,7 +12772,7 @@
     "word": "consume",
     "pronunciation": "/kənˈsuːm/",
     "pos": "VERB",
-    "posNote": "核心词性：消耗、消费、吞噬（用完或用尽某资源）",
+    "posNote": "消耗、消费、吞噬（用完或用尽某资源）",
     "forms": [
       {
         "form": "consume",
@@ -12861,8 +12861,8 @@
   {
     "word": "consumption",
     "pronunciation": "/kənˈsʌmpʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "消耗;消费;食用",
     "forms": [],
     "coreImage": "v.\tconsume\n\nn. (人)\tconsumer\n\nadj.\tconsumptive\n\nn. (主义)\tconsumerism\n\n火焰一口一口吞掉木柴，把树木化为灰烬和热量\n\n购物车里堆满商品，不是需要，是想要——现代消费社会的基本单元\n\n一辆车的油箱慢慢见底，汽油被燃烧转化为动能，一去不返",
     "atomicCore": "",
@@ -12971,7 +12971,7 @@
     "word": "contemporary",
     "pronunciation": "/kənˈtempəreri/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：当代的；同时代的；同时代的人",
+    "posNote": "当代的；同时代的；同时代的人",
     "forms": [
       {
         "form": "contemporary",
@@ -13409,8 +13409,8 @@
   {
     "word": "contradiction",
     "pronunciation": "/ˌkɑːntrəˈdɪkʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "矛盾;不一致;反驳",
     "forms": [],
     "coreImage": "v.\tcontradict\n\nadj.\tcontradictory\n\nadv.\tcontradictorily\n\nn. (品质)\tcontradictoriness\n\n你嘴上说\"我爱和平\"手里却握着刀——言行之间的裂缝就是 contradiction\n\n路标同时指向左和右，司机只能停在原地，无法前进\n\n同一个算式里同时出现 1=2 和 1≠2——逻辑系统在此崩盘",
     "atomicCore": "",
@@ -13434,7 +13434,7 @@
     "word": "contribute",
     "pronunciation": "/kənˈtrɪb.juːt/",
     "pos": "VERB",
-    "posNote": "核心词性：贡献、捐献、投稿、促成",
+    "posNote": "贡献、捐献、投稿、促成",
     "forms": [
       {
         "form": "contribute",
@@ -13751,8 +13751,8 @@
   {
     "word": "convergence",
     "pronunciation": "/kənˈvɜːrdʒəns/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "汇聚;趋同;会合",
     "forms": [],
     "coreImage": "v.\tconverge\n\nadj.\tconvergent\n\nadv.\tconvergently\n\nn. (反)\tdivergence\n\n无数条铁轨从远方向城市延伸，最终汇入同一个火车站\n\n两个来自完全不同的文化的人，几年后穿衣风格、口头禅甚至表情都开始趋同\n\n放大镜下阳光聚成一个小亮点，温度高到可以点燃纸张",
     "atomicCore": "",
@@ -13776,7 +13776,7 @@
     "word": "convey",
     "pronunciation": "/kənˈveɪ/",
     "pos": "VERB",
-    "posNote": "核心词性：传达、输送、表达（使信息/物品从一端到另一端）",
+    "posNote": "传达、输送、表达（使信息/物品从一端到另一端）",
     "forms": [
       {
         "form": "convey",
@@ -13919,7 +13919,7 @@
     "word": "coordinate",
     "pronunciation": "/kəʊˈɔːdɪneɪt/ v. /kəʊˈɔːdɪnət/ n. adj./",
     "pos": "VERB",
-    "posNote": "核心词性：协调；坐标；同等的",
+    "posNote": "协调；坐标；同等的",
     "forms": [
       {
         "form": "coordinate",
@@ -14007,8 +14007,8 @@
   {
     "word": "coordination",
     "pronunciation": "/koʊˌɔːrdɪˈneɪʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "协调;配合;同等",
     "forms": [],
     "coreImage": "v.\tcoordinate\n\nn. (人)\tcoordinator\n\nadj.\tcoordinated\n\nadj.\tcoordinative\n\n交响乐团：指挥棒一挥，小提琴、大提琴、铜管、打击乐同时奏响——各有各的谱，合成一首曲\n\n十只手指打字：每根手指独立运动，但速度飞快又互不打架\n\n救援队在废墟中：有人搜、有人搬、有人包扎，每个动作无缝衔接",
     "atomicCore": "",
@@ -14032,7 +14032,7 @@
     "word": "correlate",
     "pronunciation": "/ˈkɒrəleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：使相互关联；显示相关性",
+    "posNote": "使相互关联；显示相关性",
     "forms": [
       {
         "form": "correlate",
@@ -14174,7 +14174,7 @@
     "word": "counterfeit",
     "pronunciation": "/ˈkaʊntəfɪt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：伪造的；赝品；伪造",
+    "posNote": "伪造的；赝品；伪造",
     "forms": [
       {
         "form": "counterfeit",
@@ -14306,7 +14306,7 @@
     "word": "cumulative",
     "pronunciation": "/ˈkjuːmjʊlətɪv/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：累积的；渐增的",
+    "posNote": "累积的；渐增的",
     "forms": [
       {
         "form": "cumulative",
@@ -14448,7 +14448,7 @@
     "word": "cynical",
     "pronunciation": "/ˈsɪnɪkl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：愤世嫉俗的；怀疑一切动机的",
+    "posNote": "愤世嫉俗的；怀疑一切动机的",
     "forms": [
       {
         "form": "cynical",
@@ -14537,7 +14537,7 @@
     "word": "deceive",
     "pronunciation": "/dɪˈsiːv/",
     "pos": "VERB",
-    "posNote": "核心词性：通过虚假信息/隐瞒/操纵系统性误导认知",
+    "posNote": "通过虚假信息/隐瞒/操纵系统性误导认知",
     "forms": [
       {
         "form": "deceive",
@@ -14626,7 +14626,7 @@
     "word": "decisive",
     "pronunciation": "/dɪˈsaɪsɪv/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：决定性的；关键的；果断的",
+    "posNote": "决定性的；关键的；果断的",
     "forms": [
       {
         "form": "decisive",
@@ -14715,7 +14715,7 @@
     "word": "declaration",
     "pronunciation": "/ˌdekləˈreɪʃən/",
     "pos": "NOUN",
-    "posNote": "核心词性：宣言；声明；申报",
+    "posNote": "宣言；声明；申报",
     "forms": [
       {
         "form": "declaration",
@@ -14804,7 +14804,7 @@
     "word": "decline",
     "pronunciation": "/dɪˈklaɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：下降/衰退/婉拒（数量质量向下 + 拒绝邀请）",
+    "posNote": "下降/衰退/婉拒（数量质量向下 + 拒绝邀请）",
     "forms": [
       {
         "form": "decline",
@@ -14889,7 +14889,7 @@
     "word": "dedicate",
     "pronunciation": "/ˈdedɪkeɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：致力于；奉献；题献；揭幕",
+    "posNote": "致力于；奉献；题献；揭幕",
     "forms": [
       {
         "form": "dedicate",
@@ -14973,7 +14973,7 @@
     "word": "deduce",
     "pronunciation": "/dɪˈdjuːs /（英） / dɪˈduːs /（美）/",
     "pos": "VERB",
-    "posNote": "核心词性：推论；演绎——从已知事实严格逻辑推导未知结论",
+    "posNote": "推论；演绎——从已知事实严格逻辑推导未知结论",
     "forms": [
       {
         "form": "deduce",
@@ -15115,7 +15115,7 @@
     "word": "deficient",
     "pronunciation": "/dɪˈfɪʃnt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：不足的；有缺陷的；达不到标准的",
+    "posNote": "不足的；有缺陷的；达不到标准的",
     "forms": [
       {
         "form": "deficient",
@@ -15204,7 +15204,7 @@
     "word": "delegate",
     "pronunciation": "/ˈdelɪɡeɪt/ v. /ˈdelɪɡət/ n./",
     "pos": "VERB",
-    "posNote": "核心词性：授权委托；委派代表；会议代表",
+    "posNote": "授权委托；委派代表；会议代表",
     "forms": [
       {
         "form": "delegate",
@@ -15293,7 +15293,7 @@
     "word": "deliberate",
     "pronunciation": "/adj. dɪˈlɪb.ər.ət / v. dɪˈlɪb.ə.reɪt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：故意的；从容的、深思熟虑的",
+    "posNote": "故意的；从容的、深思熟虑的",
     "forms": [
       {
         "form": "deliberate",
@@ -15382,7 +15382,7 @@
     "word": "demonstrate",
     "pronunciation": "/ˈdem.ən.streɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：演示、证明、表明、示威",
+    "posNote": "演示、证明、表明、示威",
     "forms": [
       {
         "form": "demonstrate",
@@ -15472,7 +15472,7 @@
     "word": "denote",
     "pronunciation": "/dɪˈnoʊt/",
     "pos": "VERB",
-    "posNote": "核心词性：表示、意味着、指代（符号/标志与所指之间的直接关系）",
+    "posNote": "表示、意味着、指代（符号/标志与所指之间的直接关系）",
     "forms": [
       {
         "form": "denote",
@@ -15547,7 +15547,7 @@
     "word": "depict",
     "pronunciation": "/dɪˈpɪkt/",
     "pos": "VERB",
-    "posNote": "核心词性：用文字/图画/影像形象化描绘、刻画、再现——让受众\"在脑中看见画面\"",
+    "posNote": "用文字/图画/影像形象化描绘、刻画、再现——让受众\"在脑中看见画面\"",
     "forms": [
       {
         "form": "depict",
@@ -15631,7 +15631,7 @@
     "word": "deplete",
     "pronunciation": "/dɪˈpliːt/",
     "pos": "VERB",
-    "posNote": "核心词性：耗尽；大量消耗；使枯竭",
+    "posNote": "耗尽；大量消耗；使枯竭",
     "forms": [
       {
         "form": "deplete",
@@ -15720,7 +15720,7 @@
     "word": "deposit",
     "pronunciation": "/dɪˈpɒzɪt/",
     "pos": "NOUN",
-    "posNote": "核心词性：存款；押金；沉积物；存放；使沉积",
+    "posNote": "存款；押金；沉积物；存放；使沉积",
     "forms": [
       {
         "form": "deposit",
@@ -15809,7 +15809,7 @@
     "word": "deprive",
     "pronunciation": "/dɪˈpraɪv/",
     "pos": "VERB",
-    "posNote": "核心词性：剥夺；使丧失",
+    "posNote": "剥夺；使丧失",
     "forms": [
       {
         "form": "deprive",
@@ -15898,7 +15898,7 @@
     "word": "derive",
     "pronunciation": "/dɪˈraɪv/",
     "pos": "VERB",
-    "posNote": "核心词性：源自；获得；推导出",
+    "posNote": "源自；获得；推导出",
     "forms": [
       {
         "form": "derive",
@@ -15987,7 +15987,7 @@
     "word": "designate",
     "pronunciation": "/ˈdez.ɪɡ.neɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：指定、任命、标明（正式确立某人/某物的角色/用途/身份）",
+    "posNote": "指定、任命、标明（正式确立某人/某物的角色/用途/身份）",
     "forms": [
       {
         "form": "designate",
@@ -16077,7 +16077,7 @@
     "word": "destiny",
     "pronunciation": "/ˈdes.tɪ.ni/",
     "pos": "NOUN",
-    "posNote": "核心词性：命运，天命，归宿——人生预设或注定要经历的宏大轨迹，可被主动实现",
+    "posNote": "命运，天命，归宿——人生预设或注定要经历的宏大轨迹，可被主动实现",
     "forms": [
       {
         "form": "destiny",
@@ -16161,7 +16161,7 @@
     "word": "detach",
     "pronunciation": "/dɪˈtætʃ/",
     "pos": "VERB",
-    "posNote": "核心词性：拆开、分离、脱离（物理或情感上拆离连接）",
+    "posNote": "拆开、分离、脱离（物理或情感上拆离连接）",
     "forms": [
       {
         "form": "detach",
@@ -16256,7 +16256,7 @@
     "word": "deteriorate",
     "pronunciation": "/dɪˈtɪəriəreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：恶化；退化；变坏；降解",
+    "posNote": "恶化；退化；变坏；降解",
     "forms": [
       {
         "form": "deteriorate",
@@ -16345,7 +16345,7 @@
     "word": "deviate",
     "pronunciation": "/ˈdiːvieɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：偏离；背离",
+    "posNote": "偏离；背离",
     "forms": [
       {
         "form": "deviate",
@@ -16434,7 +16434,7 @@
     "word": "devise",
     "pronunciation": "/dɪˈvaɪz/",
     "pos": "VERB",
-    "posNote": "核心词性：设计；发明；想出",
+    "posNote": "设计；发明；想出",
     "forms": [
       {
         "form": "devise",
@@ -16523,7 +16523,7 @@
     "word": "differentiate",
     "pronunciation": "/ˌdɪfəˈrenʃieɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：区分；区别；使不同",
+    "posNote": "区分；区别；使不同",
     "forms": [
       {
         "form": "differentiate",
@@ -16617,7 +16617,7 @@
     "word": "diffuse",
     "pronunciation": "/dɪˈfjuːz/ (v.)  /dɪˈfjuːs/ (adj.)/",
     "pos": "VERB",
-    "posNote": "核心词性：扩散；传播；弥漫",
+    "posNote": "扩散；传播；弥漫",
     "forms": [
       {
         "form": "diffuse",
@@ -16706,7 +16706,7 @@
     "word": "dilate",
     "pronunciation": "/daɪˈleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：扩张；膨胀；详述",
+    "posNote": "扩张；膨胀；详述",
     "forms": [
       {
         "form": "dilate",
@@ -16965,7 +16965,7 @@
     "word": "dilute",
     "pronunciation": "/daɪˈluːt/",
     "pos": "VERB",
-    "posNote": "核心词性：稀释；冲淡；削弱",
+    "posNote": "稀释；冲淡；削弱",
     "forms": [
       {
         "form": "dilute",
@@ -17149,7 +17149,7 @@
     "word": "discard",
     "pronunciation": "/dɪsˈkɑːrd/",
     "pos": "VERB",
-    "posNote": "核心词性：丢弃；抛弃",
+    "posNote": "丢弃；抛弃",
     "forms": [
       {
         "form": "discard",
@@ -17238,7 +17238,7 @@
     "word": "discern",
     "pronunciation": "/dɪˈsɜːrn/",
     "pos": "VERB",
-    "posNote": "核心词性：分辨；识别；洞察",
+    "posNote": "分辨；识别；洞察",
     "forms": [
       {
         "form": "discern",
@@ -17327,7 +17327,7 @@
     "word": "disclose",
     "pronunciation": "/dɪsˈkloʊz/",
     "pos": "VERB",
-    "posNote": "核心词性：揭露；透露；公开",
+    "posNote": "揭露；透露；公开",
     "forms": [
       {
         "form": "disclose",
@@ -17416,7 +17416,7 @@
     "word": "discourse",
     "pronunciation": "/ˈdɪskɔːrs/",
     "pos": "NOUN",
-    "posNote": "核心词性：话语；论述；演讲",
+    "posNote": "话语；论述；演讲",
     "forms": [
       {
         "form": "discourse",
@@ -17553,7 +17553,7 @@
     "word": "discrete",
     "pronunciation": "/dɪˈskriːt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：离散的；分离的；不连续的",
+    "posNote": "离散的；分离的；不连续的",
     "forms": [
       {
         "form": "discrete",
@@ -17700,7 +17700,7 @@
     "word": "discriminate",
     "pronunciation": "/dɪˈskrɪmɪneɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：区分；歧视",
+    "posNote": "区分；歧视",
     "forms": [
       {
         "form": "discriminate",
@@ -17794,7 +17794,7 @@
     "word": "disintegrate",
     "pronunciation": "/dɪsˈɪntɪɡreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：瓦解；崩溃；碎裂",
+    "posNote": "瓦解；崩溃；碎裂",
     "forms": [
       {
         "form": "disintegrate",
@@ -17888,7 +17888,7 @@
     "word": "dismantle",
     "pronunciation": "/dɪsˈmæntl/",
     "pos": "VERB",
-    "posNote": "核心词性：拆除；拆卸；废除",
+    "posNote": "拆除；拆卸；废除",
     "forms": [
       {
         "form": "dismantle",
@@ -17977,7 +17977,7 @@
     "word": "dismay",
     "pronunciation": "/dɪsˈmeɪ/",
     "pos": "NOUN",
-    "posNote": "核心词性：惊恐；沮丧；灰心",
+    "posNote": "惊恐；沮丧；灰心",
     "forms": [
       {
         "form": "dismay",
@@ -18279,7 +18279,7 @@
     "word": "disperse",
     "pronunciation": "/dɪˈspɜːrs/",
     "pos": "VERB",
-    "posNote": "核心词性：分散；驱散；散布",
+    "posNote": "分散；驱散；散布",
     "forms": [
       {
         "form": "disperse",
@@ -18367,8 +18367,8 @@
   {
     "word": "displace",
     "pronunciation": "/dɪsˈpleɪs/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "取代;迫使离开家园;移位",
     "forms": [],
     "coreImage": "形容词\tdisplaced 被迫离开的；错位的\n\n派生\tdisplacer n. 取代者\n\n把原有位置上的东西\"挤出去\"，强行替代\n\n像水位上涨把岸边居民\"逼走\"一样\n\n关键词：挤占、排挤、取代",
     "atomicCore": "",
@@ -18391,8 +18391,8 @@
   {
     "word": "dispose",
     "pronunciation": "/dɪˈspoʊz/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "处理;丢弃;使倾向于",
     "forms": [],
     "coreImage": "形容词\tdisposable 一次性的；可支配的\n\n名词\tdisposition 性情；倾向；安排\n\n短语\tat one's disposal 供…支配/使用\n\n把东西\"摆放到位\"，该扔的扔、该留的留\n\n心态上的\"朝某个方向倾斜/偏向\"\n\n关键词：处置、安排、定夺",
     "atomicCore": "",
@@ -18420,8 +18420,8 @@
   {
     "word": "dispute",
     "pronunciation": "/dɪˈspjuːt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "争论;争端;质疑",
     "forms": [],
     "coreImage": "形容词\tdisputable 有争议的\n\n形容词\tdisputatious 爱争论的\n\n名词\tdisputant 争论者\n\n两方对一件事\"各执一词\"，互不相让\n\n不仅是吵架，更是对事实/权利的\"争议\"\n\n关键词：争议、纠纷、质疑",
     "atomicCore": "",
@@ -18444,8 +18444,8 @@
   {
     "word": "disrupt",
     "pronunciation": "/dɪsˈrʌpt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "扰乱;中断;使瓦解",
     "forms": [],
     "coreImage": "形容词\tdisruptive 破坏性的；颠覆性的\n\n副词\tdisruptively 破坏性地\n\n名词\tdisruptor 颠覆者\n\n正在顺畅运行的系统中\"插进一根棍子\"，瞬间打乱\n\n像有人突然拔掉电源插头——一切中断\n\n关键词：打乱、中断、颠覆",
     "atomicCore": "",
@@ -18468,8 +18468,8 @@
   {
     "word": "disseminate",
     "pronunciation": "/dɪˈsemɪneɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "传播;散布;宣传",
     "forms": [],
     "coreImage": "名词\tdisseminator 传播者\n\n形容词\tdisseminated 广泛传播的\n\n像种子撒向大地一样，把信息/知识/思想散播开\n\n不是随便传播，而是有计划、覆盖广的\"散播\"\n\n关键词：传播、散布、推广",
     "atomicCore": "",
@@ -18492,8 +18492,8 @@
   {
     "word": "dissipate",
     "pronunciation": "/ˈdɪsɪpeɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "消散;驱散;挥霍",
     "forms": [],
     "coreImage": "形容词\tdissipated 放荡的；驱散的\n\n热/雾/烟慢慢散去，从有到无的过程\n\n能量/精力/钱财被\"消耗殆尽\"，像蒸汽蒸发\n\n关键词：消散、挥霍、驱散",
     "atomicCore": "",
@@ -18781,8 +18781,8 @@
   {
     "word": "diversify",
     "pronunciation": "/daɪˈvɜːrsɪfaɪ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "使多样化;多元化经营",
     "forms": [],
     "coreImage": "形容词\tdiversified 多元化的\n\n形容词\tdiverse 多样的\n\n名词\tdiversity 多样性\n\n把单一的东西\"裂变\"成多种形态，不再只依赖一条路\n\n投资里\"鸡蛋不放一个篮子\"的智慧\n\n关键词：多元化、多样化、分散",
     "atomicCore": "",
@@ -18815,8 +18815,8 @@
   {
     "word": "divulge",
     "pronunciation": "/daɪˈvʌldʒ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "泄露;透露;暴露",
     "forms": [],
     "coreImage": "形容词\tdivulged 已泄露的\n\n把本该封存的秘密\"撬开一条缝\"，让信息流出\n\n像是在紧闭的嘴唇上开了一道口子\n\n关键词：泄露、透露、吐露",
     "atomicCore": "",
@@ -18840,7 +18840,7 @@
     "word": "dominant",
     "pronunciation": "/ˈdɒmɪnənt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：占主导地位的；显性的；强势的",
+    "posNote": "占主导地位的；显性的；强势的",
     "forms": [
       {
         "form": "dominant",
@@ -19029,7 +19029,7 @@
     "word": "drastic",
     "pronunciation": "/ˈdræstɪk/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：剧烈的；极端的；大幅度的",
+    "posNote": "剧烈的；极端的；大幅度的",
     "forms": [
       {
         "form": "drastic",
@@ -19198,7 +19198,7 @@
     "word": "elaborate",
     "pronunciation": "/ɪˈlæbərət/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：精心制作的；复杂的",
+    "posNote": "精心制作的；复杂的",
     "forms": [
       {
         "form": "elaborate",
@@ -19292,7 +19292,7 @@
     "word": "elicit",
     "pronunciation": "/ɪˈlɪsɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：引出、诱出（信息、反应）",
+    "posNote": "引出、诱出（信息、反应）",
     "forms": [
       {
         "form": "elicit",
@@ -19551,7 +19551,7 @@
     "word": "elude",
     "pronunciation": "/ɪˈluːd/",
     "pos": "VERB",
-    "posNote": "核心词性：躲避、逃避；使困惑、不被获得",
+    "posNote": "躲避、逃避；使困惑、不被获得",
     "forms": [
       {
         "form": "elude",
@@ -19634,8 +19634,8 @@
   {
     "word": "emanate",
     "pronunciation": "/ˈeməneɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "散发;发出;来源于",
     "forms": [],
     "coreImage": "形容词\temanative 散发的；流出的\n\n像光源向四周\"投射光芒\"——从中心向外发散\n\n气味、光、声音、气质从源头\"渗透出来\"\n\n关键词：散发、流露、源自",
     "atomicCore": "",
@@ -19658,8 +19658,8 @@
   {
     "word": "embark",
     "pronunciation": "/ɪmˈbɑːrk/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "上船;登机;开始(从事)",
     "forms": [],
     "coreImage": "短语\tembark on/upon 开始从事\n\n原意是\"登上船\"，引申为\"开启一段旅程/事业\"\n\n像踏上甲板的那一刻——前方是未知的远航\n\n关键词：启程、着手、投身",
     "atomicCore": "",
@@ -19687,8 +19687,8 @@
   {
     "word": "embody",
     "pronunciation": "/ɪmˈbɑːdi/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "体现;具体表达;包含",
     "forms": [],
     "coreImage": "形容词\tembodied 体现的；具身的\n\n名词\tembodiment…是…的化身\n\n把一个抽象概念\"装进具体身体/实物里\"\n\n一个人就是某种品质的\"活体展示\"\n\n关键词：体现、代表、化身",
     "atomicCore": "",
@@ -19891,8 +19891,8 @@
   {
     "word": "emit",
     "pronunciation": "/iˈmɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "发出;排放;散发",
     "forms": [],
     "coreImage": "名词\temitter 发射器；排放源\n\n形容词\temissive 发射的\n\n一个源头向\"外\"输出能量/物质——不收回，只释放\n\n工厂烟囱冒烟、喇叭发声、LED发光，本质相同\n\n关键词：排放、释放、发出",
     "atomicCore": "",
@@ -19916,7 +19916,7 @@
     "word": "empirical",
     "pronunciation": "/ɪmˈpɪrɪkl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：经验主义的；以观察实验为依据的",
+    "posNote": "经验主义的；以观察实验为依据的",
     "forms": [
       {
         "form": "empirical",
@@ -20485,7 +20485,7 @@
     "word": "envision",
     "pronunciation": "/ɪnˈvɪʒən/",
     "pos": "VERB",
-    "posNote": "核心词性：设想、在心中清晰描摹未来图景",
+    "posNote": "设想、在心中清晰描摹未来图景",
     "forms": [
       {
         "form": "envision",
@@ -20559,7 +20559,7 @@
     "word": "erode",
     "pronunciation": "/ɪˈrəʊd/",
     "pos": "VERB",
-    "posNote": "核心词性：侵蚀、腐蚀、逐渐损害（及物/不及物）",
+    "posNote": "侵蚀、腐蚀、逐渐损害（及物/不及物）",
     "forms": [
       {
         "form": "erode",
@@ -20643,7 +20643,7 @@
     "word": "escalate",
     "pronunciation": "/ˈeskəleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：逐步升级、扩大、恶化（及物/不及物）",
+    "posNote": "逐步升级、扩大、恶化（及物/不及物）",
     "forms": [
       {
         "form": "escalate",
@@ -20732,7 +20732,7 @@
     "word": "ethical",
     "pronunciation": "/ˈeθɪkl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：道德的；伦理的；合乎道德的",
+    "posNote": "道德的；伦理的；合乎道德的",
     "forms": [
       {
         "form": "ethical",
@@ -20906,7 +20906,7 @@
     "word": "exaggerate",
     "pronunciation": "/ɪɡˈzædʒəreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：夸张、夸大、言过其实（及物/不及物）",
+    "posNote": "夸张、夸大、言过其实（及物/不及物）",
     "forms": [
       {
         "form": "exaggerate",
@@ -20990,7 +20990,7 @@
     "word": "exceed",
     "pronunciation": "/ɪkˈsiːd/",
     "pos": "VERB",
-    "posNote": "核心词性：超越、超过（限度、预期、数量）",
+    "posNote": "超越、超过（限度、预期、数量）",
     "forms": [
       {
         "form": "exceed",
@@ -21079,7 +21079,7 @@
     "word": "exotic",
     "pronunciation": "/ɪɡˈzɒtɪk/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：异国情调的；外来的；奇特迷人的",
+    "posNote": "异国情调的；外来的；奇特迷人的",
     "forms": [
       {
         "form": "exotic",
@@ -21168,7 +21168,7 @@
     "word": "expel",
     "pronunciation": "/ɪkˈspel/",
     "pos": "VERB",
-    "posNote": "核心词性：驱逐、排出、开除",
+    "posNote": "驱逐、排出、开除",
     "forms": [
       {
         "form": "expel",
@@ -21252,7 +21252,7 @@
     "word": "explicit",
     "pronunciation": "/ɪkˈsplɪsɪt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：明确的；直言的；不含糊的",
+    "posNote": "明确的；直言的；不含糊的",
     "forms": [
       {
         "form": "explicit",
@@ -21341,7 +21341,7 @@
     "word": "exploit",
     "pronunciation": "/ɪkˈsplɔɪt/ (v.) ; /ˈeksplɔɪt/ (n.)/",
     "pos": "VERB",
-    "posNote": "核心词性：剥削、利用、开发",
+    "posNote": "剥削、利用、开发",
     "forms": [
       {
         "form": "exploit",
@@ -21604,7 +21604,7 @@
     "word": "feasible",
     "pronunciation": "/ˈfiːzəbl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：可行的；行得通的；合理的",
+    "posNote": "可行的；行得通的；合理的",
     "forms": [
       {
         "form": "feasible",
@@ -21783,7 +21783,7 @@
     "word": "fluctuate",
     "pronunciation": "/ˈflʌk.tʃu.eɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：波动、起伏、不稳定地变化（不及物）",
+    "posNote": "波动、起伏、不稳定地变化（不及物）",
     "forms": [
       {
         "form": "fluctuate",
@@ -22126,7 +22126,7 @@
     "word": "fundamental",
     "pronunciation": "/ˌfʌndəˈmentl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：根本的；基础的；至关重要的",
+    "posNote": "根本的；基础的；至关重要的",
     "forms": [
       {
         "form": "fundamental",
@@ -22479,7 +22479,7 @@
     "word": "genuine",
     "pronunciation": "/ˈdʒen.ju.ɪn/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：真正的、真诚的、非伪造的",
+    "posNote": "真正的、真诚的、非伪造的",
     "forms": [
       {
         "form": "genuine",
@@ -22563,7 +22563,7 @@
     "word": "glance",
     "pronunciation": "/ɡlæns/ (美) ; /ɡlɑːns/ (英)/",
     "pos": "VERB",
-    "posNote": "核心词性：瞥一眼、扫视、浏览",
+    "posNote": "瞥一眼、扫视、浏览",
     "forms": [
       {
         "form": "glance",
@@ -22758,7 +22758,7 @@
     "word": "hypothetical",
     "pronunciation": "/ˌhaɪpəˈθetɪkl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：假设的；假定的",
+    "posNote": "假设的；假定的",
     "forms": [
       {
         "form": "hypothetical",
@@ -23000,7 +23000,7 @@
     "word": "immense",
     "pronunciation": "/ɪˈmens/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：巨大的；无边的；极好的",
+    "posNote": "巨大的；无边的；极好的",
     "forms": [
       {
         "form": "immense",
@@ -23264,7 +23264,7 @@
     "word": "implicit",
     "pronunciation": "/ɪmˈplɪsɪt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：隐含的；内含的；盲目的",
+    "posNote": "隐含的；内含的；盲目的",
     "forms": [
       {
         "form": "implicit",
@@ -23644,7 +23644,7 @@
     "word": "inherent",
     "pronunciation": "/ɪnˈhɪərənt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：固有的；内在的；天生的",
+    "posNote": "固有的；内在的；天生的",
     "forms": [
       {
         "form": "inherent",
@@ -23971,7 +23971,7 @@
     "word": "innovative",
     "pronunciation": "/ˈɪnəveɪtɪv/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：创新的；革新的；新式的",
+    "posNote": "创新的；革新的；新式的",
     "forms": [
       {
         "form": "innovative",
@@ -24351,7 +24351,7 @@
     "word": "intricate",
     "pronunciation": "/ˈɪntrɪkət/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：错综复杂的；精巧细致的",
+    "posNote": "错综复杂的；精巧细致的",
     "forms": [
       {
         "form": "intricate",
@@ -24546,7 +24546,7 @@
     "word": "legitimate",
     "pronunciation": "/lɪˈdʒɪtɪmət/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：合法的；正当的；合理的",
+    "posNote": "合法的；正当的；合理的",
     "forms": [
       {
         "form": "legitimate",
@@ -24725,7 +24725,7 @@
     "word": "lucrative",
     "pronunciation": "/ˈluːkrətɪv/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：有利可图的；赚钱的；利润丰厚的",
+    "posNote": "有利可图的；赚钱的；利润丰厚的",
     "forms": [
       {
         "form": "lucrative",
@@ -24814,7 +24814,7 @@
     "word": "mandatory",
     "pronunciation": "/ˈmændətɔːri/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：强制的；必须履行的；必修的",
+    "posNote": "强制的；必须履行的；必修的",
     "forms": [
       {
         "form": "mandatory",
@@ -24903,7 +24903,7 @@
     "word": "manifest",
     "pronunciation": "/ˈmæn.ɪ.fest/",
     "pos": "VERB",
-    "posNote": "核心词性：使显现、展示（及物/不及物）",
+    "posNote": "使显现、展示（及物/不及物）",
     "forms": [
       {
         "form": "manifest",
@@ -25077,7 +25077,7 @@
     "word": "marginal",
     "pronunciation": "/ˈmɑːrdʒɪnl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：边缘的；微不足道的；边际的",
+    "posNote": "边缘的；微不足道的；边际的",
     "forms": [
       {
         "form": "marginal",
@@ -25166,7 +25166,7 @@
     "word": "mediate",
     "pronunciation": "/ˈmiːdieɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：调解；斡旋；居中促成",
+    "posNote": "调解；斡旋；居中促成",
     "forms": [
       {
         "form": "mediate",
@@ -25255,7 +25255,7 @@
     "word": "migrate",
     "pronunciation": "/maɪˈɡreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：迁徙；移居；迁移（数据/系统）",
+    "posNote": "迁徙；移居；迁移（数据/系统）",
     "forms": [
       {
         "form": "migrate",
@@ -25344,7 +25344,7 @@
     "word": "modest",
     "pronunciation": "/ˈmɒdɪst/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：谦虚的；适度的；朴素的",
+    "posNote": "谦虚的；适度的；朴素的",
     "forms": [
       {
         "form": "modest",
@@ -25428,7 +25428,7 @@
     "word": "modify",
     "pronunciation": "/ˈmɒdɪfaɪ/",
     "pos": "VERB",
-    "posNote": "核心词性：修改；修饰；缓和",
+    "posNote": "修改；修饰；缓和",
     "forms": [
       {
         "form": "modify",
@@ -25522,7 +25522,7 @@
     "word": "monitor",
     "pronunciation": "/ˈmɒnɪtə(r)/",
     "pos": "VERB",
-    "posNote": "核心词性：监控；监测；监视器；显示器；班长",
+    "posNote": "监控；监测；监视器；显示器；班长",
     "forms": [
       {
         "form": "monitor",
@@ -25611,7 +25611,7 @@
     "word": "motivate",
     "pronunciation": "/ˈməʊtɪveɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：激励；激发；使有动机",
+    "posNote": "激励；激发；使有动机",
     "forms": [
       {
         "form": "motivate",
@@ -25705,7 +25705,7 @@
     "word": "mutual",
     "pronunciation": "/ˈmjuːtʃuəl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：相互的；共同的",
+    "posNote": "相互的；共同的",
     "forms": [
       {
         "form": "mutual",
@@ -25794,7 +25794,7 @@
     "word": "neglect",
     "pronunciation": "/nɪˈɡlekt/",
     "pos": "VERB",
-    "posNote": "核心词性：疏忽、忽略、疏于照顾",
+    "posNote": "疏忽、忽略、疏于照顾",
     "forms": [
       {
         "form": "neglect",
@@ -25893,7 +25893,7 @@
     "word": "negotiate",
     "pronunciation": "/nɪˈɡəʊ.ʃi.eɪt/ (英) ; /nɪˈɡoʊ.ʃi.eɪt/ (美)/",
     "pos": "VERB",
-    "posNote": "核心词性：谈判/协商 + 成功通过（障碍/弯道）",
+    "posNote": "谈判/协商 + 成功通过（障碍/弯道）",
     "forms": [
       {
         "form": "negotiate",
@@ -25982,7 +25982,7 @@
     "word": "nominate",
     "pronunciation": "/ˈnɒmɪneɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：提名；任命；指定",
+    "posNote": "提名；任命；指定",
     "forms": [
       {
         "form": "nominate",
@@ -26076,7 +26076,7 @@
     "word": "obligatory",
     "pronunciation": "/əˈblɪɡətɔːri/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：强制性的；必须的；惯例性的",
+    "posNote": "强制性的；必须的；惯例性的",
     "forms": [
       {
         "form": "obligatory",
@@ -26260,7 +26260,7 @@
     "word": "obtain",
     "pronunciation": "/əbˈteɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：获得、得到；（规则等）存在/通用",
+    "posNote": "获得、得到；（规则等）存在/通用",
     "forms": [
       {
         "form": "obtain",
@@ -26339,7 +26339,7 @@
     "word": "occupy",
     "pronunciation": "/ˈɒkjupaɪ/",
     "pos": "VERB",
-    "posNote": "核心词性：占据；占用；使忙于",
+    "posNote": "占据；占用；使忙于",
     "forms": [
       {
         "form": "occupy",
@@ -26433,7 +26433,7 @@
     "word": "orient",
     "pronunciation": "/ˈɔːrient/",
     "pos": "VERB",
-    "posNote": "核心词性：使朝向；使适应；定向；（the Orient）东方",
+    "posNote": "使朝向；使适应；定向；（the Orient）东方",
     "forms": [
       {
         "form": "orient",
@@ -26612,7 +26612,7 @@
     "word": "overwhelm",
     "pronunciation": "/ˌəʊ.vəˈwelm/ (英) ; /ˌoʊ.vɚˈwelm/ (美)/",
     "pos": "VERB",
-    "posNote": "核心词性：使应接不暇/压垮；以巨大优势击败",
+    "posNote": "使应接不暇/压垮；以巨大优势击败",
     "forms": [
       {
         "form": "overwhelm",
@@ -26696,7 +26696,7 @@
     "word": "paradox",
     "pronunciation": "/ˈpær.ə.dɒks/",
     "pos": "NOUN",
-    "posNote": "核心词性：悖论、自相矛盾的说法",
+    "posNote": "悖论、自相矛盾的说法",
     "forms": [
       {
         "form": "paradox",
@@ -26782,7 +26782,7 @@
     "word": "penetrate",
     "pronunciation": "/ˈpenɪtreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：穿透；渗入；洞察",
+    "posNote": "穿透；渗入；洞察",
     "forms": [
       {
         "form": "penetrate",
@@ -26871,7 +26871,7 @@
     "word": "perceive",
     "pronunciation": "/pəˈsiːv/",
     "pos": "VERB",
-    "posNote": "核心词性：通过感官或思维察觉、意识到、将……理解为",
+    "posNote": "通过感官或思维察觉、意识到、将……理解为",
     "forms": [
       {
         "form": "perceive",
@@ -26960,7 +26960,7 @@
     "word": "persist",
     "pronunciation": "/pəˈsɪst/",
     "pos": "VERB",
-    "posNote": "核心词性：坚持；持续存在",
+    "posNote": "坚持；持续存在",
     "forms": [
       {
         "form": "persist",
@@ -27049,7 +27049,7 @@
     "word": "perspire",
     "pronunciation": "/pəˈspaɪər/ (英) ; /pɚˈspaɪɚ/ (美)/",
     "pos": "VERB",
-    "posNote": "核心词性：出汗（sweat 的正式/文雅替代）",
+    "posNote": "出汗（sweat 的正式/文雅替代）",
     "forms": [
       {
         "form": "perspire",
@@ -27128,7 +27128,7 @@
     "word": "pragmatic",
     "pronunciation": "/præɡˈmætɪk/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：务实的；实用的；重实效的",
+    "posNote": "务实的；实用的；重实效的",
     "forms": [
       {
         "form": "pragmatic",
@@ -27217,7 +27217,7 @@
     "word": "precede",
     "pronunciation": "/prɪˈsiːd/",
     "pos": "VERB",
-    "posNote": "核心词性：先于；在……之前；领先",
+    "posNote": "先于；在……之前；领先",
     "forms": [
       {
         "form": "precede",
@@ -27311,7 +27311,7 @@
     "word": "preliminary",
     "pronunciation": "/prɪˈlɪmɪnəri/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：初步的；预备的",
+    "posNote": "初步的；预备的",
     "forms": [
       {
         "form": "preliminary",
@@ -27400,7 +27400,7 @@
     "word": "prescribe",
     "pronunciation": "/prɪˈskraɪb/",
     "pos": "VERB",
-    "posNote": "核心词性：开药方；规定；指示",
+    "posNote": "开药方；规定；指示",
     "forms": [
       {
         "form": "prescribe",
@@ -27489,7 +27489,7 @@
     "word": "preserve",
     "pronunciation": "/prɪˈzɜːv/",
     "pos": "VERB",
-    "posNote": "核心词性：保存；保护；保鲜；（复数）果酱；保护区",
+    "posNote": "保存；保护；保鲜；（复数）果酱；保护区",
     "forms": [
       {
         "form": "preserve",
@@ -27578,7 +27578,7 @@
     "word": "presume",
     "pronunciation": "/prɪˈzjuːm/",
     "pos": "VERB",
-    "posNote": "核心词性：假定；推定；擅自",
+    "posNote": "假定；推定；擅自",
     "forms": [
       {
         "form": "presume",
@@ -27667,7 +27667,7 @@
     "word": "proclaim",
     "pronunciation": "/prəˈkleɪm/",
     "pos": "VERB",
-    "posNote": "核心词性：宣告；宣布；表明",
+    "posNote": "宣告；宣布；表明",
     "forms": [
       {
         "form": "proclaim",
@@ -27756,7 +27756,7 @@
     "word": "profound",
     "pronunciation": "/prəˈfaʊnd/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：深刻的、深远的、深奥的（程度极深）",
+    "posNote": "深刻的、深远的、深奥的（程度极深）",
     "forms": [
       {
         "form": "profound",
@@ -27840,7 +27840,7 @@
     "word": "prolong",
     "pronunciation": "/prəˈlɒŋ/",
     "pos": "VERB",
-    "posNote": "核心词性：延长；拖长",
+    "posNote": "延长；拖长",
     "forms": [
       {
         "form": "prolong",
@@ -27924,7 +27924,7 @@
     "word": "prominent",
     "pronunciation": "/ˈprɒm.ɪ.nənt/ (英) ; /ˈprɑː.mə.nənt/ (美)/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：突出的、显著的、著名的、重要的",
+    "posNote": "突出的、显著的、著名的、重要的",
     "forms": [
       {
         "form": "prominent",
@@ -28099,7 +28099,7 @@
     "word": "receive",
     "pronunciation": "/rɪˈsiːv/",
     "pos": "VERB",
-    "posNote": "核心词性：收到/接到/受到/接待/承受（打击）",
+    "posNote": "收到/接到/受到/接待/承受（打击）",
     "forms": [
       {
         "form": "receive",
@@ -28193,7 +28193,7 @@
     "word": "reconcile",
     "pronunciation": "/ˈrekənsaɪl/",
     "pos": "VERB",
-    "posNote": "核心词性：调和；和解；使接受",
+    "posNote": "调和；和解；使接受",
     "forms": [
       {
         "form": "reconcile",
@@ -28282,7 +28282,7 @@
     "word": "reconciliation",
     "pronunciation": "/ˌrekənsɪliˈeɪʃn/",
     "pos": "NOUN",
-    "posNote": "核心词性：和解，调和，协调一致",
+    "posNote": "和解，调和，协调一致",
     "forms": [
       {
         "form": "reconciliation",
@@ -28371,7 +28371,7 @@
     "word": "redeem",
     "pronunciation": "/rɪˈdiːm/",
     "pos": "VERB",
-    "posNote": "核心词性：赎回；弥补；兑现",
+    "posNote": "赎回；弥补；兑现",
     "forms": [
       {
         "form": "redeem",
@@ -28551,7 +28551,7 @@
     "word": "refine",
     "pronunciation": "/rɪˈfaɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：提炼；精炼；完善",
+    "posNote": "提炼；精炼；完善",
     "forms": [
       {
         "form": "refine",
@@ -28640,7 +28640,7 @@
     "word": "refrain",
     "pronunciation": "/rɪˈfreɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：克制，忍住不做",
+    "posNote": "克制，忍住不做",
     "forms": [
       {
         "form": "refrain",
@@ -28724,7 +28724,7 @@
     "word": "reinforce",
     "pronunciation": "/ˌriːɪnˈfɔːs/",
     "pos": "VERB",
-    "posNote": "核心词性：加强；增援；加固",
+    "posNote": "加强；增援；加固",
     "forms": [
       {
         "form": "reinforce",
@@ -28808,7 +28808,7 @@
     "word": "relentless",
     "pronunciation": "/rɪˈlentləs/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：毫不留情的，持续的，坚韧的",
+    "posNote": "毫不留情的，持续的，坚韧的",
     "forms": [
       {
         "form": "relentless",
@@ -28897,7 +28897,7 @@
     "word": "reluctant",
     "pronunciation": "/rɪˈlʌk.tənt/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：不情愿的、勉强的、犹豫着不想做的",
+    "posNote": "不情愿的、勉强的、犹豫着不想做的",
     "forms": [
       {
         "form": "reluctant",
@@ -28981,7 +28981,7 @@
     "word": "render",
     "pronunciation": "/ˈrendər/",
     "pos": "VERB",
-    "posNote": "核心词性：致使；提供；呈交；翻译；渲染",
+    "posNote": "致使；提供；呈交；翻译；渲染",
     "forms": [
       {
         "form": "render",
@@ -29065,7 +29065,7 @@
     "word": "repel",
     "pronunciation": "/rɪˈpel/",
     "pos": "VERB",
-    "posNote": "核心词性：击退；使厌恶；排斥",
+    "posNote": "击退；使厌恶；排斥",
     "forms": [
       {
         "form": "repel",
@@ -29154,7 +29154,7 @@
     "word": "replenish",
     "pronunciation": "/rɪˈplenɪʃ/",
     "pos": "VERB",
-    "posNote": "核心词性：补充，重新装满",
+    "posNote": "补充，重新装满",
     "forms": [
       {
         "form": "replenish",
@@ -29238,7 +29238,7 @@
     "word": "reproach",
     "pronunciation": "/rɪˈprəʊtʃ/",
     "pos": "VERB",
-    "posNote": "核心词性：责备，指责",
+    "posNote": "责备，指责",
     "forms": [
       {
         "form": "reproach",
@@ -29327,7 +29327,7 @@
     "word": "resemblance",
     "pronunciation": "/rɪˈzembləns/",
     "pos": "NOUN",
-    "posNote": "核心词性：相似，相像",
+    "posNote": "相似，相像",
     "forms": [
       {
         "form": "resemblance",
@@ -29411,7 +29411,7 @@
     "word": "resent",
     "pronunciation": "/rɪˈzent/",
     "pos": "VERB",
-    "posNote": "核心词性：对…感到愤恨，怨恨",
+    "posNote": "对…感到愤恨，怨恨",
     "forms": [
       {
         "form": "resent",
@@ -29495,7 +29495,7 @@
     "word": "resentment",
     "pronunciation": "/rɪˈzentmənt/",
     "pos": "NOUN",
-    "posNote": "核心词性：怨恨，愤懑",
+    "posNote": "怨恨，愤懑",
     "forms": [
       {
         "form": "resentment",
@@ -29579,7 +29579,7 @@
     "word": "residue",
     "pronunciation": "/ˈrezɪdjuː/",
     "pos": "NOUN",
-    "posNote": "核心词性：残余物，残留物，渣滓",
+    "posNote": "残余物，残留物，渣滓",
     "forms": [
       {
         "form": "residue",
@@ -29663,7 +29663,7 @@
     "word": "resign",
     "pronunciation": "/rɪˈzaɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：辞职；屈从，顺从",
+    "posNote": "辞职；屈从，顺从",
     "forms": [
       {
         "form": "resign",
@@ -29833,7 +29833,7 @@
     "word": "resolution",
     "pronunciation": "/ˌrezəˈluːʃn/",
     "pos": "NOUN",
-    "posNote": "核心词性：决心；决议；解决；清晰度",
+    "posNote": "决心；决议；解决；清晰度",
     "forms": [
       {
         "form": "resolution",
@@ -29922,7 +29922,7 @@
     "word": "resonance",
     "pronunciation": "/ˈrezənəns/",
     "pos": "NOUN",
-    "posNote": "核心词性：共鸣，共振，回响",
+    "posNote": "共鸣，共振，回响",
     "forms": [
       {
         "form": "resonance",
@@ -30011,7 +30011,7 @@
     "word": "restore",
     "pronunciation": "/rɪˈstɔːr/",
     "pos": "VERB",
-    "posNote": "核心词性：恢复；修复；归还",
+    "posNote": "恢复；修复；归还",
     "forms": [
       {
         "form": "restore",
@@ -30100,7 +30100,7 @@
     "word": "restrain",
     "pronunciation": "/rɪˈstreɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：抑制；约束；阻止",
+    "posNote": "抑制；约束；阻止",
     "forms": [
       {
         "form": "restrain",
@@ -30189,7 +30189,7 @@
     "word": "resurrect",
     "pronunciation": "/ˌrezəˈrekt/",
     "pos": "VERB",
-    "posNote": "核心词性：使复活；重新使用，复兴",
+    "posNote": "使复活；重新使用，复兴",
     "forms": [
       {
         "form": "resurrect",
@@ -30273,7 +30273,7 @@
     "word": "retain",
     "pronunciation": "/rɪˈteɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：保留；保持；记住；聘请",
+    "posNote": "保留；保持；记住；聘请",
     "forms": [
       {
         "form": "retain",
@@ -30362,7 +30362,7 @@
     "word": "retaliate",
     "pronunciation": "/rɪˈtælieɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：报复，反击",
+    "posNote": "报复，反击",
     "forms": [
       {
         "form": "retaliate",
@@ -30451,7 +30451,7 @@
     "word": "retreat",
     "pronunciation": "/rɪˈtriːt/",
     "pos": "VERB",
-    "posNote": "核心词性：撤退，退却；静修处",
+    "posNote": "撤退，退却；静修处",
     "forms": [
       {
         "form": "retreat",
@@ -30535,7 +30535,7 @@
     "word": "retrieve",
     "pronunciation": "/rɪˈtriːv/",
     "pos": "VERB",
-    "posNote": "核心词性：取回；检索；挽回",
+    "posNote": "取回；检索；挽回",
     "forms": [
       {
         "form": "retrieve",
@@ -30624,7 +30624,7 @@
     "word": "revelation",
     "pronunciation": "/ˌrevəˈleɪʃn/",
     "pos": "NOUN",
-    "posNote": "核心词性：揭露，揭示；惊人的发现",
+    "posNote": "揭露，揭示；惊人的发现",
     "forms": [
       {
         "form": "revelation",
@@ -30713,7 +30713,7 @@
     "word": "reverse",
     "pronunciation": "/rɪˈvɜːrs/",
     "pos": "VERB",
-    "posNote": "核心词性：逆转；倒车；推翻",
+    "posNote": "逆转；倒车；推翻",
     "forms": [
       {
         "form": "reverse",
@@ -30812,7 +30812,7 @@
     "word": "revert",
     "pronunciation": "/rɪˈvɜːt/",
     "pos": "VERB",
-    "posNote": "核心词性：恢复，回到（之前的状态/话题）",
+    "posNote": "恢复，回到（之前的状态/话题）",
     "forms": [
       {
         "form": "revert",
@@ -30896,7 +30896,7 @@
     "word": "revise",
     "pronunciation": "/rɪˈvaɪz/",
     "pos": "VERB",
-    "posNote": "核心词性：修订；修改；复习（英）",
+    "posNote": "修订；修改；复习（英）",
     "forms": [
       {
         "form": "revise",
@@ -30985,7 +30985,7 @@
     "word": "revive",
     "pronunciation": "/rɪˈvaɪv/",
     "pos": "VERB",
-    "posNote": "核心词性：使复苏，使复兴，重新上演",
+    "posNote": "使复苏，使复兴，重新上演",
     "forms": [
       {
         "form": "revive",
@@ -31074,7 +31074,7 @@
     "word": "revolt",
     "pronunciation": "/rɪˈvəʊlt/",
     "pos": "VERB",
-    "posNote": "核心词性：反抗，叛乱；使厌恶",
+    "posNote": "反抗，叛乱；使厌恶",
     "forms": [
       {
         "form": "revolt",
@@ -31163,7 +31163,7 @@
     "word": "righteous",
     "pronunciation": "/ˈraɪtʃəs/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：正义的，公正的；（贬义）自以为是的",
+    "posNote": "正义的，公正的；（贬义）自以为是的",
     "forms": [
       {
         "form": "righteous",
@@ -33073,7 +33073,7 @@
     "word": "simulate",
     "pronunciation": "/ˈsɪmjuleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：模拟；仿真；假装",
+    "posNote": "模拟；仿真；假装",
     "forms": [
       {
         "form": "simulate",
@@ -34104,7 +34104,7 @@
     "word": "speculate",
     "pronunciation": "/ˈspekjuleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：推测；投机",
+    "posNote": "推测；投机",
     "forms": [
       {
         "form": "speculate",
@@ -35045,7 +35045,7 @@
     "word": "stimulate",
     "pronunciation": "/ˈstɪmjuleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：刺激；激励；促进",
+    "posNote": "刺激；激励；促进",
     "forms": [
       {
         "form": "stimulate",
@@ -35139,7 +35139,7 @@
     "word": "stipulate",
     "pronunciation": "/ˈstɪpjuleɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：规定；明确要求",
+    "posNote": "规定；明确要求",
     "forms": [
       {
         "form": "stipulate",
@@ -36193,8 +36193,8 @@
   {
     "word": "submit",
     "pronunciation": "/səbˈmɪt/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "提交;呈递;屈服,顺从",
     "forms": [
       {
         "form": "submit",
@@ -36330,7 +36330,7 @@
     "word": "subscribe",
     "pronunciation": "/səbˈskraɪb/",
     "pos": "VERB",
-    "posNote": "核心词性：订阅；同意；认购",
+    "posNote": "订阅；同意；认购",
     "forms": [
       {
         "form": "subscribe",
@@ -36595,8 +36595,8 @@
   {
     "word": "subtlety",
     "pronunciation": "/ˈsʌtlti/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "微妙;细微差别;巧妙",
     "forms": [
       {
         "form": "subtlety",
@@ -36635,8 +36635,8 @@
   {
     "word": "successor",
     "pronunciation": "/səkˈsesər/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "继任者;接替者;后继事物",
     "forms": [
       {
         "form": "successor",
@@ -36675,8 +36675,8 @@
   {
     "word": "sue",
     "pronunciation": "/suː/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "起诉;控告;诉诸法律",
     "forms": [
       {
         "form": "sue",
@@ -36720,8 +36720,8 @@
   {
     "word": "suffice",
     "pronunciation": "/səˈfaɪs/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "足够;满足需要",
     "forms": [
       {
         "form": "suffice",
@@ -36856,8 +36856,8 @@
   {
     "word": "summon",
     "pronunciation": "/ˈsʌmən/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "召唤;传唤;鼓起(勇气)",
     "forms": [
       {
         "form": "summon",
@@ -36987,8 +36987,8 @@
   {
     "word": "supervise",
     "pronunciation": "/ˈsuːpərvaɪz/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "监督;指导;管理",
     "forms": [
       {
         "form": "supervise",
@@ -37033,7 +37033,7 @@
     "word": "supplement",
     "pronunciation": "/ˈsʌplɪment/",
     "pos": "NOUN",
-    "posNote": "核心词性：补充物；增刊；附录",
+    "posNote": "补充物；增刊；附录",
     "forms": [
       {
         "form": "supplement",
@@ -37122,7 +37122,7 @@
     "word": "suppress",
     "pronunciation": "/səˈpres/",
     "pos": "VERB",
-    "posNote": "核心词性：压制；镇压；抑制",
+    "posNote": "压制；镇压；抑制",
     "forms": [
       {
         "form": "suppress",
@@ -37210,8 +37210,8 @@
   {
     "word": "surge",
     "pronunciation": "/sɜːrdʒ/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "激增;猛涨;(情绪)汹涌",
     "forms": [
       {
         "form": "surge",
@@ -37256,7 +37256,7 @@
     "word": "surpass",
     "pronunciation": "/sərˈpæs/",
     "pos": "VERB",
-    "posNote": "核心词性：超过；超越；胜过",
+    "posNote": "超过；超越；胜过",
     "forms": [
       {
         "form": "surpass",
@@ -37340,7 +37340,7 @@
     "word": "surrender",
     "pronunciation": "/səˈrendər/",
     "pos": "VERB",
-    "posNote": "核心词性：投降；交出；放弃",
+    "posNote": "投降；交出；放弃",
     "forms": [
       {
         "form": "surrender",
@@ -37418,8 +37418,8 @@
   {
     "word": "susceptible",
     "pronunciation": "/səˈseptəbl/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "易受影响的;易感的;敏感的",
     "forms": [
       {
         "form": "susceptible",
@@ -37459,7 +37459,7 @@
     "word": "suspend",
     "pronunciation": "/səˈspend/",
     "pos": "VERB",
-    "posNote": "核心词性：暂停；悬挂；使停职",
+    "posNote": "暂停；悬挂；使停职",
     "forms": [
       {
         "form": "suspend",
@@ -37547,8 +37547,8 @@
   {
     "word": "suspicious",
     "pronunciation": "/səˈspɪʃəs/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "可疑的;怀疑的;多疑的",
     "forms": [
       {
         "form": "suspicious",
@@ -37588,7 +37588,7 @@
     "word": "sustain",
     "pronunciation": "/səˈsteɪn/",
     "pos": "VERB",
-    "posNote": "核心词性：维持；支撑；承受；遭受",
+    "posNote": "维持；支撑；承受；遭受",
     "forms": [
       {
         "form": "sustain",
@@ -37676,8 +37676,8 @@
   {
     "word": "swift",
     "pronunciation": "/swɪft/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "迅速的;快速的;即刻的",
     "forms": [
       {
         "form": "swift",
@@ -37716,8 +37716,8 @@
   {
     "word": "symbolize",
     "pronunciation": "/ˈsɪmbəlaɪz/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "象征;代表;用符号表示",
     "forms": [
       {
         "form": "symbolize",
@@ -37761,8 +37761,8 @@
   {
     "word": "sympathy",
     "pronunciation": "/ˈsɪmpəθi/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "同情;共鸣;支持",
     "forms": [
       {
         "form": "sympathy",
@@ -37801,8 +37801,8 @@
   {
     "word": "syndrome",
     "pronunciation": "/ˈsɪndroʊm/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "综合征;综合症状;典型表现",
     "forms": [
       {
         "form": "syndrome",
@@ -37841,8 +37841,8 @@
   {
     "word": "synthesis",
     "pronunciation": "/ˈsɪnθəsɪs/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "综合;合成;结合",
     "forms": [
       {
         "form": "synthesis",
@@ -37881,8 +37881,8 @@
   {
     "word": "tackle",
     "pronunciation": "/ˈtækl/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "处理,应对;抢断;(与某人)交涉",
     "forms": [
       {
         "form": "tackle",
@@ -37926,8 +37926,8 @@
   {
     "word": "tangible",
     "pronunciation": "/ˈtændʒəbl/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "有形的;可触摸的;确凿的",
     "forms": [
       {
         "form": "tangible",
@@ -37966,8 +37966,8 @@
   {
     "word": "tariff",
     "pronunciation": "/ˈtærɪf/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "关税;价目表;收费标准",
     "forms": [
       {
         "form": "tariff",
@@ -38011,8 +38011,8 @@
   {
     "word": "tedious",
     "pronunciation": "/ˈtiːdiəs/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "冗长乏味的;沉闷的",
     "forms": [
       {
         "form": "tedious",
@@ -38051,8 +38051,8 @@
   {
     "word": "temper",
     "pronunciation": "/ˈtempər/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "脾气;情绪;暴躁;回火",
     "forms": [
       {
         "form": "temper",
@@ -38096,8 +38096,8 @@
   {
     "word": "temporal",
     "pronunciation": "/ˈtempərəl/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "时间的;暂时的;世俗的",
     "forms": [
       {
         "form": "temporal",
@@ -38136,8 +38136,8 @@
   {
     "word": "tempt",
     "pronunciation": "/tempt/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "VERB",
+    "posNote": "诱惑;引诱;吸引",
     "forms": [
       {
         "form": "tempt",
@@ -38181,8 +38181,8 @@
   {
     "word": "tenant",
     "pronunciation": "/ˈtenənt/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "租户;房客;承租人",
     "forms": [
       {
         "form": "tenant",
@@ -38226,8 +38226,8 @@
   {
     "word": "tendency",
     "pronunciation": "/ˈtendənsi/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "ADJECTIVE",
+    "posNote": "倾向;趋势;癖好",
     "forms": [
       {
         "form": "tendency",
@@ -38266,8 +38266,8 @@
   {
     "word": "tender",
     "pronunciation": "/ˈtendər/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "温柔的;柔和的;嫩的;敏感的",
     "forms": [
       {
         "form": "tender",
@@ -38311,8 +38311,8 @@
   {
     "word": "tension",
     "pronunciation": "/ˈtenʃən/",
-    "pos": "OTHER",
-    "posNote": "核心词性",
+    "pos": "NOUN",
+    "posNote": "紧张;张力;矛盾",
     "forms": [
       {
         "form": "tension",
@@ -38443,7 +38443,7 @@
     "word": "terminal",
     "pronunciation": "/ˈtɜːrmɪnl/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：终端的，末期的，不可治愈的",
+    "posNote": "终端的，末期的，不可治愈的",
     "forms": [
       {
         "form": "terminal",
@@ -38527,7 +38527,7 @@
     "word": "terminate",
     "pronunciation": "/ˈtɜːrmɪneɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：终止；结束；解雇",
+    "posNote": "终止；结束；解雇",
     "forms": [
       {
         "form": "terminate",
@@ -38616,7 +38616,7 @@
     "word": "terrain",
     "pronunciation": "/təˈreɪn/",
     "pos": "NOUN",
-    "posNote": "核心词性：地形，地势，地带",
+    "posNote": "地形，地势，地带",
     "forms": [
       {
         "form": "terrain",
@@ -38690,7 +38690,7 @@
     "word": "testify",
     "pronunciation": "/ˈtestɪfaɪ/",
     "pos": "VERB",
-    "posNote": "核心词性：作证，证明，表明",
+    "posNote": "作证，证明，表明",
     "forms": [
       {
         "form": "testify",
@@ -38769,7 +38769,7 @@
     "word": "testimony",
     "pronunciation": "/ˈtestɪmoʊni/",
     "pos": "NOUN",
-    "posNote": "核心词性：证词，证据，见证",
+    "posNote": "证词，证据，见证",
     "forms": [
       {
         "form": "testimony",
@@ -38848,7 +38848,7 @@
     "word": "texture",
     "pronunciation": "/ˈtekstʃər/",
     "pos": "NOUN",
-    "posNote": "核心词性：质地，纹理，质感",
+    "posNote": "质地，纹理，质感",
     "forms": [
       {
         "form": "texture",
@@ -38932,7 +38932,7 @@
     "word": "theft",
     "pronunciation": "/θeft/",
     "pos": "NOUN",
-    "posNote": "核心词性：盗窃，偷窃行为",
+    "posNote": "盗窃，偷窃行为",
     "forms": [
       {
         "form": "theft",
@@ -39021,7 +39021,7 @@
     "word": "theme",
     "pronunciation": "/θiːm/",
     "pos": "NOUN",
-    "posNote": "核心词性：主题，主旨，主旋律",
+    "posNote": "主题，主旨，主旋律",
     "forms": [
       {
         "form": "theme",
@@ -39110,7 +39110,7 @@
     "word": "therapy",
     "pronunciation": "/ˈθerəpi/",
     "pos": "NOUN",
-    "posNote": "核心词性：治疗，疗法（尤指非药物性）",
+    "posNote": "治疗，疗法（尤指非药物性）",
     "forms": [
       {
         "form": "therapy",
@@ -39194,7 +39194,7 @@
     "word": "thereafter",
     "pronunciation": "/ˌðerˈæftər/",
     "pos": "ADVERB",
-    "posNote": "核心词性：此后，从那以后",
+    "posNote": "此后，从那以后",
     "forms": [
       {
         "form": "thereafter",
@@ -39268,7 +39268,7 @@
     "word": "thereby",
     "pronunciation": "/ˌðerˈbaɪ/",
     "pos": "ADVERB",
-    "posNote": "核心词性：因此，从而，借以",
+    "posNote": "因此，从而，借以",
     "forms": [
       {
         "form": "thereby",
@@ -39428,7 +39428,7 @@
     "word": "thought-provoking",
     "pronunciation": "/ˈθɔːt prəˌvoʊkɪŋ/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：发人深省的，引人深思的",
+    "posNote": "发人深省的，引人深思的",
     "forms": [
       {
         "form": "thought-provoking",
@@ -39517,7 +39517,7 @@
     "word": "threshold",
     "pronunciation": "/ˈθreʃhoʊld/",
     "pos": "NOUN",
-    "posNote": "核心词性：门槛，临界值，开端",
+    "posNote": "门槛，临界值，开端",
     "forms": [
       {
         "form": "threshold",
@@ -39682,7 +39682,7 @@
     "word": "thrust",
     "pronunciation": "/θrʌst/",
     "pos": "VERB",
-    "posNote": "核心词性：猛推，刺入，强行推进",
+    "posNote": "猛推，刺入，强行推进",
     "forms": [
       {
         "form": "thrust",
@@ -39771,7 +39771,7 @@
     "word": "tide",
     "pronunciation": "/taɪd/",
     "pos": "NOUN",
-    "posNote": "核心词性：潮汐，潮流，趋势",
+    "posNote": "潮汐，潮流，趋势",
     "forms": [
       {
         "form": "tide",
@@ -39855,7 +39855,7 @@
     "word": "tilt",
     "pronunciation": "/tɪlt/",
     "pos": "VERB",
-    "posNote": "核心词性：倾斜，使倾斜，偏向",
+    "posNote": "倾斜，使倾斜，偏向",
     "forms": [
       {
         "form": "tilt",
@@ -39944,7 +39944,7 @@
     "word": "timber",
     "pronunciation": "/ˈtɪmbər/",
     "pos": "NOUN",
-    "posNote": "核心词性：木材，木料，林木",
+    "posNote": "木材，木料，林木",
     "forms": [
       {
         "form": "timber",
@@ -40023,7 +40023,7 @@
     "word": "timely",
     "pronunciation": "/ˈtaɪmli/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：及时的，适时的，恰逢其时的",
+    "posNote": "及时的，适时的，恰逢其时的",
     "forms": [
       {
         "form": "timely",
@@ -40112,7 +40112,7 @@
     "word": "timid",
     "pronunciation": "/ˈtɪmɪd/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：胆怯的，羞怯的，缺乏勇气的",
+    "posNote": "胆怯的，羞怯的，缺乏勇气的",
     "forms": [
       {
         "form": "timid",
@@ -40201,7 +40201,7 @@
     "word": "token",
     "pronunciation": "/ˈtoʊkən/",
     "pos": "NOUN",
-    "posNote": "核心词性：象征物，代币，标志",
+    "posNote": "象征物，代币，标志",
     "forms": [
       {
         "form": "token",
@@ -40290,7 +40290,7 @@
     "word": "tolerate",
     "pronunciation": "/ˈtɑːləreɪt/",
     "pos": "VERB",
-    "posNote": "核心词性：容忍，忍受，容许",
+    "posNote": "容忍，忍受，容许",
     "forms": [
       {
         "form": "tolerate",
@@ -40389,7 +40389,7 @@
     "word": "topic",
     "pronunciation": "/ˈtɑːpɪk/",
     "pos": "NOUN",
-    "posNote": "核心词性：话题，主题，论题",
+    "posNote": "话题，主题，论题",
     "forms": [
       {
         "form": "topic",
@@ -40473,7 +40473,7 @@
     "word": "torment",
     "pronunciation": "/ˈtɔːrment/",
     "pos": "NOUN",
-    "posNote": "核心词性：折磨，痛苦，苦恼",
+    "posNote": "折磨，痛苦，苦恼",
     "forms": [
       {
         "form": "torment",
@@ -40566,8 +40566,8 @@
   {
     "word": "toss",
     "pronunciation": "/tɒs/",
-    "pos": "OTHER",
-    "posNote": "tosses",
+    "pos": "VERB",
+    "posNote": "扔;抛;掷(硬币);翻来覆去",
     "forms": [
       {
         "form": "名词",
@@ -40622,8 +40622,8 @@
   {
     "word": "tough",
     "pronunciation": "/tʌf/",
-    "pos": "OTHER",
-    "posNote": "toughs",
+    "pos": "ADJECTIVE",
+    "posNote": "坚韧的;困难的;强硬的",
     "forms": [
       {
         "form": "名词",
@@ -40678,8 +40678,8 @@
   {
     "word": "toxic",
     "pronunciation": "/ˈtɒksɪk/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "有毒的;有害的;中毒的",
     "forms": [],
     "coreImage": "名词\ttoxin\n\n副词\ttoxically\n\n工业废水排入河流，鱼翻了白肚；一个同事每天阴阳怪气，全办公室氛围变差；一段感情里对方总是贬低你，你越来越没自信。toxic 的画面就是\"毒\"——化学的毒伤害身体，言语的毒伤害心灵，环境的毒腐蚀一切。它最精确的语义是：像一个慢性毒药一样，持续地、渗透性地破坏周围的一切。它不是瞬间爆炸，而是缓慢扩散的毒素。",
     "atomicCore": "",
@@ -40728,8 +40728,8 @@
   {
     "word": "trace",
     "pronunciation": "/treɪs/",
-    "pos": "OTHER",
-    "posNote": "traces traced tracing",
+    "pos": "NOUN",
+    "posNote": "痕迹;微量;追溯;描摹",
     "forms": [
       {
         "form": "动词",
@@ -40784,8 +40784,8 @@
   {
     "word": "track",
     "pronunciation": "/træk/",
-    "pos": "OTHER",
-    "posNote": "tracks tracked tracking",
+    "pos": "NOUN",
+    "posNote": "轨道;踪迹;(音乐的)曲目;追踪",
     "forms": [
       {
         "form": "动词",
@@ -40840,8 +40840,8 @@
   {
     "word": "trait",
     "pronunciation": "/treɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "特征;特点;特性",
     "forms": [],
     "coreImage": "一个人的基因里有几万种表达的可能性，但不是每一种都会显现出来——最终浮现在你脸上的、表现在你行为里的那些稳定的特征，就叫做 trait。trait 和 trace 共享同一个拉丁词根 tractus（拉、拖），你可以想象：一个人的性格在漫长的生活中被反复\"拉拽\"出几道固定的痕迹，这些磨不掉的纹路就是 trait。它最核心的感觉是：稳定的、可遗传的或长期形成的、能够定义你是谁的特征。",
     "atomicCore": "",
@@ -40890,8 +40890,8 @@
   {
     "word": "trample",
     "pronunciation": "/ˈtræmpəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "踩踏;践踏;无视",
     "forms": [],
     "coreImage": "一群人挤着往前冲，你摔倒了，无数只脚从你身上踩过去——每一下都带着全身的重量，每一下都不在乎你疼不疼。这就是 trample：不是轻轻地踩一下，而是反复地、重重地、带有碾压性质地从上面踏过。它物理上是\"踩踏\"，道德上是\"践踏\"。trample on someone's rights 就是像踩地毯一样把人家的权利踩在脚下——粗鲁、傲慢、满不在乎。",
     "atomicCore": "",
@@ -40940,8 +40940,8 @@
   {
     "word": "tranquil",
     "pronunciation": "/ˈtræŋkwɪl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "安静的;平静的;安宁的",
     "forms": [],
     "coreImage": "副词\ttranquilly\n\n名词\ttranquilizer\n\n湖面没有一丝风，倒映着雪山和松林，你坐在岸边，连自己的呼吸都听得见——那种\"没有波纹、没有声音、没有打扰\"的极致平静，就是 tranquil。它不是\"无聊的安静\"，也不是\"死寂的沉默\"，而是一种主动的、饱满的、舒适的宁静。你们常说的\"岁月静好\"，最贴切的英文词就是这个 tranquil——它带有一种自然的、田园牧歌式的诗意。",
     "atomicCore": "",
@@ -40990,8 +40990,8 @@
   {
     "word": "transaction",
     "pronunciation": "/trænˈzækʃən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "交易;业务;办理",
     "forms": [],
     "coreImage": "动词\ttransact\ttransacts\ttransacted\ttransacting\n\n你把钱给对方，对方把东西给你——这两件事在时间和空间上绑定在一起，必须同时完成才算数。这个\"跨过空间的一手交钱一手交货\"的动作就是 transaction 的物理画面。trans- 是\"跨越、穿过\"，action 是\"行动\"，合起来就是\"跨越双方的互动行为\"。小到你在便利店扫码买一瓶水，大到银行之间几亿资金划转，本质上都是：信息/物品/金钱在两个实体之间完成了一次封装好的交换。",
     "atomicCore": "",
@@ -41040,8 +41040,8 @@
   {
     "word": "transcend",
     "pronunciation": "/trænˈsend/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "超越;超出;胜过",
     "forms": [],
     "coreImage": "形容词\ttranscendental\n\n名词\ttranscendence\n\n你看到一座山，别人告诉你\"翻不过去的\"，但你翻过去了；你学一门语言，有人说\"这个年纪学不会了\"，但你会了；所有人都在讨论对立和分歧，而你找到了一个视角，把这些东西统一起来了。transcend 的画面是：一个事物从当前的限制中\"升\"出去，超出了既有的边界、范畴、理解框架。trans- 是跨越，scend 是攀爬上升——合起来就是\"爬过去、升上去、超出去\"。",
     "atomicCore": "",
@@ -41090,8 +41090,8 @@
   {
     "word": "transcript",
     "pronunciation": "/ˈtrænskrɪpt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "抄本;文字记录;成绩单",
     "forms": [],
     "coreImage": "动词\ttranscribe\ttranscribes\ttranscribed\ttranscribing\n\n名词\ttranscriber\n\n一段采访录音，你把它从头到尾用文字打出来——每一个字、每一个停顿、每一个\"嗯\"都变成纸上的符号。这个\"把声音变成文字\"的动作就是 transcribe，产物就是 transcript。trans- 是\"跨越、转换\"，scribe/script 是\"写\"，合起来就是从一种形式（声音）跨越到另一种形式（文字）。大学成绩单为什么也叫 transcript？因为它是把你这四年的所有表现\"誊写\"成一张纸质的记录。",
     "atomicCore": "",
@@ -41140,8 +41140,8 @@
   {
     "word": "transfer",
     "pronunciation": "/trænsˈfɜːr/ (v.) /ˈtrænsfɜːr/ (n.)/",
-    "pos": "OTHER",
-    "posNote": "transfers",
+    "pos": "NOUN",
+    "posNote": "转移;调动;转让;转账",
     "forms": [
       {
         "form": "名词",
@@ -41196,8 +41196,8 @@
   {
     "word": "transform",
     "pronunciation": "/trænsˈfɔːrm/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "使改变;使转化;变形",
     "forms": [],
     "coreImage": "形容词\ttransformative\n\n形容词\ttransformational\n\n名词\ttransformer\n\n一只毛毛虫把自己封在茧里，出来的时候变成了一只蝴蝶——外形、结构、生命形态都完全不同了。这就是和 transfer 最根本的区别：transfer 是\"搬个地方\"，transform 是\"换个样子\"。trans- 是\"跨越、改变\"，form 是\"形状、形态\"——合在一起就是一个事物\"跨入了一种新的形态\"。它不是修修补补，不是涂涂抹抹，而是从里到外的、彻底的、令人目瞪口呆的变形。",
     "atomicCore": "",
@@ -41246,8 +41246,8 @@
   {
     "word": "transient",
     "pronunciation": "/ˈtrænziənt/",
-    "pos": "OTHER",
-    "posNote": "transients",
+    "pos": "ADJECTIVE",
+    "posNote": "短暂的;转瞬即逝的;过往的",
     "forms": [
       {
         "form": "名词",
@@ -41302,8 +41302,8 @@
   {
     "word": "transit",
     "pronunciation": "/ˈtrænzɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "运输;过境;公共交通系统",
     "forms": [],
     "coreImage": "动词\ttransit\ttransits\ttransited\ttransiting\n\n动词\ttransition (见下篇)\n\n快递包裹从广州仓库装车，上高速，进中转站，换车，再上高速——这段时间里包裹处于\"在途中、已出发但未到达\"的中间状态。机场里有专门的 transit lounge（中转休息区），供那些只是在此换乘、不会入境的乘客等待。transit 的画面就是：你已经在路上了，但还没到。它不是起点也不是终点，是那个长长的、无聊的、货物在卡车车厢里的中间过程。",
     "atomicCore": "",
@@ -41352,8 +41352,8 @@
   {
     "word": "transition",
     "pronunciation": "/trænˈzɪʃən/",
-    "pos": "OTHER",
-    "posNote": "transitions transitioned transitioning",
+    "pos": "NOUN",
+    "posNote": "过渡;转变;变迁",
     "forms": [
       {
         "form": "动词",
@@ -41408,8 +41408,8 @@
   {
     "word": "transmit",
     "pronunciation": "/trænsˈmɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "传送;传播;发射;传染",
     "forms": [],
     "coreImage": "名词\ttransmitter\n\n名词\ttransmittal\n\n你对着手机说一句话，声波被编码成电磁信号，从你的手机\"穿过\"空气到达基站，再\"穿过\"光纤到达对方手机，解码还原成声音。这个\"把信息/能量/疾病从一端发送穿越空间到达另一端\"的过程就是 transmit。trans- 是\"穿过\"，mit 是\"发送\"——把东西发送出去让它穿过空间到另一边。无论是电台发射信号、蚊子传播疟疾、还是你把家族手艺传给下一代，背后都是同一个动作：一端发出，中间穿过，另一端收到。",
     "atomicCore": "",
@@ -41458,8 +41458,8 @@
   {
     "word": "transparent",
     "pronunciation": "/trænsˈpærənt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "透明的;显而易见的;公开的",
     "forms": [],
     "coreImage": "副词\ttransparently\n\n你把手机放在一块玻璃板上，玻璃下面是什么看得一清二楚。transparent 的画面是：光可以\"穿过\"（trans-）\"出现\"（parent 来自拉丁语 parere 出现）——光线穿过物体，后面的东西清清楚楚地\"出现\"在你眼前。从物理的透明（玻璃、水）到商业中的透明（财务报表公开），到一个人毫无遮拦的坦诚（transparent personality），核心都一样：不隐瞒、不遮挡、你看就看，没什么见不得人的。",
     "atomicCore": "",
@@ -41508,8 +41508,8 @@
   {
     "word": "transplant",
     "pronunciation": "/trænsˈplɑːnt/ (v.) /ˈtrænsplɑːnt/ (n.)/",
-    "pos": "OTHER",
-    "posNote": "transplants",
+    "pos": "VERB",
+    "posNote": "移植;移栽;迁移",
     "forms": [
       {
         "form": "名词",
@@ -41564,8 +41564,8 @@
   {
     "word": "transport",
     "pronunciation": "/trænsˈpɔːrt/ (v.) /ˈtrænspɔːrt/ (n.)/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "运输;交通工具;运送",
     "forms": [],
     "coreImage": "名词\ttransportation\n\n名词\ttransporter\n\n一艘货轮从上海港起锚，装着一万个集装箱横跨太平洋，三周后抵达洛杉矶港。车厢里坐着上下班的白领，地铁把他们从城市的东边\"搬运\"到西边。这个\"用工具/车辆把大量的人或物从一地搬运到另一地\"的大规模、系统性运输就是 transport。transfer 强调的是\"归属变了\"，transport 强调的是\"位置变了\"——而且通常是依靠运输工具、带有系统性和规模感的移动。",
     "atomicCore": "",
@@ -41614,8 +41614,8 @@
   {
     "word": "trap",
     "pronunciation": "/træp/",
-    "pos": "OTHER",
-    "posNote": "traps trapped trapping",
+    "pos": "NOUN",
+    "posNote": "陷阱;圈套;困住",
     "forms": [
       {
         "form": "动词",
@@ -41670,8 +41670,8 @@
   {
     "word": "trauma",
     "pronunciation": "/ˈtrɔːmə/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "创伤;(精神)外伤;损伤",
     "forms": [],
     "coreImage": "副词\ttraumatically\n\n动词\ttraumatize\ttraumatizes\ttraumatized\ttraumatizing\n\n一场车祸之后，身体上的伤口愈合了，但每次经过那个十字路口，你的心会突然收紧、手心出汗、呼吸急促——身体的伤好了，但记忆的\"伤\"刻在了神经系统里。trauma 在希腊语里就是\"伤口\"的意思。医学上指身体受到的外伤（physical trauma），心理学上指精神受到的、留下持久伤害的强烈冲击（psychological trauma）。两者的共同点是：一件事\"穿透\"了你的防御系统，留下了无法自行愈合的伤害。",
     "atomicCore": "",
@@ -41720,8 +41720,8 @@
   {
     "word": "traverse",
     "pronunciation": "/trəˈvɜːrs/",
-    "pos": "OTHER",
-    "posNote": "traverses",
+    "pos": "VERB",
+    "posNote": "横穿;穿越;横跨",
     "forms": [
       {
         "form": "名词",
@@ -41776,8 +41776,8 @@
   {
     "word": "treason",
     "pronunciation": "/ˈtriːzən/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "叛国罪;谋反;背叛",
     "forms": [],
     "coreImage": "形容词\ttreasonous\n\n国王最信任的将军，手握兵权，深夜打开城门，放了敌军进来。这不是背叛一个朋友那么简单——一个人背叛了他发了誓要保护的国家或君主实体。treason 的法律定义是\"公民对其效忠的国家发动战争、或向其敌人提供帮助和便利\"，它比 betrayal 严重得多：betrayal 伤的是心，treason 撼的是国。在中国文化里，最接近的词是\"叛国\"——不是对不起一个人，而是对不起整个国家实体。",
     "atomicCore": "",
@@ -41826,8 +41826,8 @@
   {
     "word": "treasure",
     "pronunciation": "/ˈtreʒər/",
-    "pos": "OTHER",
-    "posNote": "treasures treasured treasuring",
+    "pos": "NOUN",
+    "posNote": "财富;珍宝;珍惜",
     "forms": [
       {
         "form": "动词",
@@ -41882,8 +41882,8 @@
   {
     "word": "treat",
     "pronunciation": "/triːt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "对待;治疗;款待;视为",
     "forms": [],
     "coreImage": "派生\ttreatment n. 对待 治疗\ttreaty n. 条约\tmistreat v. 虐待\n\n对某人或某物采取一种特定的态度或行动方式，带有\"主动施加影响\"的意味。无论是\"治疗疾病\"还是\"招待朋友\"，核心都是将对象置于某种处理流程之中。",
     "atomicCore": "",
@@ -41928,7 +41928,7 @@
   {
     "word": "treaty",
     "pronunciation": "/ˈtriːti/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "treatment n. 对待 治疗",
     "forms": [
       {
@@ -41985,8 +41985,8 @@
   {
     "word": "tremendous",
     "pronunciation": "/trɪˈmendəs/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "巨大的;极大的;极好的",
     "forms": [],
     "coreImage": "词源\t拉丁语 tremendus \"令人颤抖的\"\n\n表示事物在规模、程度、影响力上超出常规，大到令人感到震撼甚至敬畏。不是中性的\"大\"，而是带有情感冲击力的\"惊人地大\"。比 very big 强烈得多，含赞叹或震惊的情绪。",
     "atomicCore": "",
@@ -42031,8 +42031,8 @@
   {
     "word": "trend",
     "pronunciation": "/trend/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "趋势;趋向;时尚",
     "forms": [],
     "coreImage": "派生\ttrendy adj. 时髦的\ttrending adj. 热门的\n\n搭配\teconomic trend 经济趋势\tfashion trend 时尚潮流\tset a trend 引领潮流\n\n事物在时间轴上呈现的方向性变化，类似河流有流向。可以是大到几十年的社会变迁，也可以是小到社交媒体的当日热点。核心是\"数据或现象沿着某个方向持续移动\"的动态感。",
     "atomicCore": "",
@@ -42077,8 +42077,8 @@
   {
     "word": "trial",
     "pronunciation": "/ˈtraɪəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "审判;试验;考验",
     "forms": [],
     "coreImage": "搭配\tclinical trial 临床试验\ttrial period 试用期\tstand trial 受审\n\n短语\ttrial and error 反复试验 试错法\n\n把某人或某物放进一个测试场景中，通过实际检验来验证其价值、能力或有罪与否。核心是\"在正式定论前先走一遍流程\"，无论是法庭上的审判还是软件的试用期。",
     "atomicCore": "",
@@ -42123,7 +42123,7 @@
   {
     "word": "tribe",
     "pronunciation": "/traɪb/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "tribalism n. 部落主义",
     "forms": [
       {
@@ -42175,7 +42175,7 @@
   {
     "word": "tribute",
     "pronunciation": "/ˈtrɪbjuːt/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "attribute v./n. 归因/属性",
     "forms": [
       {
@@ -42232,8 +42232,8 @@
   {
     "word": "trigger",
     "pronunciation": "/ˈtrɪɡər/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "触发;引起;(枪的)扳机",
     "forms": [],
     "coreImage": "派生\ttriggered adj. 被触发的\ttrigger-happy 好战的\n\n搭配\ttrigger a reaction 引发反应\tpull the trigger 扣动扳机\n\n原义是枪的扳机，轻轻一扣就引发巨大的后果。引申为任何能够瞬间启动某个事件、情绪或反应的\"开关\"。核心特征是因果关系中的\"直接性\"和\"突发性\"——一个微小动作导致连锁反应。",
     "atomicCore": "",
@@ -42278,8 +42278,8 @@
   {
     "word": "trim",
     "pronunciation": "/trɪm/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "修剪;削减;整齐的",
     "forms": [],
     "coreImage": "形容词\t整齐的 苗条的\n\n派生\ttrimmer n. 修剪器\ttrimming n. 修剪下来的部分\n\n去掉多余的部分，使整体更加整洁、精干。可以是一把剪刀修剪头发，也可以是财务上削减开支。核心是\"减法美学\"——通过去除冗余让事物呈现出最佳状态，不大改结构而只是修边幅。",
     "atomicCore": "",
@@ -42324,8 +42324,8 @@
   {
     "word": "triumph",
     "pronunciation": "/ˈtraɪʌmf/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "胜利;成功;喜悦",
     "forms": [],
     "coreImage": "派生\ttriumphant adj. 胜利的 得意洋洋的\ttriumphal adj. 庆祝胜利的\n\n搭配\ta triumph over adversity 战胜逆境\ttriumph over sb/sth 战胜...\n\n不仅是赢了，而是赢得漂亮、赢得彻底，带有强烈的荣耀感和情感满足。比 victory 多了庆祝的氛围和\"扬眉吐气\"的情绪色彩。罗马将军的凯旋游行是这个词的本源意象——胜者接受全场欢呼。",
     "atomicCore": "",
@@ -42370,8 +42370,8 @@
   {
     "word": "trivial",
     "pronunciation": "/ˈtrɪviəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "琐碎的;不重要的;平凡的",
     "forms": [],
     "coreImage": "派生\ttriviality n. 琐事 微不足道\ttrivialize v. 使...显得不重要\n\n词源\t拉丁语 trivium \"三岔路口\"引申为\"公共的 普通的\"\n\n事物小到不值得关注或讨论，缺乏实质性的分量。既可以描述事实和细节\"无关紧要\"，也可以贬义地形容话题或作品\"肤浅无深度\"。核心判断是\"这件事值不值得花时间\"——答案如果是否定的，就是 trivial。",
     "atomicCore": "",
@@ -42416,8 +42416,8 @@
   {
     "word": "troop",
     "pronunciation": "/truːp/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "军队;部队;一群",
     "forms": [],
     "coreImage": "复数\ttroops 军队 部队（尤指士兵）\n\n搭配\tdeploy troops 部署军队\twithdraw troops 撤军\n\n一群人以有序的方式集体移动或行动。核心词义与\"成群的移动\"紧密相连。作名词时最突出的是军事含义，但动词用法 trooped into/out of 保留了\"一群人像士兵列队一样集体移动\"的原始画面感。",
     "atomicCore": "",
@@ -42462,7 +42462,7 @@
   {
     "word": "trophy",
     "pronunciation": "/ˈtroʊfi/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "trophy hunter 战利品猎人",
     "forms": [
       {
@@ -42519,8 +42519,8 @@
   {
     "word": "tropical",
     "pronunciation": "/ˈtrɒpɪkəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "热带的;炎热的",
     "forms": [],
     "coreImage": "派生\ttropicalization n. 热带化\n\n搭配\ttropical climate 热带气候\ttropical rainforest 热带雨林\n\n地理学上指地球南北回归线之间的区域，感官上则唤起\"炎热、潮湿、繁茂植被\"的画面。不光是温度，还包含湿度、生物多样性和那种\"万物疯长\"的生命力。旅游宣传中的 tropical paradise 更是注入了浪漫想象。",
     "atomicCore": "",
@@ -42565,8 +42565,8 @@
   {
     "word": "trouble",
     "pronunciation": "/ˈtrʌbəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "麻烦;问题;烦恼;费心",
     "forms": [],
     "coreImage": "派生\ttroublesome adj. 麻烦的\ttroubled adj. 不安的 混乱的\n\n搭配\tin trouble 陷入麻烦\ttake the trouble to do 费心去做\n\n生活状态从\"顺畅\"变成了\"卡住\"——无论是机器出故障、人际有矛盾还是内心焦虑，都是一种需要额外消耗精力去解决的异常状态。比 problem 多了主观烦恼的色彩，你不光要解决问题，还要忍受它带来的不愉快。",
     "atomicCore": "",
@@ -42611,8 +42611,8 @@
   {
     "word": "trumpet",
     "pronunciation": "/ˈtrʌmpɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "小号;喇叭;宣扬",
     "forms": [],
     "coreImage": "派生\ttrumpeter n. 小号手\n\n搭配\tblow one's own trumpet 自吹自擂\ttrumpet a success 宣扬成功\n\n一种能够发出嘹亮高昂声音的铜管乐器，引申为\"把某事广而告之、大声宣扬\"的动作。核心是\"把音量调大引起注意\"——大象用鼻子 trumpeting 是发出吼叫，人们 trumpet 自己的成就则是唯恐他人不知。",
     "atomicCore": "",
@@ -42657,8 +42657,8 @@
   {
     "word": "trust",
     "pronunciation": "/trʌst/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "信任;信赖;信托;委托",
     "forms": [],
     "coreImage": "派生\ttrustworthy adj. 值得信赖的\ttrustee n. 受托人\tmistrust n./v. 不信任\n\n搭配\ttrust fund 信托基金\ttrust in 信奉 相信\tbreach of trust 背信\n\n人际关系的基石——你愿意把自己的脆弱一面交给对方，相信对方不会利用或背叛。法律上的 trust 把这种\"托付\"制度化。核心是\"放心地把重要东西交给他人\"，与\"怀疑\"和\"控制\"构成对立。",
     "atomicCore": "",
@@ -42703,7 +42703,7 @@
   {
     "word": "tuition",
     "pronunciation": "/tjuˈɪʃən/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "tutorial n. 辅导课 教程",
     "forms": [
       {
@@ -42760,8 +42760,8 @@
   {
     "word": "tumble",
     "pronunciation": "/ˈtʌmbəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "跌倒;暴跌;翻滚",
     "forms": [],
     "coreImage": "派生\ttumbler n. 平底杯 杂技演员\ttumbledown adj. 摇摇欲坠的\n\n搭配\ttumble down 倒塌 崩溃\ttumble dryer 滚筒烘干机\n\n身体或数值以不受控制的方式向下坠落，带有旋转和翻腾的意味。不是垂直的 drop，而是像从楼梯上滚下来那样带有翻滚和不规则的轨迹。可以形容人摔倒、股价暴跌，也可以形容东西倒塌或崩溃。",
     "atomicCore": "",
@@ -42806,7 +42806,7 @@
   {
     "word": "turmoil",
     "pronunciation": "/ˈtɜːmɔɪl/",
-    "pos": "OTHER",
+    "pos": "NOUN",
     "posNote": "economic turmoil 经济混乱",
     "forms": [
       {
@@ -42863,8 +42863,8 @@
   {
     "word": "twist",
     "pronunciation": "/twɪst/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "扭曲;转动;拧;转折",
     "forms": [],
     "coreImage": "派生\ttwisted adj. 扭曲的 病态的\ttwister n. 龙卷风 骗子\n\n搭配\ttwist the truth 歪曲事实\tplot twist 剧情反转\n\n对某物施加旋转的力，使其改变原有的直线形态。物理上是\"拧毛巾\"那样把直的变弯的，抽象上是\"曲解事实\"把真话变味。最出彩的是叙事中的 plot twist——故事沿着你的预期走了半路突然急转弯。",
     "atomicCore": "",
@@ -42909,8 +42909,8 @@
   {
     "word": "typical",
     "pronunciation": "/ˈtɪpɪkəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "典型的;特有的;平常的",
     "forms": [],
     "coreImage": "派生\tatypical adj. 非典型的\ttypify v. 代表 是...的典型\n\n搭配\ta typical example 典型例子\ttypical of sb 某人一贯的风格\n\n某个事物身上集中体现了它所属类别的共同特征，看到它就知道这个类别\"大致是什么样的\"。不是最好也不是最差的，而是最能代表\"平均水平\"的那个。typical of sb 则带有\"果不其然，他就那样\"的语气。",
     "atomicCore": "",
@@ -42955,7 +42955,7 @@
   {
     "word": "tyranny",
     "pronunciation": "/ˈtɪrəni/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "tyrannical adj. 专横的 tyrannize v. 施行暴政",
     "forms": [
       {
@@ -43102,8 +43102,8 @@
   {
     "word": "ultimate",
     "pronunciation": "/ˈʌltɪmət/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "最终的;根本的;终极的",
     "forms": [],
     "coreImage": "副词\tultimately 最终 根本上\n\n搭配\tthe ultimate goal 终极目标\tthe ultimate sacrifice 最大的牺牲\n\n一条路径走到尽头、再也无法超越的那个点。时间上是\"最后的\"，等级上是\"最高的\"，本质上是最根本的。everything else is just a step towards it. ultimate frisbee 的命名也是这个逻辑——它被视为飞盘运动的顶级形式。",
     "atomicCore": "",
@@ -43234,8 +43234,8 @@
   {
     "word": "undergo",
     "pronunciation": "/ˌʌndərˈɡoʊ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "经历;经受;接受",
     "forms": [],
     "coreImage": "underwent\tv. 过去式\n\nundergone\tv. 过去分词\n\nundergoing\tv. 现在分词\n\n一个人被推进一条黑暗的隧道——手术台、入职培训、漫长的法律程序。他不是主动走进去的，而是被某种不可抗力按在轨道上，必须从头到尾经历整个过程。undergo 的核心画面是\"被动承受一段必经之路\"：你不是导演，你是那条流水线上的工件。这种\"被加工感\"是它区别于 experience 的关键——experience 可以是愉快的旅行，undergo 更像是一次你无法拒绝的身体检查。",
     "atomicCore": "",
@@ -43302,8 +43302,8 @@
   {
     "word": "undermine",
     "pronunciation": "/ˌʌndərˈmaɪn/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "削弱;暗中破坏;逐渐侵蚀",
     "forms": [],
     "coreImage": "undermined\tv. 过去式/过去分词\n\nundermining\tv. 现在分词\n\n海边的悬崖——表面看起来完整坚固，但底部的岩石正被潮水日复一日地掏空。undermine 的画面来自采矿工程：矿工在岩层下面挖掘（mine under），让整座山从根基开始崩塌。这个词的精髓在于\"从下方、从暗处、逐步地\"破坏，而不是正面一击。一个微笑的同事在老板面前\"无意\"提到你的失误，就是在 undermine 你——他没有公开攻击你，但他在挖你的墙角。每一次微小的侵蚀都不显眼，但积累到一定程度，整座大厦轰然倒塌。",
     "atomicCore": "",
@@ -43370,8 +43370,8 @@
   {
     "word": "undertake",
     "pronunciation": "/ˌʌndərˈteɪk/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "承担;从事;承诺",
     "forms": [],
     "coreImage": "undertook\tv. 过去式\n\nundertaken\tv. 过去分词\n\nundertaking\tv. 现在分词/n. 事业；任务\n\n一位年轻建筑师站在一片荒地前，手里拿着一卷蓝图。客户说：\"你能在两年内把这座图书馆建起来吗？\"她说：\"I undertake to complete it.\"——这句话不是在描述一个计划，而是在签下一份只有天空看得见的契约。undergo 是被动承受，undertake 是主动扛起。它的画面里有重量感：你把一件大事扛上肩膀，承诺要从头走到尾。从词源看，under + take 字面意思是\"从下面接住\"——就像有人递给你一个沉重的箱子，你从下方托住它，表示\"我接了，我负责到底\"。",
     "atomicCore": "",
@@ -43438,8 +43438,8 @@
   {
     "word": "undo",
     "pronunciation": "/ʌnˈduː/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "撤销;解开;消除…的影响",
     "forms": [],
     "coreImage": "undid\tv. 过去式\n\nundone\tv. 过去分词\n\nundoing\tn. 毁灭的原因；失败的原因\n\n一个孩子花了整个下午用积木搭了一座城堡。他的弟弟走过来，手指轻轻一推——三秒钟，城堡变回一地散落的积木。undo 的魔力就在于\"时间倒流\"：你系好的鞋带可以 undo，你签的合同可以 undo，你苦心经营的事业可以被一个错误的决定 undo。它的词源简单到残酷——un（否定）+ do（做）——\"把做过的取消掉\"。但更值得玩味的是 undo 作为\"毁掉\"的含义：不是暴力摧毁，而是消除之前一切努力的效果，让事物回到原点——有时这是救赎（undo the damage），有时是毁灭（his greed was his undoing）。",
     "atomicCore": "",
@@ -43506,8 +43506,8 @@
   {
     "word": "unfold",
     "pronunciation": "/ʌnˈfoʊld/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "展开;打开;逐渐显露",
     "forms": [],
     "coreImage": "unfolded\tv. 过去式/过去分词\n\nunfolding\tv. 现在分词/adj. 正在展开的\n\n你手里有一张被叠成小方块的纸。你开始打开它——一层、两层、三层——每翻开一层，画面就多露出一部分。这就是 unfold：不是一次性全部呈现，而是像花朵绽放一样，信息或事件按照内在的逻辑顺序一层一层地打开。故事的 unfold 是读者无法跳过的过程，危机的 unfold 是现场直播中你眼睁睁看着却无法快进的恐怖。unfold 的美学在于\"过程本身就是意义\"——你不只是想知道结局，你要看每一层如何被翻开。从\"折叠\"（fold）到\"展开\"（unfold），这个动作暗含了一种有序的、由内向外的揭示。",
     "atomicCore": "",
@@ -43574,8 +43574,8 @@
   {
     "word": "unify",
     "pronunciation": "/ˈjuːnɪfaɪ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "统一;使一体化;使相同",
     "forms": [],
     "coreImage": "unified\tv. 过去式/过去分词/adj. 统一的\n\nunifying\tv. 现在分词/adj. 起统一作用的\n\nunification\tn. 统一；一致\n\n一地的碎陶片——看不出它们曾经是什么。一位修复师把它们一片一片拼起来，当最后一片碎片归位时，一个完整的花瓶重新出现。unify 的工作就是\"把分散的东西聚成一个整体\"。它的拉丁词根 uni-（一）+ facere（做）直白地宣告了它的使命：让多个变成一。但 unify 不是简单地堆在一起，而是创造一个系统——一个统一的理论（unified theory）让零散的现象彼此关联；一个统一的团队（unified team）让各自为战的成员朝同一个方向前进。unify 暗示的是\"结构性的融合\"，而非简单的拼凑。",
     "atomicCore": "",
@@ -43805,8 +43805,8 @@
   {
     "word": "unleash",
     "pronunciation": "/ʌnˈliːʃ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "释放;发泄;解开(皮带)",
     "forms": [],
     "coreImage": "unleashed\tv. 过去式/过去分词\n\nunleashing\tv. 现在分词\n\nleash\tn. （拴狗的）皮带；束缚\n\n一条杜宾犬，颈上的皮带紧绷到极限，肌肉在皮毛下滚动，低沉的咆哮从胸腔深处传来。主人弯下腰，\"咔嗒\"一声解开搭扣——下一秒，黑色的闪电射了出去。unleash 就是那个\"咔嗒\"的瞬间：蓄积已久的力量被突然解除束缚，以不可阻挡之势释放。词源直白到不需要解释——un（解除）+ leash（狗绳）——\"解开狗绳\"。但这个词的威力在于它的引申义：你 unleash 的不只是狗，可以是怒火、创造力、破坏力、一场战争。一旦 unleash，就没有回头路——你不能再把狗塞回绳子里。",
     "atomicCore": "",
@@ -43957,8 +43957,8 @@
   {
     "word": "unravel",
     "pronunciation": "/ʌnˈrævəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "解开;解决;瓦解",
     "forms": [],
     "coreImage": "unravelled/unraveled\tv. 过去式/过去分词（英/美）\n\nunravelling/unraveling\tv. 现在分词\n\n一件手工编织的毛衣，袖口上有一个小小的线头。你捏住它，轻轻一拉——第一排线圈松开了。你继续拉——线越拉越长，毛衣的纹理一点点消失，最后你手里只剩一团卷曲的毛线。unravel 描述的正是这个过程：从一个小缺口开始，一个紧密相连的结构逐渐解体，回到它最初原材料的状态。这个词可以用于毛衣、绳结（物理），也可以用于完美的计划、精心编织的谎言、一个人的精神防线（抽象）。unravel 的精髓在于\"连锁崩溃\"——一旦开始，环环相扣，无法中途停止。",
     "atomicCore": "",
@@ -44025,7 +44025,7 @@
   {
     "word": "upcoming",
     "pronunciation": "/ˈʌpkʌmɪŋ/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "即将发生；被提及",
     "forms": [
       {
@@ -44099,8 +44099,8 @@
   {
     "word": "update",
     "pronunciation": "/ˌʌpˈdeɪt/ ; /ˈʌpdeɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "更新;使现代化;最新信息",
     "forms": [],
     "coreImage": "updated\tv. 过去式/过去分词/adj. 更新的\n\nupdating\tv. 现在分词\n\nup-to-date\tadj.\t最新的；与时俱进的\n\n你的手机屏幕上弹出一个红色小圆点，里面一个数字。你点进去——\"系统更新可用\"。几秒钟后，进度条开始爬行，旧的代码被替换，新的功能被安装。update 的本质是\"用最新版本覆盖旧版本\"——信息、软件、状态、知识，一切需要保持新度的东西都需要 update。但这个词不仅仅是技术词汇：你跟老友 catch up 时交换 life updates，老板在周会上要求 project updates，你 update your resume 因为你决定换工作。每一个 update 都是时间轴上的一个快照节点——\"截至此刻的最新状态\"。",
     "atomicCore": "",
@@ -44167,8 +44167,8 @@
   {
     "word": "uphold",
     "pronunciation": "/ʌpˈhoʊld/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "支持;维护;维持(原判)",
     "forms": [],
     "coreImage": "upheld\tv. 过去式/过去分词\n\nupholding\tv. 现在分词\n\nupholder\tn.\t维护者；支持者\n\n一座古老的石桥横跨峡谷，桥身已历经数百年风雨。每一代人都要在自己的时代里检查桥墩、修补裂缝、加固拱顶——不是因为他们建了这座桥，而是因为他们接过了守护它的责任。uphold 就是\"伸出手托住正在下坠的东西\"——法律、传统、原则、尊严，这些抽象的东西没有物理质量，但同样会因忽视而坍塌。一个法官 uphold 法律裁决，不是因为她同意判决内容，而是因为她捍卫法律体系的完整性。一个公民 uphold 民主原则，不是抽象的宣言，而是每一次投票、每一次发声、每一次拒绝沉默。",
     "atomicCore": "",
@@ -44477,8 +44477,8 @@
   {
     "word": "utilize",
     "pronunciation": "/ˈjuːtəlaɪz/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "利用;使用",
     "forms": [],
     "coreImage": "utilized\tv. 过去式/过去分词\n\nutilizing\tv. 现在分词\n\nutilization\tn.\t利用；使用（率）\n\nutility\tn.\t实用；公用事业\n\n你有一把瑞士军刀。大部分人只会用主刀，偶尔用一下开瓶器。但一个生存专家拿起你的刀，他看到了十三种工具，而且知道在哪些场景下该用哪一个。utilize 就是\"把东西用到它被设计的以及未被设计但可以实现的目的上\"。它不是简单的 use——use 是拿起刀切苹果，utilize 是利用刀背当螺丝刀、用镊子夹细物、用木塞钻打孔。utilize 的精髓在于\"物尽其用\"——发现物品或资源的非常规用途，最大化其效能。太空工程师 utilize 空间中每一滴水的循环利用；战略家 utilize 对手的弱点转化为己方优势。",
     "atomicCore": "",
@@ -44792,8 +44792,8 @@
   {
     "word": "vacuum",
     "pronunciation": "/ˈvækjuːm/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "真空;空白;用吸尘器清扫",
     "forms": [],
     "coreImage": "vacuumed\tv. 过去式/过去分词\n\nvacuuming\tv. 现在分词\n\nvacuous\tadj.\t空洞的；无思想的\n\n你把一个玻璃罐子里的空气全部抽出来——最后一丝气体分子被泵走的那一刻，罐子里什么都不剩了。没有空气，没有声音，没有生命。这就是 vacuum——自然界中最接近\"无\"的状态。但 vacuum 在人类社会中比物理真空更危险：权力真空（power vacuum）会让最野蛮的人冲进来填补，道德真空（moral vacuum）会让一个文明在不知不觉中堕落。vacuum 不是安静的中立区，它是自然界最不稳定的状态——因为\"无\"不可能持久，任何东西都会涌入以填满它。",
     "atomicCore": "",
@@ -45030,8 +45030,8 @@
   {
     "word": "validate",
     "pronunciation": "/ˈvælɪdeɪt/",
-    "pos": "",
-    "posNote": "",
+    "pos": "VERB",
+    "posNote": "验证;确认;使生效",
     "forms": [],
     "coreImage": "validated\tv. 过去式/过去分词\n\nvalidating\tv. 现在分词\n\nvalidation\tn.\t验证；认可；确认\n\nvalid\tadj.\t有效的；合理的；有根据的\n\nvalidity\tn.\t有效性；合理性；合法性\n\ninvalid\tadj.\t无效的（反义）\n\n你排了两个小时的队，把证件递给窗口后面的工作人员。他看了一眼，在键盘上敲了几下，然后把证件还给你，点了点头。那一瞬间，你的身份从\"声称你是谁的人\"变成了\"被系统承认你是谁的人\"。validate 的核心就是这一\"认证\"动作——把\"可能性\"变成\"确定性\"，把\"声称\"变成\"事实\"，把\"感觉\"变成\"被认可的权利\"。你的地铁票需要 validate（在打卡机上盖戳生效），你的实验数据需要 validate（被独立复现），你的情感需要 validate（被在乎的人认可\"你的难过是合理的\"）。validate 是现代社会最隐秘的权力——谁能 validate 你的存在，谁就拥有定义\"真实\"的权力。",
     "atomicCore": "",
@@ -45098,8 +45098,8 @@
   {
     "word": "vanish",
     "pronunciation": "/ˈvænɪʃ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "消失;不见;突然消逝",
     "forms": [],
     "coreImage": "vanished\tv. 过去式/过去分词/adj. 消失的；灭绝的\n\nvanishing\tv. 现在分词/adj. 正在消失的\n\nvanishingly\tadv.\t极小地；趋近于零地\n\n魔术师站在舞台上，手帕在空中一抖——\"噗\"的一声，鸽子不见了。你就是眨了一下眼睛，但它确确实实消失了。vanish 不是\"慢慢地看不见\"（那是 fade），不是\"暂时藏起来\"（那是 hide），而是\"从存在状态直接切换到不存在状态\"。vanished civilization 是一个曾经辉煌的文明如今在丛林深处只剩几块石头；vanishing species 是离灭绝只剩一步的物种。vanish 有一种不可逆的终极感——消失的东西不一定找得回来。而在数学中，vanishing point（消失点）是透视画中平行线在天际汇合的那一点——vanish 在此成了几何学的基石：无限远就是零。",
     "atomicCore": "",
@@ -45344,8 +45344,8 @@
   {
     "word": "verify",
     "pronunciation": "/ˈverɪfaɪ/",
-    "pos": "",
-    "posNote": "",
+    "pos": "ADJECTIVE",
+    "posNote": "核实;验证;查证",
     "forms": [],
     "coreImage": "verified\tv. 过去式/过去分词/adj. 经核实的\n\nverifying\tv. 现在分词\n\nverification\tn.\t核实；验证；证明\n\nverifiable\tadj.\t可核实的；可验证的\n\nveracity\tn.\t真实；诚实\n\nverdict\tn.\t裁决（词源相关：说出真相）\n\n你收到一封邮件——\"恭喜，你中了100万美元！请点击链接领取。\"你的手悬停在鼠标上，但你的大脑中的\"核实系统\"启动了——你打开银行官网（不是邮件里的链接），搜索该活动的官方公告，查看发件人的域名。这就是 verify：相信，但要先验证。verify 来自拉丁语 verus（真实）+ facere（做）——\"把真实做出来\"。它不是\"感觉是对的\"，而是\"经过检查，确认是对的\"。在信息时代，verify 是抵御谎言的最后一道防线——记者 verify 信息来源，科学家 verify 实验数据，审计员 verify 每一笔账目。每一次你不转发未经核实的信息，你都在 verify。",
     "atomicCore": "",
@@ -45493,8 +45493,8 @@
   {
     "word": "vessel",
     "pronunciation": "/ˈvesəl/",
-    "pos": "",
-    "posNote": "",
+    "pos": "NOUN",
+    "posNote": "船;容器;血管",
     "forms": [],
     "coreImage": "blood vessel\tn.\t血管\n\nfishing vessel\tn.\t渔船\n\ncargo vessel\tn.\t货船\n\n一只陶罐，端坐在博物馆的玻璃展柜里。两千年前，它曾装过橄榄油、葡萄酒、谷物和清水。后来它被随葬在地下，在上个世纪被考古学家挖出来。现在它是空的，但它的\"容纳功能\"使它跨越了从实用器到文物的转换。vessel 是所有\"中空的、用来装东西的物体\"的总称——茶杯是 vessel，静脉是 vessel，一艘横跨大洋的集装箱船也是 vessel。vessel 迷人的地方在于，它的身份从来不由它自己定义，而是由它\"装了什么\"来决定。一个空的 vessel 只是一个形状；装了血的血管叫生命，装了货物的船叫贸易，装了酒液的陶罐叫文明。",
     "atomicCore": "",
@@ -48133,7 +48133,7 @@
   {
     "word": "whereby",
     "pronunciation": "/werˈbaɪ/",
-    "pos": "OTHER",
+    "pos": "ADJECTIVE",
     "posNote": "凭此；借以；根据那个",
     "forms": [
       {
@@ -50257,7 +50257,7 @@
     "word": "casually",
     "pronunciation": "/ˈkæʒ.ju.ə.li/",
     "pos": "ADVERB",
-    "posNote": "核心词性：随意地、漫不经心地、偶然地",
+    "posNote": "随意地、漫不经心地、偶然地",
     "forms": [
       {
         "form": "casually",
@@ -50374,7 +50374,7 @@
     "word": "prompt",
     "pronunciation": "/prɑːmpt/",
     "pos": "VERB",
-    "posNote": "核心词性：促使、推动、引起（兼形容词、名词）",
+    "posNote": "促使、推动、引起（兼形容词、名词）",
     "forms": [
       {
         "form": "prompt",
@@ -50477,7 +50477,7 @@
     "word": "harsh",
     "pronunciation": "/hɑːrʃ/",
     "pos": "ADJECTIVE",
-    "posNote": "核心词性：严厉的、刺耳的、严酷的",
+    "posNote": "严厉的、刺耳的、严酷的",
     "forms": [
       {
         "form": "harsh",

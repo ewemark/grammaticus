@@ -194,7 +194,7 @@ export default function Grammar() {
                   switch (block.type) {
                     case 'h3':
                       return (
-                        <h3 key={i} style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: '#f5a97f', margin: 'var(--space-xxl) 0 var(--space-md)', paddingLeft: 12, borderLeft: '3px solid #f5a97f' }}>
+                        <h3 key={i} style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 700, color: 'var(--color-doc-accent)', margin: 'var(--space-xxl) 0 var(--space-md)', paddingLeft: 12, borderLeft: '3px solid var(--color-doc-accent)' }}>
                           {block.text}
                         </h3>
                       )
@@ -212,17 +212,17 @@ export default function Grammar() {
                       )
                     case 'larry':
                       return (
-                        <div key={i} style={{ borderLeft: '3px solid #f5a97f', padding: '12px 18px', margin: 'var(--space-md) 0', background: 'rgba(245,169,127,0.06)', borderRadius: '0 8px 8px 0' }}>
-                          <span style={{ color: '#f5a97f', fontWeight: 700, fontSize: 13 }}>💬 Larry：</span>
-                          <span style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: '#eed49f', fontStyle: 'italic', whiteSpace: 'pre-line' }}>
+                        <div key={i} style={{ borderLeft: '3px solid var(--color-doc-accent)', padding: '12px 18px', margin: 'var(--space-md) 0', background: 'color-mix(in srgb, var(--color-doc-accent) 8%, transparent)', borderRadius: '0 8px 8px 0' }}>
+                          <span style={{ color: 'var(--color-doc-accent)', fontWeight: 700, fontSize: 13 }}>Larry：</span>
+                          <span style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-doc-quote)', fontStyle: 'italic', whiteSpace: 'pre-line' }}>
                             {block.text}
                           </span>
                         </div>
                       )
                     case 'tip':
                       return (
-                        <div key={i} style={{ borderLeft: '3px solid #f5a97f', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'rgba(245,169,127,0.06)', borderRadius: '0 6px 6px 0' }}>
-                          <span style={{ color: '#f5a97f', fontWeight: 700, fontSize: 13 }}>🔑 关键理解：</span>
+                        <div key={i} style={{ borderLeft: '3px solid var(--color-doc-accent)', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'color-mix(in srgb, var(--color-doc-accent) 8%, transparent)', borderRadius: '0 6px 6px 0' }}>
+                          <span style={{ color: 'var(--color-doc-accent)', fontWeight: 700, fontSize: 13 }}>关键理解：</span>
                           <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
                             {block.text}
                           </span>
@@ -230,8 +230,8 @@ export default function Grammar() {
                       )
                     case 'warn':
                       return (
-                        <div key={i} style={{ borderLeft: '3px solid #ed8796', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'rgba(237,135,150,0.06)', borderRadius: '0 6px 6px 0' }}>
-                          <span style={{ color: '#ed8796', fontWeight: 700, fontSize: 13 }}>⚠️ 常见错误：</span>
+                        <div key={i} style={{ borderLeft: '3px solid var(--color-doc-warn)', padding: '12px 16px', margin: 'var(--space-md) 0', background: 'color-mix(in srgb, var(--color-doc-warn) 8%, transparent)', borderRadius: '0 6px 6px 0' }}>
+                          <span style={{ color: 'var(--color-doc-warn)', fontWeight: 700, fontSize: 13 }}>常见错误：</span>
                           <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
                             {block.text}
                           </span>
@@ -239,7 +239,7 @@ export default function Grammar() {
                       )
                     case 'point':
                       return (
-                        <div key={i} style={{ background: '#0d0d0d', borderRadius: 8, padding: '14px 18px', margin: 'var(--space-md) 0', border: '1px solid var(--color-border)' }}>
+                        <div key={i} style={{ background: 'var(--color-canvas-soft)', borderRadius: 8, padding: '14px 18px', margin: 'var(--space-md) 0', border: '1px solid var(--color-border)' }}>
                           <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
                             {block.text!}
                           </span>
@@ -247,8 +247,8 @@ export default function Grammar() {
                       )
                     case 'summary':
                       return (
-                        <div key={i} style={{ background: 'rgba(166,218,149,0.04)', border: '1px solid rgba(166,218,149,0.25)', borderRadius: 10, padding: 18, margin: 'var(--space-lg) 0' }}>
-                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#a6da95', margin: '0 0 8px' }}>总结</h4>
+                        <div key={i} style={{ background: 'color-mix(in srgb, var(--color-doc-success) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--color-doc-success) 30%, transparent)', borderRadius: 10, padding: 18, margin: 'var(--space-lg) 0' }}>
+                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-doc-success)', margin: '0 0 8px' }}>总结</h4>
                           <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
                             {block.text!}
                           </span>
@@ -257,7 +257,7 @@ export default function Grammar() {
                     case 'exercise':
                       return (
                         <div key={i} style={{ border: '1px dashed var(--color-border)', borderRadius: 10, padding: 18, margin: 'var(--space-lg) 0' }}>
-                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: '#a6da95', margin: '0 0 8px' }}>练习</h4>
+                          <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, color: 'var(--color-doc-success)', margin: '0 0 8px' }}>练习</h4>
                           <span style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
                             {block.text}
                           </span>
@@ -265,8 +265,8 @@ export default function Grammar() {
                       )
                     case 'example':
                       return (
-                        <div key={i} style={{ padding: '10px 16px', margin: 'var(--space-sm) 0 var(--space-sm) 16px', background: 'rgba(124,159,245,0.06)', borderRadius: 6 }}>
-                          <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: '#a6da95', fontFamily: 'Georgia, serif', margin: '0 0 4px' }}>
+                        <div key={i} style={{ padding: '10px 16px', margin: 'var(--space-sm) 0 var(--space-sm) 16px', background: 'color-mix(in srgb, var(--color-doc-info) 8%, transparent)', borderRadius: 6 }}>
+                          <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-doc-success)', fontFamily: 'Georgia, serif', margin: '0 0 4px' }}>
                             {block.en}
                           </p>
                           {block.cn && (
@@ -284,7 +284,7 @@ export default function Grammar() {
                               <thead>
                                 <tr>
                                   {block.headers!.map((h, j) => (
-                                    <th key={j} style={{ border: '1px solid var(--color-border)', padding: '8px 12px', textAlign: 'left', background: '#0d0d0d', color: '#7c9ff5', fontWeight: 700, fontFamily: 'var(--font-display)', fontSize: 12, textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>
+                                    <th key={j} style={{ border: '1px solid var(--color-border)', padding: '8px 12px', textAlign: 'left', background: 'var(--color-canvas-soft)', color: 'var(--color-doc-info)', fontWeight: 700, fontFamily: 'var(--font-display)', fontSize: 12, textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>
                                       {h}
                                     </th>
                                   ))}
@@ -380,7 +380,7 @@ export default function Grammar() {
 
       {/* Video player overlay */}
       {playing && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: '#000000', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'var(--color-canvas)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>
               {parseVideo(playing).title}

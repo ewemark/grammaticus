@@ -1,11 +1,11 @@
 import { type HTMLAttributes } from 'react'
 import styles from './Card.module.css'
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {}
+type CardProps = HTMLAttributes<HTMLDivElement>
 
 /**
- * Card — SpaceX 风格
- * 暗面卡片，极细边框，无阴影，无装饰
+ * Card — 极细边框卡片
+ * 颜色随主题变量自适应（深色/浅色）
  */
 export default function Card({ className, children, ...rest }: CardProps) {
   const cls = [styles.card, className].filter(Boolean).join(' ')

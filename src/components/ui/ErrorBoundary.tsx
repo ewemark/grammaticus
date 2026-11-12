@@ -22,7 +22,7 @@ export default class ErrorBoundary extends Component<Props, State> {
           color: 'var(--color-text-secondary)',
         }}>
           <p style={{ fontSize: 24, fontWeight: 700, color: 'var(--color-text)', marginBottom: 16 }}>Something went wrong</p>
-          <p style={{ fontSize: 14, marginBottom: 24, color: '#ef4444' }}>{this.state.error.message}</p>
+          <p style={{ fontSize: 14, marginBottom: 24, color: 'var(--color-error)' }}>{this.state.error.message}</p>
           <button
             onClick={() => this.setState({ error: null })}
             style={{

@@ -1,25 +1,29 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import { register, login, setToken, getToken } from '../api/auth'
 import { syncToServer } from '../api/userData'
 import { getBookmarks } from '../utils/bookmarks'
 import { getReadArticles } from '../utils/readingProgress'
 import { getSavedArticles } from '../utils/savedArticles'
+import { syncAllNotesToCloud } from '../utils/notes'
+import { syncAllDictionaryToCloud } from '../utils/dictionary'
 
 export default function Login() {
-  const navigate = useNavigate()
   const [mode, setMode] = useState<'login' | 'register'>('login')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [authed, setAuthed] = useState(() => !!getToken())
 
-  if (getToken()) {
-    navigate('/', { replace: true })
-    return null
-  }
+  // Redirect away if a token appears while this page is mounted (e.g. after login)
+  useEffect(() => {
+    if (getToken()) setAuthed(true)
+  }, [loading])
+
+  if (authed) return <Navigate to="/" replace />
 
   const handleSubmit = async () => {
     setError('')
@@ -35,10 +39,14 @@ export default function Login() {
       if (bookmarks.length || progress.length || saved.length) {
         syncToServer({ bookmarks, progress, saved }).catch(() => {})
       }
-      navigate('/', { replace: true })
-    } catch (e: any) {
-      try { setError(JSON.parse(e.message).error || '操作失败') }
-      catch { setError(e.message || '操作失败') }
+      // Learning space assets → cloud backup (fire-and-forget)
+      syncAllNotesToCloud()
+      syncAllDictionaryToCloud()
+      setAuthed(true) // triggers <Navigate to="/" replace />
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : ''
+      try { setError(JSON.parse(msg).error || '操作失败') }
+      catch { setError(msg || '操作失败') }
     }
     setLoading(false)
   }
@@ -48,14 +56,14 @@ export default function Login() {
     padding: '14px 0',
     fontFamily: 'var(--font-body)',
     fontSize: 15,
-    color: '#ffffff',
+    color: 'var(--color-text)',
     background: 'transparent',
     border: 'none',
-    border: 'none',
+    borderBottom: '1px solid var(--color-border)',
     borderRadius: 0,
     outline: 'none',
     boxSizing: 'border-box',
-    caretColor: '#ffffff',
+    caretColor: 'var(--color-text)',
   }
 
   const labelStyle: React.CSSProperties = {
@@ -64,7 +72,7 @@ export default function Login() {
     fontWeight: 700,
     letterSpacing: 'var(--tracking-micro)',
     textTransform: 'uppercase',
-    color: 'rgba(255,255,255,0.3)',
+    color: 'var(--color-text-secondary)',
     marginBottom: 4,
   }
 
@@ -75,7 +83,7 @@ export default function Login() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#000000',
+      background: 'var(--color-canvas)',
       overflow: 'hidden',
       padding: '40px 20px',
       boxSizing: 'border-box',
@@ -89,14 +97,14 @@ export default function Login() {
         @keyframes float5 { 0%,100%{transform:translate(0,-60px)scale(1)} 50%{transform:translate(-40px,60px)scale(1.5)} }
         @keyframes float6 { 0%,100%{transform:translate(50px,0)scale(1)} 50%{transform:translate(-50px,80px)scale(1.3)} }
       `}</style>
-      <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(80,80,80,0.6) 0%,transparent 70%)',top:'10%',left:'5%',filter:'blur(60px)',animation:'float1 18s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:400,height:400,borderRadius:'50%',background:'radial-gradient(circle,rgba(220,220,220,0.55) 0%,transparent 70%)',top:'50%',right:'0%',filter:'blur(80px)',animation:'float2 22s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:600,height:600,borderRadius:'50%',background:'radial-gradient(circle,rgba(20,20,20,0.7) 0%,transparent 70%)',bottom:'-10%',left:'20%',filter:'blur(70px)',animation:'float3 20s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:350,height:350,borderRadius:'50%',background:'radial-gradient(circle,rgba(200,200,200,0.45) 0%,transparent 70%)',top:'20%',right:'15%',filter:'blur(50px)',animation:'float4 16s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:250,height:250,borderRadius:'50%',background:'radial-gradient(circle,rgba(240,240,240,0.5) 0%,transparent 70%)',bottom:'20%',right:'25%',filter:'blur(45px)',animation:'float5 14s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:300,height:300,borderRadius:'50%',background:'radial-gradient(circle,rgba(255,255,255,0.35) 0%,transparent 70%)',top:'40%',left:'40%',filter:'blur(55px)',animation:'float6 24s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',background:'radial-gradient(circle,rgba(230,230,230,0.5) 0%,transparent 70%)',top:'0%',left:'30%',filter:'blur(40px)',animation:'float5 12s ease-in-out infinite'}}/>
-      <div style={{position:'absolute',width:450,height:450,borderRadius:'50%',background:'radial-gradient(circle,rgba(15,15,15,0.65) 0%,transparent 70%)',bottom:'30%',left:'-5%',filter:'blur(65px)',animation:'float1 26s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 30%, transparent) 0%,transparent 70%)',top:'10%',left:'5%',filter:'blur(60px)',animation:'float1 18s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:400,height:400,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 25%, transparent) 0%,transparent 70%)',top:'50%',right:'0%',filter:'blur(80px)',animation:'float2 22s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:600,height:600,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 35%, transparent) 0%,transparent 70%)',bottom:'-10%',left:'20%',filter:'blur(70px)',animation:'float3 20s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:350,height:350,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 22%, transparent) 0%,transparent 70%)',top:'20%',right:'15%',filter:'blur(50px)',animation:'float4 16s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:250,height:250,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 20%, transparent) 0%,transparent 70%)',bottom:'20%',right:'25%',filter:'blur(45px)',animation:'float5 14s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:300,height:300,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 18%, transparent) 0%,transparent 70%)',top:'40%',left:'40%',filter:'blur(55px)',animation:'float6 24s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 24%, transparent) 0%,transparent 70%)',top:'0%',left:'30%',filter:'blur(40px)',animation:'float5 12s ease-in-out infinite'}}/>
+      <div style={{position:'absolute',width:450,height:450,borderRadius:'50%',background:'radial-gradient(circle,color-mix(in srgb, var(--color-text) 32%, transparent) 0%,transparent 70%)',bottom:'30%',left:'-5%',filter:'blur(65px)',animation:'float1 26s ease-in-out infinite'}}/>
 
       {/* Content — all inline, no card wrapper */}
       <div style={{
@@ -112,7 +120,7 @@ export default function Login() {
             fontSize: 36,
             fontWeight: 700,
             letterSpacing: '0.18em',
-            color: 'rgba(255,255,255,0.9)',
+            color: 'var(--color-text)',
             margin: '0 0 16px',
           }}>
             GRAMMATICUS
@@ -120,7 +128,7 @@ export default function Login() {
           <p style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'var(--text-body)',
-            color: 'rgba(255,255,255,0.3)',
+            color: 'var(--color-text-secondary)',
             margin: 0,
             lineHeight: 1.7,
           }}>
@@ -139,7 +147,7 @@ export default function Login() {
             border: 'none',
             cursor: 'pointer',
             background: 'none',
-            color: mode === 'login' ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.2)',
+            color: mode === 'login' ? 'var(--color-text)' : 'var(--color-text-secondary)',
             padding: 0,
             transition: 'color 0.4s',
           }}>
@@ -154,7 +162,7 @@ export default function Login() {
             border: 'none',
             cursor: 'pointer',
             background: 'none',
-            color: mode === 'register' ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.2)',
+            color: mode === 'register' ? 'var(--color-text)' : 'var(--color-text-secondary)',
             padding: 0,
             transition: 'color 0.4s',
           }}>
@@ -205,9 +213,9 @@ export default function Login() {
           {error && (
             <p style={{
               fontSize: 12,
-              color: '#ed8796',
+              color: 'var(--color-error)',
               margin: 0,
-              opacity: 0.8,
+              opacity: 0.9,
             }}>
               {error}
             </p>

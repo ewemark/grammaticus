@@ -39,7 +39,7 @@ router.get('/list', (_req, res) => {
         // Derive display name from filename (remove extension, replace _/- with space)
         const displayName = file
           .replace(/\.mp4$/i, '')
-          .replace(/[_\-]/g, ' ')
+          .replace(/[_-]/g, ' ')
           .replace(/\b\d{2}\s+/g, '')  // strip leading order numbers like "01 "
           .replace(/\b\w/g, (c) => c.toUpperCase())
         videos.push({ filename: file, displayName, size: stat.size })

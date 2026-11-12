@@ -112,6 +112,56 @@ db.exec(`
     UNIQUE(user_id, article_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS notes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    note_id TEXT NOT NULL,
+    type TEXT NOT NULL DEFAULT 'text',
+    title TEXT NOT NULL DEFAULT '',
+    content TEXT NOT NULL DEFAULT '',
+    analysis TEXT NOT NULL DEFAULT '',
+    source_word TEXT NOT NULL DEFAULT '',
+    source_text TEXT NOT NULL DEFAULT '',
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE(user_id, note_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_notes_user ON notes(user_id, updated_at);
+
+  CREATE TABLE IF NOT EXISTS dictionary (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    word TEXT NOT NULL COLLATE NOCASE,
+    meaning TEXT NOT NULL DEFAULT '',
+    pos TEXT NOT NULL DEFAULT '',
+    my_understanding TEXT NOT NULL DEFAULT '',
+    ai_feedback TEXT NOT NULL DEFAULT '',
+    my_example TEXT NOT NULL DEFAULT '',
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE(user_id, word),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
 `)
+
+/* ── Migrations ─────────────────────────────────────────────── */
+
+// documents.user_id: per-user upload ownership (added after initial release)
+const docCols = db.prepare(`PRAGMA table_info(documents)`).all() as { name: string }[]
+if (!docCols.some((c) => c.name === 'user_id')) {
+  db.exec(`ALTER TABLE documents ADD COLUMN user_id INTEGER REFERENCES users(id)`)
+}
+
+// notes.tags: topic tags for note discovery (added after initial release)
+const noteCols = db.prepare(`PRAGMA table_info(notes)`).all() as { name: string }[]
+if (!noteCols.some((c) => c.name === 'tags')) {
+  db.exec(`ALTER TABLE notes ADD COLUMN tags TEXT NOT NULL DEFAULT '[]'`)
+}
+if (!noteCols.some((c) => c.name === 'starred')) {
+  db.exec(`ALTER TABLE notes ADD COLUMN starred INTEGER NOT NULL DEFAULT 0`)
+}
 
 export default db

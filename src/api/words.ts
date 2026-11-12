@@ -1,4 +1,4 @@
-import { request } from './client'
+import { request, ApiError } from './client'
 import type { RichWordData } from '../types/word'
 
 /** 基础单词 */
@@ -13,12 +13,18 @@ export interface EnglishWord {
 export interface WordDetailResponse {
   simple: EnglishWord | null
   rich: RichWordData | null
+  /** 未收录时的建议词（词形还原/相近拼写） */
+  suggestions?: EnglishWord[]
 }
 
 /** 单词列表（GET /api/words 返回） */
 export interface WordListResponse {
   words: EnglishWord[]
   total: number
+  /** 命中的搜索层级: prefix / lemma / contains / none / list */
+  tier?: string
+  /** tier=none 时的"你是不是要找"建议 */
+  suggestions?: EnglishWord[]
 }
 
 /**
@@ -45,9 +51,21 @@ export async function fetchWordsByPOS(pos: string): Promise<EnglishWord[]> {
   return words
 }
 
-/** 获取单个单词详情（含 rich 数据） */
+/** 获取单个单词详情（含 rich 数据）；404 时返回建议词而非抛错 */
 export async function fetchWord(word: string): Promise<WordDetailResponse> {
-  return request<WordDetailResponse>(`/words/${encodeURIComponent(word)}`)
+  try {
+    return await request<WordDetailResponse>(`/words/${encodeURIComponent(word)}`)
+  } catch (e) {
+    if (e instanceof ApiError && e.status === 404) {
+      let suggestions: EnglishWord[] = []
+      try {
+        const body = JSON.parse(e.message) as { suggestions?: EnglishWord[] }
+        suggestions = body.suggestions ?? []
+      } catch { /* body may not be JSON */ }
+      return { simple: null, rich: null, suggestions }
+    }
+    throw e
+  }
 }
 
 /** 获取富文本单词数据（从 fetchWord 中提取） */
@@ -60,4 +78,12 @@ export async function fetchRichWord(word: string): Promise<RichWordData | null> 
 export async function searchWords(query: string): Promise<EnglishWord[]> {
   if (!query.trim()) return []
   return request<EnglishWord[]>(`/words/autocomplete?q=${encodeURIComponent(query.trim())}`)
+}
+
+/** 获取单词发音音频 URL（服务端已验证域名可信） */
+export async function fetchAudioUrl(word: string, accent: 'uk' | 'us'): Promise<string> {
+  const { audioUrl } = await request<{ audioUrl: string }>(
+    `/words/${encodeURIComponent(word)}/audio?accent=${accent}`
+  )
+  return audioUrl
 }

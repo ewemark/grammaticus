@@ -1,577 +1,484 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { analyzeGrammar, analyzePreposition, analyzeGrammarAPI, analyzePrepositionAPI } from '../../utils/analyze'
+import { saveNote } from '../../utils/notes'
+import { getActiveSession } from '../../utils/readingSession'
+import { toast } from './Toast'
+import WordPopup from './WordPopup'
+import ReadingSummary from './ReadingSummary'
 
-type AnalysisMode = 'grammar' | 'preposition' | 'word' | null
-type PanelView = 'menu' | 'selecting' | 'result'
+/**
+ * FloatingAction — 全局工具环悬浮球
+ *
+ * 定位:快速字典 + 笔记全局入口(分析功能已归阅读器侧栏)
+ * 交互:点球 → 三个功能圆环绕弹出(半圆,朝屏幕内侧):
+ *   ① 快速查词:进入选词模式,页面选中单词 → 弹迷你词卡(含"我的积累")
+ *   ② 速记笔记:近球小卡片,自动带入页面选中文字作引用
+ *   ③ 笔记总览:阅读会话中亮起,打开 ReadingSummary(精华总结)
+ * 悬浮球可拖拽、吸边、半透明待机、位置持久化。
+ */
+
+type Side = 'left' | 'right'
+type RadialAction = 'word' | 'note' | 'summary'
+
+const FAB_POS_KEY = 'grammaticus-fab-pos'
+const FAB_SIZE = 44
+const RADIUS_X = 78
+const RADIUS_Y = 68
+const CIRCLE = 48
+
+function loadFabPos(): { side: Side; y: number } {
+  try {
+    const s = localStorage.getItem(FAB_POS_KEY)
+    if (s) {
+      const p = JSON.parse(s) as { side?: Side; y?: number }
+      if ((p.side === 'left' || p.side === 'right') && typeof p.y === 'number') {
+        return { side: p.side, y: clampY(p.y) }
+      }
+    }
+  } catch { /* localStorage unavailable */ }
+  return { side: 'right', y: Math.round(window.innerHeight * 0.6) }
+}
+
+/** 限制 y 使工具环圆圈不出屏 */
+function clampY(y: number): number {
+  return Math.min(Math.max(y, 70), Math.max(70, window.innerHeight - FAB_SIZE - 70))
+}
 
 export default function FloatingAction() {
-  const [open, setOpen] = useState(false)
-  const [mode, setMode] = useState<AnalysisMode>(null)
-  const [view, setView] = useState<PanelView>('menu')
-  const [text, setText] = useState('')
-  const [result, setResult] = useState('')
-  // Panel size — persisted in localStorage, drag-to-resize
-  const [panelSize, setPanelSize] = useState(() => {
-    try {
-      const saved = localStorage.getItem('grammaticus-panel-size')
-      if (saved) return JSON.parse(saved) as { w: number; h: number }
-    } catch { /* ignore — localStorage may be unavailable */ }
-    return { w: 360, h: 480 }
-  })
-  const [pos, setPos] = useState({ x: 0, y: 0 })
-  const [panelPos, setPanelPos] = useState<'left' | 'right'>('right')
-  const [initialized, setInitialized] = useState(false)
+  const [open, setOpen] = useState(false)               // 工具环展开
+  const [action, setAction] = useState<RadialAction | null>(null)
+  const [hoveredCircle, setHoveredCircle] = useState<RadialAction | null>(null)
+  const [popup, setPopup] = useState<{ word: string; rect: DOMRect } | null>(null)
+  const [noteQuote, setNoteQuote] = useState('')
+  const [noteText, setNoteText] = useState('')
+  const [noteSaved, setNoteSaved] = useState(false)
+
+  const [fabPos, setFabPos] = useState(loadFabPos)
+  const [dragXY, setDragXY] = useState<{ x: number; y: number } | null>(null)
+  const [hovered, setHovered] = useState(false)
   const [captured, setCaptured] = useState(false)
+
   const dragging = useRef(false)
-  const resizing = useRef(false)
-  const resizeDir = useRef({ dx: 1, dy: 1 })  // direction: 1 = grow, -1 = shrink from that edge
-  const offset = useRef({ x: 0, y: 0 })
+  const dragStart = useRef({ x: 0, y: 0 })
+  const grabOffset = useRef({ x: 0, y: 0 })
   const moved = useRef(false)
   const fabRef = useRef<HTMLButtonElement>(null)
-  const panelRef = useRef<HTMLDivElement>(null)
-  const analysisId = useRef(0)
-  const navigate = useNavigate()
+  const rootRef = useRef<HTMLDivElement>(null)
 
-  // Font scale based on panel width (1.0 at 360px default)
-  const fontSizeScale = panelSize.w / 360
-
-  // Persist panel size
+  /* ── 位置持久化 ── */
   useEffect(() => {
-    localStorage.setItem('grammaticus-panel-size', JSON.stringify(panelSize))
-  }, [panelSize])
+    if (dragXY) return
+    try { localStorage.setItem(FAB_POS_KEY, JSON.stringify(fabPos)) } catch { /* ignore */ }
+  }, [fabPos, dragXY])
 
-  // Resize handlers — dx/dy direction: 1=grow, -1=shrink from that edge
-  const onResizeDown = (dxDir: number, dyDir: number) => (e: React.PointerEvent) => {
-    resizing.current = true
-    resizeDir.current = { dx: dxDir, dy: dyDir }
-    offset.current = { x: e.clientX, y: e.clientY }
-    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
-    e.preventDefault()
-    e.stopPropagation()
-  }
-  const onResizeMove = (e: React.PointerEvent) => {
-    if (!resizing.current) return
-    const dx = (e.clientX - offset.current.x) * resizeDir.current.dx
-    const dy = (e.clientY - offset.current.y) * resizeDir.current.dy
-    offset.current = { x: e.clientX, y: e.clientY }
-    setPanelSize((s) => ({
-      w: Math.min(600, Math.max(280, s.w + dx)),
-      h: Math.min(Math.min(800, window.innerHeight - 40), Math.max(320, s.h + dy)),
-    }))
-  }
-  const onResizeUp = () => {
-    resizing.current = false
-  }
-
-  // Init position — bottom-right corner
   useEffect(() => {
-    if (!initialized) {
-      setPos({ x: window.innerWidth - 80, y: window.innerHeight - 80 })
-      setInitialized(true)
-    }
-  }, [initialized])
+    const onResize = () => setFabPos((p) => ({ ...p, y: clampY(p.y) }))
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
-  // Decide panel side
-  useEffect(() => {
-    setPanelPos(pos.x > window.innerWidth - 400 ? 'right' : 'left')
-  }, [pos.x])
-
-  // Close panel on outside click (except when selecting — user needs to click page)
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (view === 'selecting' || view === 'result') return // Don't close while selecting or viewing results
-      const target = e.target as Node
-      if (panelRef.current?.contains(target)) return
-      if (fabRef.current?.contains(target)) return
-      setOpen(false)
-      setMode(null)
-      setView('menu')
-      analysisId.current++
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [view])
-
-  // Text selection listener — active only when in "selecting" view
-  useEffect(() => {
-    if (!open || view !== 'selecting') return
-    const handleMouseUp = (e: MouseEvent) => {
-      // Don't capture selections from within the panel or FAB
-      const target = e.target as Node
-      if (panelRef.current?.contains(target)) return
-      if (fabRef.current?.contains(target)) return
-      // Small delay so selection registers
-      setTimeout(() => {
-        const sel = window.getSelection()
-        const selected = sel?.toString().trim()
-        if (selected && selected.length > 0) {
-          setText(selected)
-          setCaptured(true)
-          setTimeout(() => setCaptured(false), 800)
-          // Immediately run analysis with the current mode
-          runAnalysis(mode!, selected)
-        }
-      }, 50)
-    }
-    document.addEventListener('mouseup', handleMouseUp)
-    return () => document.removeEventListener('mouseup', handleMouseUp)
-  }, [open, view, mode])
-
-  // Drag handlers
+  /* ── FAB 拖拽 + 吸边 ── */
   const onPointerDown = useCallback((e: React.PointerEvent) => {
-    if (fabRef.current) {
-      const rect = fabRef.current.getBoundingClientRect()
-      offset.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-      dragging.current = true
-      moved.current = false
-      ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
-    }
+    const rect = fabRef.current?.getBoundingClientRect()
+    if (!rect) return
+    dragStart.current = { x: e.clientX, y: e.clientY }
+    grabOffset.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+    dragging.current = true
+    moved.current = false
+    setDragXY({ x: rect.left, y: rect.top })
+    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
   }, [])
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     if (!dragging.current) return
-    const dx = Math.abs(e.clientX - (pos.x + offset.current.x))
-    const dy = Math.abs(e.clientY - (pos.y + offset.current.y))
-    if (dx > 3 || dy > 3) moved.current = true
-    setPos({
-      x: Math.max(0, Math.min(e.clientX - offset.current.x, window.innerWidth - 48)),
-      y: Math.max(0, Math.min(e.clientY - offset.current.y, window.innerHeight - 48)),
+    if (Math.abs(e.clientX - dragStart.current.x) > 4 || Math.abs(e.clientY - dragStart.current.y) > 4) moved.current = true
+    setDragXY({
+      x: Math.max(0, Math.min(e.clientX - grabOffset.current.x, window.innerWidth - FAB_SIZE)),
+      y: Math.max(0, Math.min(e.clientY - grabOffset.current.y, window.innerHeight - FAB_SIZE)),
     })
-  }, [pos])
+  }, [])
 
   const onPointerUp = useCallback(() => {
+    if (!dragging.current) return
     dragging.current = false
-    if (!moved.current) {
-      if (open && view !== 'menu') {
-        analysisId.current++   // cancel pending
-        setView('menu')
-        setMode(null)
-        setResult('')
-        setText('')
-      } else {
-        setOpen((v) => !v)
-        if (open) {
-          analysisId.current++
-          setMode(null)
-          setView('menu')
-          setResult('')
-          setText('')
-        }
-      }
+    if (moved.current && dragXY) {
+      const side: Side = dragXY.x + FAB_SIZE / 2 < window.innerWidth / 2 ? 'left' : 'right'
+      setFabPos({ side, y: clampY(dragXY.y) })
+      setDragXY(null)
+    } else {
+      setDragXY(null)
+      // 点击:开/关工具环(同时退出进行中的动作)
+      setOpen((v) => {
+        if (v) { setAction(null) }
+        return !v
+      })
     }
-  }, [open, view])
+  }, [dragXY])
 
-  const selectMode = (m: AnalysisMode) => {
-    analysisId.current++           // cancel any pending analysis from previous mode
-    setMode(m)
-    setView('selecting')
-    setResult('')
-    setText('')
-  }
+  /* ── 关闭所有浮层 ── */
+  const closeAll = useCallback(() => {
+    setOpen(false)
+    setAction(null)
+    setPopup(null)
+    setNoteText('')
+    setNoteQuote('')
+    setNoteSaved(false)
+  }, [])
 
-  const runAnalysis = async (m: AnalysisMode, q: string) => {
-    if (!q.trim()) return
-    const id = ++analysisId.current   // capture id for this specific analysis
-    setView('result')
-    setResult('分析中…')
-
-    const clean = q.trim().toLowerCase()
-
-    if (m === 'word') {
-      const wordOnly = clean.split(/\s+/)[0]
-      fetch(`/api/words/${encodeURIComponent(wordOnly)}`)
-        .then((r) => r.json())
-        .then((d) => {
-          if (analysisId.current !== id) return  // stale, discard
-          if (d.simple) {
-            setResult(`${d.simple.word} · ${d.simple.pos}\n\n${d.simple.meaning}\n\n${d.simple.example}`)
-          } else {
-            setResult(`词库中暂未收录 "${wordOnly}"`)
-          }
-        })
-        .catch(() => { if (analysisId.current === id) setResult('查询失败，请稍后重试') })
-    } else if (m === 'grammar') {
-      try {
-        const r = await analyzeGrammarAPI(q.trim())
-        if (analysisId.current === id) setResult(r)
-      } catch {
-        if (analysisId.current === id) setResult(analyzeGrammar(q.trim()))
-      }
-    } else if (m === 'preposition') {
-      try {
-        const r = await analyzePrepositionAPI(q.trim())
-        if (analysisId.current === id) setResult(r)
-      } catch {
-        if (analysisId.current === id) setResult(analyzePreposition(q.trim()))
-      }
+  /* ── ESC / 点外部关闭 ── */
+  useEffect(() => {
+    if (!open && !action && !popup) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeAll() }
+    const onMouseDown = (e: MouseEvent) => {
+      const t = e.target as Node
+      if (rootRef.current?.contains(t)) return
+      if (fabRef.current?.contains(t)) return
+      // 选词模式下点击页面属于正常操作,不关闭
+      if (action === 'word') return
+      closeAll()
     }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('mousedown', onMouseDown)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('mousedown', onMouseDown)
+    }
+  }, [open, action, popup, closeAll])
+
+  /* ── 选词模式:监听页面选中 ── */
+  useEffect(() => {
+    if (action !== 'word') return
+    const handleMouseUp = (e: MouseEvent) => {
+      const t = e.target as Node
+      if (rootRef.current?.contains(t) || fabRef.current?.contains(t)) return
+      setTimeout(() => {
+        const sel = window.getSelection()
+        const selected = sel?.toString().trim() ?? ''
+        if (!selected || !sel || sel.rangeCount === 0) return
+        const m = /[a-zA-Z''-]+/.exec(selected)
+        if (!m) return
+        const rect = sel.getRangeAt(0).getBoundingClientRect()
+        setPopup({ word: m[0], rect })
+        setAction(null)
+        setCaptured(true)
+        setTimeout(() => setCaptured(false), 800)
+        sel.removeAllRanges()
+      }, 50)
+    }
+    document.addEventListener('mouseup', handleMouseUp)
+    return () => document.removeEventListener('mouseup', handleMouseUp)
+  }, [action])
+
+  /* ── 三个圆圈动作 ── */
+  const startWordLookup = () => {
+    setPopup(null)
+    setOpen(false)
+    setAction('word')
+    window.getSelection()?.removeAllRanges()
   }
 
-  const modeLabel = (m: AnalysisMode) => {
-    if (m === 'word') return '单词查找'
-    if (m === 'grammar') return '语法分析'
-    if (m === 'preposition') return '介词分析'
-    return ''
+  const startQuickNote = () => {
+    // 带上页面当前选中文字作为引用
+    const sel = window.getSelection()?.toString().trim() ?? ''
+    setNoteQuote(sel.length > 0 && sel.length <= 500 ? sel : '')
+    setNoteText('')
+    setNoteSaved(false)
+    setOpen(false)
+    setAction('note')
+    window.getSelection()?.removeAllRanges()
   }
 
-  const modeHint = (m: AnalysisMode) => {
-    if (m === 'word') return '请在网页中选中一个单词'
-    if (m === 'grammar') return '请在网页中选中一个句子进行语法分析'
-    if (m === 'preposition') return '请在网页中选中一个句子进行介词分析'
-    return ''
+  const openSummary = () => {
+    setOpen(false)
+    setAction('summary')
   }
 
-  // Panel position helpers
-  const panelRight = panelPos === 'right'
-    ? window.innerWidth - pos.x + 56
-    : undefined
-  const panelLeft = panelPos === 'left'
-    ? pos.x + 56
-    : undefined
-  const panelBottom = window.innerHeight - pos.y
+  const saveQuickNote = () => {
+    if (!noteText.trim() && !noteQuote) return
+    saveNote({
+      type: 'text',
+      title: noteQuote ? noteQuote.replace(/\s+/g, ' ').slice(0, 24) : undefined,
+      content: noteText.trim(),
+      sourceText: noteQuote || undefined,
+    })
+    setNoteSaved(true)
+    toast.success('已存入手写笔记')
+    setTimeout(() => { setAction(null); setNoteText(''); setNoteQuote(''); setNoteSaved(false) }, 700)
+  }
+
+  const session = getActiveSession()
+
+  /* ── 几何:球心 + 圆圈位置(半圆朝屏幕内侧) ── */
+  const dir = fabPos.side === 'right' ? -1 : 1 // 圆圈弹出方向
+  const centerX = dragXY
+    ? dragXY.x + FAB_SIZE / 2
+    : fabPos.side === 'right'
+      ? window.innerWidth - 8 - FAB_SIZE / 2
+      : 8 + FAB_SIZE / 2
+  const centerY = (dragXY ? dragXY.y : fabPos.y) + FAB_SIZE / 2
+
+  const circles: { key: RadialAction; dx: number; dy: number; label: string; disabled?: boolean; icon: React.ReactNode }[] = [
+    {
+      key: 'word', dx: dir * RADIUS_X * 0.72, dy: -RADIUS_Y, label: '快速查词',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" />
+        </svg>
+      ),
+    },
+    {
+      key: 'note', dx: dir * RADIUS_X, dy: 0, label: '速记笔记',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+        </svg>
+      ),
+    },
+    {
+      key: 'summary', dx: dir * RADIUS_X * 0.72, dy: RADIUS_Y, label: session ? '笔记总览' : '笔记总览(阅读中可用)', disabled: !session,
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M8 6h13M8 12h13M8 18h13" /><path d="M3 6h.01M3 12h.01M3 18h.01" />
+        </svg>
+      ),
+    },
+  ]
+
+  const fabIdle = !open && !action && !popup && !hovered && !dragXY
+
+  /* ── 近球面板定位(速记/总览) ── */
+  const panelStyle: React.CSSProperties = {
+    position: 'fixed', zIndex: 1001, bottom: 16,
+    ...(fabPos.side === 'right' ? { right: FAB_SIZE + 20 } : { left: FAB_SIZE + 20 }),
+    width: Math.min(380, window.innerWidth - FAB_SIZE - 40),
+    maxHeight: 'min(78vh, 640px)',
+    background: 'var(--color-surface-raised)',
+    border: '1px solid var(--color-border)',
+    borderRadius: 12, boxShadow: 'var(--shadow-raised)',
+    padding: 'var(--space-md)',
+    boxSizing: 'border-box',
+    display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)',
+    overflow: 'hidden',
+    animation: `panelIn-${fabPos.side} 180ms ease`,
+  }
 
   return (
-    <>
-      {/* Panel */}
-      {open && (
-        <div
-          ref={panelRef}
-          style={{
-            position: 'fixed',
-            zIndex: 1001,
-            bottom: panelBottom,
-            right: panelRight,
-            left: panelLeft,
-            width: Math.min(panelSize.w, window.innerWidth - 16),
-            maxHeight: panelSize.h,
-            background: '#0a0a0a',
-            border: '1px solid var(--color-border)',
-            borderRadius: 8,
-            padding: 'var(--space-md)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--space-sm)',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{
-              fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
-              letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-              color: 'var(--color-text)',
-            }}>
-              学习助手
-            </span>
-            <button
-              onClick={() => { analysisId.current++; setOpen(false); setMode(null); setView('menu'); setResult(''); setText('') }}
-              style={{
-                fontFamily: 'var(--font-display)', fontSize: 11, color: 'var(--color-text-secondary)',
-                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-              }}
-            >
-              ✕
-            </button>
-          </div>
+    <div ref={rootRef}>
+      {/* ── 工具环圆圈 ── */}
+      {circles.map((c, i) => {
+        const shown = open && !dragXY
+        return (
+          <button
+            key={c.key}
+            onClick={() => {
+              if (c.disabled) return
+              if (c.key === 'word') startWordLookup()
+              else if (c.key === 'note') startQuickNote()
+              else openSummary()
+            }}
+            onMouseEnter={() => setHoveredCircle(c.key)}
+            onMouseLeave={() => setHoveredCircle(null)}
+            disabled={c.disabled}
+            aria-label={c.label}
+            style={{
+              position: 'fixed', zIndex: 1003,
+              left: centerX - CIRCLE / 2,
+              top: centerY - CIRCLE / 2,
+              width: CIRCLE, height: CIRCLE, borderRadius: '50%',
+              transform: shown ? `translate(${c.dx}px, ${c.dy}px) scale(1)` : 'translate(0, 0) scale(0)',
+              opacity: shown ? (c.disabled ? 0.35 : 1) : 0,
+              pointerEvents: shown && !c.disabled ? 'auto' : 'none',
+              transition: `transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1) ${shown ? i * 40 : 0}ms, opacity 150ms ease ${shown ? i * 40 : 0}ms`,
+              background: hoveredCircle === c.key && !c.disabled ? 'var(--color-text)' : 'var(--color-surface-raised)',
+              color: hoveredCircle === c.key && !c.disabled ? 'var(--color-canvas)' : 'var(--color-text)',
+              border: '1px solid var(--color-border)',
+              boxShadow: 'var(--shadow-raised)',
+              cursor: c.disabled ? 'default' : 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: 0,
+            }}
+          >
+            {c.icon}
+          </button>
+        )
+      })}
 
-          {/* VIEW: Menu — 3 mode buttons */}
-          {view === 'menu' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <p style={{
-                fontSize: 11, color: 'var(--color-text-secondary)',
-                lineHeight: 1.5, margin: '0 0 2px',
-              }}>
-                选择功能，然后选中网页中的单词或句子即可分析
-              </p>
-              {([
-                { key: 'word' as const, label: '单词查找' },
-                { key: 'grammar' as const, label: '语法分析' },
-                { key: 'preposition' as const, label: '介词分析' },
-              ]).map((a) => (
-                <button
-                  key={a.key}
-                  onClick={() => selectMode(a.key)}
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    textAlign: 'center',
-                    padding: '8px 12px',
-                    borderRadius: 'var(--radius-pill)',
-                    border: '1px solid var(--color-border)',
-                    background: 'transparent',
-                    cursor: 'pointer',
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: 'var(--tracking-micro)',
-                    textTransform: 'uppercase',
-                    color: 'var(--color-text-secondary)',
-                    transition: 'all var(--transition-fast)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-text)'
-                    e.currentTarget.style.color = 'var(--color-text)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border)'
-                    e.currentTarget.style.color = 'var(--color-text-secondary)'
-                  }}
-                >
-                  {a.label}
-                </button>
-              ))}
-            </div>
-          )}
+      {/* ── 圆圈 hover 标签 ── */}
+      {open && hoveredCircle && (() => {
+        const c = circles.find((x) => x.key === hoveredCircle)
+        if (!c) return null
+        return (
+          <span style={{
+            position: 'fixed', zIndex: 1003,
+            left: centerX + c.dx + (dir < 0 ? -CIRCLE / 2 - 8 : CIRCLE / 2 + 8),
+            top: centerY + c.dy - 10,
+            transform: dir < 0 ? 'translateX(-100%)' : 'none',
+            fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
+            letterSpacing: 'var(--tracking-micro)', whiteSpace: 'nowrap',
+            background: 'var(--color-text)', color: 'var(--color-canvas)',
+            padding: '3px 10px', borderRadius: 'var(--radius-pill)',
+            pointerEvents: 'none',
+          }}>
+            {c.label}
+          </span>
+        )
+      })()}
 
-          {/* VIEW: Selecting — hint to user */}
-          {view === 'selecting' && (
-            <div style={{
-              flex: 1, display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              textAlign: 'center', gap: 'var(--space-xs)',
-            }}>
-              {/* Back to menu */}
-              <button
-                onClick={() => { analysisId.current++; setView('menu'); setMode(null); setResult(''); setText('') }}
-                style={{
-                  alignSelf: 'flex-start',
-                  fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
-                  letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-                  color: 'var(--color-text-secondary)', background: 'none',
-                  border: 'none', cursor: 'pointer', padding: 0, marginBottom: 'var(--space-sm)',
-                }}
-              >
-                ← 返回
-              </button>
-              <div style={{
-                width: 36, height: 36, borderRadius: '50%',
-                border: '2px solid var(--color-text)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                animation: 'pulse 1.5s ease-in-out infinite',
-              }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5">
-                  <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <p style={{
-                fontSize: Math.round(11 * fontSizeScale), color: 'var(--color-text-secondary)', lineHeight: 1.5, margin: 0,
-              }}>
-                {modeHint(mode)}
-              </p>
-              {/* Manual input fallback */}
-              <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey && text.trim()) {
-                    e.preventDefault()
-                    runAnalysis(mode!, text)
-                  }
-                }}
-                placeholder="或手动输入…"
-                rows={2}
-                style={{
-                  width: '100%',
-                  padding: '6px 10px',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 11,
-                  color: 'var(--color-text)',
-                  background: 'transparent',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 4,
-                  outline: 'none',
-                  resize: 'none',
-                  boxSizing: 'border-box',
-                  marginTop: 4,
-                }}
-              />
-              <button
-                onClick={() => { if (text.trim()) runAnalysis(mode!, text) }}
-                disabled={!text.trim()}
-                style={{
-                  fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
-                  letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-                  padding: '4px 16px', borderRadius: 'var(--radius-pill)',
-                  border: '1px solid var(--color-border)',
-                  background: text.trim() ? 'var(--color-text)' : 'transparent',
-                  color: text.trim() ? 'var(--color-canvas)' : 'var(--color-text-secondary)',
-                  cursor: text.trim() ? 'pointer' : 'default',
-                  opacity: text.trim() ? 1 : 0.4,
-                  transition: 'all var(--transition-fast)',
-                }}
-              >
-                分析
-              </button>
-            </div>
-          )}
-
-          {/* VIEW: Result */}
-          {view === 'result' && (
-            <>
-              {/* Back + mode badge */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <button
-                  onClick={() => { analysisId.current++; setView('menu'); setMode(null); setResult(''); setText('') }}
-                  style={{
-                    fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
-                    letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-                    color: 'var(--color-text-secondary)', background: 'none',
-                    border: 'none', cursor: 'pointer', padding: 0,
-                  }}
-                >
-                  ← 返回
-                </button>
-                <span style={{
-                  fontFamily: 'var(--font-display)', fontSize: 9, fontWeight: 700,
-                  letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-                  padding: '1px 8px', borderRadius: 'var(--radius-pill)',
-                  border: '1px solid var(--color-border)', color: 'var(--color-text-secondary)',
-                }}>
-                  {modeLabel(mode)}
-                </span>
-              </div>
-
-              {/* Selected text preview */}
-              <div style={{
-                fontSize: Math.round(11 * fontSizeScale), color: 'var(--color-text)',
-                padding: '6px 10px',
-                borderLeft: '2px solid var(--color-border)', lineHeight: 1.5,
-              }}>
-                {text}
-              </div>
-
-              {/* Result */}
-              <div style={{
-                flex: 1, overflow: 'auto',
-                fontSize: Math.round(12 * fontSizeScale),
-                lineHeight: 1.6,
-                color: 'var(--color-text-secondary)',
-                whiteSpace: 'pre-line',
-                borderTop: '1px solid var(--color-border)',
-                paddingTop: 'var(--space-sm)',
-              }}>
-                {result}
-              </div>
-
-              {/* Quick nav for word lookup */}
-              {mode === 'word' && result && !result.includes('暂未收录') && (
-                <button
-                  onClick={() => {
-                    const wordOnly = text.trim().split(/\s+/)[0]
-                    navigate(`/words/${encodeURIComponent(wordOnly)}`)
-                    setOpen(false)
-                  }}
-                  style={{
-                    fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
-                    letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
-                    color: 'var(--color-text-secondary)', background: 'none',
-                    border: 'none', cursor: 'pointer', textAlign: 'center', padding: 0,
-                  }}
-                >
-                  查看完整释义 →
-                </button>
-              )}
-            </>
-          )}
-
-          {/* Resize handles — all 4 corners */}
-          {[
-            { corner: 'bottom-right', dx: 1, dy: 1, cursor: 'nwse-resize', bottom: 0, right: 0 },
-            { corner: 'bottom-left', dx: -1, dy: 1, cursor: 'nesw-resize', bottom: 0, left: 0 },
-            { corner: 'top-left', dx: -1, dy: -1, cursor: 'nwse-resize', top: 0, left: 0 },
-          ].map((h) => (
-            <div
-              key={h.corner}
-              onPointerDown={onResizeDown(h.dx, h.dy)}
-              onPointerMove={onResizeMove}
-              onPointerUp={onResizeUp}
-              style={{
-                position: 'absolute',
-                [h.top !== undefined ? 'top' : 'bottom']: 0,
-                [h.left !== undefined ? 'left' : 'right']: 0,
-                width: 24, height: 24,
-                cursor: h.cursor,
-                display: 'flex',
-                alignItems: h.corner.includes('bottom') ? 'flex-end' : 'flex-start',
-                justifyContent: h.corner.includes('right') ? 'flex-end' : 'flex-start',
-                padding: 4, opacity: 0.2,
-                color: 'var(--color-text-secondary)',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.7' }}
-              onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.2' }}
-            >
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <line x1="8.5" y1="0.5" x2="0.5" y2="8.5" />
-                <line x1="8.5" y1="4" x2="4.5" y2="8" />
-                <line x1="8.5" y1="7.5" x2="7.5" y2="8.5" />
-              </svg>
-            </div>
-          ))}
+      {/* ── 选词模式提示 ── */}
+      {action === 'word' && !popup && (
+        <div style={{
+          position: 'fixed', zIndex: 1003,
+          left: centerX + dir * (FAB_SIZE / 2 + 12),
+          top: centerY - 14,
+          transform: dir < 0 ? 'translateX(-100%)' : 'none',
+          display: 'flex', alignItems: 'center', gap: 8,
+          background: 'var(--color-surface-raised)',
+          border: '1px solid var(--color-border)', borderRadius: 'var(--radius-pill)',
+          boxShadow: 'var(--shadow-raised)', padding: '6px 14px',
+          animation: 'pulse 1.8s ease-in-out infinite',
+        }}>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', color: 'var(--color-text)' }}>
+            选中任意英文单词
+          </span>
+          <button onClick={() => setAction(null)}
+            style={{ fontFamily: 'var(--font-display)', fontSize: 10, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+            取消 ✕
+          </button>
         </div>
       )}
 
-      {/* FAB button */}
+      {/* ── 速记笔记卡片 ── */}
+      {action === 'note' && (
+        <div style={panelStyle}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text)' }}>
+              速记笔记
+            </span>
+            <span style={{ flex: 1 }} />
+            <button onClick={() => setAction(null)} aria-label="关闭"
+              style={{ fontFamily: 'var(--font-display)', fontSize: 11, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 4px' }}>
+              ✕
+            </button>
+          </div>
+          {noteQuote && (
+            <div style={{
+              fontSize: 11, lineHeight: 1.6, color: 'var(--color-text-soft)', fontStyle: 'italic',
+              borderLeft: '2px solid var(--color-border)', background: 'var(--color-canvas-soft)',
+              padding: '6px 10px', borderRadius: '0 var(--radius-xs) var(--radius-xs) 0',
+              maxHeight: 80, overflow: 'auto',
+            }}>
+              {noteQuote}
+            </div>
+          )}
+          <textarea
+            value={noteText}
+            onChange={(e) => setNoteText(e.target.value)}
+            placeholder={noteQuote ? '对这段文字的想法…' : '此刻的想法…'}
+            autoFocus
+            rows={4}
+            style={{
+              width: '100%', boxSizing: 'border-box', padding: '8px 12px',
+              fontFamily: 'var(--font-body)', fontSize: 12, lineHeight: 1.7,
+              color: 'var(--color-text)', background: 'transparent',
+              border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)',
+              outline: 'none', resize: 'vertical',
+            }}
+          />
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+            <button onClick={() => setAction(null)}
+              style={{ fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', padding: '6px 14px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--color-border)', background: 'none', color: 'var(--color-text-secondary)', cursor: 'pointer' }}>
+              取消
+            </button>
+            <button onClick={saveQuickNote} disabled={noteSaved || (!noteText.trim() && !noteQuote)}
+              style={{
+                fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 700,
+                letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase',
+                padding: '6px 14px', borderRadius: 'var(--radius-pill)',
+                border: '1px solid', 
+                borderColor: noteSaved ? 'var(--color-success)' : 'var(--color-text)',
+                background: noteSaved ? 'var(--color-success)' : noteText.trim() || noteQuote ? 'var(--color-text)' : 'transparent',
+                color: noteSaved || noteText.trim() || noteQuote ? (noteSaved ? '#fff' : 'var(--color-canvas)') : 'var(--color-text-secondary)',
+                cursor: noteSaved ? 'default' : 'pointer',
+              }}>
+              {noteSaved ? '已保存 ✓' : '保存'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── 笔记总览面板 ── */}
+      {action === 'summary' && session && (
+        <div style={panelStyle}>
+          <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text)' }}>
+              笔记总览
+            </span>
+            <span style={{ fontSize: 10, color: 'var(--color-text-secondary)', marginLeft: 8, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+              {session.articleTitle}
+            </span>
+            <button onClick={() => setAction(null)} aria-label="关闭"
+              style={{ fontFamily: 'var(--font-display)', fontSize: 11, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 4px', flexShrink: 0 }}>
+              ✕
+            </button>
+          </div>
+          <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+            <ReadingSummary session={session} />
+          </div>
+        </div>
+      )}
+
+      {/* ── 迷你词卡(查词结果) ── */}
+      {popup && (
+        <WordPopup word={popup.word} anchorRect={popup.rect} onClose={() => setPopup(null)} />
+      )}
+
+      {/* ── FAB ── */}
       <button
         ref={fabRef}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        aria-label="学习工具环"
         style={{
-          position: 'fixed',
-          left: pos.x,
-          top: pos.y,
-          zIndex: 1002,
-          width: 44,
-          height: 44,
-          borderRadius: '50%',
-          background: captured ? '#22c55e' : open ? 'var(--color-text)' : '#0a0a0a',
-          border: captured ? '1px solid #22c55e' : open ? '1px solid var(--color-text)' : '1px solid var(--color-border)',
+          position: 'fixed', zIndex: 1004,
+          ...(dragXY
+            ? { left: dragXY.x, top: dragXY.y }
+            : fabPos.side === 'right' ? { right: 8, top: fabPos.y } : { left: 8, top: fabPos.y }),
+          width: FAB_SIZE, height: FAB_SIZE, borderRadius: '50%',
+          background: captured ? 'var(--color-success)' : open ? 'var(--color-text)' : 'var(--color-surface-raised)',
+          border: captured ? '1px solid var(--color-success)' : open ? '1px solid var(--color-text)' : '1px solid var(--color-border)',
           cursor: 'grab',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 0,
-          touchAction: 'none',
-          userSelect: 'none',
-          transition: 'background 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease',
-          boxShadow: captured ? '0 0 16px rgba(34,197,94,0.4)' : open ? 'none' : '0 0 1px rgba(255,255,255,0.15)',
-        }}
-        onMouseEnter={(e) => {
-          if (!open) {
-            e.currentTarget.style.borderColor = 'var(--color-text)'
-            e.currentTarget.style.boxShadow = '0 0 12px rgba(255,255,255,0.1)'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!open) {
-            e.currentTarget.style.borderColor = 'var(--color-border)'
-            e.currentTarget.style.boxShadow = '0 0 1px rgba(255,255,255,0.15)'
-          }
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 0, touchAction: 'none', userSelect: 'none',
+          opacity: fabIdle ? 0.5 : 1,
+          transition: dragXY
+            ? 'opacity 200ms ease, background 150ms ease'
+            : 'top 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 250ms ease, background 150ms ease, box-shadow 200ms ease',
+          boxShadow: captured
+            ? '0 0 16px color-mix(in srgb, var(--color-success) 40%, transparent)'
+            : open ? 'none' : 'var(--shadow-raised)',
         }}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-          stroke={captured ? '#fff' : open ? '#000' : '#fff'} strokeWidth="1.5" strokeLinecap="round"
-          style={{ transition: 'transform 0.25s ease', transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
-        >
+          stroke={captured ? '#fff' : open ? 'var(--color-canvas)' : 'var(--color-text)'} strokeWidth="1.5" strokeLinecap="round"
+          style={{ transition: 'transform 0.25s ease', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
           {captured ? (
             <path d="M5 13l4 4L19 7" />
           ) : (
             <>
-              <rect x="3" y="3" width="7" height="7" rx="1.5" />
-              <rect x="14" y="3" width="7" height="7" rx="1.5" />
-              <rect x="3" y="14" width="7" height="7" rx="1.5" />
-              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" />
             </>
           )}
         </svg>
       </button>
 
-      {/* Pulse animation for selecting state */}
       <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.05); }
-        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.65} }
+        @keyframes panelIn-right { from{transform:translateX(24px);opacity:0} to{transform:translateX(0);opacity:1} }
+        @keyframes panelIn-left { from{transform:translateX(-24px);opacity:0} to{transform:translateX(0);opacity:1} }
       `}</style>
-    </>
+    </div>
   )
 }
-

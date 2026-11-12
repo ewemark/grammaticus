@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { to: '/words', label: 'WORDS' },
   { to: '/read', label: 'READING' },
   { to: '/grammar', label: 'GRAMMAR' },
+  { to: '/space', label: 'SPACE' },
   { to: '/scan', label: 'SCAN' },
   { to: '/upload', label: 'UPLOAD' },
   { to: '/guestbook', label: 'GUESTBOOK' },

@@ -11,6 +11,7 @@ import Scan from './pages/Scan'
 import About from './pages/About'
 import Read from './pages/Read'
 import Guestbook from './pages/Guestbook'
+import Space from './pages/Space'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import './styles/tokens.css'
@@ -36,6 +37,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="scan" element={<Scan />} />
           <Route path="about" element={<About />} />
           <Route path="read" element={<Read />} />
+          <Route path="space" element={<Space />} />
           <Route path="guestbook" element={<Guestbook />} />
           <Route path="*" element={<NotFound />} />
         </Route>

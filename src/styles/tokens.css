@@ -1,41 +1,46 @@
 /* ============================================================
    Grammaticus — Design Tokens
-   SpaceX 灵感暗黑工业风
+   双主题:深空暗黑风(默认) + Notion 浅色风
+   主题由 <html data-theme="dark|light"> 控制,
+   初始化脚本在 index.html 中(防闪烁),切换逻辑在 src/utils/theme.ts
    ============================================================ */
 
-html, body {
-  background: #000000;
-  margin: 0;
-  padding: 0;
-}
+/* ── 深色主题(默认) ── */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
 
-:root {
-  /* ── 画布 ── */
+  /* 画布 */
   --color-canvas: #000000;
   --color-canvas-soft: #0a0a0a;
-  --color-canvas-light: #ffffff;
   --color-canvas-cool: #f0f0fa;
+  --color-surface-raised: #0a0a0a;
 
-  /* ── 选中文字高亮 ── */
+  /* 选中文字高亮 */
   --color-selection-bg: #ffffff;
   --color-selection-text: #000000;
 
-  /* ── 文字 ── */
+  /* 文字 */
   --color-text: #ffffff;
-  --color-text-mute: #f0f0fa;
+  --color-text-soft: #d8d8d8;
   --color-text-secondary: #5a5a5f;
-  --color-text-on-light: #000000;
-  --color-text-on-light-mute: #5a5a5f;
 
-  /* ── 边框 ── */
+  /* 边框 */
   --color-border: #3a3a3f;
-  --color-border-light: #e0e0e8;
 
-  /* ── 主色（少量点缀） ── */
+  /* 主色(少量点缀) */
   --color-accent: #ffffff;
   --color-link: #ffffff;
 
-  /* ── 品牌色扩展（词性色彩，仅在 badge 上使用） ── */
+  /* 语义色 */
+  --color-error: #ed8796;
+  --color-success: #22c55e;
+
+  /* 悬浮层阴影 */
+  --shadow-raised: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  /* 品牌色扩展(词性色彩,仅在 badge 上使用) */
   --color-noun: #a78bfa;
   --color-verb: #34d399;
   --color-adjective: #f472b6;
@@ -46,11 +51,18 @@ html, body {
   --color-interjection: #e879f9;
   --color-numeral: #38bdf8;
 
-  /* ── 字体 ── */
+  /* 语法文档语义色(深色主题) */
+  --color-doc-accent: #f5a97f;
+  --color-doc-quote: #eed49f;
+  --color-doc-warn: #ed8796;
+  --color-doc-success: #a6da95;
+  --color-doc-info: #7c9ff5;
+
+  /* 字体 */
   --font-display: 'Inter', 'Arial Narrow', Arial, Verdana, sans-serif;
   --font-body: 'Inter', Arial, Verdana, sans-serif;
 
-  /* ── 字号（SpaceX 层级） ── */
+  /* 字号(SpaceX 层级) */
   --text-display-xxl: 80px;
   --text-display-xl: 60px;
   --text-display-lg: 48px;
@@ -63,30 +75,30 @@ html, body {
   --text-micro: 12px;
   --text-caption: 13px;
 
-  /* ── 字重 ── */
+  /* 字重 */
   --weight-normal: 400;
   --weight-bold: 700;
 
-  /* ── 行高 ── */
+  /* 行高 */
   --leading-display: 0.95;
   --leading-heading: 1.2;
   --leading-body: 1.7;
   --leading-ui: 1.5;
 
-  /* ── 字距（宽字距是 SpaceX 签名） ── */
+  /* 字距(宽字距是 SpaceX 签名) */
   --tracking-display: 1.6px;
   --tracking-heading: 0.96px;
   --tracking-button: 1.17px;
   --tracking-micro: 0.96px;
 
-  /* ── 圆角 ── */
+  /* 圆角 */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-pill: 32px;
   --radius-full: 9999px;
 
-  /* ── 间距 ── */
+  /* 间距 */
   --space-xxs: 4px;
   --space-xs: 8px;
   --space-sm: 12px;
@@ -97,17 +109,76 @@ html, body {
   --space-huge: 48px;
   --space-section: 80px;
 
-  /* ── 阴影：不用 ── */
-  --shadow-none: none;
-
-  /* ── 布局 ── */
+  /* 布局 */
   --sidebar-width: 260px;
   --header-height: 64px;
   --content-max-width: 960px;
 
-  /* ── 过渡 ── */
+  /* 过渡 */
   --transition-fast: 150ms ease;
   --transition-normal: 200ms ease;
+}
+
+/* ── 浅色主题(Notion 风) ── */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* 画布 */
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #f6f5f4;
+  --color-canvas-cool: #ebe9e5;
+  --color-surface-raised: #ffffff;
+
+  /* 选中文字高亮 */
+  --color-selection-bg: #37352f;
+  --color-selection-text: #ffffff;
+
+  /* 文字 */
+  --color-text: #1f1e1b;
+  --color-text-soft: #37352f;
+  --color-text-secondary: #787671;
+
+  /* 边框 */
+  --color-border: #e0ded9;
+
+  /* 主色(少量点缀) */
+  --color-accent: #37352f;
+  --color-link: #37352f;
+
+  /* 语义色 */
+  --color-error: #d6455d;
+  --color-success: #16a34a;
+
+  /* 悬浮层阴影 */
+  --shadow-raised: 0 4px 24px rgba(15, 15, 15, 0.1);
+  --color-overlay: rgba(15, 15, 15, 0.45);
+
+  /* 词性色彩(浅色背景下加深的版本) */
+  --color-noun: #7c3aed;
+  --color-verb: #059669;
+  --color-adjective: #db2777;
+  --color-pronoun: #2563eb;
+  --color-adverb: #b45309;
+  --color-preposition: #ea580c;
+  --color-conjunction: #64748b;
+  --color-interjection: #c026d3;
+  --color-numeral: #0284c7;
+
+  /* 语法文档语义色(浅色主题加深版) */
+  --color-doc-accent: #c2410c;
+  --color-doc-quote: #92600a;
+  --color-doc-warn: #be3455;
+  --color-doc-success: #3f7a35;
+  --color-doc-info: #3a5bc7;
+}
+
+html,
+body {
+  background: var(--color-canvas);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  transition: background var(--transition-normal), color var(--transition-normal);
 }
 
 /* ── 全局选中文字高亮 ── */

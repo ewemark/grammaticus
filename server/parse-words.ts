@@ -1,13 +1,19 @@
 /**
- * Parse all .txt files from 英语学习认知 folder into words-rich.json format.
- * Run: npx tsx server/parse-words.ts
+ * Parse all .txt files from a source folder into words-rich.json format.
+ * Run: npx tsx server/parse-words.ts <path-to-txt-folder>
+ *   or set WORDS_SRC_DIR=<path-to-txt-folder>
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const SRC_DIR = path.resolve('C:/Users/ASUS/Desktop/英语学习认知')
+const SRC_DIR = path.resolve(process.argv[2] || process.env.WORDS_SRC_DIR || '')
+if (!process.argv[2] && !process.env.WORDS_SRC_DIR) {
+  console.error('用法: npx tsx server/parse-words.ts <txt 文件夹路径>')
+  console.error('      或设置环境变量 WORDS_SRC_DIR=<txt 文件夹路径>')
+  process.exit(1)
+}
 const OUT_SIMPLE = path.resolve(__dirname, '..', 'data', 'words-parsed.json')
 const OUT_RICH = path.resolve(__dirname, '..', 'data', 'words-rich-parsed.json')
 

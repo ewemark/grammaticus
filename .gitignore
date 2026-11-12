@@ -29,6 +29,11 @@ data/grammaticus.db
 data/grammaticus.db-*
 data/uploads/
 data/videos/
+data/*.bak
+data/missing-meanings.json
+
+# Bundled Node.js runtime (for one-click start.bat on Windows)
+.runtime/
 
 # Secrets
 .env

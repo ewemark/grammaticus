@@ -1,0 +1,7 @@
+const db = require('better-sqlite3')('data/grammaticus.db', { readonly: true })
+const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").all()
+console.log('all tables:', tables.map((t) => t.name).join(', '))
+const noteCols = db.prepare('PRAGMA table_info(notes)').all().map((c) => c.name)
+const dictCols = db.prepare('PRAGMA table_info(dictionary)').all().map((c) => c.name)
+console.log('notes columns:', noteCols.join(', '))
+console.log('dictionary columns:', dictCols.join(', '))

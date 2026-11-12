@@ -63,10 +63,14 @@ if (fs.existsSync(richPath)) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `)
 
-  // Also insert basic info into words table for autocomplete / listing
+  // Also insert basic info into words table for autocomplete / listing.
+  // IMPORTANT: OR IGNORE so words.json (primary source) is never overwritten,
+  // and only when posNote is a usable Chinese gloss.
   const insertWord = db.prepare(
-    'INSERT OR REPLACE INTO words (word, meaning, pos, example) VALUES (?, ?, ?, ?)'
+    'INSERT OR IGNORE INTO words (word, meaning, pos, example) VALUES (?, ?, ?, ?)'
   )
+
+  const hasCJK = (s: string) => /[\u4e00-\u9fff]/.test(s)
 
   const tx = db.transaction(() => {
     for (const r of raw) {
@@ -79,8 +83,10 @@ if (fs.existsSync(richPath)) {
         JSON.stringify(r.exampleDiagnoses),
         JSON.stringify(r.synonymComparisons),
       )
-      // Sync basic row into words table for search/autocomplete
-      insertWord.run(r.word, r.posNote, r.pos, '')
+      // Sync basic row into words table only if absent there and gloss is usable
+      if (hasCJK(r.posNote)) {
+        insertWord.run(r.word, r.posNote, r.pos, '')
+      }
     }
   })
   tx()

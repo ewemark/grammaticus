@@ -1,8 +1,104 @@
 import { Router } from 'express'
 import db from '../db.js'
+import { isTrustedAudioUrl } from '../utils/text.js'
+import { lemmatize, editDistance } from '../utils/lemmatize.js'
 import type { RichWordData } from '../../src/types/word.js'
 
 const router = Router()
+
+/* ── Search helpers ──────────────────────────────────────────── */
+
+interface Row { word: string; meaning: string; pos: string; example: string }
+
+const MAX_FUZZY_CANDIDATES = 8
+const FUZZY_SCAN_LIMIT = 5000
+
+/**
+ * Tiered word search — each tier only runs when the previous found nothing:
+ *   1. prefix    "tran"    → tranquil, transfer…   (index-friendly, original behaviour)
+ *   2. lemma     "children"→ child; "stopped" → stop
+ *   3. contains  "port"    → transport, important…
+ *   4. fuzzy     "resilent"→ resilient             (edit distance, returned as suggestions)
+ */
+export function searchWordsTiered(rawQuery: string, posFilter: string, limit: number, offset: number) {
+  const q = rawQuery.trim()
+  if (!q) {
+    return { ...listAll(posFilter, limit, offset), tier: 'list' as const, suggestions: [] as Row[] }
+  }
+
+  const lower = q.toLowerCase()
+
+  // Tier 1 — prefix
+  const prefix = queryWhere('word LIKE ?', [lower], posFilter, limit, offset)
+  if (prefix.total > 0) return { ...prefix, tier: 'prefix' as const, suggestions: [] as Row[] }
+
+  // Tier 2 — lemma (irregular forms + suffix stripping)
+  const candidates = lemmatize(lower).filter((c) => c !== lower)
+  for (const c of candidates) {
+    const exact = queryWhere('word = ?', [c], posFilter, limit, offset)
+    if (exact.total > 0) return { ...exact, tier: 'lemma' as const, suggestions: [] as Row[] }
+  }
+  for (const c of candidates) {
+    const prefixed = queryWhere('word LIKE ?', [`${c}%`], posFilter, limit, offset)
+    if (prefixed.total > 0) return { ...prefixed, tier: 'lemma' as const, suggestions: [] as Row[] }
+  }
+
+  // Tier 3 — contains
+  const contains = queryWhere('word LIKE ?', [`%${lower}%`], posFilter, limit, offset)
+  if (contains.total > 0) return { ...contains, tier: 'contains' as const, suggestions: [] as Row[] }
+
+  // Tier 4 — fuzzy suggestions (never paginated; it is a "did you mean" list)
+  return {
+    words: [] as Row[],
+    total: 0,
+    tier: 'none' as const,
+    suggestions: fuzzySuggest(lower, MAX_FUZZY_CANDIDATES),
+  }
+}
+
+function queryWhere(clause: string, values: string[], posFilter: string, limit: number, offset: number) {
+  const conditions = [clause]
+  const params: (string | number)[] = [...values]
+  if (posFilter) {
+    conditions.push('pos = ?')
+    params.push(posFilter.toUpperCase())
+  }
+  const where = conditions.join(' AND ')
+  const { total } = db.prepare(`SELECT COUNT(*) as total FROM words WHERE ${where}`).get(...params) as { total: number }
+  const words = db
+    .prepare(`SELECT word, meaning, pos, example FROM words WHERE ${where} ORDER BY word ASC LIMIT ? OFFSET ?`)
+    .all(...params, limit, offset) as Row[]
+  return { words, total }
+}
+
+function listAll(posFilter: string, limit: number, offset: number) {
+  const conditions = ['1=1']
+  const params: (string | number)[] = []
+  if (posFilter) {
+    conditions.push('pos = ?')
+    params.push(posFilter.toUpperCase())
+  }
+  const where = conditions.join(' AND ')
+  const { total } = db.prepare(`SELECT COUNT(*) as total FROM words WHERE ${where}`).get(...params) as { total: number }
+  const words = db
+    .prepare(`SELECT word, meaning, pos, example FROM words WHERE ${where} ORDER BY word ASC LIMIT ? OFFSET ?`)
+    .all(...params, limit, offset) as Row[]
+  return { words, total }
+}
+
+/** Rank dictionary entries by edit distance; only surfaces close matches */
+export function fuzzySuggest(lower: string, max: number): Row[] {
+  if (lower.length < 4) return []
+  const tolerance = lower.length >= 7 ? 2 : 1
+  const pool = db.prepare('SELECT word, meaning, pos, example FROM words ORDER BY word ASC LIMIT ?').all(FUZZY_SCAN_LIMIT) as Row[]
+
+  return pool
+    .map((r) => ({ r, d: editDistance(lower, r.word.toLowerCase()) }))
+    .filter((x) => x.d > 0 && x.d <= tolerance)
+    .sort((a, b) => a.d - b.d || a.r.word.localeCompare(b.r.word))
+    .slice(0, max)
+    .map((x) => x.r)
+}
 
 /* ── GET /api/words — list / search ────────────────────────── */
 
@@ -12,28 +108,7 @@ router.get('/', (_req, res, next) => {
     const pos = (_req.query.pos as string | undefined)?.trim() ?? ''
     const limit = Math.min(Number(_req.query.limit) || 20, 200)
     const offset = Math.max(Number(_req.query.offset) || 0, 0)
-
-    const conditions: string[] = ['1=1']
-    const params: (string | number)[] = []
-
-    if (q) {
-      conditions.push('word LIKE ?')
-      params.push(`${q}%`)
-    }
-    if (pos) {
-      conditions.push('pos = ?')
-      params.push(pos.toUpperCase())
-    }
-
-    const where = conditions.join(' AND ')
-
-    const { total } = db.prepare(`SELECT COUNT(*) as total FROM words WHERE ${where}`).get(...params) as { total: number }
-
-    const sql = `SELECT word, meaning, pos, example FROM words WHERE ${where} ORDER BY word ASC LIMIT ? OFFSET ?`
-    params.push(limit, offset)
-
-    const words = db.prepare(sql).all(...params)
-    res.json({ words, total })
+    res.json(searchWordsTiered(q, pos, limit, offset))
   } catch (err) {
     next(err)
   }
@@ -48,9 +123,8 @@ router.get('/autocomplete', (_req, res, next) => {
       res.json([])
       return
     }
-    const rows = db.prepare(
-      'SELECT word, meaning FROM words WHERE word LIKE ? ORDER BY word ASC LIMIT 8'
-    ).all(`${q}%`)
+    const { words, suggestions } = searchWordsTiered(q, '', 8, 0)
+    const rows = (words.length > 0 ? words : suggestions).map((w) => ({ word: w.word, meaning: w.meaning }))
     res.json(rows)
   } catch (err) {
     next(err)
@@ -92,6 +166,13 @@ router.get('/:word/audio', async (_req, res, next) => {
       : withAudio.find((p) => (p.audio ?? '').includes('-uk'))
 
     const chosen = preferred ?? withAudio[0]
+
+    // Validate the upstream audio URL before handing it to the client
+    // (the dictionary API may return arbitrary URLs; only allow https on trusted hosts)
+    if (!isTrustedAudioUrl(chosen.audio)) {
+      res.status(404).json({ error: 'No trusted audio available' })
+      return
+    }
     res.json({ audioUrl: chosen.audio })
   } catch (err) {
     next(err)
@@ -113,7 +194,17 @@ router.get('/:word', (_req, res, next) => {
     ).get(word) as Record<string, unknown> | undefined
 
     if (!simple && !richRow) {
-      res.status(404).json({ error: `Word "${word}" not found` })
+      // Help the user: suggest the lemma base form, else close spellings
+      const lower = word.toLowerCase()
+      const suggestions: Row[] = []
+      for (const c of lemmatize(lower).filter((x) => x !== lower)) {
+        const hit = db.prepare(
+          'SELECT word, meaning, pos, example FROM words WHERE word = ?'
+        ).get(c) as Row | undefined
+        if (hit) { suggestions.push(hit); break }
+      }
+      if (suggestions.length === 0) suggestions.push(...fuzzySuggest(lower, 5))
+      res.status(404).json({ error: `Word "${word}" not found`, suggestions })
       return
     }
 

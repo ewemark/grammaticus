@@ -25,7 +25,10 @@ const BASE_URL = import.meta.env.VITE_API_URL || '/api'
 export async function uploadFile(file: File): Promise<UploadResult> {
   const form = new FormData()
   form.append('file', file)
-  const res = await fetch(`${BASE_URL}/upload`, { method: 'POST', body: form })
+  const token = localStorage.getItem('grammaticus_token')
+  const headers: Record<string, string> = {}
+  if (token) headers['Authorization'] = `Bearer ${token}`
+  const res = await fetch(`${BASE_URL}/upload`, { method: 'POST', body: form, headers })
   if (!res.ok) {
     const body = await res.text()
     throw new Error(body || `上传失败 (${res.status})`)

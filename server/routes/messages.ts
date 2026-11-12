@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import nodemailer from 'nodemailer'
 import db from '../db.js'
+import { requireAuth } from '../middleware/auth.js'
+import { sanitizeHeader } from '../utils/text.js'
 
 const router = Router()
 
@@ -19,8 +21,8 @@ function getTransporter() {
 
 router.post('/', (req, res, next) => {
   try {
-    const name = String(req.body.name || '').slice(0, 100)
-    const email = String(req.body.email || '').slice(0, 200)
+    const name = sanitizeHeader(String(req.body.name || '').slice(0, 100))
+    const email = sanitizeHeader(String(req.body.email || '').slice(0, 200))
     const content = String(req.body.content || '').slice(0, 3000)
     if (!content.trim()) { res.status(400).json({ error: '请输入留言内容' }); return }
 
@@ -32,7 +34,7 @@ router.post('/', (req, res, next) => {
       mail.transporter.sendMail({
         from: process.env.SMTP_USER,
         to: mail.to,
-        subject: `[Grammaticus] 新留言 from ${name || '匿名'}`,
+        subject: sanitizeHeader(`[Grammaticus] 新留言 from ${name || '匿名'}`),
         text: `来自: ${name || '匿名'} (${email || '未留邮箱'})\n\n${content.trim()}\n\n---\nGrammaticus 留言板`,
       }).catch((e) => console.error('[Mail] send failed:', e.message))
     }
@@ -41,9 +43,9 @@ router.post('/', (req, res, next) => {
   } catch (err) { next(err) }
 })
 
-/* ── GET /api/messages — list recent messages ─────────────── */
+/* ── GET /api/messages — list recent messages (author only) ── */
 
-router.get('/', (_req, res, next) => {
+router.get('/', requireAuth, (_req, res, next) => {
   try {
     const rows = db.prepare('SELECT id, name, content, created_at FROM messages ORDER BY created_at DESC LIMIT 50').all()
     res.json(rows)

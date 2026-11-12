@@ -1,11 +1,19 @@
 /**
- * Import grammar videos from source folder into data/videos/
+ * Import grammar videos from a source folder into data/videos/
  * Categorizes and renames for clean display in Grammar page.
+ * Run: npx tsx server/import-videos.ts <视频源文件夹>
+ *   or set VIDEOS_SRC_DIR=<视频源文件夹>
  */
 import fs from 'node:fs'
 import path from 'node:path'
 
-const SRC = path.resolve(process.env.USERPROFILE || '', 'Desktop', '半个月搭建你的英语语法体系')
+const srcArg = process.argv[2] || process.env.VIDEOS_SRC_DIR
+if (!srcArg) {
+  console.error('用法: npx tsx server/import-videos.ts <视频源文件夹路径>')
+  console.error('      或设置环境变量 VIDEOS_SRC_DIR=<视频源文件夹路径>')
+  process.exit(1)
+}
+const SRC = path.resolve(srcArg)
 const DST = path.resolve('data', 'videos')
 
 // Clear existing videos
@@ -21,7 +29,7 @@ const files = fs.readdirSync(SRC).filter(f => f.endsWith('.mp4'))
 const map: { src: string; dst: string }[] = []
 
 for (const f of files) {
-  let dst = ''
+  let dst: string
 
   if (f.startsWith('01')) dst = '词性 - 01 名词 形容词 副词 这就是一切.mp4'
   else if (f.startsWith('02')) dst = '词性 - 02 词性之间的修饰关系.mp4'

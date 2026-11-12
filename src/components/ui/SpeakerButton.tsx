@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { microLabel } from '../../styles/typography'
+import { fetchAudioUrl } from '../../api/words'
 
 /* ── SpeakerIcon ────────────────────────────────────────────── */
 
@@ -17,9 +18,7 @@ function SpeakerIcon() {
 
 async function playAudio(word: string, accent: 'uk' | 'us') {
   try {
-    const resp = await fetch(`/api/words/${encodeURIComponent(word)}/audio?accent=${accent}`)
-    if (!resp.ok) throw new Error('No audio')
-    const { audioUrl } = await resp.json() as { audioUrl: string }
+    const audioUrl = await fetchAudioUrl(word, accent)
     const audio = new Audio(audioUrl)
     await audio.play()
   } catch {
@@ -85,7 +84,8 @@ export default function SpeakerButton({ word }: SpeakerButtonProps) {
       {open && (
         <div style={{
           position: 'absolute', top: '100%', left: 0, marginTop: 4,
-          background: '#0a0a0a', border: '1px solid var(--color-border)', borderRadius: 4,
+          background: 'var(--color-surface-raised)', border: '1px solid var(--color-border)', borderRadius: 4,
+          boxShadow: 'var(--shadow-raised)',
           overflow: 'hidden', zIndex: 100, minWidth: 80,
         }}>
           {(['uk', 'us'] as const).map((a) => (

@@ -6,6 +6,7 @@ import { fetchArticles, fetchArticle, fetchBooks, type ArticleListItem, type Art
 import { tabPill } from '../../styles/typography'
 import { isRead, toggleRead, getReadArticles } from '../../utils/readingProgress'
 import { getSavedArticles, removeSavedArticle, type SavedArticle } from '../../utils/savedArticles'
+import { isArticleFavorited, toggleFavoriteArticle } from '../../utils/articleFavorites'
 import FullscreenReader from '../../components/ui/FullscreenReader'
 
 /* ── hard-coded articles for non-NCE categories ─────────────── */
@@ -78,6 +79,21 @@ export default function ArticleLibrary() {
   const refreshRead = useCallback(() => setReadArticles(getReadArticles()), [])
   const refreshSaved = useCallback(() => setSavedArticles(getSavedArticles()), [])
 
+  /* ── 收藏文章(学习空间 · 收藏文章书架) ── */
+  const [, setFavTick] = useState(0)
+  const favId = fullscreen ? String(fullscreen.articleId) : ''
+  const faved = favId ? isArticleFavorited(favId) : false
+  const handleToggleFav = useCallback(() => {
+    if (!fullscreen) return
+    toggleFavoriteArticle({
+      id: String(fullscreen.articleId),
+      title: fullscreen.title,
+      subtitle: fullscreen.subtitle,
+      content: fullscreen.content,
+    })
+    setFavTick((t) => t + 1)
+  }, [fullscreen])
+
   const categories = ['新概念英语', '经典演讲', '经典文学', '每日短文', '语境记忆']
 
   // Book 1 groups of 10, others groups of 5
@@ -114,7 +130,7 @@ export default function ArticleLibrary() {
   }
 
   /* ── Determine content ─────────────────────────────────── */
-  let content: React.ReactNode = null
+  let content: React.ReactNode
 
   if (loadingArticle) {
     content = (
@@ -235,7 +251,7 @@ export default function ArticleLibrary() {
                 return (
                 <div key={pi} style={{ marginBottom: 'var(--space-xxl)' }}>
                   <div style={partHeaderStyle} onClick={() => togglePart(partKey)}>
-                    <span style={{ ...chevronStyle(isOpen), color: partHasRead ? '#22c55e' : 'var(--color-text-secondary)' }}>▶</span>
+                    <span style={{ ...chevronStyle(isOpen), color: partHasRead ? 'var(--color-success)' : 'var(--color-text-secondary)' }}>▶</span>
                     <span>Part {pi + 1} — {part.label}</span>
                     <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--color-text-secondary)', opacity: 0.5 }}>
                       {part.items.filter((a) => readArticles.has(String(a.id))).length}/{part.items.length} 课{isOpen ? '' : ' (已折叠)'}
@@ -250,9 +266,9 @@ export default function ArticleLibrary() {
                         <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>
                           <Badge color={a.level === 'BEGINNER' ? 'green' : a.level === 'INTERMEDIATE' ? 'blue' : 'purple'}>{a.level}</Badge>
                           <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)', color: 'var(--color-text-secondary)' }}>Lesson {a.lesson}</span>
-                          {articleRead && <span style={{ fontSize: 10, color: '#22c55e', marginLeft: 'auto' }}>已读 ✓</span>}
+                          {articleRead && <span style={{ fontSize: 10, color: 'var(--color-success)', marginLeft: 'auto' }}>已读 ✓</span>}
                         </div>
-                        <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? '#22c55e' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
+                        <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? 'var(--color-success)' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
                         <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>{a.title_cn}</p>
                         <Button variant="ghost" onClick={() => handleSelectArticle(a)}>阅读全文</Button>
                       </Card>
@@ -282,9 +298,9 @@ export default function ArticleLibrary() {
                       <Badge color="green">CONTEXT</Badge>
                       <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)', color: 'var(--color-text-secondary)' }}>{a.words.length} 词</span>
                     </div>
-                    {articleRead && <span style={{ fontSize: 10, color: '#22c55e' }}>已读 ✓</span>}
+                    {articleRead && <span style={{ fontSize: 10, color: 'var(--color-success)' }}>已读 ✓</span>}
                   </div>
-                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? '#22c55e' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
+                  <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? 'var(--color-success)' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
                   <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>
                     {a.words.slice(0, 6).join(' · ')}{a.words.length > 6 ? ` …共 ${a.words.length} 词` : ''}
                   </p>
@@ -316,9 +332,9 @@ export default function ArticleLibrary() {
               <div style={{ display: 'flex', gap: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>
                 <Badge color={a.level === 'BEGINNER' ? 'green' : a.level === 'INTERMEDIATE' ? 'blue' : 'purple'}>{a.level}</Badge>
                 <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)', color: 'var(--color-text-secondary)' }}>{a.category}</span>
-                {articleRead && <span style={{ fontSize: 10, color: '#22c55e', marginLeft: 'auto' }}>已读 ✓</span>}
+                {articleRead && <span style={{ fontSize: 10, color: 'var(--color-success)', marginLeft: 'auto' }}>已读 ✓</span>}
               </div>
-              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? '#22c55e' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-heading-sm)', fontWeight: 700, letterSpacing: 'var(--tracking-heading)', color: articleRead ? 'var(--color-success)' : 'var(--color-text)', margin: '0 0 var(--space-sm)' }}>{a.title}</h4>
               <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)' }}>{a.title_cn}</p>
               <Button variant="ghost" onClick={() => setSelectedOther(a)}>阅读全文</Button>
             </Card>
@@ -342,8 +358,18 @@ export default function ArticleLibrary() {
           fontSize={fontSize}
           onFontSizeChange={setFontSize}
           onClose={() => setFullscreen(null)}
+          articleId={String(fullscreen.articleId)}
           actions={
-            <button onClick={() => { toggleRead(fullscreen.articleId); refreshRead() }} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: isRead(fullscreen.articleId) ? '#22c55e' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>{isRead(fullscreen.articleId) ? '已读 ✓' : '标记已读'}</button>
+            <>
+              <button
+                onClick={handleToggleFav}
+                title={faved ? '移出收藏' : '收藏到学习空间的书架'}
+                style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: faved ? 'var(--color-adverb)' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}
+              >
+                {faved ? '★ 已收藏' : '☆ 收藏'}
+              </button>
+              <button onClick={() => { toggleRead(fullscreen.articleId); refreshRead() }} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: isRead(fullscreen.articleId) ? 'var(--color-success)' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>{isRead(fullscreen.articleId) ? '已读 ✓' : '标记已读'}</button>
+            </>
           }
         />
       )}

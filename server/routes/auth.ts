@@ -94,9 +94,8 @@ router.post('/login', (async (req, res) => {
 
 /* ── GET /api/auth/me ───────────────────────────────────── */
 
-router.get('/me', requireAuth as RequestHandler, (_req, res) => {
-  const userId = (_req as any).userId
-  const user = db.prepare('SELECT id, username, email, created_at FROM users WHERE id = ?').get(userId) as any
+router.get('/me', requireAuth as RequestHandler, (req, res) => {
+  const user = db.prepare('SELECT id, username, email, created_at FROM users WHERE id = ?').get(req.userId!) as { id: number; username: string; email: string; created_at: string } | undefined
   if (!user) {
     res.status(404).json({ error: '用户不存在' })
     return

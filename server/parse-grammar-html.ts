@@ -1,11 +1,20 @@
 /**
  * Parse grammar HTML files using cheerio → structured content blocks.
+ * Run: npx tsx server/parse-grammar-html.ts <HTML 源文件夹>
+ *   or set GRAMMAR_HTML_SRC_DIR=<HTML 源文件夹>
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import * as cheerio from 'cheerio'
+import type { AnyNode } from 'domhandler'
 
-const SRC = path.resolve(process.env.USERPROFILE || '', 'Desktop', '英语文字版教学')
+const srcArg = process.argv[2] || process.env.GRAMMAR_HTML_SRC_DIR
+if (!srcArg) {
+  console.error('用法: npx tsx server/parse-grammar-html.ts <HTML 源文件夹路径>')
+  console.error('      或设置环境变量 GRAMMAR_HTML_SRC_DIR=<HTML 源文件夹路径>')
+  process.exit(1)
+}
+const SRC = path.resolve(srcArg)
 const DST = path.resolve('src', 'data', 'grammarDocs.ts')
 
 type Block =
@@ -21,15 +30,15 @@ type Block =
   | { type: 'list'; items: string[] }
   | { type: 'table'; headers: string[]; rows: string[][] }
 
-function cleanText(el: cheerio.Cheerio<any>): string {
+function cleanText(el: cheerio.Cheerio<AnyNode>): string {
   return el.text()
     .replace(/\s+/g, ' ')
-    .replace(/[。，！？：；""''（）【】《》…—\-]{2,}/g, (m) => m[0]) // collapse repeated punctuation
+    .replace(/[-。，！？：；""''（）【】《》…—]{2,}/g, (m) => m[0]) // collapse repeated punctuation
     .replace(/\s+([。，！？：；)）】》])/g, '$1') // remove space before Chinese punct
     .trim()
 }
 
-function htmlText(el: cheerio.Cheerio<any>): string {
+function htmlText(el: cheerio.Cheerio<AnyNode>): string {
   let html = el.html() || ''
   html = html.replace(/<strong[^>]*>/gi, '**')
     .replace(/<\/strong>/gi, '**')
@@ -48,7 +57,7 @@ function htmlText(el: cheerio.Cheerio<any>): string {
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/\*\*/g, '')  // remove bold markers
-    .replace(/([。，！？：；""''（）【】《》…—\-])\1+/g, '$1')  // collapse only SAME repeated punctuation
+    .replace(/([-。，！？：；""''（）【】《》…—])\1+/g, '$1')  // collapse only SAME repeated punctuation
     .replace(/\s+([。，！？：；)）】》])/g, '$1')
     .replace(/[ \t]+/g, ' ')   // collapse horizontal whitespace only
     .replace(/\n{3,}/g, '\n\n') // preserve line breaks, just limit to 2 max
@@ -148,8 +157,8 @@ function extractBlocks(html: string): { blocks: Block[]; title: string; subtitle
         const enEl = $el.find('.en')
         const cnEl = $el.find('.cn')
         const analysisEl = $el.find('.analysis')
-        let en = enEl.length ? htmlText(enEl) : ''
-        let cn = cnEl.length ? htmlText(cnEl) : (analysisEl.length ? htmlText(analysisEl) : '')
+        const en = enEl.length ? htmlText(enEl) : ''
+        const cn = cnEl.length ? htmlText(cnEl) : (analysisEl.length ? htmlText(analysisEl) : '')
         if (!cn && !en) {
           // Just a plain text example
           const text = htmlText($el)
@@ -185,8 +194,8 @@ function extractBlocks(html: string): { blocks: Block[]; title: string; subtitle
       if (!text) return
 
       // Pattern 1: explicit step markers like 第①步, 第1步, 第一步
-      const stepSplit = text.split(/(?=第[①②③④⑤⑥⑦⑧⑨⑩\d]+步|第[一二三四五六七八九十]+步|\d+[\.\、])/g)
-      if (stepSplit.length > 1 && stepSplit.every(s => /^(第[①②③④⑤⑥⑦⑧⑨⑩\d]+步|第[一二三四五六七八九十]+步|\d+[\.\、])/.test(s.trim()))) {
+      const stepSplit = text.split(/(?=第[①②③④⑤⑥⑦⑧⑨⑩\d]+步|第[一二三四五六七八九十]+步|\d+[.、])/g)
+      if (stepSplit.length > 1 && stepSplit.every(s => /^(第[①②③④⑤⑥⑦⑧⑨⑩\d]+步|第[一二三四五六七八九十]+步|\d+[.、])/.test(s.trim()))) {
         blocks.push({ type: 'list', items: stepSplit.map(s => s.trim()) })
         return
       }

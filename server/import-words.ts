@@ -1,13 +1,20 @@
 /**
- * Batch import word analysis files from 英语学习认知 folder into rich_words table.
- * Usage: npx tsx server/import-words.ts
+ * Batch import word analysis files from a source folder into rich_words table.
+ * Usage: npx tsx server/import-words.ts <单词分析文件夹>
+ *    or: WORDS_SRC_DIR=<单词分析文件夹> npx tsx server/import-words.ts
  */
 import 'dotenv/config'
 import fs from 'node:fs'
 import path from 'node:path'
 import db from './db.js'
 
-const SOURCE_DIR = path.resolve(process.env.HOME || process.env.USERPROFILE || '', 'Desktop', '英语学习认知')
+const srcArg = process.argv[2] || process.env.WORDS_SRC_DIR
+if (!srcArg) {
+  console.error('用法: npx tsx server/import-words.ts <单词分析文件夹路径>')
+  console.error('      或设置环境变量 WORDS_SRC_DIR=<单词分析文件夹路径>')
+  process.exit(1)
+}
+const SOURCE_DIR = path.resolve(srcArg)
 
 /* ── Parse a single word file ──────────────────────────────── */
 
@@ -37,7 +44,7 @@ function parseWordFile(content: string, filename: string): WordAnalysis | null {
     let pronunciation = ''
 
     // Try full format: "word /pronunciation/ — pos info"
-    let headerMatch = headerLine.match(/^(.+?)\s*\/\s*(.+?)\s*\/\s*(.*)$/)
+    const headerMatch = headerLine.match(/^(.+?)\s*\/\s*(.+?)\s*\/\s*(.*)$/)
     if (headerMatch) {
       word = headerMatch[1].trim()
       pronunciation = `/${headerMatch[2].trim()}/`

@@ -1,5 +1,16 @@
-import { Request, Response, NextFunction } from 'express'
+import type { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
+
+// Augment Express Request with auth payload fields
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Express {
+    interface Request {
+      userId?: number
+      username?: string
+    }
+  }
+}
 
 const JWT_SECRET = process.env.JWT_SECRET || ''
 if (!JWT_SECRET) {
@@ -11,7 +22,7 @@ export interface AuthPayload {
   username: string
 }
 
-/** Attach req.user if valid token present, but don't block if absent */
+/** Attach req.userId if valid token present, but don't block if absent */
 export function optionalAuth(req: Request, _res: Response, next: NextFunction) {
   const header = req.headers.authorization
   if (!header || !header.startsWith('Bearer ')) {
@@ -20,8 +31,8 @@ export function optionalAuth(req: Request, _res: Response, next: NextFunction) {
   const token = header.slice(7)
   try {
     const payload = jwt.verify(token, JWT_SECRET) as AuthPayload
-    ;(req as any).userId = payload.userId
-    ;(req as any).username = payload.username
+    req.userId = payload.userId
+    req.username = payload.username
   } catch {
     // Token invalid, just don't set userId
   }
@@ -38,8 +49,8 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   const token = header.slice(7)
   try {
     const payload = jwt.verify(token, JWT_SECRET) as AuthPayload
-    ;(req as any).userId = payload.userId
-    ;(req as any).username = payload.username
+    req.userId = payload.userId
+    req.username = payload.username
     next()
   } catch {
     res.status(401).json({ error: '登录已过期，请重新登录' })

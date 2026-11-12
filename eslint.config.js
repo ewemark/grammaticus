@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'data', 'scripts']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -17,6 +17,20 @@ export default defineConfig([
     ],
     languageOptions: {
       globals: globals.browser,
+    },
+    rules: {
+      // Express error handlers must declare 4 params even when unused; _-prefixed args are intentional
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
+      // React Compiler-era rules: the "set loading state then fetch" pattern is idiomatic
+      // for this codebase; downgraded to warnings until a data-fetching layer is adopted.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
+      'react-hooks/use-memo': 'warn',
+      // Deliberate constant/helper exports alongside components (e.g. speakerBtnBase)
+      'react-refresh/only-export-components': 'warn',
     },
   },
 ])

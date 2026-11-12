@@ -1,0 +1,10 @@
+// List remaining problem rows in DB
+const db = require('better-sqlite3')('data/grammaticus.db', { readonly: true })
+console.log('=== meaning is leftover label ===')
+const leftover = db.prepare("SELECT word, meaning, pos FROM words WHERE meaning LIKE '%核心词性%'").all()
+leftover.forEach((r) => console.log(`${r.word} [${r.pos}]: ${r.meaning.slice(0, 40)}`))
+console.log('count:', leftover.length)
+console.log('=== bad pos (OTHER/empty) ===')
+const badPos = db.prepare("SELECT word, meaning, pos FROM words WHERE pos = 'OTHER' OR pos = ''").all()
+badPos.forEach((r) => console.log(`${r.word} [${r.pos || '(empty)'}]: ${(r.meaning || '').slice(0, 40)}`))
+console.log('count:', badPos.length)

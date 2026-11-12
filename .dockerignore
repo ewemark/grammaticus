@@ -1,0 +1,16 @@
+node_modules
+dist
+.git
+.claude
+.env
+.env.*
+*.log
+data/grammaticus.db
+data/grammaticus.db-*
+data/uploads
+data/videos
+data/*.bak
+data/missing-meanings.json
+.vscode
+.idea
+.DS_Store

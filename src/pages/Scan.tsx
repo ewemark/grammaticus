@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { createWorker } from 'tesseract.js'
-import { saveArticle, isArticleSaved } from '../utils/savedArticles'
+import { saveArticle } from '../utils/savedArticles'
 import FullscreenReader from '../components/ui/FullscreenReader'
 
 export default function Scan() {
@@ -252,14 +252,14 @@ export default function Scan() {
           actions={
             <>
               <button onClick={startEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>编辑</button>
-              <button onClick={handleSave} disabled={saved} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: saved ? '#22c55e' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: saved ? 'default' : 'pointer' }}>{saved ? '已收藏 ✓' : '☆ 收藏'}</button>
+              <button onClick={handleSave} disabled={saved} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: saved ? 'var(--color-success)' : 'var(--color-text-secondary)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: saved ? 'default' : 'pointer' }}>{saved ? '已收藏 ✓' : '☆ 收藏'}</button>
             </>
           }
           editActions={
             <>
               <span style={{ fontSize: 12, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-display)' }}>编辑模式</span>
-              <button onClick={confirmEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#22c55e', background: 'none', border: '1px solid #22c55e', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>确认修改</button>
-              <button onClick={cancelEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: '#ef4444', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>取消</button>
+              <button onClick={confirmEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-success)', background: 'none', border: '1px solid var(--color-success)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>确认修改</button>
+              <button onClick={cancelEdit} style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'var(--color-error)', background: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', padding: '6px 16px', cursor: 'pointer' }}>取消</button>
             </>
           }
         />

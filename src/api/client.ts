@@ -7,6 +7,9 @@
 
 const BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
+/** 供流式请求(SSE)复用同一 API 基地址 */
+export { BASE_URL }
+
 /** API 错误类 */
 export class ApiError extends Error {
   status: number

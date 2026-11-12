@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { uploadFile, fetchPastDocs, fetchDoc, deleteDoc, type PastDoc } from '../api/upload'
+import { isLoggedIn } from '../api/auth'
 import FullscreenReader from '../components/ui/FullscreenReader'
 
 export default function Upload() {
@@ -15,7 +16,7 @@ export default function Upload() {
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    fetchPastDocs().then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
+    refreshPast()
   }, [])
 
   const loadPastDoc = async (id: number) => {
@@ -30,7 +31,9 @@ export default function Upload() {
     setLoading(false)
   }
 
+  // History is per-user, so only fetch it when logged in
   const refreshPast = () => {
+    if (!isLoggedIn()) { setPastDocs([]); return }
     fetchPastDocs().then(setPastDocs).catch((e) => { console.error('[Upload]', e) })
   }
 
@@ -157,7 +160,7 @@ export default function Upload() {
                   <button
                     onClick={(e) => handleDeleteDoc(d.id, e)}
                     style={{ fontSize: 12, color: 'var(--color-text-secondary)', background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', opacity: 0.4 }}
-                    onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.color = '#ef4444' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.color = 'var(--color-error)' }}
                     onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.4'; e.currentTarget.style.color = 'var(--color-text-secondary)' }}
                   >
                     ✕

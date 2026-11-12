@@ -7,6 +7,7 @@ import SpeakerButton, { speakerBtnBase } from '../components/ui/SpeakerButton'
 import { useApi } from '../hooks/useApi'
 import { fetchWord } from '../api/words'
 import { isBookmarked, toggleBookmark } from '../utils/bookmarks'
+import { addToDictionary, isInDictionary } from '../utils/dictionary'
 
 /* ── shared inline style factories ─────────────────────────────── */
 
@@ -23,7 +24,7 @@ const sectionTitle: React.CSSProperties = {
 const quoteBlock: React.CSSProperties = {
   borderLeft: '2px solid var(--color-text)',
   padding: 'var(--space-lg) var(--space-xl)',
-  background: '#0a0a0a',
+  background: 'var(--color-canvas-soft)',
   fontSize: 'var(--text-body)',
   lineHeight: 'var(--leading-body)',
   color: 'var(--color-text-secondary)',
@@ -88,7 +89,7 @@ function LoadingSkeleton() {
 
 /* ── not-found state ───────────────────────────────────────────── */
 
-function NotFound({ word }: { word: string }) {
+function NotFound({ word, suggestions }: { word: string; suggestions?: { word: string; meaning: string; pos: string }[] }) {
   return (
     <div>
       <div style={{ marginBottom: 'var(--space-xl)' }}>
@@ -103,6 +104,28 @@ function NotFound({ word }: { word: string }) {
         <p style={{ fontSize: 'var(--text-body)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xl)' }}>
           词库中暂未收录此单词。
         </p>
+
+        {suggestions && suggestions.length > 0 && (
+          <div style={{ marginBottom: 'var(--space-xl)', maxWidth: 420, marginLeft: 'auto', marginRight: 'auto', textAlign: 'left' }}>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-sm)', textAlign: 'center' }}>
+              你是不是要找
+            </p>
+            <div style={{ display: 'grid', gap: 'var(--space-xs)' }}>
+              {suggestions.map((s) => (
+                <Link key={s.word} to={`/words/${encodeURIComponent(s.word)}`} style={{ textDecoration: 'none' }}>
+                  <Card>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                      <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-body-sm)', color: 'var(--color-text)', minWidth: 100 }}>{s.word}</span>
+                      <Badge color={posColors[s.pos] || 'gray'}>{s.pos}</Badge>
+                      <span style={{ fontSize: 'var(--text-body-sm)', color: 'var(--color-text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.meaning || '—'}</span>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         <Link to="/words"><Button variant="ghost">浏览词库</Button></Link>
       </div>
     </div>
@@ -128,10 +151,36 @@ export default function WordDetail() {
     setBookmarked(nowBookmarked)
   }, [word, pos, rich?.posNote, simple?.meaning])
 
-  useEffect(() => { setBookmarked(isBookmarked(word)) }, [word])
+  const [inDict, setInDict] = useState(() => isInDictionary(word))
+
+  const handleAddToDictionary = useCallback(() => {
+    addToDictionary({ word, meaning: rich?.posNote ?? simple?.meaning ?? '', pos })
+    setInDict(true)
+  }, [word, pos, rich?.posNote, simple?.meaning])
+
+  useEffect(() => {
+    setBookmarked(isBookmarked(word))
+    setInDict(isInDictionary(word))
+  }, [word])
 
   if (loading) return <LoadingSkeleton />
-  if (!simple && !rich) return <NotFound word={word} />
+  if (!simple && !rich) return <NotFound word={word} suggestions={detail?.suggestions} />
+
+  /* ── 学习空间操作按钮:加入词典(词卡摘录已并入词典) ── */
+  const spaceButtons = (
+    <button
+      onClick={handleAddToDictionary}
+      disabled={inDict}
+      title={inDict ? '已收录在「学习空间 · 我的词典」' : '收录到我的词典,可写下你的理解并让 AI 点评'}
+      style={{
+        ...speakerBtnBase,
+        marginBottom: 6,
+        ...(inDict ? { opacity: 0.55, cursor: 'default' } : null),
+      }}
+    >
+      {inDict ? '✓ 已收录' : '加入词典'}
+    </button>
+  )
 
   /* ── rich-data layout ─────────────────────────────────────── */
 
@@ -170,6 +219,7 @@ export default function WordDetail() {
             >
               {bookmarked ? '★ 已收藏' : '☆ 收藏'}
             </button>
+            {spaceButtons}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
             <p style={{ fontSize: 'var(--text-body-lg)', color: 'var(--color-text-secondary)', margin: 0 }}>
@@ -304,9 +354,6 @@ export default function WordDetail() {
         <section style={{ marginBottom: 'var(--space-xxl)' }}>
           <h3 style={sectionTitle}>一句话穿透</h3>
           <div style={quoteBlock}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-micro)', fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text)', display: 'block', marginBottom: 'var(--space-sm)' }}>
-              🧠
-            </span>
             {rich.oneLinePenetration}
           </div>
         </section>
@@ -349,6 +396,7 @@ export default function WordDetail() {
           >
             {bookmarked ? '★ 已收藏' : '☆ 收藏'}
           </button>
+          {spaceButtons}
         </div>
         {simple && (
           <p style={{ fontSize: 'var(--text-body-lg)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-md)' }}>

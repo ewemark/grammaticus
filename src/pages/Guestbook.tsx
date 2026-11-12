@@ -1,21 +1,32 @@
 import { useState } from 'react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
+import { submitMessage } from '../api/messages'
 
 export default function Guestbook() {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const submit = async () => {
-    if (!content.trim()) return
-    await fetch('/api/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim(), content: content.trim() }),
-    })
-    setName(''); setContent(''); setSent(true)
-    setTimeout(() => setSent(false), 3000)
+    if (!content.trim() || sending) return
+    setSending(true)
+    setError('')
+    try {
+      await submitMessage({ name: name.trim(), content: content.trim() })
+      setName(''); setContent(''); setSent(true)
+      setTimeout(() => setSent(false), 3000)
+    } catch (e) {
+      try {
+        const msg = e instanceof Error ? JSON.parse(e.message).error : ''
+        setError(msg || '发送失败,请稍后再试')
+      } catch {
+        setError('发送失败,请稍后再试')
+      }
+    }
+    setSending(false)
   }
 
   const s = {
@@ -46,9 +57,12 @@ export default function Guestbook() {
             rows={4}
             style={{ width: '100%', padding: '10px 14px', fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--color-text)', background: 'transparent', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
           />
-          <Button onClick={submit} disabled={!content.trim()}>
-            {sent ? '已发送 ✓' : '发送留言'}
+          <Button onClick={submit} disabled={!content.trim() || sending}>
+            {sending ? '发送中…' : sent ? '已发送 ✓' : '发送留言'}
           </Button>
+          {error && (
+            <p style={{ fontSize: 12, color: 'var(--color-error)', margin: 0 }}>{error}</p>
+          )}
           <p style={{ fontSize: 11, color: 'var(--color-text-secondary)' }}>留言会通过邮件通知作者。</p>
         </div>
       </Card>

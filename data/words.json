@@ -7,13 +7,13 @@
   },
   {
     "w": "abolish",
-    "m": "核心词性：以法律或制度权威彻底废除制度、法律、习俗、机构",
+    "m": "以法律或制度权威彻底废除制度、法律、习俗、机构",
     "p": "VERB",
     "e": "The government plans to abolish the outdated tax system by the end of 2027."
   },
   {
     "w": "abrupt",
-    "m": "核心词性：突然的；唐突的；生硬的",
+    "m": "突然的；唐突的；生硬的",
     "p": "ADJECTIVE",
     "e": "The music stopped abruptly, and for three seconds the audience sat frozen, hands still mid-air from the interrupted applause."
   },
@@ -43,7 +43,7 @@
   },
   {
     "w": "abundant",
-    "m": "核心词性：丰富的、充裕的、大量的",
+    "m": "丰富的、充裕的、大量的",
     "p": "ADJECTIVE",
     "e": "The lake is abundant in trout, attracting anglers from across the state."
   },
@@ -67,7 +67,7 @@
   },
   {
     "w": "accommodate",
-    "m": "核心词性：容纳、提供住宿；迁就、适应",
+    "m": "容纳、提供住宿；迁就、适应",
     "p": "VERB",
     "e": "The conference center can accommodate up to 2,000 delegates."
   },
@@ -79,7 +79,7 @@
   },
   {
     "w": "accomplish",
-    "m": "核心词性：成功完成、实现（任务、使命、目标）",
+    "m": "成功完成、实现（任务、使命、目标）",
     "p": "VERB",
     "e": "The special forces team accomplished the rescue mission without a single casualty."
   },
@@ -97,7 +97,7 @@
   },
   {
     "w": "accurate",
-    "m": "核心词性：准确的、精确的、正确无误的",
+    "m": "准确的、精确的、正确无误的",
     "p": "ADJECTIVE",
     "e": "The GPS is accurate to within three meters."
   },
@@ -115,7 +115,7 @@
   },
   {
     "w": "achieve",
-    "m": "核心词性：经过持续努力而达成、实现（目标、结果）",
+    "m": "经过持续努力而达成、实现（目标、结果）",
     "p": "VERB",
     "e": "She finally achieved her lifelong dream of becoming a surgeon, having started medical school at 38."
   },
@@ -127,7 +127,7 @@
   },
   {
     "w": "acquire",
-    "m": "核心词性：获得、习得、购得",
+    "m": "获得、习得、购得",
     "p": "VERB",
     "e": "She acquired a working knowledge of Spanish during her year in Barcelona."
   },
@@ -163,7 +163,7 @@
   },
   {
     "w": "adequate",
-    "m": "核心词性：足够的、适当的、符合要求的",
+    "m": "足够的、适当的、符合要求的",
     "p": "ADJECTIVE",
     "e": "His performance was adequate, but nothing more."
   },
@@ -175,7 +175,7 @@
   },
   {
     "w": "adjust",
-    "m": "核心词性：调整、适应、校准（及物+不及物）",
+    "m": "调整、适应、校准（及物+不及物）",
     "p": "VERB",
     "e": "Could you adjust the volume? It's a bit too loud."
   },
@@ -187,7 +187,7 @@
   },
   {
     "w": "admire",
-    "m": "核心词性：钦佩、赞赏、欣赏",
+    "m": "钦佩、赞赏、欣赏",
     "p": "VERB",
     "e": "I've always admired people who can stay calm under pressure."
   },
@@ -229,7 +229,7 @@
   },
   {
     "w": "aesthetic",
-    "m": "核心词性：审美的；美学的",
+    "m": "审美的；美学的",
     "p": "ADJECTIVE",
     "e": "The design prioritizes aesthetic appeal over practical functionality."
   },
@@ -242,31 +242,31 @@
   {
     "w": "affection",
     "m": "show affection, deep affection, mutual affection 不可数为主，复数 affections 表示\"钟爱之情\"",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "She has a deep affection for her hometown."
   },
   {
     "w": "affiliate",
     "m": "be affiliated with/to 常用被动语态",
-    "p": "OTHER",
+    "p": "VERB",
     "e": "The research center is affiliated with the university."
   },
   {
     "w": "affirm",
-    "m": "affirm that, affirm one's commitment 正式用语",
-    "p": "OTHER",
+    "m": "肯定;确认;断言",
+    "p": "VERB",
     "e": "She affirmed her intention to run for office."
   },
   {
     "w": "afflict",
-    "m": "be afflicted with/by 常用被动语态",
-    "p": "OTHER",
+    "m": "折磨;使痛苦;使受困",
+    "p": "VERB",
     "e": "Millions are afflicted by hunger every year."
   },
   {
     "w": "aftermath",
-    "m": "in the aftermath of 通常与 the 连用",
-    "p": "OTHER",
+    "m": "后果;余波(尤指灾难的)",
+    "p": "NOUN",
     "e": "In the aftermath of the storm, rescue teams arrived."
   },
   {
@@ -278,31 +278,31 @@
   {
     "w": "aggregate",
     "m": "in aggregate, an aggregate of 经济/统计常用",
-    "p": "OTHER",
+    "p": "VERB",
     "e": "The company's aggregate revenue exceeded $1 billion."
   },
   {
     "w": "agitation",
     "m": "in a state of agitation 心理状态",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "She was trembling with agitation before the interview."
   },
   {
     "w": "alert",
-    "m": "核心词性：adj. 警觉的；v. 向……报警；n. 警报",
+    "m": "adj. 警觉的；v. 向……报警；n. 警报",
     "p": "ADJECTIVE",
     "e": "Stay alert — this neighborhood isn't safe after dark."
   },
   {
     "w": "allege",
-    "m": "核心词性：在缺乏确凿证据的情况下正式声称/指控",
+    "m": "在缺乏确凿证据的情况下正式声称/指控",
     "p": "VERB",
     "e": "The criminal complaint alleges a complex Ponzi scheme involving over a dozen offshore shell companies."
   },
   {
     "w": "allegiance",
     "m": "swear/pledge allegiance, owe allegiance to 正式用语",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "New citizens must swear allegiance to the Crown."
   },
   {
@@ -314,12 +314,12 @@
   {
     "w": "alliance",
     "m": "form/forge an alliance, in alliance with 政治/商业/军事语境",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "The two companies formed an alliance to develop new technology."
   },
   {
     "w": "allocate",
-    "m": "核心词性：在有限资源内做计划性分配、拨出给特定用途",
+    "m": "在有限资源内做计划性分配、拨出给特定用途",
     "p": "VERB",
     "e": "The board allocated 30% of the annual budget to research and development."
   },
@@ -332,42 +332,42 @@
   {
     "w": "allowance",
     "m": "monthly allowance, make allowance(s) for 日常生活常用",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "My parents gave me a monthly allowance in college."
   },
   {
     "w": "ally",
     "m": "a close ally, political allies 可指国家或个人",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "Japan is a key ally of the United States in Asia."
   },
   {
     "w": "alter",
     "m": "alter the course, alter clothes 高频核心动词",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "She altered the dress to fit her perfectly."
   },
   {
     "w": "alternate",
     "m": "on alternate days, alternate route 形容词读 /ˈɔːltərnət/",
-    "p": "OTHER",
+    "p": "VERB",
     "e": "She works on alternate weekends."
   },
   {
     "w": "amateur",
-    "m": "an amateur in, amateur photographer 与 professional 对立",
-    "p": "OTHER",
+    "m": "业余爱好者;外行",
+    "p": "NOUN",
     "e": "She entered the competition as an amateur."
   },
   {
     "w": "ambient",
-    "m": "ambient temperature/light/music 科学/艺术语境",
-    "p": "OTHER",
+    "m": "周围的;环境的(光/声音/温度)",
+    "p": "ADJECTIVE",
     "e": "Store the medicine at ambient temperature."
   },
   {
     "w": "ambiguous",
-    "m": "核心词性：模棱两可的、有歧义的（客观上存在多种解释可能）",
+    "m": "模棱两可的、有歧义的（客观上存在多种解释可能）",
     "p": "ADJECTIVE",
     "e": "The clause is ambiguous and could be interpreted in different ways by different courts."
   },
@@ -379,20 +379,20 @@
   },
   {
     "w": "amend",
-    "m": "核心词性：对正式文本（法律、合同、提案等）局部精准修正其措辞或条款",
+    "m": "对正式文本（法律、合同、提案等）局部精准修正其措辞或条款",
     "p": "VERB",
     "e": "The U.S. Constitution has been formally amended 27 times since its original ratification in 1788."
   },
   {
     "w": "amid",
-    "m": "amid the chaos, amid concerns 正式/书面语",
-    "p": "OTHER",
+    "m": "在…之中;在…期间",
+    "p": "PREPOSITION",
     "e": "The CEO resigned amid allegations of fraud."
   },
   {
     "w": "amplify",
     "m": "amplify sound, amplify a signal 物理/技术语境",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "The device amplifies the signal by 20 decibels."
   },
   {
@@ -404,85 +404,85 @@
   {
     "w": "ancestor",
     "m": "direct ancestor, distant ancestor 血 缘",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "She traced her ancestors back to the 16th century."
   },
   {
     "w": "anguish",
     "m": "in anguish, mental anguish 程度深",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "The mother's face was filled with anguish."
   },
   {
     "w": "animate",
     "m": "animate a character, animate a crowd 动词读 /ˈænɪmeɪt/",
-    "p": "OTHER",
+    "p": "VERB",
     "e": "A single spark of humor animated the entire conversation."
   },
   {
     "w": "annex",
-    "m": "annex territory 动词读 /əˈneks/",
-    "p": "OTHER",
+    "m": "吞并;兼并(领土);附件",
+    "p": "VERB",
     "e": "The empire sought to annex neighboring states."
   },
   {
     "w": "anniversary",
     "m": "wedding anniversary, celebrate an anniversary 词根 ann- = 年，vers- = 转",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "On the anniversary of his death, the family gathered."
   },
   {
     "w": "annotate",
     "m": "annotate a text, heavily annotated 学术/编辑语境",
-    "p": "OTHER",
+    "p": "VERB",
     "e": "She annotated the poem with historical context notes."
   },
   {
     "w": "anonymous",
-    "m": "核心词性：匿名的；无名的",
+    "m": "匿名的；无名的",
     "p": "ADJECTIVE",
     "e": "The donor chose to remain anonymous, refusing any public recognition."
   },
   {
     "w": "antagonist",
     "m": "main antagonist, political antagonist 文学/叙事常用",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "The film's antagonist is a corrupt politician."
   },
   {
     "w": "anticipate",
-    "m": "核心词性：预期、预料 + 提前做准备以应对 + 先于……行动",
+    "m": "预期、预料 + 提前做准备以应对 + 先于……行动",
     "p": "VERB",
     "e": "The hotel staff anticipated our every need — fresh towels arrived before we even realized we wanted them."
   },
   {
     "w": "antidote",
-    "m": "an antidote to, administer an antidote 医学/毒素",
-    "p": "OTHER",
+    "m": "解毒剂;矫正办法;对策",
+    "p": "NOUN",
     "e": "There is no known antidote to the poison."
   },
   {
     "w": "anxiety",
-    "m": "核心词性：焦虑、忧虑——对未来不确定事件的持续担忧，伴随生理唤醒",
+    "m": "焦虑、忧虑——对未来不确定事件的持续担忧，伴随生理唤醒",
     "p": "NOUN",
     "e": "The anxiety of waiting for the biopsy results was unbearable — every minute felt like an hour."
   },
   {
     "w": "apparatus",
-    "m": "",
-    "p": "",
+    "m": "器械;装置;(政治)机构",
+    "p": "NOUN",
     "e": "The lab bought a new apparatus yesterday."
   },
   {
     "w": "applaud",
-    "m": "",
-    "p": "",
+    "m": "鼓掌;喝彩;赞许",
+    "p": "VERB",
     "e": "We should applaud to the volunteers."
   },
   {
     "w": "appraisal",
-    "m": "",
-    "p": "",
+    "m": "评价;评估;鉴定",
+    "p": "ADJECTIVE",
     "e": "My boss made an appraisal for my work."
   },
   {
@@ -493,26 +493,26 @@
   },
   {
     "w": "apprentice",
-    "m": "",
-    "p": "",
+    "m": "学徒;徒弟",
+    "p": "NOUN",
     "e": "He is an apprentice with a famous chef."
   },
   {
     "w": "approximate",
-    "m": "",
-    "p": "",
+    "m": "大约的;近似的;接近",
+    "p": "VERB",
     "e": "The temperature approximates 30 degrees."
   },
   {
     "w": "arbitrary",
-    "m": "",
-    "p": "",
+    "m": "任意的;武断的;随心所欲的",
+    "p": "ADJECTIVE",
     "e": "The referee made an arbitrary between the two teams."
   },
   {
     "w": "archive",
-    "m": "",
-    "p": "",
+    "m": "档案;档案馆;存档",
+    "p": "ADJECTIVE",
     "e": "This newspaper is stored in the archive."
   },
   {
@@ -523,25 +523,25 @@
   },
   {
     "w": "arithmetic",
-    "m": "",
-    "p": "",
+    "m": "算术;四则运算",
+    "p": "ADJECTIVE",
     "e": "He is good at arithmetic, algebra and geometry."
   },
   {
     "w": "arouse",
-    "m": "",
-    "p": "",
+    "m": "唤起;激起;唤醒",
+    "p": "VERB",
     "e": "A crisis aroused unexpectedly."
   },
   {
     "w": "array",
-    "m": "",
-    "p": "",
+    "m": "一系列;陈列;数组",
+    "p": "ADJECTIVE",
     "e": "The conference offers an array of expert."
   },
   {
     "w": "articulate",
-    "m": "核心词性：清晰表达；清楚发音",
+    "m": "清晰表达；清楚发音",
     "p": "VERB",
     "e": "She struggled to articulate her feelings about the loss."
   },
@@ -577,7 +577,7 @@
   },
   {
     "w": "assimilate",
-    "m": "核心词性：吸收知识；同化文化",
+    "m": "吸收知识；同化文化",
     "p": "VERB",
     "e": "It takes time to assimilate all this new information."
   },
@@ -601,7 +601,7 @@
   },
   {
     "w": "augment",
-    "m": "核心词性：增大；增强；补充",
+    "m": "增大；增强；补充",
     "p": "VERB",
     "e": "She took a part-time job to augment her income."
   },
@@ -613,13 +613,13 @@
   },
   {
     "w": "avert",
-    "m": "核心词性：以主动介入方式避免/防止灾难性事件发生；转移目光/视线",
+    "m": "以主动介入方式避免/防止灾难性事件发生；转移目光/视线",
     "p": "VERB",
     "e": "A full-scale armed conflict was narrowly averted at the eleventh hour through intensive back-channel diplomacy."
   },
   {
     "w": "beckon",
-    "m": "核心词性：以手势/点头等视觉信号温和召唤某人靠近；抽象前景安静有力地吸引人前往",
+    "m": "以手势/点头等视觉信号温和召唤某人靠近；抽象前景安静有力地吸引人前往",
     "p": "VERB",
     "e": "The old fisherman beckoned the children to gather around the fire for a tale of the sea."
   },
@@ -631,25 +631,25 @@
   },
   {
     "w": "bestow",
-    "m": "核心词性：以上对下、正式庄重地授予/赐予（荣誉、头衔、信任、赞美等抽象恩惠）",
+    "m": "以上对下、正式庄重地授予/赐予（荣誉、头衔、信任、赞美等抽象恩惠）",
     "p": "VERB",
     "e": "The Nobel Foundation bestows the Peace Prize annually upon those advancing global peace."
   },
   {
     "w": "bias",
-    "m": "核心词性：偏见；偏爱；倾向",
+    "m": "偏见；偏爱；倾向",
     "p": "NOUN",
     "e": "The study revealed a clear bias against female applicants."
   },
   {
     "w": "bizarre",
-    "m": "核心词性：怪诞的；奇异的；荒诞的",
+    "m": "怪诞的；奇异的；荒诞的",
     "p": "ADJECTIVE",
     "e": "It was a bizarre coincidence that we wore the same shirt."
   },
   {
     "w": "blunt",
-    "m": "核心词性：钝的；直率的",
+    "m": "钝的；直率的",
     "p": "ADJECTIVE",
     "e": "To be blunt, your presentation was a disaster."
   },
@@ -679,43 +679,43 @@
   },
   {
     "w": "catalyst",
-    "m": "",
-    "p": "",
+    "m": "催化剂;促进因素",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "chronic",
-    "m": "核心词性：慢性的；长期的；积习难改的",
+    "m": "慢性的；长期的；积习难改的",
     "p": "ADJECTIVE",
     "e": "The hospital treats acute injuries, but the real burden is chronic conditions that never heal."
   },
   {
     "w": "circumvent",
-    "m": "",
-    "p": "",
+    "m": "绕过;规避;绕行",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "cite",
-    "m": "核心词性：引用；举例；传唤",
+    "m": "引用；举例；传唤",
     "p": "VERB",
     "e": "She cited several studies to support her argument."
   },
   {
     "w": "clarify",
-    "m": "核心词性：澄清；阐明；使清晰",
+    "m": "澄清；阐明；使清晰",
     "p": "VERB",
     "e": "Let me clarify what I meant — I wasn't criticizing you personally."
   },
   {
     "w": "cling",
-    "m": "核心词性：紧抓；粘附；依附；坚持不放——多由恐惧/不安全感驱动",
+    "m": "紧抓；粘附；依附；坚持不放——多由恐惧/不安全感驱动",
     "p": "VERB",
     "e": "The child clung to his mother's leg, sobbing uncontrollably."
   },
   {
     "w": "cognitive",
-    "m": "核心词性：认知的；感知的",
+    "m": "认知的；感知的",
     "p": "ADJECTIVE",
     "e": "Children's cognitive development is not just about facts — it's about learning how to think."
   },
@@ -727,37 +727,37 @@
   },
   {
     "w": "cohesion",
-    "m": "",
-    "p": "",
+    "m": "凝聚力;团结;黏合",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "coincide",
-    "m": "核心词性：同时发生；巧合；一致；重叠",
+    "m": "同时发生；巧合；一致；重叠",
     "p": "VERB",
     "e": "The festival coincides with the anniversary of the city's founding."
   },
   {
     "w": "collaborate",
-    "m": "",
-    "p": "",
+    "m": "合作;协作;勾结",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "commemorate",
-    "m": "核心词性：纪念；庆祝；作为……的纪念标志",
+    "m": "纪念；庆祝；作为……的纪念标志",
     "p": "VERB",
     "e": "The city erected a monument to commemorate the victims of the disaster."
   },
   {
     "w": "commence",
-    "m": "核心词性：开始、着手（正式语境）",
+    "m": "开始、着手（正式语境）",
     "p": "VERB",
     "e": "The judge banged the gavel and the trial commenced."
   },
   {
     "w": "commission",
-    "m": "核心词性：委员会；佣金；委托；使服役",
+    "m": "委员会；佣金；委托；使服役",
     "p": "NOUN",
     "e": "The museum commissioned a local artist to create a mural."
   },
@@ -769,20 +769,20 @@
   },
   {
     "w": "compatible",
-    "m": "核心词性：兼容的；可共存的；志趣相投的",
+    "m": "兼容的；可共存的；志趣相投的",
     "p": "ADJECTIVE",
     "e": "This software is not compatible with the latest operating system."
   },
   {
     "w": "compel",
-    "m": "核心词性：强迫；迫使——由外部力量/情势/道义将选择压缩至唯一出口",
+    "m": "强迫；迫使——由外部力量/情势/道义将选择压缩至唯一出口",
     "p": "VERB",
     "e": "The court's injunction compelled the tech giant to halt data collection immediately."
   },
   {
     "w": "compensate",
-    "m": "",
-    "p": "",
+    "m": "补偿;赔偿;弥补",
+    "p": "VERB",
     "e": ""
   },
   {
@@ -793,8 +793,8 @@
   },
   {
     "w": "complement",
-    "m": "",
-    "p": "",
+    "m": "补充物;补足;与…相配",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -805,13 +805,13 @@
   },
   {
     "w": "component",
-    "m": "",
-    "p": "",
+    "m": "成分;组件;零部件",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "comprehend",
-    "m": "核心词性：理解、领悟、包含（对整体有深度把握）",
+    "m": "理解、领悟、包含（对整体有深度把握）",
     "p": "VERB",
     "e": "She simply could not comprehend why anyone would do such a thing."
   },
@@ -823,32 +823,32 @@
   },
   {
     "w": "compromise",
-    "m": "核心词性：妥协折中（名词）；妥协让步/损害危及（动词）",
+    "m": "妥协折中（名词）；妥协让步/损害危及（动词）",
     "p": "NOUN",
     "e": "A single mistake could compromise the entire experiment."
   },
   {
     "w": "conceal",
-    "m": "核心词性：隐藏、隐瞒、掩盖（有意识地不让他人看见或知晓）",
+    "m": "隐藏、隐瞒、掩盖（有意识地不让他人看见或知晓）",
     "p": "VERB",
     "e": "She concealed her anger behind a polite smile."
   },
   {
     "w": "concede",
-    "m": "核心词性：承认；让步；认输；允许",
+    "m": "承认；让步；认输；允许",
     "p": "VERB",
     "e": "After hours of debate, she finally conceded that she might be wrong."
   },
   {
     "w": "conceive",
-    "m": "核心词性：及物/不及物。构思想法；想象可能性；怀孕",
+    "m": "及物/不及物。构思想法；想象可能性；怀孕",
     "p": "VERB",
     "e": "The Wright brothers conceived powered flight long before anyone had the technology."
   },
   {
     "w": "conception",
-    "m": "",
-    "p": "",
+    "m": "概念;观念;构想;怀孕",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -865,7 +865,7 @@
   },
   {
     "w": "condemn",
-    "m": "核心词性：谴责；判刑；宣判建筑不宜使用；使注定",
+    "m": "谴责；判刑；宣判建筑不宜使用；使注定",
     "p": "VERB",
     "e": "The UN Security Council unanimously condemned the coup as a flagrant violation."
   },
@@ -877,14 +877,14 @@
   },
   {
     "w": "confer",
-    "m": "核心词性：授予（荣誉/头衔）、商讨（交换意见）",
+    "m": "授予（荣誉/头衔）、商讨（交换意见）",
     "p": "VERB",
     "e": "The university conferred upon her the highest academic distinction."
   },
   {
     "w": "configuration",
-    "m": "",
-    "p": "",
+    "m": "配置;布局;构造",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -901,25 +901,25 @@
   },
   {
     "w": "confront",
-    "m": "核心词性：面对；对抗；直面；与……对质——走到恐惧/问题正面，回避距离归零",
+    "m": "面对；对抗；直面；与……对质——走到恐惧/问题正面，回避距离归零",
     "p": "VERB",
     "e": "When confronted with the auditor's forensic report, the CFO broke down in tears."
   },
   {
     "w": "confrontation",
-    "m": "",
-    "p": "",
+    "m": "对抗;对峙;正面冲突",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "congregation",
-    "m": "",
-    "p": "",
+    "m": "集会;(教堂的)会众",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "conscience",
-    "m": "核心词性：良心、良知——内在道德判断机制",
+    "m": "良心、良知——内在道德判断机制",
     "p": "NOUN",
     "e": "I can't in good conscience recommend this product, knowing the safety data was concealed."
   },
@@ -937,14 +937,14 @@
   },
   {
     "w": "consist",
-    "m": "核心词性：由…组成、在于、符合（涉及构成或本质）",
+    "m": "由…组成、在于、符合（涉及构成或本质）",
     "p": "VERB",
     "e": "The beauty of the design consists in its simplicity."
   },
   {
     "w": "consistency",
-    "m": "",
-    "p": "",
+    "m": "一致性;连贯性;浓稠度",
+    "p": "ADJECTIVE",
     "e": ""
   },
   {
@@ -955,8 +955,8 @@
   },
   {
     "w": "consolidation",
-    "m": "",
-    "p": "",
+    "m": "巩固;合并;整合",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -967,14 +967,14 @@
   },
   {
     "w": "constitute",
-    "m": "核心词性：构成（部分→整体）；设立；等同于；任命",
+    "m": "构成（部分→整体）；设立；等同于；任命",
     "p": "VERB",
     "e": "His failure to disclose a personal stake constitutes a textbook conflict of interest."
   },
   {
     "w": "constitution",
-    "m": "",
-    "p": "",
+    "m": "宪法;体质;构成",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -985,14 +985,14 @@
   },
   {
     "w": "consume",
-    "m": "核心词性：消耗、消费、吞噬（用完或用尽某资源）",
+    "m": "消耗、消费、吞噬（用完或用尽某资源）",
     "p": "VERB",
     "e": "The project consumed all his waking hours for six months."
   },
   {
     "w": "consumption",
-    "m": "",
-    "p": "",
+    "m": "消耗;消费;食用",
+    "p": "NOUN",
     "e": ""
   },
   {
@@ -1003,7 +1003,7 @@
   },
   {
     "w": "contemporary",
-    "m": "核心词性：当代的；同时代的；同时代的人",
+    "m": "当代的；同时代的；同时代的人",
     "p": "ADJECTIVE",
     "e": "The gallery specializes in contemporary Chinese art from the 1990s onward."
   },
@@ -1033,13 +1033,13 @@
   },
   {
     "w": "contradiction",
-    "m": "",
-    "p": "",
+    "m": "矛盾;不一致;反驳",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "contribute",
-    "m": "核心词性：贡献、捐献、投稿、促成",
+    "m": "贡献、捐献、投稿、促成",
     "p": "VERB",
     "e": "Everyone contributed ideas, and the final plan was stronger than any individual input."
   },
@@ -1063,13 +1063,13 @@
   },
   {
     "w": "convergence",
-    "m": "",
-    "p": "",
+    "m": "汇聚;趋同;会合",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "convey",
-    "m": "核心词性：传达、输送、表达（使信息/物品从一端到另一端）",
+    "m": "传达、输送、表达（使信息/物品从一端到另一端）",
     "p": "VERB",
     "e": "Words cannot convey how grateful I am."
   },
@@ -1081,19 +1081,19 @@
   },
   {
     "w": "coordinate",
-    "m": "核心词性：协调；坐标；同等的",
+    "m": "协调；坐标；同等的",
     "p": "VERB",
     "e": "We need to coordinate our marketing campaigns across all regions."
   },
   {
     "w": "coordination",
-    "m": "",
-    "p": "",
+    "m": "协调;配合;同等",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "correlate",
-    "m": "核心词性：使相互关联；显示相关性",
+    "m": "使相互关联；显示相关性",
     "p": "VERB",
     "e": "High stress levels correlate with increased risk of heart disease."
   },
@@ -1105,7 +1105,7 @@
   },
   {
     "w": "counterfeit",
-    "m": "核心词性：伪造的；赝品；伪造",
+    "m": "伪造的；赝品；伪造",
     "p": "ADJECTIVE",
     "e": "The gallery discovered that the painting was a counterfeit."
   },
@@ -1117,7 +1117,7 @@
   },
   {
     "w": "cumulative",
-    "m": "核心词性：累积的；渐增的",
+    "m": "累积的；渐增的",
     "p": "ADJECTIVE",
     "e": "The cumulative effects of sleep deprivation can be devastating."
   },
@@ -1129,43 +1129,43 @@
   },
   {
     "w": "cynical",
-    "m": "核心词性：愤世嫉俗的；怀疑一切动机的",
+    "m": "愤世嫉俗的；怀疑一切动机的",
     "p": "ADJECTIVE",
     "e": "He's become deeply cynical about politics after 20 years as a journalist."
   },
   {
     "w": "deceive",
-    "m": "核心词性：通过虚假信息/隐瞒/操纵系统性误导认知",
+    "m": "通过虚假信息/隐瞒/操纵系统性误导认知",
     "p": "VERB",
     "e": "The tobacco company systematically deceived the public about smoking risks for four decades."
   },
   {
     "w": "decisive",
-    "m": "核心词性：决定性的；关键的；果断的",
+    "m": "决定性的；关键的；果断的",
     "p": "ADJECTIVE",
     "e": "The general's decisive action turned the tide of the battle."
   },
   {
     "w": "declaration",
-    "m": "核心词性：宣言；声明；申报",
+    "m": "宣言；声明；申报",
     "p": "NOUN",
     "e": "The Declaration of Independence was signed in 1776."
   },
   {
     "w": "decline",
-    "m": "核心词性：下降/衰退/婉拒（数量质量向下 + 拒绝邀请）",
+    "m": "下降/衰退/婉拒（数量质量向下 + 拒绝邀请）",
     "p": "VERB",
     "e": "Profits have been declining steadily for three consecutive quarters."
   },
   {
     "w": "dedicate",
-    "m": "核心词性：致力于；奉献；题献；揭幕",
+    "m": "致力于；奉献；题献；揭幕",
     "p": "VERB",
     "e": "She dedicated her entire career to helping underprivileged children."
   },
   {
     "w": "deduce",
-    "m": "核心词性：推论；演绎——从已知事实严格逻辑推导未知结论",
+    "m": "推论；演绎——从已知事实严格逻辑推导未知结论",
     "p": "VERB",
     "e": "From the tread pattern and glass distribution, the team deduced the vehicle's speed and that the driver braked too late."
   },
@@ -1177,115 +1177,115 @@
   },
   {
     "w": "deficient",
-    "m": "核心词性：不足的；有缺陷的；达不到标准的",
+    "m": "不足的；有缺陷的；达不到标准的",
     "p": "ADJECTIVE",
     "e": "The report found the school's safety measures seriously deficient."
   },
   {
     "w": "delegate",
-    "m": "核心词性：授权委托；委派代表；会议代表",
+    "m": "授权委托；委派代表；会议代表",
     "p": "VERB",
     "e": "A good manager knows how to delegate tasks effectively."
   },
   {
     "w": "deliberate",
-    "m": "核心词性：故意的；从容的、深思熟虑的",
+    "m": "故意的；从容的、深思熟虑的",
     "p": "ADJECTIVE",
     "e": "It was a deliberate decision, not an impulsive one."
   },
   {
     "w": "demonstrate",
-    "m": "核心词性：演示、证明、表明、示威",
+    "m": "演示、证明、表明、示威",
     "p": "VERB",
     "e": "The study demonstrates a clear link between sleep and mental health."
   },
   {
     "w": "denote",
-    "m": "核心词性：表示、意味着、指代（符号/标志与所指之间的直接关系）",
+    "m": "表示、意味着、指代（符号/标志与所指之间的直接关系）",
     "p": "VERB",
     "e": "A fever often denotes the presence of an infection."
   },
   {
     "w": "depict",
-    "m": "核心词性：用文字/图画/影像形象化描绘、刻画、再现——让受众\"在脑中看见画面\"",
+    "m": "用文字/图画/影像形象化描绘、刻画、再现——让受众\"在脑中看见画面\"",
     "p": "VERB",
     "e": "The novel depicts Victorian factory life with surgical precision."
   },
   {
     "w": "deplete",
-    "m": "核心词性：耗尽；大量消耗；使枯竭",
+    "m": "耗尽；大量消耗；使枯竭",
     "p": "VERB",
     "e": "Overfishing has severely depleted fish stocks in the region."
   },
   {
     "w": "deposit",
-    "m": "核心词性：存款；押金；沉积物；存放；使沉积",
+    "m": "存款；押金；沉积物；存放；使沉积",
     "p": "NOUN",
     "e": "I need to deposit this check before the bank closes."
   },
   {
     "w": "deprive",
-    "m": "核心词性：剥夺；使丧失",
+    "m": "剥夺；使丧失",
     "p": "VERB",
     "e": "The war deprived millions of children of education."
   },
   {
     "w": "derive",
-    "m": "核心词性：源自；获得；推导出",
+    "m": "源自；获得；推导出",
     "p": "VERB",
     "e": "The word \"sincere\" is often said to derive from Latin \"sine cera,\" meaning \"without wax\" — though etymologists disagree, the story captures what derive does best: it gives a word a birthplace."
   },
   {
     "w": "designate",
-    "m": "核心词性：指定、任命、标明（正式确立某人/某物的角色/用途/身份）",
+    "m": "指定、任命、标明（正式确立某人/某物的角色/用途/身份）",
     "p": "VERB",
     "e": "The board designated her as the next CEO, effective next quarter."
   },
   {
     "w": "destiny",
-    "m": "核心词性：命运，天命，归宿——人生预设或注定要经历的宏大轨迹，可被主动实现",
+    "m": "命运，天命，归宿——人生预设或注定要经历的宏大轨迹，可被主动实现",
     "p": "NOUN",
     "e": "She felt a profound sense of destiny stepping onto that stage for the first time."
   },
   {
     "w": "detach",
-    "m": "核心词性：拆开、分离、脱离（物理或情感上拆离连接）",
+    "m": "拆开、分离、脱离（物理或情感上拆离连接）",
     "p": "VERB",
     "e": "She detached the photo from the album and held it closer."
   },
   {
     "w": "deteriorate",
-    "m": "核心词性：恶化；退化；变坏；降解",
+    "m": "恶化；退化；变坏；降解",
     "p": "VERB",
     "e": "The patient's condition deteriorated so rapidly he was airlifted out."
   },
   {
     "w": "deviate",
-    "m": "核心词性：偏离；背离",
+    "m": "偏离；背离",
     "p": "VERB",
     "e": "The plane deviated from its scheduled flight path."
   },
   {
     "w": "devise",
-    "m": "核心词性：设计；发明；想出",
+    "m": "设计；发明；想出",
     "p": "VERB",
     "e": "The committee devised a new strategy to boost enrollment."
   },
   {
     "w": "differentiate",
-    "m": "核心词性：区分；区别；使不同",
+    "m": "区分；区别；使不同",
     "p": "VERB",
     "e": "Can you differentiate between genuine leather and synthetic?"
   },
   {
     "w": "diffuse",
-    "m": "核心词性：扩散；传播；弥漫",
+    "m": "扩散；传播；弥漫",
     "p": "VERB",
     "e": "The fragrance diffused through the entire room."
   },
   {
     "w": "dilate",
-    "m": "核心词性：扩张；膨胀；详述",
+    "m": "扩张；膨胀；详述",
     "p": "VERB",
     "e": "The doctor used eye drops to dilate the patient's pupils."
   },
@@ -1303,7 +1303,7 @@
   },
   {
     "w": "dilute",
-    "m": "核心词性：稀释；冲淡；削弱",
+    "m": "稀释；冲淡；削弱",
     "p": "VERB",
     "e": "Dilute the paint with a small amount of water before applying."
   },
@@ -1315,25 +1315,25 @@
   },
   {
     "w": "discard",
-    "m": "核心词性：丢弃；抛弃",
+    "m": "丢弃；抛弃",
     "p": "VERB",
     "e": "He discarded the moldy bread without a second thought."
   },
   {
     "w": "discern",
-    "m": "核心词性：分辨；识别；洞察",
+    "m": "分辨；识别；洞察",
     "p": "VERB",
     "e": "It was too dark to discern the figures moving in the distance."
   },
   {
     "w": "disclose",
-    "m": "核心词性：揭露；透露；公开",
+    "m": "揭露；透露；公开",
     "p": "VERB",
     "e": "The company is required by law to disclose all financial risks."
   },
   {
     "w": "discourse",
-    "m": "核心词性：话语；论述；演讲",
+    "m": "话语；论述；演讲",
     "p": "NOUN",
     "e": "The documentary sparked a national discourse on mental health."
   },
@@ -1345,7 +1345,7 @@
   },
   {
     "w": "discrete",
-    "m": "核心词性：离散的；分离的；不连续的",
+    "m": "离散的；分离的；不连续的",
     "p": "ADJECTIVE",
     "e": "The project can be broken down into five discrete phases, each with its own deadline."
   },
@@ -1357,25 +1357,25 @@
   },
   {
     "w": "discriminate",
-    "m": "核心词性：区分；歧视",
+    "m": "区分；歧视",
     "p": "VERB",
     "e": "It is illegal to discriminate against employees based on their age."
   },
   {
     "w": "disintegrate",
-    "m": "核心词性：瓦解；崩溃；碎裂",
+    "m": "瓦解；崩溃；碎裂",
     "p": "VERB",
     "e": "The old manuscript disintegrated into dust when they tried to open it."
   },
   {
     "w": "dismantle",
-    "m": "核心词性：拆除；拆卸；废除",
+    "m": "拆除；拆卸；废除",
     "p": "VERB",
     "e": "Workers spent three weeks dismantling the old factory equipment."
   },
   {
     "w": "dismay",
-    "m": "核心词性：惊恐；沮丧；灰心",
+    "m": "惊恐；沮丧；灰心",
     "p": "NOUN",
     "e": "To her dismay, the job offer was withdrawn at the last minute."
   },
@@ -1399,44 +1399,44 @@
   },
   {
     "w": "disperse",
-    "m": "核心词性：分散；驱散；散布",
+    "m": "分散；驱散；散布",
     "p": "VERB",
     "e": "Police used tear gas to disperse the protesters."
   },
   {
     "w": "displace",
-    "m": "",
-    "p": "",
+    "m": "取代;迫使离开家园;移位",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "dispose",
-    "m": "",
-    "p": "",
+    "m": "处理;丢弃;使倾向于",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "dispute",
-    "m": "",
-    "p": "",
+    "m": "争论;争端;质疑",
+    "p": "NOUN",
     "e": ""
   },
   {
     "w": "disrupt",
-    "m": "",
-    "p": "",
+    "m": "扰乱;中断;使瓦解",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "disseminate",
-    "m": "",
-    "p": "",
+    "m": "传播;散布;宣传",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "dissipate",
-    "m": "",
-    "p": "",
+    "m": "消散;驱散;挥霍",
+    "p": "VERB",
     "e": ""
   },
   {
@@ -1459,19 +1459,19 @@
   },
   {
     "w": "diversify",
-    "m": "",
-    "p": "",
+    "m": "使多样化;多元化经营",
+    "p": "ADJECTIVE",
     "e": ""
   },
   {
     "w": "divulge",
-    "m": "",
-    "p": "",
+    "m": "泄露;透露;暴露",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "dominant",
-    "m": "核心词性：占主导地位的；显性的；强势的",
+    "m": "占主导地位的；显性的；强势的",
     "p": "ADJECTIVE",
     "e": "Google has long held a dominant position in the search engine market."
   },
@@ -1483,7 +1483,7 @@
   },
   {
     "w": "drastic",
-    "m": "核心词性：剧烈的；极端的；大幅度的",
+    "m": "剧烈的；极端的；大幅度的",
     "p": "ADJECTIVE",
     "e": "The company had to take drastic measures, laying off 40% of its workforce."
   },
@@ -1495,13 +1495,13 @@
   },
   {
     "w": "elaborate",
-    "m": "核心词性：精心制作的；复杂的",
+    "m": "精心制作的；复杂的",
     "p": "ADJECTIVE",
     "e": "The architect presented an elaborate blueprint for the museum."
   },
   {
     "w": "elicit",
-    "m": "核心词性：引出、诱出（信息、反应）",
+    "m": "引出、诱出（信息、反应）",
     "p": "VERB",
     "e": "The teacher's question elicited no response from the class."
   },
@@ -1519,26 +1519,26 @@
   },
   {
     "w": "elude",
-    "m": "核心词性：躲避、逃避；使困惑、不被获得",
+    "m": "躲避、逃避；使困惑、不被获得",
     "p": "VERB",
     "e": "The suspect managed to elude the police for three weeks."
   },
   {
     "w": "emanate",
-    "m": "",
-    "p": "",
+    "m": "散发;发出;来源于",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "embark",
-    "m": "",
-    "p": "",
+    "m": "上船;登机;开始(从事)",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "embody",
-    "m": "",
-    "p": "",
+    "m": "体现;具体表达;包含",
+    "p": "ADJECTIVE",
     "e": ""
   },
   {
@@ -1555,13 +1555,13 @@
   },
   {
     "w": "emit",
-    "m": "",
-    "p": "",
+    "m": "发出;排放;散发",
+    "p": "VERB",
     "e": ""
   },
   {
     "w": "empirical",
-    "m": "核心词性：经验主义的；以观察实验为依据的",
+    "m": "经验主义的；以观察实验为依据的",
     "p": "ADJECTIVE",
     "e": "The theory sounds plausible but lacks empirical support."
   },
@@ -1597,25 +1597,25 @@
   },
   {
     "w": "envision",
-    "m": "核心词性：设想、在心中清晰描摹未来图景",
+    "m": "设想、在心中清晰描摹未来图景",
     "p": "VERB",
     "e": "Jobs envisioned a device so intuitive a child could use it—and spent years turning that vision into hardware."
   },
   {
     "w": "erode",
-    "m": "核心词性：侵蚀、腐蚀、逐渐损害（及物/不及物）",
+    "m": "侵蚀、腐蚀、逐渐损害（及物/不及物）",
     "p": "VERB",
     "e": "Six million years of wind and water have eroded the once-jagged peaks into soft, rounded silhouettes."
   },
   {
     "w": "escalate",
-    "m": "核心词性：逐步升级、扩大、恶化（及物/不及物）",
+    "m": "逐步升级、扩大、恶化（及物/不及物）",
     "p": "VERB",
     "e": "The argument escalated into a physical fight."
   },
   {
     "w": "ethical",
-    "m": "核心词性：道德的；伦理的；合乎道德的",
+    "m": "道德的；伦理的；合乎道德的",
     "p": "ADJECTIVE",
     "e": "The use of AI in hiring raises serious ethical concerns about bias."
   },
@@ -1627,37 +1627,37 @@
   },
   {
     "w": "exaggerate",
-    "m": "核心词性：夸张、夸大、言过其实（及物/不及物）",
+    "m": "夸张、夸大、言过其实（及物/不及物）",
     "p": "VERB",
     "e": "It's hard to exaggerate the importance of this discovery."
   },
   {
     "w": "exceed",
-    "m": "核心词性：超越、超过（限度、预期、数量）",
+    "m": "超越、超过（限度、预期、数量）",
     "p": "VERB",
     "e": "Do not exceed the recommended dosage."
   },
   {
     "w": "exotic",
-    "m": "核心词性：异国情调的；外来的；奇特迷人的",
+    "m": "异国情调的；外来的；奇特迷人的",
     "p": "ADJECTIVE",
     "e": "The market was filled with exotic spices I had never seen before."
   },
   {
     "w": "expel",
-    "m": "核心词性：驱逐、排出、开除",
+    "m": "驱逐、排出、开除",
     "p": "VERB",
     "e": "Three students were expelled for drug possession on campus."
   },
   {
     "w": "explicit",
-    "m": "核心词性：明确的；直言的；不含糊的",
+    "m": "明确的；直言的；不含糊的",
     "p": "ADJECTIVE",
     "e": "The teacher gave explicit instructions for the exam."
   },
   {
     "w": "exploit",
-    "m": "核心词性：剥削、利用、开发",
+    "m": "剥削、利用、开发",
     "p": "VERB",
     "e": "The regime was accused of exploiting ethnic tensions for political gain."
   },
@@ -1675,7 +1675,7 @@
   },
   {
     "w": "feasible",
-    "m": "核心词性：可行的；行得通的；合理的",
+    "m": "可行的；行得通的；合理的",
     "p": "ADJECTIVE",
     "e": "Building a bridge here is technically feasible but financially risky."
   },
@@ -1687,7 +1687,7 @@
   },
   {
     "w": "fluctuate",
-    "m": "核心词性：波动、起伏、不稳定地变化（不及物）",
+    "m": "波动、起伏、不稳定地变化（不及物）",
     "p": "VERB",
     "e": "The stock market fluctuated wildly after the central bank's unexpected announcement."
   },
@@ -1711,7 +1711,7 @@
   },
   {
     "w": "fundamental",
-    "m": "核心词性：根本的；基础的；至关重要的",
+    "m": "根本的；基础的；至关重要的",
     "p": "ADJECTIVE",
     "e": "Honesty is fundamental to any healthy relationship."
   },
@@ -1735,13 +1735,13 @@
   },
   {
     "w": "genuine",
-    "m": "核心词性：真正的、真诚的、非伪造的",
+    "m": "真正的、真诚的、非伪造的",
     "p": "ADJECTIVE",
     "e": "That's a genuine Picasso, not a print."
   },
   {
     "w": "glance",
-    "m": "核心词性：瞥一眼、扫视、浏览",
+    "m": "瞥一眼、扫视、浏览",
     "p": "VERB",
     "e": "He glanced nervously at the door, expecting someone to walk in."
   },
@@ -1759,7 +1759,7 @@
   },
   {
     "w": "hypothetical",
-    "m": "核心词性：假设的；假定的",
+    "m": "假设的；假定的",
     "p": "ADJECTIVE",
     "e": "Let me pose a hypothetical: what would you do if you won the lottery?"
   },
@@ -1777,7 +1777,7 @@
   },
   {
     "w": "immense",
-    "m": "核心词性：巨大的；无边的；极好的",
+    "m": "巨大的；无边的；极好的",
     "p": "ADJECTIVE",
     "e": "The project was completed under immense pressure."
   },
@@ -1795,7 +1795,7 @@
   },
   {
     "w": "implicit",
-    "m": "核心词性：隐含的；内含的；盲目的",
+    "m": "隐含的；内含的；盲目的",
     "p": "ADJECTIVE",
     "e": "There was an implicit threat in his calm tone."
   },
@@ -1825,7 +1825,7 @@
   },
   {
     "w": "inherent",
-    "m": "核心词性：固有的；内在的；天生的",
+    "m": "固有的；内在的；天生的",
     "p": "ADJECTIVE",
     "e": "Risk is inherent in any investment."
   },
@@ -1849,7 +1849,7 @@
   },
   {
     "w": "innovative",
-    "m": "核心词性：创新的；革新的；新式的",
+    "m": "创新的；革新的；新式的",
     "p": "ADJECTIVE",
     "e": "The company is known for its innovative approach to recycling."
   },
@@ -1879,7 +1879,7 @@
   },
   {
     "w": "intricate",
-    "m": "核心词性：错综复杂的；精巧细致的",
+    "m": "错综复杂的；精巧细致的",
     "p": "ADJECTIVE",
     "e": "The carpet features an intricate pattern woven by hand."
   },
@@ -1897,7 +1897,7 @@
   },
   {
     "w": "legitimate",
-    "m": "核心词性：合法的；正当的；合理的",
+    "m": "合法的；正当的；合理的",
     "p": "ADJECTIVE",
     "e": "The public has a legitimate concern about food safety."
   },
@@ -1909,19 +1909,19 @@
   },
   {
     "w": "lucrative",
-    "m": "核心词性：有利可图的；赚钱的；利润丰厚的",
+    "m": "有利可图的；赚钱的；利润丰厚的",
     "p": "ADJECTIVE",
     "e": "She left teaching for a more lucrative career in finance."
   },
   {
     "w": "mandatory",
-    "m": "核心词性：强制的；必须履行的；必修的",
+    "m": "强制的；必须履行的；必修的",
     "p": "ADJECTIVE",
     "e": "Attendance at the orientation is mandatory for all new employees."
   },
   {
     "w": "manifest",
-    "m": "核心词性：使显现、展示（及物/不及物）",
+    "m": "使显现、展示（及物/不及物）",
     "p": "VERB",
     "e": "The illness manifests itself in a wide range of symptoms, making it difficult to diagnose."
   },
@@ -1933,73 +1933,73 @@
   },
   {
     "w": "marginal",
-    "m": "核心词性：边缘的；微不足道的；边际的",
+    "m": "边缘的；微不足道的；边际的",
     "p": "ADJECTIVE",
     "e": "The new policy brought only marginal improvements."
   },
   {
     "w": "mediate",
-    "m": "核心词性：调解；斡旋；居中促成",
+    "m": "调解；斡旋；居中促成",
     "p": "VERB",
     "e": "The UN was asked to mediate between the warring factions."
   },
   {
     "w": "migrate",
-    "m": "核心词性：迁徙；移居；迁移（数据/系统）",
+    "m": "迁徙；移居；迁移（数据/系统）",
     "p": "VERB",
     "e": "Millions of wildebeests migrate across the Serengeti each year."
   },
   {
     "w": "modest",
-    "m": "核心词性：谦虚的；适度的；朴素的",
+    "m": "谦虚的；适度的；朴素的",
     "p": "ADJECTIVE",
     "e": "When asked about the rescue, the firefighter shrugged: \"I just did what anyone would do\" — a modest reply that accidentally revealed the size of his character."
   },
   {
     "w": "modify",
-    "m": "核心词性：修改；修饰；缓和",
+    "m": "修改；修饰；缓和",
     "p": "VERB",
     "e": "We need to modify the contract to reflect the new terms."
   },
   {
     "w": "monitor",
-    "m": "核心词性：监控；监测；监视器；显示器；班长",
+    "m": "监控；监测；监视器；显示器；班长",
     "p": "VERB",
     "e": "The system monitors network traffic 24/7 for any anomalies."
   },
   {
     "w": "motivate",
-    "m": "核心词性：激励；激发；使有动机",
+    "m": "激励；激发；使有动机",
     "p": "VERB",
     "e": "A good leader knows how to motivate the team even in tough times."
   },
   {
     "w": "mutual",
-    "m": "核心词性：相互的；共同的",
+    "m": "相互的；共同的",
     "p": "ADJECTIVE",
     "e": "A successful marriage requires mutual trust and respect."
   },
   {
     "w": "neglect",
-    "m": "核心词性：疏忽、忽略、疏于照顾",
+    "m": "疏忽、忽略、疏于照顾",
     "p": "VERB",
     "e": "She was charged with neglecting her children after neighbors reported hearing them cry for hours."
   },
   {
     "w": "negotiate",
-    "m": "核心词性：谈判/协商 + 成功通过（障碍/弯道）",
+    "m": "谈判/协商 + 成功通过（障碍/弯道）",
     "p": "VERB",
     "e": "We are currently negotiating with suppliers for a more competitive price."
   },
   {
     "w": "nominate",
-    "m": "核心词性：提名；任命；指定",
+    "m": "提名；任命；指定",
     "p": "VERB",
     "e": "She was nominated for Best Actress at the Academy Awards."
   },
   {
     "w": "obligatory",
-    "m": "核心词性：强制性的；必须的；惯例性的",
+    "m": "强制性的；必须的；惯例性的",
     "p": "ADJECTIVE",
     "e": "Military service is obligatory for all male citizens in this country."
   },
@@ -2011,19 +2011,19 @@
   },
   {
     "w": "obtain",
-    "m": "核心词性：获得、得到；（规则等）存在/通用",
+    "m": "获得、得到；（规则等）存在/通用",
     "p": "VERB",
     "e": "Where can I obtain a copy of the latest financial report?"
   },
   {
     "w": "occupy",
-    "m": "核心词性：占据；占用；使忙于",
+    "m": "占据；占用；使忙于",
     "p": "VERB",
     "e": "The protesters occupied the town square for three days."
   },
   {
     "w": "orient",
-    "m": "核心词性：使朝向；使适应；定向；（the Orient）东方",
+    "m": "使朝向；使适应；定向；（the Orient）东方",
     "p": "VERB",
     "e": "It took her a few weeks to orient herself in the new city."
   },
@@ -2035,97 +2035,97 @@
   },
   {
     "w": "overwhelm",
-    "m": "核心词性：使应接不暇/压垮；以巨大优势击败",
+    "m": "使应接不暇/压垮；以巨大优势击败",
     "p": "VERB",
     "e": "I feel completely overwhelmed by everything going on right now."
   },
   {
     "w": "paradox",
-    "m": "核心词性：悖论、自相矛盾的说法",
+    "m": "悖论、自相矛盾的说法",
     "p": "NOUN",
     "e": "It sounds paradoxical, but sometimes you have to break the rules to preserve order."
   },
   {
     "w": "penetrate",
-    "m": "核心词性：穿透；渗入；洞察",
+    "m": "穿透；渗入；洞察",
     "p": "VERB",
     "e": "The bullet penetrated the wall and lodged in the furniture."
   },
   {
     "w": "perceive",
-    "m": "核心词性：通过感官或思维察觉、意识到、将……理解为",
+    "m": "通过感官或思维察觉、意识到、将……理解为",
     "p": "VERB",
     "e": "Many citizens perceive the new tax policy as an unjust burden on the middle class."
   },
   {
     "w": "persist",
-    "m": "核心词性：坚持；持续存在",
+    "m": "坚持；持续存在",
     "p": "VERB",
     "e": "She persisted in her studies despite numerous setbacks."
   },
   {
     "w": "perspire",
-    "m": "核心词性：出汗（sweat 的正式/文雅替代）",
+    "m": "出汗（sweat 的正式/文雅替代）",
     "p": "VERB",
     "e": "The speaker was visibly perspiring under the hot stage lights throughout the address."
   },
   {
     "w": "pragmatic",
-    "m": "核心词性：务实的；实用的；重实效的",
+    "m": "务实的；实用的；重实效的",
     "p": "ADJECTIVE",
     "e": "We need a pragmatic solution, not a perfect one."
   },
   {
     "w": "precede",
-    "m": "核心词性：先于；在……之前；领先",
+    "m": "先于；在……之前；领先",
     "p": "VERB",
     "e": "A brief introduction precedes the main presentation."
   },
   {
     "w": "preliminary",
-    "m": "核心词性：初步的；预备的",
+    "m": "初步的；预备的",
     "p": "ADJECTIVE",
     "e": "The preliminary results of the experiment look promising."
   },
   {
     "w": "prescribe",
-    "m": "核心词性：开药方；规定；指示",
+    "m": "开药方；规定；指示",
     "p": "VERB",
     "e": "The doctor prescribed a week of rest and painkillers."
   },
   {
     "w": "preserve",
-    "m": "核心词性：保存；保护；保鲜；（复数）果酱；保护区",
+    "m": "保存；保护；保鲜；（复数）果酱；保护区",
     "p": "VERB",
     "e": "The ancient manuscript has been remarkably well preserved."
   },
   {
     "w": "presume",
-    "m": "核心词性：假定；推定；擅自",
+    "m": "假定；推定；擅自",
     "p": "VERB",
     "e": "I presume you've already heard the news, haven't you?"
   },
   {
     "w": "proclaim",
-    "m": "核心词性：宣告；宣布；表明",
+    "m": "宣告；宣布；表明",
     "p": "VERB",
     "e": "The country proclaimed its independence in 1947."
   },
   {
     "w": "profound",
-    "m": "核心词性：深刻的、深远的、深奥的（程度极深）",
+    "m": "深刻的、深远的、深奥的（程度极深）",
     "p": "ADJECTIVE",
     "e": "The experience of living abroad had a profound effect on his worldview and career path."
   },
   {
     "w": "prolong",
-    "m": "核心词性：延长；拖长",
+    "m": "延长；拖长",
     "p": "VERB",
     "e": "New treatments may help prolong the lives of cancer patients."
   },
   {
     "w": "prominent",
-    "m": "核心词性：突出的、显著的、著名的、重要的",
+    "m": "突出的、显著的、著名的、重要的",
     "p": "ADJECTIVE",
     "e": "She rose to prominence in the early 2000s with a series of groundbreaking papers on neural plasticity."
   },
@@ -2137,25 +2137,25 @@
   },
   {
     "w": "receive",
-    "m": "核心词性：收到/接到/受到/接待/承受（打击）",
+    "m": "收到/接到/受到/接待/承受（打击）",
     "p": "VERB",
     "e": "I received your email late last night but haven't had time to read it yet."
   },
   {
     "w": "reconcile",
-    "m": "核心词性：调和；和解；使接受",
+    "m": "调和；和解；使接受",
     "p": "VERB",
     "e": "How do you reconcile your career ambitions with your family life?"
   },
   {
     "w": "reconciliation",
-    "m": "核心词性：和解，调和，协调一致",
+    "m": "和解，调和，协调一致",
     "p": "NOUN",
     "e": "It took years for him to achieve reconciliation with his estranged daughter."
   },
   {
     "w": "redeem",
-    "m": "核心词性：赎回；弥补；兑现",
+    "m": "赎回；弥补；兑现",
     "p": "VERB",
     "e": "The only redeeming feature of the hotel was its stunning lake view."
   },
@@ -2167,85 +2167,85 @@
   },
   {
     "w": "refine",
-    "m": "核心词性：提炼；精炼；完善",
+    "m": "提炼；精炼；完善",
     "p": "VERB",
     "e": "The company is constantly refining its algorithms."
   },
   {
     "w": "refrain",
-    "m": "核心词性：克制，忍住不做",
+    "m": "克制，忍住不做",
     "p": "VERB",
     "e": "Visitors are asked to refrain from feeding the animals."
   },
   {
     "w": "reinforce",
-    "m": "核心词性：加强；增援；加固",
+    "m": "加强；增援；加固",
     "p": "VERB",
     "e": "Seeing the same advertisement repeatedly reinforces brand awareness."
   },
   {
     "w": "relentless",
-    "m": "核心词性：毫不留情的，持续的，坚韧的",
+    "m": "毫不留情的，持续的，坚韧的",
     "p": "ADJECTIVE",
     "e": "The relentless pressure to perform eventually led to her breakdown."
   },
   {
     "w": "reluctant",
-    "m": "核心词性：不情愿的、勉强的、犹豫着不想做的",
+    "m": "不情愿的、勉强的、犹豫着不想做的",
     "p": "ADJECTIVE",
     "e": "Investors remain reluctant to commit capital until the regulatory landscape becomes clearer."
   },
   {
     "w": "render",
-    "m": "核心词性：致使；提供；呈交；翻译；渲染",
+    "m": "致使；提供；呈交；翻译；渲染",
     "p": "VERB",
     "e": "The accident rendered him unable to work."
   },
   {
     "w": "repel",
-    "m": "核心词性：击退；使厌恶；排斥",
+    "m": "击退；使厌恶；排斥",
     "p": "VERB",
     "e": "The fabric is treated to repel water and stains."
   },
   {
     "w": "replenish",
-    "m": "核心词性：补充，重新装满",
+    "m": "补充，重新装满",
     "p": "VERB",
     "e": "The body needs time to replenish fluids lost through sweating."
   },
   {
     "w": "reproach",
-    "m": "核心词性：责备，指责",
+    "m": "责备，指责",
     "p": "VERB",
     "e": "His voice was filled with reproach, though he tried to sound calm."
   },
   {
     "w": "resemblance",
-    "m": "核心词性：相似，相像",
+    "m": "相似，相像",
     "p": "NOUN",
     "e": "The resemblance between mother and daughter was uncanny."
   },
   {
     "w": "resent",
-    "m": "核心词性：对…感到愤恨，怨恨",
+    "m": "对…感到愤恨，怨恨",
     "p": "VERB",
     "e": "She resented the implication that she hadn't earned her position."
   },
   {
     "w": "resentment",
-    "m": "核心词性：怨恨，愤懑",
+    "m": "怨恨，愤懑",
     "p": "NOUN",
     "e": "He felt a deep resentment towards the system that had failed him."
   },
   {
     "w": "residue",
-    "m": "核心词性：残余物，残留物，渣滓",
+    "m": "残余物，残留物，渣滓",
     "p": "NOUN",
     "e": "A thin film of oily residue coated the surface of the pond."
   },
   {
     "w": "resign",
-    "m": "核心词性：辞职；屈从，顺从",
+    "m": "辞职；屈从，顺从",
     "p": "VERB",
     "e": "She resigned as CEO with immediate effect."
   },
@@ -2257,97 +2257,97 @@
   },
   {
     "w": "resolution",
-    "m": "核心词性：决心；决议；解决；清晰度",
+    "m": "决心；决议；解决；清晰度",
     "p": "NOUN",
     "e": "His New Year's resolutions rarely survived the first week of January."
   },
   {
     "w": "resonance",
-    "m": "核心词性：共鸣，共振，回响",
+    "m": "共鸣，共振，回响",
     "p": "NOUN",
     "e": "The idea of community ownership has strong resonance in rural areas."
   },
   {
     "w": "restore",
-    "m": "核心词性：恢复；修复；归还",
+    "m": "恢复；修复；归还",
     "p": "VERB",
     "e": "The new manager restored order to the chaotic department."
   },
   {
     "w": "restrain",
-    "m": "核心词性：抑制；约束；阻止",
+    "m": "抑制；约束；阻止",
     "p": "VERB",
     "e": "He restrained his urge to shout at the unfair decision."
   },
   {
     "w": "resurrect",
-    "m": "核心词性：使复活；重新使用，复兴",
+    "m": "使复活；重新使用，复兴",
     "p": "VERB",
     "e": "The director managed to resurrect his career with one brilliant film."
   },
   {
     "w": "retain",
-    "m": "核心词性：保留；保持；记住；聘请",
+    "m": "保留；保持；记住；聘请",
     "p": "VERB",
     "e": "The company struggles to retain talented engineers."
   },
   {
     "w": "retaliate",
-    "m": "核心词性：报复，反击",
+    "m": "报复，反击",
     "p": "VERB",
     "e": "The company fired him, and he retaliated by leaking sensitive documents to the press."
   },
   {
     "w": "retreat",
-    "m": "核心词性：撤退，退却；静修处",
+    "m": "撤退，退却；静修处",
     "p": "VERB",
     "e": "The army was in full retreat after days of intense fighting."
   },
   {
     "w": "retrieve",
-    "m": "核心词性：取回；检索；挽回",
+    "m": "取回；检索；挽回",
     "p": "VERB",
     "e": "The system can retrieve customer records within seconds."
   },
   {
     "w": "revelation",
-    "m": "核心词性：揭露，揭示；惊人的发现",
+    "m": "揭露，揭示；惊人的发现",
     "p": "NOUN",
     "e": "The revelation that the CEO had been embezzling funds sent shockwaves through the industry."
   },
   {
     "w": "reverse",
-    "m": "核心词性：逆转；倒车；推翻",
+    "m": "逆转；倒车；推翻",
     "p": "VERB",
     "e": "The court reversed the lower court's ruling."
   },
   {
     "w": "revert",
-    "m": "核心词性：恢复，回到（之前的状态/话题）",
+    "m": "恢复，回到（之前的状态/话题）",
     "p": "VERB",
     "e": "Without regular maintenance, the garden quickly reverted to a wild state."
   },
   {
     "w": "revise",
-    "m": "核心词性：修订；修改；复习（英）",
+    "m": "修订；修改；复习（英）",
     "p": "VERB",
     "e": "She revised the essay three times before submitting it."
   },
   {
     "w": "revive",
-    "m": "核心词性：使复苏，使复兴，重新上演",
+    "m": "使复苏，使复兴，重新上演",
     "p": "VERB",
     "e": "The rain revived the wilting flowers within an hour."
   },
   {
     "w": "revolt",
-    "m": "核心词性：反抗，叛乱；使厌恶",
+    "m": "反抗，叛乱；使厌恶",
     "p": "VERB",
     "e": "The peasants rose in revolt after another tax increase."
   },
   {
     "w": "righteous",
-    "m": "核心词性：正义的，公正的；（贬义）自以为是的",
+    "m": "正义的，公正的；（贬义）自以为是的",
     "p": "ADJECTIVE",
     "e": "She spoke with righteous indignation about the company's exploitation of workers."
   },
@@ -2479,7 +2479,7 @@
   },
   {
     "w": "simulate",
-    "m": "核心词性：模拟；仿真；假装",
+    "m": "模拟；仿真；假装",
     "p": "VERB",
     "e": "The software simulates how a building would react to an earthquake."
   },
@@ -2551,7 +2551,7 @@
   },
   {
     "w": "speculate",
-    "m": "核心词性：推测；投机",
+    "m": "推测；投机",
     "p": "VERB",
     "e": "Scientists can only speculate about what dark matter really is."
   },
@@ -2617,13 +2617,13 @@
   },
   {
     "w": "stimulate",
-    "m": "核心词性：刺激；激励；促进",
+    "m": "刺激；激励；促进",
     "p": "VERB",
     "e": "The government cut taxes to stimulate consumer spending."
   },
   {
     "w": "stipulate",
-    "m": "核心词性：规定；明确要求",
+    "m": "规定；明确要求",
     "p": "VERB",
     "e": "The contract stipulates that the work must be completed by December."
   },
@@ -2695,8 +2695,8 @@
   },
   {
     "w": "submit",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "提交;呈递;屈服,顺从",
+    "p": "VERB",
     "e": "Please submit your completed application form by next Friday at the latest."
   },
   {
@@ -2707,7 +2707,7 @@
   },
   {
     "w": "subscribe",
-    "m": "核心词性：订阅；同意；认购",
+    "m": "订阅；同意；认购",
     "p": "VERB",
     "e": "I subscribed to The Economist for three years."
   },
@@ -2725,26 +2725,26 @@
   },
   {
     "w": "subtlety",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "微妙;细微差别;巧妙",
+    "p": "NOUN",
     "e": "Her performance is filled with subtlety — every glance, every pause carries layers of meaning."
   },
   {
     "w": "successor",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "继任者;接替者;后继事物",
+    "p": "NOUN",
     "e": "She was officially named as the company's next successor at the board meeting."
   },
   {
     "w": "sue",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "起诉;控告;诉诸法律",
+    "p": "VERB",
     "e": "She is suing the hospital for medical negligence, claiming the misdiagnosis ruined her life."
   },
   {
     "w": "suffice",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "足够;满足需要",
+    "p": "VERB",
     "e": "A firm handshake sufficed to close the deal — no contract was required between old friends."
   },
   {
@@ -2755,8 +2755,8 @@
   },
   {
     "w": "summon",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "召唤;传唤;鼓起(勇气)",
+    "p": "VERB",
     "e": "The CEO summoned all department heads to an emergency meeting at 7 a.m. the next morning."
   },
   {
@@ -2767,158 +2767,158 @@
   },
   {
     "w": "supervise",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "监督;指导;管理",
+    "p": "VERB",
     "e": "She supervises a team of twenty software engineers working on three different products."
   },
   {
     "w": "supplement",
-    "m": "核心词性：补充物；增刊；附录",
+    "m": "补充物；增刊；附录",
     "p": "NOUN",
     "e": "Many athletes take protein supplements to boost performance."
   },
   {
     "w": "suppress",
-    "m": "核心词性：压制；镇压；抑制",
+    "m": "压制；镇压；抑制",
     "p": "VERB",
     "e": "The regime used military force to suppress the protests."
   },
   {
     "w": "surge",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "激增;猛涨;(情绪)汹涌",
+    "p": "NOUN",
     "e": "A sudden surge of adrenaline gave him the strength to lift the debris off the trapped child."
   },
   {
     "w": "surpass",
-    "m": "核心词性：超过；超越；胜过",
+    "m": "超过；超越；胜过",
     "p": "VERB",
     "e": "Her performance surpassed all our expectations."
   },
   {
     "w": "surrender",
-    "m": "核心词性：投降；交出；放弃",
+    "m": "投降；交出；放弃",
     "p": "VERB",
     "e": "After a month-long siege, the rebel forces surrendered."
   },
   {
     "w": "susceptible",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "易受影响的;易感的;敏感的",
+    "p": "ADJECTIVE",
     "e": "Adolescents are often highly susceptible to peer pressure because of their need for social acceptance."
   },
   {
     "w": "suspend",
-    "m": "核心词性：暂停；悬挂；使停职",
+    "m": "暂停；悬挂；使停职",
     "p": "VERB",
     "e": "The airline suspended all flights due to the storm."
   },
   {
     "w": "suspicious",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "可疑的;怀疑的;多疑的",
+    "p": "ADJECTIVE",
     "e": "She grew increasingly suspicious when her colleague kept dodging her questions about the missing funds."
   },
   {
     "w": "sustain",
-    "m": "核心词性：维持；支撑；承受；遭受",
+    "m": "维持；支撑；承受；遭受",
     "p": "VERB",
     "e": "The company has sustained rapid growth for over a decade."
   },
   {
     "w": "swift",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "迅速的;快速的;即刻的",
+    "p": "ADJECTIVE",
     "e": "The company's swift response to the data breach helped limit the damage to its reputation."
   },
   {
     "w": "symbolize",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "象征;代表;用符号表示",
+    "p": "VERB",
     "e": "The lighting of the Olympic torch symbolizes the spirit of international friendship and competition."
   },
   {
     "w": "sympathy",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "同情;共鸣;支持",
+    "p": "NOUN",
     "e": "I have genuine sympathy for anyone who has to work under a boss who never says thank you."
   },
   {
     "w": "syndrome",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "综合征;综合症状;典型表现",
+    "p": "NOUN",
     "e": "Down syndrome is a genetic condition caused by the presence of an extra copy of chromosome 21."
   },
   {
     "w": "synthesis",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "综合;合成;结合",
+    "p": "NOUN",
     "e": "Her latest book represents a masterful synthesis of neuroscience, philosophy, and personal narrative."
   },
   {
     "w": "tackle",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "处理,应对;抢断;(与某人)交涉",
+    "p": "VERB",
     "e": "The new government has promised to tackle the housing crisis head-on within its first hundred days."
   },
   {
     "w": "tangible",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "有形的;可触摸的;确凿的",
+    "p": "ADJECTIVE",
     "e": "We have been working on this project for six months with no tangible results to show for it."
   },
   {
     "w": "tariff",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "关税;价目表;收费标准",
+    "p": "NOUN",
     "e": "The US administration slapped a 25% tariff on imported steel, triggering retaliation from several trading partners."
   },
   {
     "w": "tedious",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "冗长乏味的;沉闷的",
+    "p": "ADJECTIVE",
     "e": "The three-hour meeting was so mind-numbingly tedious that after the first hour half the room was scrolling on their phones."
   },
   {
     "w": "temper",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "脾气;情绪;暴躁;回火",
+    "p": "NOUN",
     "e": "He has a notoriously short temper — the smallest inconvenience can set him off on a shouting tirade."
   },
   {
     "w": "temporal",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "时间的;暂时的;世俗的",
+    "p": "ADJECTIVE",
     "e": "Philosophers have long explored the relationship between temporal existence and the idea of eternity."
   },
   {
     "w": "tempt",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "诱惑;引诱;吸引",
+    "p": "VERB",
     "e": "The smell of freshly baked bread tempted me into the bakery, even though I had just eaten lunch."
   },
   {
     "w": "tenant",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "租户;房客;承租人",
+    "p": "NOUN",
     "e": "As a sitting tenant, she has the legal right to remain in the apartment even after the building is sold."
   },
   {
     "w": "tendency",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "倾向;趋势;癖好",
+    "p": "NOUN",
     "e": "She has an unfortunate tendency to interrupt people mid-sentence, which has cost her several friendships."
   },
   {
     "w": "tender",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "温柔的;柔和的;嫩的;敏感的",
+    "p": "ADJECTIVE",
     "e": "She gave him a tender look that said more than any words could, and he knew everything would be okay."
   },
   {
     "w": "tension",
-    "m": "核心词性",
-    "p": "OTHER",
+    "m": "紧张;张力;矛盾",
+    "p": "NOUN",
     "e": "You could feel the tension in the room — nobody dared speak as the CEO read out the quarterly figures."
   },
   {
@@ -2929,67 +2929,67 @@
   },
   {
     "w": "terminal",
-    "m": "核心词性：终端的，末期的，不可治愈的",
+    "m": "终端的，末期的，不可治愈的",
     "p": "ADJECTIVE",
     "e": "The patient is in a terminal condition and has been moved to hospice care."
   },
   {
     "w": "terminate",
-    "m": "核心词性：终止；结束；解雇",
+    "m": "终止；结束；解雇",
     "p": "VERB",
     "e": "The company terminated his employment after the investigation."
   },
   {
     "w": "terrain",
-    "m": "核心词性：地形，地势，地带",
+    "m": "地形，地势，地带",
     "p": "NOUN",
     "e": "The hikers underestimated how treacherous the terrain would be after the storm."
   },
   {
     "w": "testify",
-    "m": "核心词性：作证，证明，表明",
+    "m": "作证，证明，表明",
     "p": "VERB",
     "e": "The accountant was summoned to testify about the company's financial irregularities."
   },
   {
     "w": "testimony",
-    "m": "核心词性：证词，证据，见证",
+    "m": "证词，证据，见证",
     "p": "NOUN",
     "e": "The defense attorney challenged the credibility of the witness's testimony during cross-examination."
   },
   {
     "w": "texture",
-    "m": "核心词性：质地，纹理，质感",
+    "m": "质地，纹理，质感",
     "p": "NOUN",
     "e": "The designer combined leather, linen, and raw wood to create visual texture in the room."
   },
   {
     "w": "theft",
-    "m": "核心词性：盗窃，偷窃行为",
+    "m": "盗窃，偷窃行为",
     "p": "NOUN",
     "e": "The store installed surveillance cameras to deter theft and shoplifting."
   },
   {
     "w": "theme",
-    "m": "核心词性：主题，主旨，主旋律",
+    "m": "主题，主旨，主旋律",
     "p": "NOUN",
     "e": "The theme of identity runs through all of the author's major works."
   },
   {
     "w": "therapy",
-    "m": "核心词性：治疗，疗法（尤指非药物性）",
+    "m": "治疗，疗法（尤指非药物性）",
     "p": "NOUN",
     "e": "After the accident, he underwent months of physical therapy to regain mobility."
   },
   {
     "w": "thereafter",
-    "m": "核心词性：此后，从那以后",
+    "m": "此后，从那以后",
     "p": "ADVERB",
     "e": "She published her first novel at 22 and thereafter devoted her life to writing."
   },
   {
     "w": "thereby",
-    "m": "核心词性：因此，从而，借以",
+    "m": "因此，从而，借以",
     "p": "ADVERB",
     "e": "The government increased fuel taxes, thereby encouraging citizens to switch to public transportation."
   },
@@ -3001,13 +3001,13 @@
   },
   {
     "w": "thought-provoking",
-    "m": "核心词性：发人深省的，引人深思的",
+    "m": "发人深省的，引人深思的",
     "p": "ADJECTIVE",
     "e": "The documentary raised thought-provoking questions about the ethics of artificial intelligence."
   },
   {
     "w": "threshold",
-    "m": "核心词性：门槛，临界值，开端",
+    "m": "门槛，临界值，开端",
     "p": "NOUN",
     "e": "The country is on the threshold of a demographic crisis that will reshape its economy."
   },
@@ -3019,350 +3019,350 @@
   },
   {
     "w": "thrust",
-    "m": "核心词性：猛推，刺入，强行推进",
+    "m": "猛推，刺入，强行推进",
     "p": "VERB",
     "e": "She thrust the document across the desk and demanded an immediate response."
   },
   {
     "w": "tide",
-    "m": "核心词性：潮汐，潮流，趋势",
+    "m": "潮汐，潮流，趋势",
     "p": "NOUN",
     "e": "The fishing boats go out at low tide and return when the tide comes in."
   },
   {
     "w": "tilt",
-    "m": "核心词性：倾斜，使倾斜，偏向",
+    "m": "倾斜，使倾斜，偏向",
     "p": "VERB",
     "e": "The solar panels are tilted at a 30-degree angle to maximize exposure to sunlight."
   },
   {
     "w": "timber",
-    "m": "核心词性：木材，木料，林木",
+    "m": "木材，木料，林木",
     "p": "NOUN",
     "e": "The government imposed a ban on exporting raw timber to protect domestic forests."
   },
   {
     "w": "timely",
-    "m": "核心词性：及时的，适时的，恰逢其时的",
+    "m": "及时的，适时的，恰逢其时的",
     "p": "ADJECTIVE",
     "e": "The government's timely intervention in the banking crisis prevented a full-scale collapse."
   },
   {
     "w": "timid",
-    "m": "核心词性：胆怯的，羞怯的，缺乏勇气的",
+    "m": "胆怯的，羞怯的，缺乏勇气的",
     "p": "ADJECTIVE",
     "e": "New employees are often too timid to ask questions, fearing they might appear incompetent."
   },
   {
     "w": "token",
-    "m": "核心词性：象征物，代币，标志",
+    "m": "象征物，代币，标志",
     "p": "NOUN",
     "e": "The flowers were a small token of appreciation for everything she had done for the team."
   },
   {
     "w": "tolerate",
-    "m": "核心词性：容忍，忍受，容许",
+    "m": "容忍，忍受，容许",
     "p": "VERB",
     "e": "While she tolerated his constant complaining during the project, she finally snapped when he blamed her for his own mistake."
   },
   {
     "w": "topic",
-    "m": "核心词性：话题，主题，论题",
+    "m": "话题，主题，论题",
     "p": "NOUN",
     "e": "Mental health has gone from being a taboo topic to a mainstream conversation in recent years."
   },
   {
     "w": "torment",
-    "m": "核心词性：折磨，痛苦，苦恼",
+    "m": "折磨，痛苦，苦恼",
     "p": "NOUN",
     "e": "The memory of that night tormented her for decades, replaying in her mind whenever she tried to sleep."
   },
   {
     "w": "toss",
-    "m": "tosses",
-    "p": "OTHER",
+    "m": "扔;抛;掷(硬币);翻来覆去",
+    "p": "VERB",
     "e": "I couldn't sleep and tossed and turned all night."
   },
   {
     "w": "tough",
-    "m": "toughs",
-    "p": "OTHER",
+    "m": "坚韧的;困难的;强硬的",
+    "p": "ADJECTIVE",
     "e": "Don't be so tough on yourself — you did your best."
   },
   {
     "w": "toxic",
-    "m": "",
-    "p": "",
+    "m": "有毒的;有害的;中毒的",
+    "p": "ADJECTIVE",
     "e": "The air in the lab was so toxic that everyone had to wear masks."
   },
   {
     "w": "trace",
-    "m": "traces traced tracing",
-    "p": "OTHER",
+    "m": "痕迹;微量;追溯;描摹",
+    "p": "NOUN",
     "e": "Police have been unable to trace the missing woman."
   },
   {
     "w": "track",
-    "m": "tracks tracked tracking",
-    "p": "OTHER",
+    "m": "轨道;踪迹;(音乐的)曲目;追踪",
+    "p": "NOUN",
     "e": "The app tracks your daily steps and calories burned."
   },
   {
     "w": "trait",
-    "m": "",
-    "p": "",
+    "m": "特征;特点;特性",
+    "p": "NOUN",
     "e": "Honesty is a trait that many employers value highly."
   },
   {
     "w": "trample",
-    "m": "",
-    "p": "",
+    "m": "踩踏;践踏;无视",
+    "p": "VERB",
     "e": "Please don't trample on the flowers."
   },
   {
     "w": "tranquil",
-    "m": "",
-    "p": "",
+    "m": "安静的;平静的;安宁的",
+    "p": "ADJECTIVE",
     "e": "The hotel is set in a tranquil garden overlooking the sea."
   },
   {
     "w": "transaction",
-    "m": "",
-    "p": "",
+    "m": "交易;业务;办理",
+    "p": "NOUN",
     "e": "The bank charges a fee for each international transaction."
   },
   {
     "w": "transcend",
-    "m": "",
-    "p": "",
+    "m": "超越;超出;胜过",
+    "p": "VERB",
     "e": "Great art transcends time and speaks to every generation."
   },
   {
     "w": "transcript",
-    "m": "",
-    "p": "",
+    "m": "抄本;文字记录;成绩单",
+    "p": "NOUN",
     "e": "The journalist reviewed the transcript of the interview before writing the article."
   },
   {
     "w": "transfer",
-    "m": "transfers",
-    "p": "OTHER",
+    "m": "转移;调动;转让;转账",
+    "p": "NOUN",
     "e": "Can you transfer the call to the sales department?"
   },
   {
     "w": "transform",
-    "m": "",
-    "p": "",
+    "m": "使改变;使转化;变形",
+    "p": "VERB",
     "e": "The internet has transformed every aspect of our lives."
   },
   {
     "w": "transient",
-    "m": "transients",
-    "p": "OTHER",
+    "m": "短暂的;转瞬即逝的;过往的",
+    "p": "ADJECTIVE",
     "e": "The beauty of cherry blossoms lies in their transient nature."
   },
   {
     "w": "transit",
-    "m": "",
-    "p": "",
+    "m": "运输;过境;公共交通系统",
+    "p": "NOUN",
     "e": "Your package is currently in transit and will arrive by Friday."
   },
   {
     "w": "transition",
-    "m": "transitions transitioned transitioning",
-    "p": "OTHER",
+    "m": "过渡;转变;变迁",
+    "p": "NOUN",
     "e": "The company is helping employees make the transition to remote work."
   },
   {
     "w": "transmit",
-    "m": "",
-    "p": "",
+    "m": "传送;传播;发射;传染",
+    "p": "VERB",
     "e": "The radio tower transmits the signal over a range of 100 miles."
   },
   {
     "w": "transparent",
-    "m": "",
-    "p": "",
+    "m": "透明的;显而易见的;公开的",
+    "p": "ADJECTIVE",
     "e": "The jar is made of transparent glass so you can see the contents."
   },
   {
     "w": "transplant",
-    "m": "transplants",
-    "p": "OTHER",
+    "m": "移植;移栽;迁移",
+    "p": "VERB",
     "e": "The surgeon successfully transplanted the donor kidney into the patient."
   },
   {
     "w": "transport",
-    "m": "",
-    "p": "",
+    "m": "运输;交通工具;运送",
+    "p": "NOUN",
     "e": "The company transports goods across the country by rail."
   },
   {
     "w": "trap",
-    "m": "traps trapped trapping",
-    "p": "OTHER",
+    "m": "陷阱;圈套;困住",
+    "p": "NOUN",
     "e": "Don't fall into the trap of comparing yourself to others."
   },
   {
     "w": "trauma",
-    "m": "",
-    "p": "",
+    "m": "创伤;(精神)外伤;损伤",
+    "p": "NOUN",
     "e": "The trauma of the war stayed with him for the rest of his life."
   },
   {
     "w": "traverse",
-    "m": "traverses",
-    "p": "OTHER",
+    "m": "横穿;穿越;横跨",
+    "p": "VERB",
     "e": "The climbers traversed the ridge from east to west over three days."
   },
   {
     "w": "treason",
-    "m": "",
-    "p": "",
+    "m": "叛国罪;谋反;背叛",
+    "p": "NOUN",
     "e": "He was found guilty of treason and sentenced to life imprisonment."
   },
   {
     "w": "treasure",
-    "m": "treasures treasured treasuring",
-    "p": "OTHER",
+    "m": "财富;珍宝;珍惜",
+    "p": "NOUN",
     "e": "She treasured the locket her grandmother had given her."
   },
   {
     "w": "treat",
-    "m": "",
-    "p": "",
+    "m": "对待;治疗;款待;视为",
+    "p": "VERB",
     "e": "The doctor treated him for a severe allergic reaction."
   },
   {
     "w": "treaty",
     "m": "treatment n. 对待 治疗",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "The government ratified the climate treaty with unanimous support."
   },
   {
     "w": "tremendous",
-    "m": "",
-    "p": "",
+    "m": "巨大的;极大的;极好的",
+    "p": "ADJECTIVE",
     "e": "She has made tremendous progress since last semester."
   },
   {
     "w": "trend",
-    "m": "",
-    "p": "",
+    "m": "趋势;趋向;时尚",
+    "p": "NOUN",
     "e": "The hashtag has been trending on Twitter for three days."
   },
   {
     "w": "trial",
-    "m": "",
-    "p": "",
+    "m": "审判;试验;考验",
+    "p": "ADJECTIVE",
     "e": "We offer a 30-day free trial of the software."
   },
   {
     "w": "tribe",
-    "m": "tribalism n. 部落主义",
-    "p": "OTHER",
+    "m": "部落;族群;(嘲)一帮人",
+    "p": "NOUN",
     "e": "She found her tribe in the local running club."
   },
   {
     "w": "tribute",
-    "m": "attribute v./n. 归因/属性",
-    "p": "OTHER",
+    "m": "致敬;颂词;(体现的)证明",
+    "p": "NOUN",
     "e": "His success is a tribute to years of hard work."
   },
   {
     "w": "trigger",
-    "m": "",
-    "p": "",
+    "m": "触发;引起;(枪的)扳机",
+    "p": "NOUN",
     "e": "Certain smells can trigger memories from childhood."
   },
   {
     "w": "trim",
-    "m": "",
-    "p": "",
+    "m": "修剪;削减;整齐的",
+    "p": "VERB",
     "e": "The company trimmed its workforce by 15 percent."
   },
   {
     "w": "triumph",
-    "m": "",
-    "p": "",
+    "m": "胜利;成功;喜悦",
+    "p": "NOUN",
     "e": "She triumphed over cancer after two years of treatment."
   },
   {
     "w": "trivial",
-    "m": "",
-    "p": "",
+    "m": "琐碎的;不重要的;平凡的",
+    "p": "ADJECTIVE",
     "e": "Don't waste time arguing over trivial details."
   },
   {
     "w": "troop",
-    "m": "",
-    "p": "",
+    "m": "军队;部队;一群",
+    "p": "NOUN",
     "e": "After the lecture, students trooped out of the hall."
   },
   {
     "w": "trophy",
     "m": "trophy hunter 战利品猎人",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "His office is filled with trophies from his hunting trips."
   },
   {
     "w": "tropical",
-    "m": "",
-    "p": "",
+    "m": "热带的;炎热的",
+    "p": "ADJECTIVE",
     "e": "They spent their honeymoon on a tropical island in the Maldives."
   },
   {
     "w": "trouble",
-    "m": "",
-    "p": "",
+    "m": "麻烦;问题;烦恼;费心",
+    "p": "NOUN",
     "e": "The company ran into financial trouble after the merger."
   },
   {
     "w": "trumpet",
-    "m": "",
-    "p": "",
+    "m": "小号;喇叭;宣扬",
+    "p": "NOUN",
     "e": "He's always blowing his own trumpet about his achievements."
   },
   {
     "w": "trust",
-    "m": "",
-    "p": "",
+    "m": "信任;信赖;信托;委托",
+    "p": "NOUN",
     "e": "The inheritance is held in a trust until the children turn 18."
   },
   {
     "w": "tuition",
     "m": "tutorial n. 辅导课 教程",
-    "p": "OTHER",
+    "p": "NOUN",
     "e": "She received extra tuition in mathematics before the exam."
   },
   {
     "w": "tumble",
-    "m": "",
-    "p": "",
+    "m": "跌倒;暴跌;翻滚",
+    "p": "VERB",
     "e": "Oil prices tumbled to their lowest level in a decade."
   },
   {
     "w": "turmoil",
-    "m": "economic turmoil 经济混乱",
-    "p": "OTHER",
+    "m": "混乱;动荡;骚动",
+    "p": "NOUN",
     "e": "She experienced deep inner turmoil before making her decision."
   },
   {
     "w": "twist",
-    "m": "",
-    "p": "",
+    "m": "扭曲;转动;拧;转折",
+    "p": "NOUN",
     "e": "The movie has an unexpected twist in the final scene."
   },
   {
     "w": "typical",
-    "m": "",
-    "p": "",
+    "m": "典型的;特有的;平常的",
+    "p": "ADJECTIVE",
     "e": "It's typical of him to arrive late to meetings."
   },
   {
     "w": "tyranny",
     "m": "tyrannical adj. 专横的 tyrannize v. 施行暴政",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "Many artists struggle against the tyranny of creative blocks."
   },
   {
@@ -3373,8 +3373,8 @@
   },
   {
     "w": "ultimate",
-    "m": "",
-    "p": "",
+    "m": "最终的;根本的;终极的",
+    "p": "VERB",
     "e": "Ultimately, the decision rests with the board of directors."
   },
   {
@@ -3385,38 +3385,38 @@
   },
   {
     "w": "undergo",
-    "m": "",
-    "p": "",
+    "m": "经历;经受;接受",
+    "p": "VERB",
     "e": "The neighborhood has undergone significant gentrification in the past decade."
   },
   {
     "w": "undermine",
-    "m": "",
-    "p": "",
+    "m": "削弱;暗中破坏;逐渐侵蚀",
+    "p": "VERB",
     "e": "The constant stream of negative press coverage gradually undermined public trust in the institution."
   },
   {
     "w": "undertake",
-    "m": "",
-    "p": "",
+    "m": "承担;从事;承诺",
+    "p": "VERB",
     "e": "The government has undertaken to reduce carbon emissions by 40% within the next decade."
   },
   {
     "w": "undo",
-    "m": "",
-    "p": "",
+    "m": "撤销;解开;消除…的影响",
+    "p": "VERB",
     "e": "One careless tweet undid years of careful reputation building."
   },
   {
     "w": "unfold",
-    "m": "",
-    "p": "",
+    "m": "展开;打开;逐渐显露",
+    "p": "VERB",
     "e": "As the scandal unfolded, it became clear that the corruption went far deeper than anyone had imagined."
   },
   {
     "w": "unify",
-    "m": "",
-    "p": "",
+    "m": "统一;使一体化;使相同",
+    "p": "ADJECTIVE",
     "e": "A shared vision is what unified the disparate departments and turned them into a cohesive force."
   },
   {
@@ -3433,8 +3433,8 @@
   },
   {
     "w": "unleash",
-    "m": "",
-    "p": "",
+    "m": "释放;发泄;解开(皮带)",
+    "p": "VERB",
     "e": "The decision to declassify the documents unleashed a political firestorm that ultimately brought down the administration."
   },
   {
@@ -3445,26 +3445,26 @@
   },
   {
     "w": "unravel",
-    "m": "",
-    "p": "",
+    "m": "解开;解决;瓦解",
+    "p": "VERB",
     "e": "The fraud scheme, meticulously constructed over a decade, unraveled in a matter of weeks once a single accountant noticed an irregularity."
   },
   {
     "w": "upcoming",
     "m": "即将发生；被提及",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "With three upcoming deadlines and a team short-staffed, the project manager knew the next two weeks would be brutal."
   },
   {
     "w": "update",
-    "m": "",
-    "p": "",
+    "m": "更新;使现代化;最新信息",
+    "p": "VERB",
     "e": "Could you give us a quick update on where things stand with the client negotiations?"
   },
   {
     "w": "uphold",
-    "m": "",
-    "p": "",
+    "m": "支持;维护;维持(原判)",
+    "p": "VERB",
     "e": "The appeals court upheld the original sentence, ruling that the trial judge had not erred in admitting the evidence."
   },
   {
@@ -3487,8 +3487,8 @@
   },
   {
     "w": "utilize",
-    "m": "",
-    "p": "",
+    "m": "利用;使用",
+    "p": "VERB",
     "e": "The architect utilized the site's natural slope to create a passive cooling system, reducing energy costs by 40%."
   },
   {
@@ -3511,8 +3511,8 @@
   },
   {
     "w": "vacuum",
-    "m": "",
-    "p": "",
+    "m": "真空;空白;用吸尘器清扫",
+    "p": "NOUN",
     "e": "You can't evaluate this decision in a vacuum; you have to consider the historical context and the political pressures of the time."
   },
   {
@@ -3529,14 +3529,14 @@
   },
   {
     "w": "validate",
-    "m": "",
-    "p": "",
+    "m": "验证;确认;使生效",
+    "p": "VERB",
     "e": "The independent lab was unable to validate the original study's results, casting serious doubt on the efficacy of the drug."
   },
   {
     "w": "vanish",
-    "m": "",
-    "p": "",
+    "m": "消失;不见;突然消逝",
+    "p": "ADJECTIVE",
     "e": "The suspect seemed to vanish into thin air; despite a nationwide manhunt, no trace of him was found for over a decade."
   },
   {
@@ -3553,8 +3553,8 @@
   },
   {
     "w": "verify",
-    "m": "",
-    "p": "",
+    "m": "核实;验证;查证",
+    "p": "ADJECTIVE",
     "e": "Before the story went to print, the editor insisted on verifying every single statistic independently rather than relying on the reporter's notes."
   },
   {
@@ -3565,8 +3565,8 @@
   },
   {
     "w": "vessel",
-    "m": "",
-    "p": "",
+    "m": "船;容器;血管",
+    "p": "NOUN",
     "e": "The damaged blood vessel was causing internal bleeding, and the surgeons had to operate within the hour to repair it."
   },
   {
@@ -3746,7 +3746,7 @@
   {
     "w": "whereby",
     "m": "凭此；借以；根据那个",
-    "p": "OTHER",
+    "p": "ADJECTIVE",
     "e": "They entered into a partnership whereby profits and risks were shared equally."
   },
   {

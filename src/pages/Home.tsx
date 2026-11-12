@@ -152,7 +152,8 @@ export default function Home() {
           {open && results.length > 0 && (
             <div style={{
               position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4,
-              background: '#0a0a0a', border: '1px solid var(--color-border)', borderRadius: 4,
+              background: 'var(--color-surface-raised)', border: '1px solid var(--color-border)', borderRadius: 4,
+              boxShadow: 'var(--shadow-raised)',
               overflow: 'hidden', zIndex: 100,
             }}>
               {results.map((w, i) => (

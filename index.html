@@ -8,14 +8,26 @@
     <meta name="description" content="英语学习参考工具 — 单词查询、语法分析、语境阅读" />
     <link rel="manifest" href="/manifest.json" />
     <title>Grammaticus — 英语学习助手</title>
+    <script>
+      // 防闪烁:首帧渲染前确定主题(用户选择 > 系统偏好 > 深色)
+      (function () {
+        try {
+          var t = localStorage.getItem('grammaticus-theme')
+          if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          }
+          document.documentElement.setAttribute('data-theme', t)
+          var m = document.querySelector('meta[name="theme-color"]')
+          if (m) m.setAttribute('content', t === 'dark' ? '#000000' : '#ffffff')
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-      }
-    </script>
+    <!-- Service worker is registered once in src/main.tsx -->
   </body>
 </html>

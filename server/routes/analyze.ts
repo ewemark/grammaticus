@@ -1,40 +1,42 @@
-import { Router } from 'express'
-import { callLLM } from '../llm.js'
+import { Router, type Request, type Response } from 'express'
+import { callLLM, callLLMStream, type ChatMessage } from '../llm.js'
+import { cleanMarkdown } from '../utils/text.js'
 
 const router = Router()
 
-/* ── AI system prompt ──────────────────────────────────────── */
+/* ── AI system prompt(紧凑版:为折叠块渲染优化) ──────────── */
 
 const SYSTEM_PROMPT = `# 英语成分语法深度分析器
 
 ## 角色定位
-你是一位零代号的英语语法专家。拒绝使用任何英文缩写，全程只使用纯中文、大白话、递进式线性叙述。把句子内部每一个词的修饰关系、移动原因、介词逻辑和时态驱动原理，像讲述一个故事一样清晰呈现。
+你是一位零代号的英语语法专家。拒绝使用任何英文缩写，全程只使用纯中文、大白话、递进式线性叙述。把句子内部每一个词的修饰关系、移动原因、介词逻辑和时态驱动原理讲清楚。
 
 ## 核心原则（铁律）
 1. 零代号：绝对禁止使用任何生成语法缩写。
 2. 功能分类：每提到一个词或短语，必须明确标注其属于【名词性成分】、【形容词性成分】、【副词性成分】或【动词性成分】。
 3. 动词优先：先找带时态挂件的谓语核心，再向外拆解主语、宾语和修饰语。
-4. 物理邻接：分析时按照句子从左到右的顺序，修饰语和它的被修饰词必须在同一个意群块内紧挨着讲解。
-5. 主从句分离：如果句子包含从句，必须明确分成两大部分，先完整分析主句，再完整分析从句。主句和从句各自独立编号（主句①、②、③……，从句①、②、③……）。
+4. 物理邻接：按照句子从左到右的顺序，修饰语和它的被修饰词必须在同一个意群块内紧挨着讲解。
+5. 主从句分离：如果句子包含从句，分成两大部分，先完整分析主句，再完整分析从句。主句和从句各自独立编号（①、②、③……）。
 6. 从句类型必判：分析从句时，第一点必须明确说出从句类型，并说明判断依据。
-7. 介词必剖：每一个介词都必须解释其深层逻辑（路径、职能、所属、遭遇、针对等）。
-8. 轻动词要拆：遇到 take a look、have a drink 等结构，必须指出真正的动作含义在名词上，前面的动词只是语法支架。
+7. 介词必剖：每一个介词都必须一句话点破其深层逻辑（路径、职能、所属、遭遇、针对等）。
+8. 轻动词要拆：遇到 take a look、have a drink 等结构，指出真正的动作含义在名词上。
 9. 复合介词不拆：out of、because of 等当作一个整体介词单元处理。
-10. 所有格裁决：遇到 's 或 of，必须明确判断是"物权/拥有"还是"遭遇/主题/来源/内容"。
+10. 所有格裁决：遇到 's 或 of，明确判断是"物权/拥有"还是"遭遇/主题/来源/内容"。
 
-## 输出格式
-- 开头给出中文翻译。
-- 如果有从句，分"第一部分：主句"和"第二部分：从句"。
-- 主句内部按意群块编号（①、②、③……），从句内部同样从①开始独立编号。
-- 每个块内，把核心词和修饰语的依附关系、词性和功能，在同一段内说明。
-- 所有从句的第一点必须明确写出"判断从句类型：×××"并给出依据。`
+## 输出格式（程序会按此结构渲染折叠面板，严格遵守）
+- 第一行固定为：中文翻译：×××
+- 有从句时，用独立一行写"第一部分：主句"、"第二部分：从句（类型）"分隔
+- 每个意群块独占一行，以 ①②③ 编号开头，格式：① 核心词 — 成分名：讲解
+- 每个块最多 2-3 行文字，先给结论再给理由，禁止空话套话，禁止复述原句
+- 从句块的讲解开头必须先写"判断从句类型：×××，依据是…"
+- 不使用任何 markdown 符号（#、*、-），纯文本换行`
 
-/* ── 介词分析专用 prompt ────────────────────────────────── */
+/* ── 介词分析专用 prompt（紧凑五步法） ───────────────────── */
 
 const PREP_PROMPT = `# 英语介词深度分析器（五步法）
 
 ## 角色定位
-你是英语介词分析专家。对句子中每一个介词，按五步法逐一分析：固有意象 → 句内分析 → 一般用法列表 → 本句归属 → 总结。先列出句子中所有介词，再逐一展开。
+你是英语介词分析专家。对句子中每一个介词，按五步法分析：固有意象 → 句内分析 → 用法家族 → 本句归属 → 总结。
 
 ## 核心介词意象库（内置参考）
 - into：弹弓石子穿门而入（空间进入/状态转变/时间纵深/抽象探究）
@@ -47,28 +49,50 @@ const PREP_PROMPT = `# 英语介词深度分析器（五步法）
 - from：箭脱离弓弦飞远（空间起点/时间起点/来源出处/分离脱离/阻止避免）
 - by：火车紧贴铁轨旁经过（施动者/方式手段/空间旁侧/时间截止/差异量）
 
-## 输出格式（对每个介词严格按此结构）
+## 输出格式（程序会按此结构渲染折叠面板，严格遵守）
+- 第一行固定为：中文翻译：×××
+- 第二行：本句介词清单：××、××
+- 每个介词一个块，块标题独占一行，格式：介词 [X]：
+- 块内五步各占一行，以"1. 固有意像："这样的编号标签开头：
+  1. 固有意象：一句话感官画面
+  2. 句内分析：所在片段+连接成分+句法功能，一句话
+  3. 用法家族：逗号分隔列出核心用法（最多4个），只给短语不给整句
+  4. 本句归属：属于第几种用法+一句话理由
+  5. 总结：一句话说清核心贡献
+- 每一步都紧凑，禁止空话，不使用任何 markdown 符号（#、*、-），纯文本换行`
 
-### 介词 [X]：
-1. 固有意象：（一句话描述该介词本身的感官画面）
-2. 句内分析：所在片段、连接成分（左右词性）、句法功能、具体画面
-3. 一般用法列表：列出该介词的核心用法家族（含例句）
-4. 本句归属：属于第几种用法，判定理由
-5. 总结：一句话说清该介词在本句中的核心贡献
+/* ── SSE helpers ──────────────────────────────────────────── */
 
-对句子中每一个介词都完整执行以上五步，不要遗漏任何一个介词。`
+function sseInit(res: Response) {
+  res.setHeader('Content-Type', 'text/event-stream; charset=utf-8')
+  res.setHeader('Cache-Control', 'no-cache, no-transform')
+  res.setHeader('Connection', 'keep-alive')
+  res.setHeader('X-Accel-Buffering', 'no') // disable proxy buffering (nginx etc.)
+  res.flushHeaders()
+  let closed = false
+  // NOTE: listen on res, not req — req 'close' fires as soon as the request
+  // body is consumed (Express 5), which would kill the stream immediately.
+  res.on('close', () => { closed = true })
+  const send = (event: string, data: unknown) => {
+    if (closed) return
+    res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`)
+  }
+  return { send, isClosed: () => closed }
+}
+
+function validSentence(body: unknown): string | null {
+  const s = (body as { sentence?: unknown })?.sentence
+  if (!s || typeof s !== 'string' || !s.trim()) return null
+  return s.trim().slice(0, 2000)
+}
 
 /* ── POST /api/analyze/grammar ───────────────────────────── */
 
 router.post('/grammar', async (req, res, next) => {
   try {
-    const { sentence } = req.body
-    if (!sentence || typeof sentence !== 'string' || !sentence.trim()) {
-      res.status(400).json({ error: '请提供要分析的句子' })
-      return
-    }
-
-    const result = await callAI(sentence.trim(), SYSTEM_PROMPT)
+    const sentence = validSentence(req.body)
+    if (!sentence) { res.status(400).json({ error: '请提供要分析的句子' }); return }
+    const result = await callAI(sentence, SYSTEM_PROMPT)
     res.json({ result })
   } catch (err) {
     next(err)
@@ -79,16 +103,102 @@ router.post('/grammar', async (req, res, next) => {
 
 router.post('/preposition', async (req, res, next) => {
   try {
-    const { sentence } = req.body
-    if (!sentence || typeof sentence !== 'string' || !sentence.trim()) {
-      res.status(400).json({ error: '请提供要分析的句子' })
-      return
-    }
-
-    const result = await callAI(sentence.trim(), PREP_PROMPT)
+    const sentence = validSentence(req.body)
+    if (!sentence) { res.status(400).json({ error: '请提供要分析的句子' }); return }
+    const result = await callAI(sentence, PREP_PROMPT)
     res.json({ result })
   } catch (err) {
     next(err)
+  }
+})
+
+/* ── Streaming analysis (SSE) ─────────────────────────────── */
+
+async function streamAnalyze(req: Request, res: Response, next: (e?: unknown) => void, systemPrompt: string) {
+  try {
+    const sentence = validSentence(req.body)
+    if (!sentence) { res.status(400).json({ error: '请提供要分析的句子' }); return }
+
+    const { send } = sseInit(res)
+    const full = await callLLMStream(
+      [{ role: 'system', content: systemPrompt }, { role: 'user', content: sentence }],
+      (delta) => send('delta', { text: delta }),
+      { temperature: 0.3, maxTokens: 2000 },
+    )
+    if (full) {
+      send('done', { full: cleanMarkdown(full) })
+    } else {
+      send('fallback', { text: fallbackAnalyze(sentence) })
+    }
+    res.end()
+  } catch (err) {
+    if (!res.headersSent) next(err)
+    else res.end()
+  }
+}
+
+router.post('/grammar/stream', (req, res, next) => streamAnalyze(req, res, next, SYSTEM_PROMPT))
+router.post('/preposition/stream', (req, res, next) => streamAnalyze(req, res, next, PREP_PROMPT))
+
+/* ── POST /api/analyze/chat/stream — 追问对话(SSE) ───────── */
+
+const CHAT_RULES = `
+
+## 当前会话模式
+你已经按上述方法论分析过用户给出的句子,用户现在针对自己不懂的地方追问。回答规则:
+1. 只回答用户问的那个点,禁止重新分析整个句子
+2. 150 字以内,纯中文大白话,可以引用原句中的词
+3. 如果用户的理解有偏差,先直接指出,再给出正确理解
+4. 不使用任何 markdown 符号,纯文本`
+
+router.post('/chat/stream', async (req, res, next) => {
+  try {
+    const body = req.body as {
+      sentence?: unknown
+      analysis?: unknown
+      question?: unknown
+      mode?: unknown
+      history?: { role?: string; content?: string }[]
+    }
+    const sentence = validSentence({ sentence: body.sentence })
+    const question = typeof body.question === 'string' ? body.question.trim().slice(0, 500) : ''
+    if (!sentence || !question) {
+      res.status(400).json({ error: '缺少句子或问题' })
+      return
+    }
+    const analysis = typeof body.analysis === 'string' ? body.analysis.slice(0, 4000) : ''
+    const basePrompt = body.mode === 'preposition' ? PREP_PROMPT : SYSTEM_PROMPT
+
+    // Sanitize history: only user/assistant, cap length
+    const history: ChatMessage[] = (Array.isArray(body.history) ? body.history : [])
+      .filter((m): m is { role: string; content: string } =>
+        (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .slice(-20)
+      .map((m) => ({ role: m.role as 'user' | 'assistant', content: m.content.slice(0, 2000) }))
+
+    const messages: ChatMessage[] = [
+      { role: 'system', content: basePrompt + CHAT_RULES },
+      { role: 'user', content: `句子: ${sentence}${analysis ? `\n\n你之前的分析:\n${analysis}` : ''}` },
+      { role: 'assistant', content: '好的,我已分析完这个句子。你有什么不懂的地方,尽管问。' },
+      ...history,
+      { role: 'user', content: question },
+    ]
+
+    const { send } = sseInit(res)
+    const full = await callLLMStream(
+      messages,
+      (delta) => send('delta', { text: delta }),
+      { temperature: 0.4, maxTokens: 600 },
+    )
+    if (full) {
+      send('done', { full: cleanMarkdown(full) })
+    } else {
+      send('error', { error: 'AI 服务暂不可用(请检查 LLM_API_KEY 配置)' })
+    }
+    res.end()
+  } catch (err) {
+    if (!res.headersSent) next(err)
+    else res.end()
   }
 })
 
@@ -98,22 +208,6 @@ async function callAI(sentence: string, systemPrompt: string): Promise<string> {
   const result = await callLLM(systemPrompt, sentence, { temperature: 0.3, maxTokens: 2000 })
   if (!result) return fallbackAnalyze(sentence)
   return cleanMarkdown(result)
-}
-
-/* ── Strip markdown formatting from AI output ─────────────── */
-
-function cleanMarkdown(text: string): string {
-  return text
-    .replace(/^#{1,6}\s+/gm, '')              // headings: ### → ''
-    .replace(/\*\*(.+?)\*\*/g, '$1')          // bold: **text** → text
-    .replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '$1') // italic: *text* → text
-    .replace(/^[-*]\s+/gm, '')                // list: - item → item
-    .replace(/^\s+[-*]\s+/gm, '')             // indented list:    * item → item
-    .replace(/^---+\s*$/gm, '')               // horizontal rules: --- → ''
-    .replace(/`(.+?)`/g, '$1')                // inline code
-    .replace(/~~(.+?)~~/g, '$1')              // strikethrough
-    .replace(/\n{3,}/g, '\n\n')               // collapse 3+ newlines
-    .trim()
 }
 
 /* ── Local fallback analyzer ──────────────────────────────── */
