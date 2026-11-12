@@ -12,8 +12,9 @@ if [ "$(id -u)" != "0" ]; then
   SUDO="sudo"
 fi
 
-# ── 安装基础工具 ──
-if ! command -v curl >/dev/null 2>&1; then
+# ── 安装基础工具(curl/git/tar 缺一就装) ──
+if ! command -v curl >/dev/null 2>&1 || ! command -v git >/dev/null 2>&1 || ! command -v tar >/dev/null 2>&1; then
+  echo "--- 安装基础工具 curl/git/tar ---"
   if command -v apt-get >/dev/null 2>&1; then $SUDO apt-get update -y && $SUDO apt-get install -y curl git tar
   elif command -v dnf >/dev/null 2>&1; then $SUDO dnf install -y curl git tar
   elif command -v yum >/dev/null 2>&1; then $SUDO yum install -y curl git tar
