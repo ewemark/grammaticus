@@ -21,6 +21,9 @@ const app = express()
 const PORT = Number(process.env.PORT) || 3001
 const isDev = process.env.NODE_ENV !== 'production'
 
+// 反向代理(nginx)后信任 X-Forwarded-For,使限流按真实客户端 IP 计算
+app.set('trust proxy', 1)
+
 const ALLOWED_ORIGINS = isDev
   ? ['http://localhost:5173', 'http://localhost:3000']
   : (process.env.CORS_ORIGIN?.split(',') || ['http://localhost:5173'])
