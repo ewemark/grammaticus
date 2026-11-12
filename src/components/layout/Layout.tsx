@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Header from './Header'
 import FloatingAction from '../ui/FloatingAction'
+import InstallPrompt from '../ui/InstallPrompt'
 import ErrorBoundary from '../ui/ErrorBoundary'
 import OnboardingTour from '../ui/OnboardingTour'
 import { ToastHost } from '../ui/Toast'
@@ -24,6 +25,7 @@ export default function Layout() {
         </main>
       </div>
       <FloatingAction />
+      <InstallPrompt />
       <OnboardingTour />
       <ToastHost />
     </div>

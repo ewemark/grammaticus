@@ -209,3 +209,29 @@ body {
     --space-huge: 32px;
   }
 }
+
+/* ── 触摸优化:去掉点按高亮与 300ms 延迟感 ── */
+button,
+a,
+[role='button'],
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ── 窄屏:宽表格/代码块横向滚动,不撑破布局 ── */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+  pre,
+  code {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+}

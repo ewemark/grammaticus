@@ -13,6 +13,7 @@ import { addToDictionary, getDictionaryWord, isInDictionary } from '../../utils/
 import { getNotes } from '../../utils/notes'
 import type { Note } from '../../types/learning'
 import { addLookedUpWord, getActiveSession } from '../../utils/readingSession'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 
 interface WordPopupProps {
   word: string
@@ -138,7 +139,8 @@ export default function WordPopup({ word, anchorRect, onClose }: WordPopupProps)
   const failed = failedFor === word
   const loading = detail === null && !failed
 
-  /* ── 定位:默认锚点下方 8px 左对齐;底部/右侧空间不足则翻转 ── */
+  /* ── 定位:默认锚点下方 8px 左对齐;底部/右侧空间不足则翻转;窄屏变底部抽屉 ── */
+  const isNarrow = useMediaQuery('(max-width: 640px)')
   const vw = typeof window !== 'undefined' ? window.innerWidth : 1024
   const vh = typeof window !== 'undefined' ? window.innerHeight : 768
   let left = anchorRect.left
@@ -147,8 +149,8 @@ export default function WordPopup({ word, anchorRect, onClose }: WordPopupProps)
   }
   const fitsBelow = vh - anchorRect.bottom >= POPUP_EST_HEIGHT + GAP
   const placeAbove = !fitsBelow && anchorRect.top >= POPUP_EST_HEIGHT + GAP
-  const top = placeAbove ? undefined : anchorRect.bottom + GAP
-  const bottom = placeAbove ? vh - anchorRect.top + GAP : undefined
+  const top = isNarrow ? undefined : placeAbove ? undefined : anchorRect.bottom + GAP
+  const bottom = isNarrow ? 8 : placeAbove ? vh - anchorRect.top + GAP : undefined
 
   const simple = detail?.simple ?? null
   const rich = detail?.rich ?? null
@@ -178,10 +180,12 @@ export default function WordPopup({ word, anchorRect, onClose }: WordPopupProps)
       ref={ref}
       style={{
         position: 'fixed',
-        left,
+        left: isNarrow ? 8 : left,
+        right: isNarrow ? 8 : undefined,
         top,
         bottom,
-        width: POPUP_WIDTH,
+        width: isNarrow ? 'auto' : POPUP_WIDTH,
+        maxHeight: isNarrow ? '72vh' : undefined,
         zIndex: 1200,
         boxSizing: 'border-box',
         background: 'var(--color-surface-raised)',

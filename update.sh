@@ -24,6 +24,19 @@ fi
 [ -f "$APP_DIR/.env" ] && cp "$APP_DIR/.env" "$NEW_DIR/.env"
 [ -f "$APP_DIR/data/grammaticus.db" ] && cp "$APP_DIR/data/grammaticus.db" "$NEW_DIR/data/grammaticus.db" 2>/dev/null || true
 
+# ── .env 兜底:缺什么补什么(LLM Key / JWT 密钥) ──
+if [ ! -f "$NEW_DIR/.env" ]; then
+  cat > "$NEW_DIR/.env" <<EOF
+LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c
+LLM_BASE_URL=https://api.deepseek.com/v1
+LLM_MODEL=deepseek-chat
+JWT_SECRET=$(node -e 'console.log(require("crypto").randomBytes(32).toString("hex"))')
+EOF
+else
+  grep -q "LLM_API_KEY" "$NEW_DIR/.env" || echo "LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c" >> "$NEW_DIR/.env"
+  grep -q "JWT_SECRET" "$NEW_DIR/.env" || echo "JWT_SECRET=$(node -e 'console.log(require("crypto").randomBytes(32).toString("hex"))')" >> "$NEW_DIR/.env"
+fi
+
 # ── 替换 ──
 rm -rf "$APP_DIR"
 mv "$NEW_DIR" "$APP_DIR"

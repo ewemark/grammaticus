@@ -3,6 +3,7 @@ import { saveNote } from '../../utils/notes'
 import { analyzeGrammarStream, type StreamHandle } from '../../utils/analyze'
 import { openSession, closeSession, addCreatedNote, addSavedSentence } from '../../utils/readingSession'
 import { findHighlightRange, overlaps, type HighlightRange } from '../../utils/highlight'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import StudyResult from './StudyResult'
 import WordPopup from './WordPopup'
 
@@ -261,10 +262,18 @@ export default function FullscreenReader({
   const onResizeUp = () => { setResizingSidebar(false) }
 
   const isSideLeft = sidebarPrefs.side === 'left'
+  /* 窄屏(平板竖屏/手机):分析侧栏改为覆盖层,不挤压正文 */
+  const isNarrow = useMediaQuery('(max-width: 900px)')
 
   const sidebarPanel = sidebarOpen && (
     <>
-      {!isSideLeft && (
+      {isNarrow && (
+        <div
+          onClick={() => { streamRef.current?.abort(); setSidebarOpen(false) }}
+          style={{ position: 'fixed', inset: 0, background: 'var(--color-overlay)', zIndex: 4 }}
+        />
+      )}
+      {!isNarrow && !isSideLeft && (
         <div
           onPointerDown={onResizeDown} onPointerMove={onResizeMove} onPointerUp={onResizeUp}
           title="拖动调整分析栏宽度"
@@ -273,7 +282,11 @@ export default function FullscreenReader({
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.3' }}
         />
       )}
-      <div style={{
+      <div style={isNarrow ? {
+        position: 'fixed', top: 0, bottom: 0, right: 0, width: 'min(440px, 94vw)', zIndex: 5,
+        background: 'var(--color-canvas)', display: 'flex', flexDirection: 'column',
+        borderLeft: '1px solid var(--color-border)', boxShadow: 'var(--shadow-raised)',
+      } : {
         width: sidebarWidth, flexShrink: 0, overflow: 'auto',
         borderLeft: isSideLeft ? 'none' : '1px solid var(--color-border)',
         borderRight: isSideLeft ? '1px solid var(--color-border)' : 'none',
@@ -283,9 +296,11 @@ export default function FullscreenReader({
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: 'var(--space-sm) var(--space-md)', borderBottom: '1px solid var(--color-border)', flexShrink: 0 }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700, letterSpacing: 'var(--tracking-micro)', textTransform: 'uppercase', color: 'var(--color-text)' }}>句子分析</span>
           <span style={{ flex: 1 }} />
-          <button onClick={toggleSidebarSide} title={isSideLeft ? '移到右侧' : '移到左侧'} style={{ ...btnStyle, padding: '4px 8px', fontSize: 10 }}>
-            {isSideLeft ? '→' : '←'}
-          </button>
+          {!isNarrow && (
+            <button onClick={toggleSidebarSide} title={isSideLeft ? '移到右侧' : '移到左侧'} style={{ ...btnStyle, padding: '4px 8px', fontSize: 10 }}>
+              {isSideLeft ? '→' : '←'}
+            </button>
+          )}
           <button onClick={() => { streamRef.current?.abort(); setSidebarOpen(false) }} style={{ ...btnStyle, padding: '4px 8px', fontSize: 10 }}>✕ 关闭</button>
         </div>
         <div style={{ flex: 1, overflow: 'auto', padding: 'var(--space-md)' }}>
@@ -295,7 +310,7 @@ export default function FullscreenReader({
             sentence={sidebarSentence}
             analysis={sidebarResult}
             streaming={sidebarStreaming}
-            compact={sidebarWidth < 380}
+            compact={isNarrow || sidebarWidth < 380}
             onSaved={(kind) => {
               if (kind === 'sentence') {
                 addSavedSentence(sessionArticleId, { id: `s-${Date.now()}`, title: sidebarSentence.slice(0, 40), sourceText: sidebarSentence })
@@ -304,7 +319,7 @@ export default function FullscreenReader({
           />
         </div>
       </div>
-      {isSideLeft && (
+      {!isNarrow && isSideLeft && (
         <div
           onPointerDown={onResizeDown} onPointerMove={onResizeMove} onPointerUp={onResizeUp}
           title="拖动调整分析栏宽度"
@@ -319,12 +334,12 @@ export default function FullscreenReader({
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex, background: 'var(--color-canvas)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid var(--color-border)' }}>
-        <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: isNarrow ? '10px 12px' : '16px 24px', borderBottom: '1px solid var(--color-border)', flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--color-text)' }}>{title}</span>
           {subtitle && <span style={{ fontSize: 10, color: 'var(--color-text-secondary)', marginLeft: 12, fontFamily: 'var(--font-display)', textTransform: 'uppercase', letterSpacing: 'var(--tracking-micro)' }}>{subtitle}</span>}
         </div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
           {!editing && (
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: 0, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
