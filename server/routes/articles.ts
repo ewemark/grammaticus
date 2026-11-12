@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import db from '../db.js'
+import { listArticles, listBooks, getArticle } from '../dataStore.js'
 
 const router = Router()
 
@@ -8,11 +8,7 @@ const router = Router()
 router.get('/', (_req, res, next) => {
   try {
     const book = (_req.query.book as string | undefined)?.trim() ?? ''
-    let sql = 'SELECT id, book, lesson, title, title_cn, level FROM articles'
-    const params: string[] = []
-    if (book) { sql += ' WHERE book = ?'; params.push(book) }
-    sql += ' ORDER BY book, lesson ASC'
-    const rows = db.prepare(sql).all(...params)
+    const rows = listArticles(book || undefined)
     res.json(rows)
   } catch (err) { next(err) }
 })
@@ -21,8 +17,7 @@ router.get('/', (_req, res, next) => {
 
 router.get('/books', (_req, res, next) => {
   try {
-    const rows = db.prepare('SELECT DISTINCT book FROM articles ORDER BY book ASC').all() as { book: string }[]
-    res.json(rows.map((r) => r.book))
+    res.json(listBooks())
   } catch (err) { next(err) }
 })
 
@@ -30,7 +25,9 @@ router.get('/books', (_req, res, next) => {
 
 router.get('/:id', (_req, res, next) => {
   try {
-    const row = db.prepare('SELECT * FROM articles WHERE id = ?').get(_req.params.id)
+    const id = Number(_req.params.id)
+    if (Number.isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return }
+    const row = getArticle(id)
     if (!row) { res.status(404).json({ error: 'Article not found' }); return }
     res.json(row)
   } catch (err) { next(err) }
