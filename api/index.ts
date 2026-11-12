@@ -63,6 +63,14 @@ app.use('/api/video', videoRouter)
 app.use('/api/notes', aiRateLimiter, notesRouter)
 app.use('/api/dictionary', aiRateLimiter, dictionaryRouter)
 
+// 账号/云同步/留言板依赖 SQLite,云端演示版不可用 — 返回友好提示而非 404
+const unavailable: express.RequestHandler = (_req, res) => {
+  res.status(501).json({ error: '云端演示版暂不提供账号功能,学习数据已保存在你的浏览器本地,不受影响' })
+}
+app.use('/api/auth', unavailable)
+app.use('/api/user', unavailable)
+app.use('/api/messages', unavailable)
+
 // Health check
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' })

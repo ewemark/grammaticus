@@ -11,8 +11,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const VIDEO_DIR = path.resolve(__dirname, '..', '..', 'data', 'videos')
 const router = Router()
 
-// 确保目录存在
-fs.mkdirSync(VIDEO_DIR, { recursive: true })
+// 确保目录存在(serverless 只读文件系统上跳过 — 视频库功能仅本地可用)
+try {
+  fs.mkdirSync(VIDEO_DIR, { recursive: true })
+} catch {
+  console.warn('[Video] Cannot create video dir (read-only FS) — video library disabled')
+}
 
 export interface VideoItem {
   filename: string
