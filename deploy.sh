@@ -105,13 +105,18 @@ echo "--- 导入种子数据 ---"
 npm run seed 2>/dev/null || echo "(seed 跳过)"
 npm run seed-nce 2>/dev/null || echo "(seed-nce 跳过)"
 
-# ── .env ──
+# ── .env(LLM Key + JWT 密钥自动生成) ──
+gen_jwt() { node -e 'console.log(require("crypto").randomBytes(32).toString("hex"))'; }
 if [ ! -f .env ]; then
-  cat > .env <<'EOF'
+  cat > .env <<EOF
 LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c
 LLM_BASE_URL=https://api.deepseek.com/v1
 LLM_MODEL=deepseek-chat
+JWT_SECRET=$(gen_jwt)
 EOF
+else
+  grep -q "LLM_API_KEY" .env || echo "LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c" >> .env
+  grep -q "JWT_SECRET" .env || echo "JWT_SECRET=$(gen_jwt)" >> .env
 fi
 
 # ── PM2(装到用户目录,无需 root 写系统目录) ──
