@@ -1,59 +1,61 @@
 #!/bin/sh
-# Grammaticus 一键部署脚本
-# 适用: Ubuntu/Debian (apt) + CentOS/RHEL/Alibaba Cloud Linux (yum/dnf)
+# Grammaticus 一键部署脚本 v3
+# 直接下载 Node.js 二进制包,不依赖 NodeSource,任何 Linux 都能跑
 # 用法: curl -fsSL https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh | sh
 set -e
 
 echo "=== Grammaticus 一键部署 ==="
 
-# ── 检测包管理器 ──
-PKG=""
-if command -v apt-get >/dev/null 2>&1; then
-  PKG="apt"
-elif command -v dnf >/dev/null 2>&1; then
-  PKG="dnf"
-elif command -v yum >/dev/null 2>&1; then
-  PKG="yum"
-else
-  echo "错误: 未找到 apt-get / dnf / yum,不支持的系统"
-  exit 1
+# ── 非 root 用户自动用 sudo ──
+SUDO=""
+if [ "$(id -u)" != "0" ]; then
+  SUDO="sudo"
 fi
-echo "--- 检测到包管理器: $PKG ---"
 
-# ── 安装 git(如果没有) ──
-if ! command -v git >/dev/null 2>&1; then
-  echo "--- 安装 git ---"
-  if [ "$PKG" = "apt" ]; then
-    apt-get update -y && apt-get install -y git curl
-  else
-    $PKG install -y git curl
+# ── 安装基础工具 ──
+if ! command -v curl >/dev/null 2>&1; then
+  if command -v apt-get >/dev/null 2>&1; then $SUDO apt-get update -y && $SUDO apt-get install -y curl git tar
+  elif command -v dnf >/dev/null 2>&1; then $SUDO dnf install -y curl git tar
+  elif command -v yum >/dev/null 2>&1; then $SUDO yum install -y curl git tar
   fi
 fi
 
-# ── 安装 Node.js 24 ──
+# ── 安装 Node.js 24(直接下载二进制包) ──
 NEED_NODE=1
 if command -v node >/dev/null 2>&1; then
   NODE_VER=$(node -v | sed 's/v//' | cut -d. -f1)
   if [ "$NODE_VER" -ge 20 ]; then
-    echo "--- Node.js $(node -v) 已安装,版本满足要求 ---"
+    echo "--- Node.js $(node -v) 已安装 ---"
     NEED_NODE=0
   fi
 fi
 
 if [ "$NEED_NODE" = "1" ]; then
-  echo "--- 安装 Node.js 24 ---"
-  if [ "$PKG" = "apt" ]; then
-    curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
-    apt-get install -y nodejs
-  else
-    # RHEL/CentOS/Alibaba Cloud Linux — 用 NodeSource 的 rpm 源
-    curl -fsSL https://rpm.nodesource.com/setup_24.x | bash -
-    $PKG install -y nodejs
+  echo "--- 下载 Node.js 24 二进制包 ---"
+  NODE_ARCH=$(uname -m)
+  if [ "$NODE_ARCH" = "x86_64" ]; then
+    NODE_ARCH="x64"
+  elif [ "$NODE_ARCH" = "aarch64" ]; then
+    NODE_ARCH="arm64"
   fi
+  
+  # 获取最新 v24 版本号
+  NODE_VERSION=$(curl -s https://nodejs.org/dist/index.json | grep -o '"version":"v24\.[0-9]*\.[0-9]*"' | head -1 | sed 's/"version":"//;s/"//')
+  if [ -z "$NODE_VERSION" ]; then
+    NODE_VERSION="v24.0.0"
+  fi
+  
+  echo "--- 安装 Node.js $NODE_VERSION ($NODE_ARCH) ---"
+  cd /tmp
+  curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-$NODE_ARCH.tar.xz" -o node.tar.xz
+  tar -xf node.tar.xz
+  $SUDO cp -r node-$NODE_VERSION-linux-$NODE_ARCH/* /usr/local/
+  rm -rf node-$NODE_VERSION-linux-$NODE_ARCH node.tar.xz
+  cd ~
+  
+  echo "--- Node.js 版本: $(node -v) ---"
+  echo "--- npm 版本: $(npm -v) ---"
 fi
-
-echo "--- Node.js 版本: $(node -v) ---"
-echo "--- npm 版本: $(npm -v) ---"
 
 # ── 克隆仓库 ──
 echo "--- 克隆代码 ---"
@@ -73,9 +75,9 @@ npm install
 echo "--- 构建前端 ---"
 npm run build
 
-# ── 导入种子数据(容错:服务器无 SQLite 时跳过) ──
+# ── 导入种子数据(容错) ──
 echo "--- 导入数据 ---"
-npm run seed 2>/dev/null || echo "(seed 跳过或失败,不影响核心功能)"
+npm run seed 2>/dev/null || echo "(seed 跳过,不影响核心功能)"
 npm run seed-nce 2>/dev/null || true
 
 # ── 创建 .env ──
@@ -84,7 +86,6 @@ if [ ! -f .env ]; then
   echo "LLM_BASE_URL=https://api.deepseek.com/v1" >> .env
   echo "LLM_MODEL=deepseek-chat" >> .env
 else
-  # 确保 Key 存在
   if ! grep -q "LLM_API_KEY" .env; then
     echo "LLM_API_KEY=sk-89728a3824bf4b19a9d55a4c7320812c" >> .env
   fi
