@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import db from '../db.js'
+import { callLLM } from '../llm.js'
 import { isTrustedAudioUrl } from '../utils/text.js'
 import { lemmatize, editDistance } from '../utils/lemmatize.js'
 import type { RichWordData } from '../../src/types/word.js'
@@ -12,6 +13,63 @@ interface Row { word: string; meaning: string; pos: string; example: string }
 
 const MAX_FUZZY_CANDIDATES = 8
 const FUZZY_SCAN_LIMIT = 5000
+
+/* ── AI 词库补全:词库未收录时由 DeepSeek 生成释义(JSON → 解析 → 缓存) ── */
+
+const WORD_AI_PROMPT = `你是专业英语词典编辑。给定一个英语单词,返回严格 JSON(不要 markdown fence,不要额外解释):
+{
+  "pos": "词性(全大写:NOUN/VERB/ADJECTIVE/ADVERB/PREPOSITION/CONJUNCTION/PRONOUN/INTERJECTION)",
+  "meaning": "中文释义(简明准确,20字以内)",
+  "example": "一句自然英文例句(展示典型用法,含中文翻译)",
+  "pronunciation": "IPA音标(如 /ˈtrɪpl/)"
+}
+
+示例:
+word: "tripled"
+{"pos":"VERB","meaning":"triple的过去式,变成三倍;使增至三倍","example":"Profits tripled in the first year. 利润第一年就增长了两倍。","pronunciation":"/ˈtrɪpld/"}
+
+word: "meticulous"
+{"pos":"ADJECTIVE","meaning":"极仔细的,一丝不苟的","example":"She is meticulous about her work. 她对工作一丝不苟。","pronunciation":"/mɪˈtɪkjʊləs/"}`
+
+async function aiGenerateWord(word: string): Promise<Row | null> {
+  const result = await callLLM(
+    WORD_AI_PROMPT,
+    `word: "${word}"`,
+    { temperature: 0.1, maxTokens: 300, timeout: 20000 },
+  )
+  if (!result) return null
+  try {
+    // 去除可能的 markdown fence
+    const clean = result.replace(/```(?:json)?\s*|\s*```/g, '').trim()
+    const parsed = JSON.parse(clean) as { pos?: string; meaning?: string; example?: string; pronunciation?: string }
+    const pos = typeof parsed.pos === 'string' ? parsed.pos.toUpperCase().trim() : ''
+    const meaning = typeof parsed.meaning === 'string' ? parsed.meaning.trim() : ''
+    const example = typeof parsed.example === 'string' ? parsed.example.trim() : ''
+    if (!meaning) return null
+
+    // 缓存到本地词库(幂等:INSERT OR REPLACE)
+    db.prepare(
+      'INSERT OR REPLACE INTO words (word, meaning, pos, example) VALUES (?, ?, ?, ?)',
+    ).run(word, meaning, pos, example)
+
+    return { word, meaning, pos, example }
+  } catch {
+    // JSON 解析失败:尝试正则提取
+    const meaningMatch = result.match(/"meaning"\s*:\s*"([^"]+)"/)
+    if (meaningMatch) {
+      const meaning = meaningMatch[1].trim()
+      const posMatch = result.match(/"pos"\s*:\s*"([^"]+)"/)
+      const pos = posMatch ? posMatch[1].toUpperCase().trim() : ''
+      const exMatch = result.match(/"example"\s*:\s*"([^"]+)"/)
+      const example = exMatch ? exMatch[1].trim() : ''
+      db.prepare(
+        'INSERT OR REPLACE INTO words (word, meaning, pos, example) VALUES (?, ?, ?, ?)',
+      ).run(word, meaning, pos, example)
+      return { word, meaning, pos, example }
+    }
+    return null
+  }
+}
 
 /**
  * Tiered word search — each tier only runs when the previous found nothing:
@@ -181,7 +239,7 @@ router.get('/:word/audio', async (_req, res, next) => {
 
 /* ── GET /api/words/:word — single word detail ─────────────── */
 
-router.get('/:word', (_req, res, next) => {
+router.get('/:word', async (_req, res, next) => {
   try {
     const { word } = _req.params
 
@@ -194,7 +252,18 @@ router.get('/:word', (_req, res, next) => {
     ).get(word) as Record<string, unknown> | undefined
 
     if (!simple && !richRow) {
-      // Help the user: suggest the lemma base form, else close spellings
+      // AI 补全:词库未收录,实时用 DeepSeek 生成释义并缓存
+      const aiRow = await aiGenerateWord(word)
+      if (aiRow) {
+        res.json({
+          simple: { word: aiRow.word, meaning: aiRow.meaning, pos: aiRow.pos, example: aiRow.example },
+          rich: null,
+          aiGenerated: true,
+        })
+        return
+      }
+
+      // 连 AI 都失败,才返回 404 + 建议
       const lower = word.toLowerCase()
       const suggestions: Row[] = []
       for (const c of lemmatize(lower).filter((x) => x !== lower)) {

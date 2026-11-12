@@ -15,6 +15,8 @@ export interface WordDetailResponse {
   rich: RichWordData | null
   /** 未收录时的建议词（词形还原/相近拼写） */
   suggestions?: EnglishWord[]
+  /** AI 实时生成的释义(非词库数据) */
+  aiGenerated?: boolean
 }
 
 /** 单词列表（GET /api/words 返回） */

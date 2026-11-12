@@ -205,6 +205,11 @@ export default function WordPopup({ word, anchorRect, onClose }: WordPopupProps)
             }}>
               {word}
             </span>
+            {result?.detail?.aiGenerated && (
+              <span style={{ ...microLabel, fontSize: 8, padding: '1px 5px', border: '1px solid var(--color-border)', borderRadius: 3, color: 'var(--color-text-secondary)', flexShrink: 0 }}>
+                AI
+              </span>
+            )}
             <button
               onClick={() => { void playAudio(word) }}
               title="发音(英式)"
