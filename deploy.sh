@@ -1,10 +1,10 @@
 #!/bin/sh
-# Grammaticus 一键部署脚本 v5
-# 特点: 不需要 git(tarball 下载代码), Node.js 二进制安装, 小内存自动加 swap
-# 用法: curl -fsSL "https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh?v=5" | sh
+# Grammaticus 一键部署脚本 v6
+# 特点: 不需要 git(tarball 下载代码), Node.js 二进制安装, 小内存自动加 swap, PM2 用户目录安装
+# 用法: curl -fsSL "https://raw.githubusercontent.com/ewemark/grammaticus/master/deploy.sh?v=6" | sh
 set -e
 
-echo "=== Grammaticus 一键部署 v5 ==="
+echo "=== Grammaticus 一键部署 v6 ==="
 
 # ── sudo(非 root 时用 sudo -n 免交互,失败自动降级用户目录安装) ──
 SUDO=""
@@ -114,9 +114,13 @@ LLM_MODEL=deepseek-chat
 EOF
 fi
 
-# ── PM2 启动 ──
+# ── PM2(装到用户目录,无需 root 写系统目录) ──
 if ! command -v pm2 >/dev/null 2>&1; then
-  echo "--- 安装 PM2 ---"
+  echo "--- 安装 PM2(用户目录) ---"
+  npm config set prefix "$HOME/.npm-global"
+  grep -q '.npm-global/bin' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> "$HOME/.bashrc"
+  PATH="$HOME/.npm-global/bin:$PATH"
+  export PATH
   npm install -g pm2 --no-audit --no-fund
 fi
 
@@ -126,6 +130,10 @@ NODE_ENV=production PORT=3000 pm2 start server/index.ts \
   --name grammaticus \
   --interpreter "$APP_DIR/node_modules/.bin/tsx"
 pm2 save
+
+# ── 重启后自动恢复(用户 crontab,无需 root) ──
+PM2_BIN=$(command -v pm2)
+(crontab -l 2>/dev/null | grep -v 'pm2 resurrect'; echo "@reboot $PM2_BIN resurrect") | crontab -
 
 # ── 验证 ──
 sleep 4
