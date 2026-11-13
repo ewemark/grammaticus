@@ -294,6 +294,28 @@ export default function Home() {
                 margin: '0 0 var(--space-md)',
               }}
             >
+              SPACE
+            </h4>
+            <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>
+              你的学习空间:笔记、句子库、词典、收藏文章与 AI 老师
+            </p>
+            <Link to="/space">
+              <Button>OPEN SPACE</Button>
+            </Link>
+          </Card>
+
+          <Card>
+            <h4
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'var(--text-heading-sm)',
+                fontWeight: 700,
+                letterSpacing: 'var(--tracking-heading)',
+                textTransform: 'uppercase',
+                color: 'var(--color-text)',
+                margin: '0 0 var(--space-md)',
+              }}
+            >
               SCAN
             </h4>
             <p style={{ fontSize: 'var(--text-body)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', margin: '0 0 var(--space-xl)' }}>

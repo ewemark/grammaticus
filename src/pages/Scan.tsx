@@ -24,7 +24,12 @@ export default function Scan() {
     setSaved(false)
 
     try {
-      const worker = await createWorker('eng')
+      // 自托管 OCR 资源(public/tess + public/tessdata),不依赖境外 CDN
+      const worker = await createWorker('eng', 1, {
+        workerPath: '/tess/worker.min.js',
+        corePath: '/tess/core',
+        langPath: '/tessdata',
+      })
       const { data } = await worker.recognize(file)
       setText(data.text.trim())
       await worker.terminate()

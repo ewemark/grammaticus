@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import Button from '../components/ui/Button'
@@ -10,6 +10,46 @@ import { isBookmarked, toggleBookmark } from '../utils/bookmarks'
 import { addToDictionary, isInDictionary } from '../utils/dictionary'
 
 /* ── shared inline style factories ─────────────────────────────── */
+
+/** 语法搭配区:grammarRules 是 JSON 字符串([{title, items[]}]),解析后结构化渲染 */
+function GrammarRulesBlock({ raw }: { raw: string }) {
+  const parsed = useMemo(() => {
+    try {
+      const v = JSON.parse(raw) as unknown
+      if (Array.isArray(v)) return v as { title?: string; items?: string[] }[]
+    } catch { /* 非 JSON 则原样显示 */ }
+    return null
+  }, [raw])
+
+  if (!parsed) {
+    return (
+      <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line', margin: 0 }}>
+        {raw}
+      </p>
+    )
+  }
+
+  return (
+    <div style={{ display: 'grid', gap: 'var(--space-md)' }}>
+      {parsed.map((g, i) => (
+        <div key={i}>
+          {g.title && (
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-body-sm)', fontWeight: 700, color: 'var(--color-text)', margin: '0 0 var(--space-xs)' }}>
+              {g.title}
+            </p>
+          )}
+          <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 4 }}>
+            {(g.items ?? []).map((it, j) => (
+              <li key={j} style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)' }}>
+                {it}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const sectionTitle: React.CSSProperties = {
   fontFamily: 'var(--font-display)',
@@ -299,9 +339,7 @@ export default function WordDetail() {
         <section style={{ marginBottom: 'var(--space-section)' }}>
           <h3 style={sectionTitle}>语法与强制搭配</h3>
           <Card>
-            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--leading-body)', color: 'var(--color-text-secondary)', whiteSpace: 'pre-line' }}>
-              {rich.grammarRules}
-            </p>
+            <GrammarRulesBlock raw={rich.grammarRules} />
           </Card>
         </section>
 

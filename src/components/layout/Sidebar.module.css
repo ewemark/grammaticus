@@ -78,6 +78,8 @@
 
 @media (max-width: 1023px) {
   .sidebar {
+    /* 移动端抽屉必须有实际宽度(桌面变量在 ≤768px 时为 0) */
+    width: min(280px, 82vw);
     transform: translateX(-100%);
     transition: transform var(--transition-normal);
   }

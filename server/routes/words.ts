@@ -20,10 +20,12 @@ const MAX_FUZZY_CANDIDATES = 8
 const WORD_AI_PROMPT = `你是专业英语词典编辑。给定一个英语单词,返回严格 JSON(不要 markdown fence,不要额外解释):
 {
   "pos": "词性(全大写:NOUN/VERB/ADJECTIVE/ADVERB/PREPOSITION/CONJUNCTION/PRONOUN/INTERJECTION)",
-  "meaning": "中文释义(简明准确,20字以内)",
-  "example": "一句自然英文例句(展示典型用法,含中文翻译)",
+  "meaning": "中文释义(简明准确,20字以内,必须是中文,禁止纯英文)",
+  "example": "一句自然英文例句(展示典型用法),后跟一个空格和中文翻译",
   "pronunciation": "IPA音标(如 /ˈtrɪpl/)"
 }
+
+硬性要求:meaning 字段只允许中文;example 字段必须是"英文句子 + 中文翻译"格式。
 
 示例:
 word: "tripled"

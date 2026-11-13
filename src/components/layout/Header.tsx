@@ -52,7 +52,14 @@ export default function Header({ onMenuToggle }: { onMenuToggle: () => void }) {
         <button className={styles.menuBtn} onClick={onMenuToggle} aria-label="MENU">
           <span className={styles.menuIcon}>☰</span>
         </button>
-        <h1 className={styles.title}>{title}</h1>
+        <h1
+          className={styles.title}
+          onClick={() => navigate('/')}
+          title="回到首页"
+          style={{ cursor: 'pointer' }}
+        >
+          {title}
+        </h1>
       </div>
       <div className={styles.right}>
         <button
