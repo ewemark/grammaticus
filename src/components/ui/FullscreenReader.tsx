@@ -163,19 +163,35 @@ export default function FullscreenReader({
     setPopupState({ word: w, rect })
   }, [])
 
-  const handleMouseUp = () => {
+  const captureSelection = useCallback(() => {
     if (editing) return
-    setTimeout(() => {
-      const sel = window.getSelection()
-      const selected = sel?.toString().trim() ?? ''
-      if (!selected || !sel || sel.rangeCount === 0) { setSelText(''); setSelPos(null); return }
-      const range = sel.getRangeAt(0)
-      if (containerRef.current && !containerRef.current.contains(range.commonAncestorContainer)) { setSelText(''); setSelPos(null); return }
-      const rect = range.getBoundingClientRect()
-      setSelText(selected)
-      setSelPos({ x: Math.min(Math.max(rect.left + rect.width / 2, 90), window.innerWidth - 90), y: rect.top - 8 })
-    }, 30)
+    const sel = window.getSelection()
+    const selected = sel?.toString().trim() ?? ''
+    if (!selected || !sel || sel.rangeCount === 0) { setSelText(''); setSelPos(null); return }
+    const range = sel.getRangeAt(0)
+    if (containerRef.current && !containerRef.current.contains(range.commonAncestorContainer)) { setSelText(''); setSelPos(null); return }
+    const rect = range.getBoundingClientRect()
+    setSelText(selected)
+    setSelPos({ x: Math.min(Math.max(rect.left + rect.width / 2, 90), window.innerWidth - 90), y: rect.top - 8 })
+  }, [editing])
+
+  const handleMouseUp = () => {
+    setTimeout(captureSelection, 30)
   }
+
+  /* 触摸设备(平板/手机):长按拖选不触发 mouseup,改用 selectionchange 监听 */
+  useEffect(() => {
+    let timer: number | undefined
+    const onChange = () => {
+      window.clearTimeout(timer)
+      timer = window.setTimeout(captureSelection, 250)
+    }
+    document.addEventListener('selectionchange', onChange)
+    return () => {
+      window.clearTimeout(timer)
+      document.removeEventListener('selectionchange', onChange)
+    }
+  }, [captureSelection])
 
   const openNoteFor = (quote: string) => {
     setNoteQuote(quote)
