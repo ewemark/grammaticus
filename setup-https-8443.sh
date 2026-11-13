@@ -42,7 +42,7 @@ $SUDO firewall-cmd --permanent --add-port=8443/tcp 2>/dev/null && $SUDO firewall
 # ── 3. acme.sh + DNS 验证签发证书 ──
 echo "--- 申请证书(DNS 验证,约 1 分钟) ---"
 if [ ! -x "$HOME/.acme.sh/acme.sh" ]; then
-  curl -fsSL https://get.acme.sh | sh -s email=admin@"$DOMAIN" >/dev/null 2>&1 || sh <(curl -fsSL https://get.acme.sh) -s email=admin@"$DOMAIN"
+  curl -fsSL https://get.acme.sh | sh -s -- email=admin@"$DOMAIN"
 fi
 export Ali_Key Ali_Secret
 "$HOME/.acme.sh/acme.sh" --set-default-ca --server letsencrypt
